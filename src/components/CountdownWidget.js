@@ -1,4 +1,4 @@
-// import { useTargetsContext } from '../hooks/useTargetsContext';
+// import { usegigsContext } from '../hooks/usegigsContext';
 // import { useAuthContext } from '../hooks/useAuthContext';
 // import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 // import { formatDistance } from 'date-fns';
@@ -6,17 +6,15 @@ import styled from 'styled-components';
 import { format } from 'date-fns';
 import { differenceInDays } from 'date-fns';
 
-const CountdownWidget = ({ target }) => {
+const CountdownWidget = ({ gig }) => {
 	return (
 		<StyledCountdownWidget className='countdown-widget'>
-			{!target.deadline_reason && <p>No target reason</p>}
-			{target.deadline_reason && <p>{target.deadline_reason}</p>}
+			{/* {!gig.deadline_reason && <p>No gig reason</p>} */}
+			{gig.headline_band && <p>{gig.headline_band}</p>}
 			<p>
-				<strong>{format(new Date(target.deadline_date), 'dd/MM/yyyy')}</strong>
+				<strong>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</strong>
 			</p>
-			<p>
-				in {differenceInDays(new Date(target.deadline_date), new Date())} days
-			</p>
+			<p>in {differenceInDays(new Date(gig.gig_date), new Date())} days</p>
 		</StyledCountdownWidget>
 	);
 };

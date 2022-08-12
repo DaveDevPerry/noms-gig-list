@@ -2,13 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { BsFillShareFill, BsWhatsapp } from 'react-icons/bs';
 
-const InviteWidget = () => {
+const InviteWidget = ({ gig }) => {
 	const shareMobile = () => {
-		const groupName = 'test group name';
-		const groupPin = 'testgrouppin';
+		const nextBand = gig.headline_band;
+		const nextVenue = gig.venue;
+		const nextCity = gig.city;
+		const nextDate = new Date(gig.gig_date).toLocaleDateString();
+
+		console.log(
+			`Liz and I are going to the ${nextBand} gig at ${nextVenue} in ${nextCity} on ${nextDate}. Will we see you there?`
+		);
 
 		window.open(
-			`whatsapp://send?text=I have set up a group on Why Wait?  Would you like to join? Here are the group details.  GROUP NAME:${groupName}, PIN:${groupPin}. Sign up here - https://why-weight.vercel.app/signup`
+			`whatsapp://send?text=Liz and I are going to the ${nextBand} gig at ${nextVenue} in ${nextCity} on ${nextDate}. Will we see you there?`
 		);
 	};
 	return (
@@ -22,7 +28,7 @@ const InviteWidget = () => {
 				}}
 			>
 				<BsFillShareFill size='20px' className='share-icon' />
-				invite people to join
+				let your mates know
 				<BsWhatsapp size='25px' className='share-icon' />
 			</button>
 			{/* </div> */}

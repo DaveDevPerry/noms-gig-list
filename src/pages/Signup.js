@@ -41,7 +41,9 @@ const Signup = () => {
 					/>
 				</div>
 
-				<button disabled={isLoading}>Sign up</button>
+				<button className='action-btn' disabled={isLoading}>
+					Sign up
+				</button>
 				{error && <div className='error'>{error}</div>}
 			</form>
 
@@ -79,9 +81,16 @@ const StyledSignup = styled(motion.div)`
 				box-sizing: border-box;
 			}
 		}
+		.action-btn {
+			color: ${({ theme }) => theme.white};
+			font-weight: bolder;
+			text-transform: uppercase;
+			font-size: 1.6rem;
+		}
 	}
 	p {
 		text-align: center;
+		color: ${({ theme }) => theme.txtDarkGrey};
 		a {
 			color: ${({ theme }) => theme.secondaryColor};
 			text-decoration: none;

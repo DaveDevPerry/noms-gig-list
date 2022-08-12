@@ -135,7 +135,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 				/>
 			</div>
 
-			<button>Add Gig</button>
+			<button className='add-btn'>Add Gig</button>
 			{error && <div className='error'>{error}</div>}
 		</StyledForm>
 	);
@@ -187,9 +187,15 @@ const StyledForm = styled.form`
 			padding: 0.8rem 1rem;
 			margin: 0;
 			font-size: 1.8rem;
-			color: ${({ theme }) => theme.txtGrey};
+			color: ${({ theme }) => theme.white};
 			flex: 1;
 		}
+	}
+	.add-btn {
+		color: ${({ theme }) => theme.white};
+		font-weight: bolder;
+		text-transform: uppercase;
+		font-size: 1.6rem;
 	}
 `;
 

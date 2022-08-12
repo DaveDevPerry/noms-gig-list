@@ -5,8 +5,8 @@ import styled from 'styled-components';
 // import { ImArrowUp, ImArrowDown } from 'react-icons/im';
 
 // date fns
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { format } from 'date-fns';
+// import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+// import { format } from 'date-fns';
 
 const GigDetails = ({ gig, difference }) => {
 	// const { dispatch } = usegigsContext();
@@ -35,21 +35,27 @@ const GigDetails = ({ gig, difference }) => {
 		<StyledGigDetails className='gig-details'>
 			<div className='full'>
 				<p>
+					<strong>{gig.headline_band}</strong>
+				</p>
+				<p>{gig.venue}</p>
+			</div>
+			{/* <div className='full'>
+				<p>
 					<strong>{format(new Date(gig.createdAt), 'dd/MM/yyyy')}</strong>
 				</p>
 				<p>
 					{formatDistanceToNow(new Date(gig.createdAt), { addSuffix: true })}
 				</p>
-			</div>
+			</div> */}
 
-			<div className='gig-figures'>
+			{/* <div className='gig-figures'>
 				<p>
 					<strong>{gig.headline_band}</strong>
 				</p>
 				<p>
 					<strong>{gig.venue}</strong>
 				</p>
-			</div>
+			</div> */}
 		</StyledGigDetails>
 	);
 };
@@ -71,6 +77,7 @@ const StyledGigDetails = styled.div`
 		margin: 0;
 		font-size: 0.8em;
 		color: ${({ theme }) => theme.txtGrey};
+		text-transform: capitalize;
 	}
 	span {
 		display: none;

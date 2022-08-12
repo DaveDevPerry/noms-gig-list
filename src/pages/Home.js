@@ -5,6 +5,8 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import CountdownWidget from '../components/CountdownWidget';
+import InviteWidget from '../components/InviteWidget';
 
 // components
 // import WeightDetails from '../components/WeightDetails';
@@ -90,10 +92,13 @@ const Home = () => {
 			{/* <TargetForm /> */}
 
 			{/* {<GigForm />} */}
-			<p>
+			{/* <p>
 				{gigs && gigs.length}
 				<span>x gig count</span>
-			</p>
+			</p> */}
+
+			{gigs && gigs[0] && <CountdownWidget gig={gigs[0]} />}
+			{gigs && gigs[0] && <InviteWidget gig={gigs[0]} />}
 
 			{/* {targets && targets.length === 1 && weights && weights.length >= 1 && (
 				<>

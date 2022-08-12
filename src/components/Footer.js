@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
-import { BsPlusCircleFill } from 'react-icons/bs';
+import { BsPlusCircleFill, BsMusicNoteList } from 'react-icons/bs';
 import GigForm from './GigForm';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { HiPresentationChartLine } from 'react-icons/hi';
-import { IoScale } from 'react-icons/io5';
+// import { IoScale } from 'react-icons/io5';
 
 const Footer = () => {
 	const { user } = useAuthContext();
@@ -40,7 +40,7 @@ const Footer = () => {
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							{/* Weights */}
-							<IoScale className='nav-icon' />
+							<BsMusicNoteList className='nav-icon' />
 						</NavLink>
 					</div>
 				)}

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 
 const Navbar = ({ targets }) => {
 	const { logout } = useLogout();
@@ -41,7 +41,7 @@ const Navbar = ({ targets }) => {
 							<p>&nbsp;</p>
 							<span>&nbsp;</span>
 						</li>
-						{targets.length === 1 && (
+						{/* {targets.length === 1 && (
 							<>
 								<li>
 									<p>target:</p>
@@ -58,7 +58,7 @@ const Navbar = ({ targets }) => {
 									<span>{targets[0].deadline_reason}</span>
 								</li>
 							</>
-						)}
+						)} */}
 					</ul>
 
 					<button onClick={handleClick}>Log out</button>
