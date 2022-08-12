@@ -2,12 +2,11 @@ import React from 'react';
 // import { useState } from 'react';
 // import { useEffect } from 'react';
 import styled from 'styled-components';
-import ParticipantCard from './ParticipantCard';
-// import participantDetails from './participantDetails';
+import GigDetails from './GigDetails';
 
-const ParticipantsList = ({ group }) => {
-	// const [testWeights, setTestWeights] = useState('');
-	// const weightDiffs = [];
+const GigsList = ({ gigs }) => {
+	// const [testgigs, setTestgigs] = useState('');
+	// // const weightDiffs = [];
 	// useEffect(() => {
 	// 	const clonedWeights = [...weights];
 	// 	// clonedWeights.reverse();
@@ -25,34 +24,25 @@ const ParticipantsList = ({ group }) => {
 	// 	console.log(weightDiffs, 'weight diffs');
 	// }, [weights]);
 	return (
-		<StyledParticipantsList className='participant-list-container'>
-			<p className='participants-list-header'>Group Participants</p>
-			<div className='participants-list'>
-				{group &&
-					group.participants.map((participant, index) => (
-						<ParticipantCard key={index} participant={participant} />
-					))}
-				{/* <ParticipantCard participant={'carol'} /> */}
+		<StyledGigsList className='gig-list-container'>
+			{/* <p className='gigs-list-header'>Recorded weigh-ins</p> */}
+			<div className='gigs-list'>
+				{gigs &&
+					gigs.map((gig, index) => <GigDetails key={gig._id} gig={gig} />)}
 			</div>
-			{/* <div className='participants-list'>
-				{group.participants &&
-					group.participants.map((participant, index) => (
-						<ParticipantCard key={participant._id} participant={participant} />
-					))}
-			</div> */}
-		</StyledParticipantsList>
+		</StyledGigsList>
 	);
 };
-const StyledParticipantsList = styled.div`
+const StyledGigsList = styled.div`
 	/* overflow-y: auto; */
 	flex: 1;
-	p.participants-list-header {
+	p.gigs-list-header {
 		padding: 0 1rem;
 		border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
 		margin-bottom: 0.5rem;
 		font-size: 0.9em;
 	}
-	.participants-list {
+	.gigs-list {
 		/* border: 2px solid blue; */
 		display: flex;
 		flex-direction: column;
@@ -64,4 +54,4 @@ const StyledParticipantsList = styled.div`
 	}
 `;
 
-export default ParticipantsList;
+export default GigsList;

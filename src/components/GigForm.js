@@ -1,20 +1,21 @@
 import { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
-import { useWeightsContext } from '../hooks/useWeightsContext';
+import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { CgCloseR } from 'react-icons/cg';
 // import { motion } from 'framer-motion';
 
-const WeightForm = ({ isFormActive, setIsFormActive }) => {
-	const { dispatch } = useWeightsContext();
+const GigsForm = ({ isFormActive, setIsFormActive }) => {
+	const { dispatch } = useGigsContext();
 	const { user } = useAuthContext();
 
-	// const navigate = useNavigate();
+	const [headline_band, setHeadline_band] = useState('');
+	const [gig_date, setGig_date] = useState('');
+	const [venue, setVenue] = useState('');
+	const [city, setCity] = useState('');
+	const [gig_details, setGig_details] = useState('');
 
-	// const [newWeight, setNewWeight] = useState('');
-	const [load, setLoad] = useState('');
-	// const [reps, setReps] = useState('');
 	const [error, setError] = useState(null);
 	const [emptyFields, setEmptyFields] = useState([]);
 
@@ -25,14 +26,14 @@ const WeightForm = ({ isFormActive, setIsFormActive }) => {
 			setError('You must be logged in');
 			return;
 		}
-		const weight = { load };
+		const gig = { headline_band, venue, city, gig_date, gig_details };
 
 		const response = await fetch(
-			`${process.env.REACT_APP_BACKEND_URL}/api/weights`,
+			`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
 			{
 				// const response = await fetch('/api/weights', {
 				method: 'POST',
-				body: JSON.stringify(weight),
+				body: JSON.stringify(gig),
 				headers: {
 					'Content-Type': 'application/json',
 					Authorization: `Bearer ${user.token}`,
@@ -47,12 +48,17 @@ const WeightForm = ({ isFormActive, setIsFormActive }) => {
 		}
 		if (response.ok) {
 			// setNewWeight('');
-			setLoad('');
+			setVenue('');
+			setCity('');
+			setHeadline_band('');
+			setGig_date('');
+			setGig_details('');
+			// setGig_details('');
 			// setReps('');
 			setError(null);
 			setEmptyFields([]);
 			// console.log('new weight added', json);
-			dispatch({ type: 'CREATE_WEIGHT', payload: json });
+			dispatch({ type: 'CREATE_GIG', payload: json });
 		}
 		setIsFormActive(!isFormActive);
 	};
@@ -69,23 +75,67 @@ const WeightForm = ({ isFormActive, setIsFormActive }) => {
 			// 			animate={{ height: '80%' }}
 		>
 			<h3>
-				Add current Weight
+				Add a gig
 				<CgCloseR className='close-icon' onClick={handleClose} />
 			</h3>
 
 			<div className='input-wrapper'>
-				<label>Weight (in kg):</label>
+				<label>Headline Band:</label>
 				<input
-					type='number'
+					type='text'
 					id='input-number'
-					onChange={(e) => setLoad(e.target.value)}
-					value={load}
-					className={emptyFields.includes('load') ? 'error' : ''}
+					onChange={(e) => setHeadline_band(e.target.value)}
+					value={headline_band}
+					className={emptyFields.includes('headline_band') ? 'error' : ''}
 					autoFocus
 				/>
 			</div>
 
-			<button>Add Weight</button>
+			<div className='input-wrapper'>
+				<label>Venue:</label>
+				<input
+					type='text'
+					id='input-number'
+					onChange={(e) => setVenue(e.target.value)}
+					value={venue}
+					className={emptyFields.includes('venue') ? 'error' : ''}
+					// autoFocus
+				/>
+			</div>
+			<div className='input-wrapper'>
+				<label>City:</label>
+				<input
+					type='text'
+					id='input-number'
+					onChange={(e) => setCity(e.target.value)}
+					value={city}
+					className={emptyFields.includes('city') ? 'error' : ''}
+					// autoFocus
+				/>
+			</div>
+			<div className='input-wrapper'>
+				<label>Date:</label>
+				<input
+					type='date'
+					id='input-number'
+					onChange={(e) => setGig_date(e.target.value)}
+					value={gig_date}
+					className={emptyFields.includes('gig_date') ? 'error' : ''}
+				/>
+			</div>
+			<div className='input-wrapper'>
+				<label>details:</label>
+				<input
+					type='text'
+					id='input-number'
+					onChange={(e) => setGig_details(e.target.value)}
+					value={gig_details}
+					className={emptyFields.includes('gig_details') ? 'error' : ''}
+					// autoFocus
+				/>
+			</div>
+
+			<button>Add Gig</button>
 			{error && <div className='error'>{error}</div>}
 		</StyledForm>
 	);
@@ -143,4 +193,4 @@ const StyledForm = styled.form`
 	}
 `;
 
-export default WeightForm;
+export default GigsForm;

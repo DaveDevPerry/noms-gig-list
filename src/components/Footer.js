@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { BsPlusCircleFill } from 'react-icons/bs';
-import WeightForm from './WeightForm';
+import GigForm from './GigForm';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { HiPresentationChartLine } from 'react-icons/hi';
@@ -36,7 +36,7 @@ const Footer = () => {
 						{/* </NavLink> */}
 
 						<NavLink
-							to='/weights'
+							to='/gigs'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							{/* Weights */}
@@ -47,16 +47,16 @@ const Footer = () => {
 			</nav>
 			<AnimatePresence exitBeforeEnter>
 				{isFormActive && (
-					<StyledWeightModel
+					<StyledGigModel
 						initial={{ y: 0, translateX: '-50%' }}
 						animate={{ translateY: '-100%' }}
 						exit={{ translateY: '100%' }}
 					>
-						<WeightForm
+						<GigForm
 							isFormActive={isFormActive}
 							setIsFormActive={setIsFormActive}
 						/>
-					</StyledWeightModel>
+					</StyledGigModel>
 				)}
 			</AnimatePresence>
 		</StyledFooter>
@@ -107,7 +107,7 @@ const StyledFooter = styled.footer`
 	}
 `;
 
-const StyledWeightModel = styled(motion.div)`
+const StyledGigModel = styled(motion.div)`
 	position: absolute;
 	top: 0;
 	left: 50%;

@@ -4,22 +4,23 @@ import { AnimatePresence } from 'framer-motion';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Weights from './pages/Weights';
+// import Weights from './pages/Gigs';
 import Settings from './pages/Settings';
 import Loader from './pages/Loader';
-import Groups from './pages/Groups';
-import GroupsFullDetails from './pages/[slug]';
-import { useState } from 'react';
+// import Groups from './pages/Groups';
+// import GroupsFullDetails from './pages/[slug]';
+// import { useState } from 'react';
+import Gigs from './pages/Gigs';
 // import { groupsReducer } from './context/GroupContext';
 // import GroupsFullDetails from './pages/groups/[slug]';
 
 const AnimatedRoutes = ({ user, themeToggler, theme }) => {
-	const tempGroupID = '62f5817cdb2d716e19dfaba7';
-	const [currentFormOpen, setCurrentFormOpen] = useState('');
+	// const tempGroupID = '62f5817cdb2d716e19dfaba7';
+	// const [currentFormOpen, setCurrentFormOpen] = useState('');
 
-	const handleFormChoice = (str) => {
-		setCurrentFormOpen(str);
-	};
+	// const handleFormChoice = (str) => {
+	// 	setCurrentFormOpen(str);
+	// };
 	return (
 		<>
 			<AnimatePresence exitBeforeEnter>
@@ -34,10 +35,10 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 						element={user ? <Home /> : <Navigate to='/login' />}
 					/> */}
 					<Route
-						path='/weights'
-						element={user ? <Weights /> : <Navigate to='/login' />}
+						path='/gigs'
+						element={user ? <Gigs /> : <Navigate to='/login' />}
 					/>
-					<Route
+					{/* <Route
 						path='/groups'
 						element={
 							user ? (
@@ -54,21 +55,8 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 					<Route
 						path='/groups/:id'
 						element={<GroupsFullDetails tempGroupID={tempGroupID} />}
-					/>
-					{/* <Route
-						path='/groups/:id'
-						element={user ? <GroupsFullDetails /> : <Navigate to='/login' />}
 					/> */}
-					{/* <Route
-						path='/groups/:id'
-						element={
-							user ? (
-								<GroupsFullDetails slug={tempGroupID} />
-							) : (
-								<Navigate to='/login' />
-							)
-						}
-					/> */}
+
 					<Route
 						path='/settings'
 						element={

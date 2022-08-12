@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { IoSettingsOutline } from 'react-icons/io5';
-import { RiGroup2Fill } from 'react-icons/ri';
+// import { RiGroup2Fill } from 'react-icons/ri';
 
 const Header = () => {
 	// const { logout } = useLogout();
@@ -17,28 +17,15 @@ const Header = () => {
 		<StyledHeader>
 			<div className='container'>
 				<Link to='/'>
-					<h1>Why Weight?</h1>
+					<h1>Nom's Gig List</h1>
 				</Link>
-				{/* <nav>
-					{user && (
-						<div>
-							<span>{user.email}</span>
-							<button onClick={handleClick}>Log out</button>
-						</div>
-					)}
-					{!user && (
-						<div>
-							<Link to='/login'>Login</Link>
-							<Link to='/signup'>Signup</Link>
-						</div>
-					)}
-				</nav> */}
-				<NavLink
+
+				{/* <NavLink
 					to='/groups'
 					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 				>
 					<RiGroup2Fill className='settings-icon' />
-				</NavLink>
+				</NavLink> */}
 				<NavLink
 					to='/settings'
 					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
