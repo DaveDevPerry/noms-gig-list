@@ -8,6 +8,41 @@ export const gigsReducer = (state, action) => {
 			return {
 				gigs: action.payload,
 			};
+		case 'SET_NEXT_GIG':
+			const next = [...action.payload];
+			return {
+				next_gig: next
+					.sort((a, b) => {
+						return new Date(b.gig_date) - new Date(a.gig_date);
+					})
+					.filter((gig) => {
+						return (
+							new Date(gig.gig_date) > new Date() ||
+							new Date(gig.gig_date) === new Date()
+						);
+					})
+					.sort((a, b) => {
+						return new Date(a.gig_date) - new Date(b.gig_date);
+					})[0],
+			};
+		case 'SET_NEXT_FIVE_GIGS':
+			const nextFive = [...action.payload];
+			return {
+				next_five_gigs: nextFive
+					.sort((a, b) => {
+						return new Date(b.gig_date) - new Date(a.gig_date);
+					})
+					.filter((gig) => {
+						return (
+							new Date(gig.gig_date) > new Date() ||
+							new Date(gig.gig_date) === new Date()
+						);
+					})
+					.sort((a, b) => {
+						return new Date(a.gig_date) - new Date(b.gig_date);
+					})
+					.splice(0, 4),
+			};
 		case 'CREATE_GIG':
 			return {
 				// ...state.workouts is previous state, action.payload is new workout to add
@@ -25,6 +60,8 @@ export const gigsReducer = (state, action) => {
 export const GigsContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(gigsReducer, {
 		gigs: null,
+		next_gig: null,
+		next_five_gigs: null,
 	});
 
 	return (

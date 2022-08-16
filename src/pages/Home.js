@@ -7,6 +7,10 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import CountdownWidget from '../components/CountdownWidget';
 import InviteWidget from '../components/InviteWidget';
+// import GigsList from '../components/GigsList';
+// import GigCard from '../components/GigCard';
+import GigsListNextFive from '../components/GigsListNextFive';
+// import NextGigCountdownWidget from '../components/NextGigCountdownWidget';
 
 // components
 // import WeightDetails from '../components/WeightDetails';
@@ -22,12 +26,40 @@ import InviteWidget from '../components/InviteWidget';
 
 const Home = () => {
 	// const [workouts, setWorkouts] = useState(null);
-	const { gigs, dispatch } = useGigsContext();
+	// const { next_gig, dispatch } = useGigsContext();
+	const { next_five_gigs, dispatch } = useGigsContext();
+	// const { gigs, next_gig, dispatch } = useGigsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	const { user } = useAuthContext();
 
+	// useEffect(() => {
+	// 	const fetchGigs = async () => {
+	// 		const response = await fetch(
+	// 			`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
+	// 			{
+	// 				// const response = await fetch('/api/weights', {
+	// 				headers: {
+	// 					Authorization: `Bearer ${user.token}`,
+	// 				},
+	// 			}
+	// 		);
+	// 		const json = await response.json();
+
+	// 		if (response.ok) {
+	// 			// setWorkouts(json);
+	// 			dispatch({
+	// 				type: 'SET_GIGS',
+	// 				payload: json,
+	// 			});
+	// 		}
+	// 	};
+	// 	// if we have a value for the user then fetch the workouts
+	// 	if (user) {
+	// 		fetchGigs();
+	// 	}
+	// }, [dispatch, user]);
 	useEffect(() => {
-		const fetchGigs = async () => {
+		const fetchNextFiveGigs = async () => {
 			const response = await fetch(
 				`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
 				{
@@ -42,22 +74,22 @@ const Home = () => {
 			if (response.ok) {
 				// setWorkouts(json);
 				dispatch({
-					type: 'SET_GIGS',
+					type: 'SET_NEXT_FIVE_GIGS',
 					payload: json,
 				});
 			}
 		};
 		// if we have a value for the user then fetch the workouts
 		if (user) {
-			fetchGigs();
+			fetchNextFiveGigs();
 		}
 	}, [dispatch, user]);
 	// useEffect(() => {
-	// 	const fetchTargets = async () => {
+	// 	const fetchNextGig = async () => {
 	// 		const response = await fetch(
-	// 			`${process.env.REACT_APP_BACKEND_URL}/api/targets`,
+	// 			`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
 	// 			{
-	// 				// const response = await fetch('/api/targets', {
+	// 				// const response = await fetch('/api/weights', {
 	// 				headers: {
 	// 					Authorization: `Bearer ${user.token}`,
 	// 				},
@@ -67,19 +99,17 @@ const Home = () => {
 
 	// 		if (response.ok) {
 	// 			// setWorkouts(json);
-	// 			targetDispatch({
-	// 				type: 'SET_TARGETS',
+	// 			dispatch({
+	// 				type: 'SET_NEXT_GIG',
 	// 				payload: json,
 	// 			});
 	// 		}
 	// 	};
 	// 	// if we have a value for the user then fetch the workouts
 	// 	if (user) {
-	// 		fetchTargets();
+	// 		fetchNextGig();
 	// 	}
-	// }, [targetDispatch, user]);
-
-	// const percentage = 20.345;
+	// }, [dispatch, user]);
 
 	return (
 		<StyledHome
@@ -97,8 +127,47 @@ const Home = () => {
 				<span>x gig count</span>
 			</p> */}
 
-			{gigs && gigs[0] && <CountdownWidget gig={gigs[0]} />}
-			{gigs && gigs[0] && <InviteWidget gig={gigs[0]} />}
+			{/* {gigs && gigs[0] && <NextGigCountdownWidget gig={gigs[0]} />} */}
+			{/* {gigs && gigs[0] && (
+				<CountdownWidget
+					gig={
+						gigs
+							.sort((a, b) => {
+								return new Date(b.gig_date) - new Date(a.gig_date);
+							})
+							.filter((gig) => {
+								return (
+									new Date(gig.gig_date) > new Date() ||
+									new Date(gig.gig_date) === new Date()
+								);
+							})
+							.sort((a, b) => {
+								return new Date(a.gig_date) - new Date(b.gig_date);
+							})[0]
+					}
+				/>
+			)} */}
+			{next_five_gigs && <CountdownWidget gig={next_five_gigs[0]} />}
+			{next_five_gigs && <InviteWidget gig={next_five_gigs[0]} />}
+			<p className='next-five-list-header'>Upcoming gigs</p>
+			{next_five_gigs && <GigsListNextFive gigs={next_five_gigs} />}
+			{/* {next_five_gigs &&
+				next_five_gigs.map((gig) => <GigCard key={gig.createdAt} gig={gig} />)} */}
+			{/* (
+				<>
+					<p className='next-five-list-header'>Upcoming gigs</p>
+					<GigsList gigs={next_five_gigs} />
+				</>
+			)} */}
+			{/* {next_five_gigs && (
+				<>
+					<p className='next-five-list-header'>Upcoming gigs</p>
+					<GigsList gigs={next_five_gigs} />
+				</>
+			)} */}
+			{/* {next_gig && <CountdownWidget gig={next_gig} />} */}
+			{/* {gigs && gigs[0] && <CountdownWidget gig={gigs[0]} />} */}
+			{/* {gigs && gigs[0] && <InviteWidget gig={gigs[0]} />} */}
 
 			{/* {targets && targets.length === 1 && weights && weights.length >= 1 && (
 				<>
@@ -142,6 +211,11 @@ const StyledHome = styled(motion.div)`
 	.instruction-title {
 		color: ${({ theme }) => theme.secondaryColor};
 		font-weight: bold;
+	}
+	.next-five-list-header {
+		color: ${({ theme }) => theme.secondaryColor};
+		font-weight: bold;
+		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
 	}
 `;
 

@@ -11,6 +11,8 @@ import Loader from './pages/Loader';
 // import GroupsFullDetails from './pages/[slug]';
 // import { useState } from 'react';
 import Gigs from './pages/Gigs';
+import History from './pages/History';
+import Bands from './pages/Bands';
 // import { groupsReducer } from './context/GroupContext';
 // import GroupsFullDetails from './pages/groups/[slug]';
 
@@ -37,6 +39,14 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 					<Route
 						path='/gigs'
 						element={user ? <Gigs /> : <Navigate to='/login' />}
+					/>
+					<Route
+						path='/history'
+						element={user ? <History /> : <Navigate to='/login' />}
+					/>
+					<Route
+						path='/bands'
+						element={user ? <Bands /> : <Navigate to='/login' />}
 					/>
 					{/* <Route
 						path='/groups'

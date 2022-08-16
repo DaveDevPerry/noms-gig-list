@@ -1,11 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
-import { BsPlusCircleFill, BsMusicNoteList } from 'react-icons/bs';
+import { BsPlusCircleFill } from 'react-icons/bs';
+// import { BsPlusCircleFill, BsMusicNoteList } from 'react-icons/bs';
 import GigForm from './GigForm';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { HiPresentationChartLine } from 'react-icons/hi';
+import { FaUsers } from 'react-icons/fa';
+import { RiMenuFoldFill, RiMenuUnfoldFill } from 'react-icons/ri';
 // import { IoScale } from 'react-icons/io5';
 
 const Footer = () => {
@@ -28,6 +31,15 @@ const Footer = () => {
 							{/* Home */}
 							<HiPresentationChartLine className='nav-icon' />
 						</NavLink>
+						<NavLink
+							to='/gigs'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+						>
+							{/* Home */}
+							<RiMenuUnfoldFill className='nav-icon' />
+							{/* <BsMusicNoteList className='nav-icon' /> */}
+							{/* <HiPresentationChartLine className='nav-icon' /> */}
+						</NavLink>
 						{/* <NavLink
 							to='/add-weight'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
@@ -36,11 +48,19 @@ const Footer = () => {
 						{/* </NavLink> */}
 
 						<NavLink
-							to='/gigs'
+							to='/history'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							{/* Weights */}
-							<BsMusicNoteList className='nav-icon' />
+							<RiMenuFoldFill className='nav-icon' />
+							{/* <BsMusicNoteList className='nav-icon' /> */}
+						</NavLink>
+						<NavLink
+							to='/bands'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+						>
+							{/* Weights */}
+							<FaUsers className='nav-icon' />
 						</NavLink>
 					</div>
 				)}

@@ -1,6 +1,7 @@
 export const lightTheme = {
 	primaryColor: '#1aac83',
-	secondaryColor: 'rgb(38, 151, 244)',
+	// secondaryColor: 'rgb(38, 151, 244)',
+	secondaryColor: 'rgb(216, 0, 184)',
 	error: '#e7195a',
 	bgError: '#ffefef',
 	white: '#ffffff',

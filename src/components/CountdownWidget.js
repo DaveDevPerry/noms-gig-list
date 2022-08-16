@@ -7,6 +7,7 @@ import { format } from 'date-fns';
 import { differenceInDays } from 'date-fns';
 
 const CountdownWidget = ({ gig }) => {
+	console.log(gig, 'countdown widget gig');
 	return (
 		<StyledCountdownWidget className='countdown-widget'>
 			{/* {!gig.deadline_reason && <p>No gig reason</p>} */}

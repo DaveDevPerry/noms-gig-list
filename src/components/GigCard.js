@@ -5,10 +5,10 @@ import styled from 'styled-components';
 // import { ImArrowUp, ImArrowDown } from 'react-icons/im';
 
 // date fns
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+// import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { format } from 'date-fns';
 
-const GigDetails = ({ gig, difference }) => {
+const GigCard = ({ gig, difference }) => {
 	// const { dispatch } = usegigsContext();
 	// const { user } = useAuthContext();
 
@@ -32,22 +32,25 @@ const GigDetails = ({ gig, difference }) => {
 	// };
 
 	return (
-		<StyledGigDetails className='gig-details'>
+		<StyledGigCard className='gig-card'>
+			<div>
+				<p className='left'>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</p>
+				{/* <p>
+					{formatDistanceToNow(new Date(gig.gig_date), { addSuffix: true })}
+				</p> */}
+			</div>
 			<div className='full'>
 				<p>
 					<strong>{gig.headline_band}</strong>
 				</p>
-				<p>{gig.venue}</p>
+				{/* <p>{gig.venue}</p> */}
 			</div>
 			{/* <p>{gig.gig_date}</p> */}
-
-			<div className='right'>
-				<p>
-					<strong>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</strong>
-				</p>
-				<p>
+			<div>
+				<p>{gig.venue}</p>
+				{/* <p>
 					{formatDistanceToNow(new Date(gig.gig_date), { addSuffix: true })}
-				</p>
+				</p> */}
 			</div>
 
 			{/* <div className='gig-figures'>
@@ -58,28 +61,42 @@ const GigDetails = ({ gig, difference }) => {
 					<strong>{gig.venue}</strong>
 				</p>
 			</div> */}
-		</StyledGigDetails>
+		</StyledGigCard>
 	);
 };
-const StyledGigDetails = styled.div`
+const StyledGigCard = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0.5rem 0; */
-	padding: 0.5rem 1rem;
+	padding: 0.5rem;
 	position: relative;
 	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: center;
 	column-gap: 1rem;
-	.full {
-		flex: 1;
-	}
+
 	p {
 		margin: 0;
 		font-size: 0.8em;
 		color: ${({ theme }) => theme.txtGrey};
 		text-transform: capitalize;
+		/* &:first-child {
+		} */
+		&.left {
+			width: 8rem;
+		}
+	}
+	.full {
+		/* flex: 1; */
+		p {
+			/* margin: 0;
+		font-size: 0.8em;
+		color: ${({ theme }) => theme.txtGrey}; */
+			text-transform: uppercase;
+			font-size: 0.9em;
+			width: unset;
+		}
 	}
 	span {
 		display: none;
@@ -135,4 +152,4 @@ const StyledGigDetails = styled.div`
 	}
 `;
 
-export default GigDetails;
+export default GigCard;

@@ -10,7 +10,7 @@ import GigsList from '../components/GigsList';
 // import WeightsProgressWidget from '../components/WeightsProgressWidget';
 // import WeightUnitsWidget from '../components/WeightUnitsWidget';
 
-const Gigs = () => {
+const History = () => {
 	// const [workouts, setWorkouts] = useState(null);
 	const { gigs, dispatch } = useGigsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
@@ -27,21 +27,19 @@ const Gigs = () => {
 				}
 			);
 			const json = await response.json();
+
 			// get future gigs only
 			console.log(json, 'json set gigs');
 			const upcomingGigs = json.sort((a, b) => {
-				return new Date(b.gig_date) - new Date(a.gig_date);
+				return new Date(a.gig_date) - new Date(b.gig_date);
 			});
 			console.log(upcomingGigs, 'upcoming');
 			const upcomingGigsSort = json.sort((a, b) => {
-				return new Date(a.gig_date) - new Date(b.gig_date);
+				return new Date(b.gig_date) - new Date(a.gig_date);
 			});
 			console.log(upcomingGigsSort, 'upcoming');
 			const filtered = upcomingGigsSort.filter((gig) => {
-				return (
-					new Date(gig.gig_date) > new Date() ||
-					new Date(gig.gig_date) === new Date()
-				);
+				return new Date(gig.gig_date) < new Date();
 			});
 			console.log(filtered, 'filtered');
 
@@ -50,7 +48,6 @@ const Gigs = () => {
 				dispatch({
 					type: 'SET_GIGS',
 					payload: filtered,
-					// payload: json,
 				});
 			}
 		};
@@ -61,7 +58,7 @@ const Gigs = () => {
 	}, [dispatch, user]);
 
 	return (
-		<StyledGigs
+		<StyledHistory
 			className='gigs-page'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
@@ -73,10 +70,10 @@ const Gigs = () => {
 			{/* <gigsProgressWidget gigs={gigs} /> */}
 
 			<GigsList gigs={gigs} />
-		</StyledGigs>
+		</StyledHistory>
 	);
 };
-const StyledGigs = styled(motion.div)`
+const StyledHistory = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
@@ -88,4 +85,4 @@ const StyledGigs = styled(motion.div)`
 	/* border: 2px solid red; */
 `;
 
-export default Gigs;
+export default History;
