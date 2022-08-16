@@ -11,10 +11,13 @@ const CountdownWidget = ({ gig }) => {
 	return (
 		<StyledCountdownWidget className='countdown-widget'>
 			{/* {!gig.deadline_reason && <p>No gig reason</p>} */}
-			{gig.headline_band && <p>{gig.headline_band}</p>}
-			<p>
-				<strong>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</strong>
-			</p>
+			<p>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</p>
+			{gig.headline_band && (
+				<p className='band-title'>
+					<strong>{gig.headline_band}</strong>
+				</p>
+			)}
+
 			<p>in {differenceInDays(new Date(gig.gig_date), new Date())} days</p>
 		</StyledCountdownWidget>
 	);
@@ -34,6 +37,9 @@ const StyledCountdownWidget = styled.div`
 		margin: 0;
 		color: ${({ theme }) => theme.txtGrey};
 		text-align: center;
+	}
+	.band-title {
+		text-transform: uppercase;
 	}
 `;
 

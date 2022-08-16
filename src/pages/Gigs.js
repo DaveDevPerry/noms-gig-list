@@ -71,7 +71,7 @@ const Gigs = () => {
 			{/* <WeightUnitsWidget gigs={gigs} /> */}
 			{/* <WeightConvertor /> */}
 			{/* <gigsProgressWidget gigs={gigs} /> */}
-
+			<p className='next-five-list-header'>Upcoming gigs</p>
 			<GigsList gigs={gigs} />
 		</StyledGigs>
 	);
@@ -86,6 +86,11 @@ const StyledGigs = styled(motion.div)`
 	/* flex: 1; */
 	/* overflow-y: auto; */
 	/* border: 2px solid red; */
+	.next-five-list-header {
+		color: ${({ theme }) => theme.secondaryColor};
+		font-weight: bold;
+		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
+	}
 `;
 
 export default Gigs;

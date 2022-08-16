@@ -187,7 +187,7 @@ const StyledForm = styled.form`
 			padding: 0.8rem 1rem;
 			margin: 0;
 			font-size: 1.8rem;
-			color: ${({ theme }) => theme.white};
+			color: ${({ theme }) => theme.black};
 			flex: 1;
 		}
 	}

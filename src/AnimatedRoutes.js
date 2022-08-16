@@ -48,6 +48,24 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 						path='/bands'
 						element={user ? <Bands /> : <Navigate to='/login' />}
 					/>
+					<Route
+						path='/settings'
+						element={
+							user ? (
+								<Settings themeToggler={themeToggler} theme={theme} />
+							) : (
+								<Navigate to='/login' />
+							)
+						}
+					/>
+					<Route
+						path='/login'
+						element={!user ? <Login /> : <Navigate to='/' />}
+					/>
+					<Route
+						path='/signup'
+						element={!user ? <Signup /> : <Navigate to='/' />}
+					/>
 					{/* <Route
 						path='/groups'
 						element={
@@ -66,35 +84,6 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 						path='/groups/:id'
 						element={<GroupsFullDetails tempGroupID={tempGroupID} />}
 					/> */}
-
-					<Route
-						path='/settings'
-						element={
-							user ? (
-								<Settings themeToggler={themeToggler} theme={theme} />
-							) : (
-								<Navigate to='/login' />
-							)
-						}
-					/>
-					{/* <Route
-						path='/settings'
-						element={
-							user ? (
-								<Settings themeToggler={themeToggler} theme={theme} />
-							) : (
-								<Navigate to='/login' />
-							)
-						}
-					/> */}
-					<Route
-						path='/login'
-						element={!user ? <Login /> : <Navigate to='/' />}
-					/>
-					<Route
-						path='/signup'
-						element={!user ? <Signup /> : <Navigate to='/' />}
-					/>
 				</Routes>
 			</AnimatePresence>
 		</>
