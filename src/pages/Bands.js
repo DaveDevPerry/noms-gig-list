@@ -1,9 +1,11 @@
 // import { useEffect } from 'react';
 // import { useGigsContext } from '../hooks/useGigsContext';
-// import { useAuthContext } from '../hooks/useAuthContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
+import { useBandsContext } from '../hooks/useBandsContext';
 
 // components
 // import GigsList from '../components/GigsList';
@@ -13,38 +15,39 @@ import { motion } from 'framer-motion';
 const Bands = () => {
 	// const [workouts, setWorkouts] = useState(null);
 	// const { gigs, dispatch } = useGigsContext();
+	const { bands, dispatch } = useBandsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
-	// const { user } = useAuthContext();
+	const { user } = useAuthContext();
 
-	// useEffect(() => {
-	// 	const fetchGigs = async () => {
-	// 		const response = await fetch(
-	// 			`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
-	// 			{
-	// 				headers: {
-	// 					Authorization: `Bearer ${user.token}`,
-	// 				},
-	// 			}
-	// 		);
-	// 		const json = await response.json();
+	useEffect(() => {
+		const fetchBands = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/bands`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
 
-	// 		if (response.ok) {
-	// 			// setWorkouts(json);
-	// 			dispatch({
-	// 				type: 'SET_GIGS',
-	// 				payload: json,
-	// 			});
-	// 		}
-	// 	};
-	// 	// if we have a value for the user then fetch the workouts
-	// 	if (user) {
-	// 		fetchGigs();
-	// 	}
-	// }, [dispatch, user]);
+			if (response.ok) {
+				// setWorkouts(json);
+				dispatch({
+					type: 'SET_BANDS',
+					payload: json,
+				});
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchBands();
+		}
+	}, [dispatch, user]);
 
 	return (
 		<StyledBands
-			className='gigs-page'
+			className='bands-page'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
@@ -55,6 +58,7 @@ const Bands = () => {
 			{/* <gigsProgressWidget gigs={gigs} /> */}
 			{/* <GigsList gigs={gigs} /> */}
 			<p>BAND PAGE</p>
+			{bands && bands.map((band) => <p key={band._id}>{band.name}</p>)}
 		</StyledBands>
 	);
 };
