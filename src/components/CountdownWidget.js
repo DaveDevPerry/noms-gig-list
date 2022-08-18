@@ -106,7 +106,7 @@ const StyledCountdownWidget = styled.div`
 			}
 		}
 		.share-icon {
-			color: ${({ theme }) => theme.primaryColor};
+			color: ${({ theme }) => theme.green};
 		}
 	}
 `;

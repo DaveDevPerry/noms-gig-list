@@ -17,7 +17,7 @@ const Header = () => {
 		<StyledHeader>
 			<div className='container'>
 				<Link to='/'>
-					<h1>Nom's Gig List</h1>
+					<h1>Celebrity Gig List</h1>
 				</Link>
 
 				{/* <NavLink

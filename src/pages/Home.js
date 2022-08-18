@@ -15,6 +15,7 @@ import TopBandWidget from '../components/TopBandWidget';
 // import ChartWidget from '../components/ChartWidget';
 import GigTotalWidget from '../components/GigTotalWidget';
 import PieWidget from '../components/PieWidget';
+import ChartYearWidget from '../components/ChartYearWidget';
 // import NextGigCountdownWidget from '../components/NextGigCountdownWidget';
 
 // components
@@ -183,6 +184,7 @@ const Home = () => {
 			)}
 			{/* {gigCounterData && <TopBandWidget gigCounterData={gigCounterData} />} */}
 			{gigCounterData && <PieWidget gigs={gigCounterData.all_gigs} />}
+			{gigCounterData && <ChartYearWidget gigs={gigCounterData.all_gigs} />}
 			{/* {gigCounterData && <ChartWidget gigs={gigCounterData.all_gigs} />} */}
 			{/* {gigCounterData && <GigCounterWidget gigCounterData={gigCounterData} />} */}
 			{/* {next_five_gigs && <InviteWidget gig={next_five_gigs[0]} />} */}

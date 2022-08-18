@@ -48,39 +48,7 @@ const Auto = ({
 		if (user) {
 			fetchAllBands();
 		}
-		// const allBands = [];
-		// const promises =
-		// 	// const promises = new Array(20)
-		// 	// .fill()
-		// 	// .map((v, i) =>
-		// 	fetch(`${process.env.REACT_APP_BACKEND_URL}/api/bands`);
-		// // fetch(`${process.env.REACT_APP_BACKEND_URL}/api/bands/${i + 1}`)
-		// Promise.all(promises).then((bandsArr) => {
-		// 	return bandsArr.map((res) =>
-		// 		res.json().then(({ name }) => {
-		// 			return allBands.push({ name });
-		// 		})
-		// 	);
-		// });
-		// setOptions(allBands);
 	}, []);
-	// useEffect(() => {
-	// 	const allBands = [];
-	// 	const promises =
-	// 		// const promises = new Array(20)
-	// 		// .fill()
-	// 		// .map((v, i) =>
-	// 		fetch(`${process.env.REACT_APP_BACKEND_URL}/api/bands`);
-	// 	// fetch(`${process.env.REACT_APP_BACKEND_URL}/api/bands/${i + 1}`)
-	// 	Promise.all(promises).then((bandsArr) => {
-	// 		return bandsArr.map((res) =>
-	// 			res.json().then(({ name }) => {
-	// 				return allBands.push({ name });
-	// 			})
-	// 		);
-	// 	});
-	// 	setOptions(allBands);
-	// }, []);
 
 	// sets event listeners
 	useEffect(() => {
@@ -102,22 +70,6 @@ const Auto = ({
 		console.log(poke, 'poke setBandDex');
 		setSearch(poke);
 		setHeadline_band(poke);
-		// if (options.includes(poke)) {
-		// 	console.log(
-		// 		poke,
-		// 		headline_band,
-		// 		search,
-		// 		'setBandDex options includes poke'
-		// 	);
-		// }
-		// if (!options.includes(poke)) {
-		// 	console.log(
-		// 		poke,
-		// 		headline_band,
-		// 		search,
-		// 		'setBandDex options excludes poke'
-		// 	);
-		// }
 		setCreateNewBand(false);
 		setDisplay(false);
 	};
@@ -125,13 +77,8 @@ const Auto = ({
 	return (
 		<div className='search-container' ref={wrapperRef}>
 			<input
-				// type='text'
-				// id='input-number'
 				id='auto'
-				// placeholder='type to search'
 				onClick={() => setDisplay(!display)}
-				// value={headline_band}
-				// onChange={(e) => setHeadline_band(e.target.value)}
 				className={emptyFields.includes('headline_band') ? 'error' : ''}
 				autoFocus
 				value={search}
@@ -139,18 +86,8 @@ const Auto = ({
 					setSearch(event.target.value);
 					setHeadline_band(event.target.value);
 				}}
-				// onChange={(event) => setSearch(event.target.value)}
+				autoComplete='off'
 			/>
-			{/* <input
-					type='text'
-					id='input-number'
-					placeholder='type to search'
-					onClick={() => setDisplay(!display)}
-					value={headline_band}
-					onChange={(e) => setHeadline_band(e.target.value)}
-					className={emptyFields.includes('headline_band') ? 'error' : ''}
-					autoFocus
-				/> */}
 			{display && (
 				<div className='autoContainer'>
 					{options
@@ -163,23 +100,9 @@ const Auto = ({
 									onClick={() => setBandDex(v.name)}
 								>
 									<span>{v.name}</span>
-									{/* <img src={v.sprite} alt='pokemon' /> */}
 								</div>
 							);
 						})}
-					{/* {headline_band
-						.filter(({ name }) => name.indexOf(search.toLowerCase()) > -1)
-						.map((v, i) => {
-							return (
-								<div
-									key={i}
-									className='option'
-									onClick={() => setBandDex(v.name)}
-								>
-									<span>{v.name}</span>
-								</div>
-							);
-						})} */}
 				</div>
 			)}
 		</div>

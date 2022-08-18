@@ -24,7 +24,7 @@ export const lightTheme = {
 	gold: 'rgb(250, 186, 11)',
 };
 export const darkTheme = {
-	primaryColor: '#fff700',
+	primaryColor: 'rgb(250, 186, 11)',
 	secondaryColor: 'rgb(216, 0, 184)',
 	error: '#e71919',
 	bgError: '#ffefef',
@@ -45,7 +45,7 @@ export const darkTheme = {
 	black: '#000000',
 
 	red: '#980303',
-	green: '#156d01',
+	green: '#1da000',
 	isComplete: 'rgb(228, 207, 23)',
 	gold: 'rgb(250, 186, 11)',
 };
