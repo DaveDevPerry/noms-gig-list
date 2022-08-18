@@ -24,7 +24,7 @@ ChartJS.register(
 
 const GigLineChart = ({ gigs }) => {
 	const options = {
-		responsive: true,
+		responsive: false,
 		plugins: {
 			legend: {
 				display: false,
@@ -46,19 +46,19 @@ const GigLineChart = ({ gigs }) => {
 	// 	'July',
 	// ];
 
-	const dateLabels = gigs.map((gig) =>
-		new Date(gig.gig_date).toLocaleDateString().slice(0, 5)
-	);
+	// const dateLabels = gigs.map((gig) =>
+	// 	new Date(gig.gig_date).toLocaleDateString().slice(0, 5)
+	// );
 
 	const data = {
-		labels: dateLabels,
+		// labels: dateLabels,
 		// labels: gigs.map((a) => a.createdA),
-		// labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+		labels: ["70's", "80's", "90's", "00's", "10's", "20's"],
 		datasets: [
 			{
 				label: 'Band',
-				data: gigs.map((a) => a.headline_band),
-				// data: [100, 115, 200, 50, 523],
+				// data: gigs.map((a) => a.headline_band),
+				data: [100, 115, 200, 350, 523, 201],
 				// data: labels.map(() =>
 				// 	faker.datatype.number({ min: -1000, max: 1000 })
 				// ),

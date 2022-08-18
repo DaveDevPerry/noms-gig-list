@@ -3,20 +3,21 @@
 // import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 // import { formatDistance } from 'date-fns';
 import styled from 'styled-components';
-import GigLineChart from './GigLineChart';
+import BandPieChart from './BandPieChart';
+// import GigLineChart from './GigLineChart';
 // import WeightLineChart from './WeightLineChart';
 // import { format } from 'date-fns';
 // import { differenceInDays } from 'date-fns';
 
-const ChartWidget = ({ gigs }) => {
+const PieWidget = ({ gigs }) => {
 	return (
-		<StyledChartWidget className='chart-widget'>
+		<StyledPieWidget className='chart-widget'>
 			{/* <p>chart widget</p> */}
-			<GigLineChart gigs={gigs} />
-		</StyledChartWidget>
+			<BandPieChart gigs={gigs} />
+		</StyledPieWidget>
 	);
 };
-const StyledChartWidget = styled.div`
+const StyledPieWidget = styled.div`
 	color: ${({ theme }) => theme.txtGrey};
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
@@ -27,9 +28,6 @@ const StyledChartWidget = styled.div`
 	/* flex-direction: column; */
 	justify-content: center;
 	align-items: center;
-	/* display: flex;
-	flex-direction: column;
-	justify-content: center; */
 	/* row-gap: 0.5rem; */
 	/* p {
 		margin: 0;
@@ -38,4 +36,4 @@ const StyledChartWidget = styled.div`
 	} */
 `;
 
-export default ChartWidget;
+export default PieWidget;

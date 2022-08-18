@@ -10,8 +10,11 @@ import CountdownWidget from '../components/CountdownWidget';
 // import GigsList from '../components/GigsList';
 // import GigCard from '../components/GigCard';
 import GigsListNextFive from '../components/GigsListNextFive';
-import GigCounterWidget from '../components/GigCounterWidget';
+// import GigCounterWidget from '../components/GigCounterWidget';
 import TopBandWidget from '../components/TopBandWidget';
+// import ChartWidget from '../components/ChartWidget';
+import GigTotalWidget from '../components/GigTotalWidget';
+import PieWidget from '../components/PieWidget';
 // import NextGigCountdownWidget from '../components/NextGigCountdownWidget';
 
 // components
@@ -172,10 +175,18 @@ const Home = () => {
 			{gigCounterData && (
 				<CountdownWidget gig={gigCounterData.next_five_gigs[0]} />
 			)}
-			{gigCounterData && <TopBandWidget gigCounterData={gigCounterData} />}
-			{gigCounterData && <GigCounterWidget gigCounterData={gigCounterData} />}
+			{gigCounterData && (
+				<div className='stat-container'>
+					<TopBandWidget gigCounterData={gigCounterData} />
+					<GigTotalWidget gigCounterData={gigCounterData} />
+				</div>
+			)}
+			{/* {gigCounterData && <TopBandWidget gigCounterData={gigCounterData} />} */}
+			{gigCounterData && <PieWidget gigs={gigCounterData.all_gigs} />}
+			{/* {gigCounterData && <ChartWidget gigs={gigCounterData.all_gigs} />} */}
+			{/* {gigCounterData && <GigCounterWidget gigCounterData={gigCounterData} />} */}
 			{/* {next_five_gigs && <InviteWidget gig={next_five_gigs[0]} />} */}
-			<p className='next-five-list-header'>Upcoming gigs</p>
+			<p className='next-five-list-header'>Coming Up</p>
 			{gigCounterData && (
 				<GigsListNextFive gigs={gigCounterData.next_five_gigs} />
 			)}
@@ -236,6 +247,11 @@ const StyledHome = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
+	.stat-container {
+		display: flex;
+		justify-content: space-between;
+		column-gap: 1rem;
+	}
 	.instruction-title {
 		color: ${({ theme }) => theme.secondaryColor};
 		font-weight: bold;
