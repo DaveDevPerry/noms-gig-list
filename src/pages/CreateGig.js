@@ -143,17 +143,19 @@ const StyledGigs = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
+	/* border: 2px solid green; */
+	height: -webkit-fill-available;
 	/* justify-content: flex-start; */
 	/* overflow-y: auto; */
 	/* overflow-y: hidden; */
 	/* flex: 1; */
 	/* overflow-y: auto; */
 	/* border: 2px solid red; */
-	.next-five-list-header {
+	/* .next-five-list-header {
 		color: ${({ theme }) => theme.secondaryColor};
 		font-weight: bold;
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
-	}
+	} */
 `;
 
 export default CreateGig;

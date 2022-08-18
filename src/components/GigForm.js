@@ -243,7 +243,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 				<CgCloseR className='close-icon' onClick={handleClose} />
 			</h3>
 
-			<div className='input-wrapper'>
+			<div className='input-wrapper-band'>
 				<label>Headline Band:</label>
 				<Auto
 					setDisplay={setDisplay}
@@ -276,7 +276,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 				/>
 			</div> */}
 
-			<div className='input-wrapper'>
+			<div className='input-wrapper-band'>
 				<label>Venue:</label>
 				<input
 					type='text'
@@ -287,7 +287,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 					// autoFocus
 				/>
 			</div>
-			<div className='input-wrapper'>
+			<div className='input-wrapper-band'>
 				<label>City:</label>
 				<input
 					type='text'
@@ -308,7 +308,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 					className={emptyFields.includes('gig_date') ? 'error' : ''}
 				/>
 			</div>
-			<div className='input-wrapper'>
+			<div className='input-wrapper-band'>
 				<label>details:</label>
 				<input
 					type='text'
@@ -320,8 +320,10 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 				/>
 			</div>
 
-			<button className='add-btn'>Add Gig</button>
-			{error && <div className='error'>{error}</div>}
+			<div className='btn-container'>
+				{error && <div className='error'>{error}</div>}
+				<button className='add-btn'>Add Gig</button>
+			</div>
 		</StyledForm>
 	);
 };
@@ -334,8 +336,9 @@ const StyledForm = styled.form`
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	row-gap: 1rem;
+	flex: 1;
 	p.form-title {
 		padding: 0 2rem;
 		border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
@@ -363,6 +366,7 @@ const StyledForm = styled.form`
 		justify-content: space-between;
 		align-items: center;
 		column-gap: 1rem;
+		margin-top: 1.5rem;
 		label {
 			font-size: 0.9em;
 			text-align: right;
@@ -376,11 +380,61 @@ const StyledForm = styled.form`
 			flex: 1;
 		}
 	}
-	.add-btn {
-		color: ${({ theme }) => theme.white};
-		font-weight: bolder;
-		text-transform: uppercase;
-		font-size: 1.6rem;
+	.search-container {
+		/* overflow-x: hidden; */
+		position: relative;
+		.autoContainer {
+			position: absolute;
+			background-color: ${({ theme }) => theme.white};
+			z-index: 500;
+			width: 100%;
+			padding: 0 1rem;
+			left: 0;
+			border: 1px solid ${({ theme }) => theme.primaryColor};
+			.option {
+				padding: 0.3rem 0;
+			}
+		}
+	}
+	.input-wrapper-band {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		/* align-items: center; */
+		/* row-gap: 0.5rem; */
+		label {
+			font-size: 0.9em;
+			text-align: left;
+			flex: 1;
+			text-transform: capitalize;
+		}
+		#auto {
+			padding: 0.8rem 1rem;
+			margin: 0;
+			font-size: 1.8rem;
+			color: ${({ theme }) => theme.black};
+			flex: 1;
+		}
+		#input-number {
+			padding: 0.8rem 1rem;
+			margin: 0;
+			font-size: 1.8rem;
+			color: ${({ theme }) => theme.black};
+			flex: 1;
+		}
+	}
+	.btn-container {
+		display: flex;
+		flex-direction: column;
+		row-gap: 1rem;
+		flex: 1;
+		justify-content: flex-end;
+		.add-btn {
+			color: ${({ theme }) => theme.white};
+			font-weight: bolder;
+			text-transform: uppercase;
+			font-size: 1.6rem;
+		}
 	}
 `;
 
