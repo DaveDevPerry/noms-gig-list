@@ -1,15 +1,202 @@
-import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { CgCloseR } from 'react-icons/cg';
+import { useBandsContext } from '../hooks/useBandsContext';
 // import { motion } from 'framer-motion';
 
+const Auto = ({
+	setDisplay,
+	display,
+	headline_band,
+	setHeadline_band,
+	emptyFields,
+	setCreateNewBand,
+}) => {
+	const { user } = useAuthContext();
+	// const [display, setDisplay] = useState(false);
+	const [options, setOptions] = useState([]);
+	const [search, setSearch] = useState('');
+	const wrapperRef = useRef(null);
+
+	useEffect(() => {
+		const fetchAllBands = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/bands`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+
+			if (response.ok) {
+				// setWorkouts(json);
+				// setHeadline_band(json);
+				setOptions(json);
+				// setOptions(allBands);
+				// dispatch({
+				// 	type: 'SET_BANDS',
+				// 	payload: json,
+				// });
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchAllBands();
+		}
+		// const allBands = [];
+		// const promises =
+		// 	// const promises = new Array(20)
+		// 	// .fill()
+		// 	// .map((v, i) =>
+		// 	fetch(`${process.env.REACT_APP_BACKEND_URL}/api/bands`);
+		// // fetch(`${process.env.REACT_APP_BACKEND_URL}/api/bands/${i + 1}`)
+		// Promise.all(promises).then((bandsArr) => {
+		// 	return bandsArr.map((res) =>
+		// 		res.json().then(({ name }) => {
+		// 			return allBands.push({ name });
+		// 		})
+		// 	);
+		// });
+		// setOptions(allBands);
+	}, []);
+	// useEffect(() => {
+	// 	const allBands = [];
+	// 	const promises =
+	// 		// const promises = new Array(20)
+	// 		// .fill()
+	// 		// .map((v, i) =>
+	// 		fetch(`${process.env.REACT_APP_BACKEND_URL}/api/bands`);
+	// 	// fetch(`${process.env.REACT_APP_BACKEND_URL}/api/bands/${i + 1}`)
+	// 	Promise.all(promises).then((bandsArr) => {
+	// 		return bandsArr.map((res) =>
+	// 			res.json().then(({ name }) => {
+	// 				return allBands.push({ name });
+	// 			})
+	// 		);
+	// 	});
+	// 	setOptions(allBands);
+	// }, []);
+
+	// sets event listeners
+	useEffect(() => {
+		document.addEventListener('mousedown', handleClickOutside);
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, []);
+
+	const handleClickOutside = (event) => {
+		const { current: wrap } = wrapperRef;
+		if (wrap && !wrap.contains(event.target)) {
+			setDisplay(false);
+		}
+	};
+
+	const setBandDex = (poke) => {
+		console.log(poke, 'poke setBandDex');
+		setSearch(poke);
+		setHeadline_band(poke);
+		// if (options.includes(poke)) {
+		// 	console.log(
+		// 		poke,
+		// 		headline_band,
+		// 		search,
+		// 		'setBandDex options includes poke'
+		// 	);
+		// }
+		// if (!options.includes(poke)) {
+		// 	console.log(
+		// 		poke,
+		// 		headline_band,
+		// 		search,
+		// 		'setBandDex options excludes poke'
+		// 	);
+		// }
+		setCreateNewBand(false);
+		setDisplay(false);
+	};
+
+	return (
+		<div className='search-container' ref={wrapperRef}>
+			<input
+				// type='text'
+				// id='input-number'
+				id='auto'
+				// placeholder='type to search'
+				onClick={() => setDisplay(!display)}
+				// value={headline_band}
+				// onChange={(e) => setHeadline_band(e.target.value)}
+				className={emptyFields.includes('headline_band') ? 'error' : ''}
+				autoFocus
+				value={search}
+				onChange={(event) => {
+					setSearch(event.target.value);
+					setHeadline_band(event.target.value);
+				}}
+				// onChange={(event) => setSearch(event.target.value)}
+			/>
+			{/* <input
+					type='text'
+					id='input-number'
+					placeholder='type to search'
+					onClick={() => setDisplay(!display)}
+					value={headline_band}
+					onChange={(e) => setHeadline_band(e.target.value)}
+					className={emptyFields.includes('headline_band') ? 'error' : ''}
+					autoFocus
+				/> */}
+			{display && (
+				<div className='autoContainer'>
+					{options
+						.filter(({ name }) => name.indexOf(search.toLowerCase()) > -1)
+						.map((v, i) => {
+							return (
+								<div
+									key={i}
+									className='option'
+									onClick={() => setBandDex(v.name)}
+								>
+									<span>{v.name}</span>
+									{/* <img src={v.sprite} alt='pokemon' /> */}
+								</div>
+							);
+						})}
+					{/* {headline_band
+						.filter(({ name }) => name.indexOf(search.toLowerCase()) > -1)
+						.map((v, i) => {
+							return (
+								<div
+									key={i}
+									className='option'
+									onClick={() => setBandDex(v.name)}
+								>
+									<span>{v.name}</span>
+								</div>
+							);
+						})} */}
+				</div>
+			)}
+		</div>
+	);
+};
+
 const GigsForm = ({ isFormActive, setIsFormActive }) => {
+	const navigate = useNavigate();
+
 	const { dispatch } = useGigsContext();
+	const { dispatch: bandDispatch } = useBandsContext();
+	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	const { user } = useAuthContext();
 
+	const [createNewBand, setCreateNewBand] = useState(true);
+
+	const [display, setDisplay] = useState(false);
 	const [headline_band, setHeadline_band] = useState('');
 	const [gig_date, setGig_date] = useState('');
 	const [venue, setVenue] = useState('');
@@ -26,7 +213,58 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 			setError('You must be logged in');
 			return;
 		}
+		// let gig;
+		if (createNewBand === false) {
+			console.log('new gig, existing band');
+			// gig = { headline_band, venue, city, gig_date, gig_details };
+		}
+		if (createNewBand === true) {
+			console.log('new gig, create new band');
+			// gig = { headline_band, venue, city, gig_date, gig_details };
+			const band = { name: headline_band };
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/bands`,
+				{
+					// const response = await fetch('/api/weights', {
+					method: 'POST',
+					body: JSON.stringify(band),
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			console.log(json, 'json creating band in form post submit');
+			if (!response.ok) {
+				setError(json.error);
+			}
+			if (response.ok) {
+				// setNewWeight('');
+				// setVenue('');
+				// setCity('');
+				// setHeadline_band('');
+				// setGig_date('');
+				// setGig_details('');
+				// setGig_details('');
+				// setReps('');
+				setError(null);
+				// setEmptyFields([]);
+				console.log('new band added', json);
+				bandDispatch({ type: 'CREATE_BAND', payload: json });
+			}
+			// setIsFormActive(!isFormActive);
+			// navigate('/home');
+			console.log('new band added', json);
+		}
+		console.log('new band added, now adding gig');
+		// const handleClose = () => {
+		// 	navigate('/home');
+		// 	// setIsFormActive(!isFormActive);
+		// };
+		// }
 		const gig = { headline_band, venue, city, gig_date, gig_details };
+		console.log(gig, 'gig post submit');
 
 		const response = await fetch(
 			`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
@@ -41,6 +279,8 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 			}
 		);
 		const json = await response.json();
+
+		console.log(json, 'json in form post submit');
 
 		if (!response.ok) {
 			setError(json.error);
@@ -57,14 +297,15 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 			// setReps('');
 			setError(null);
 			setEmptyFields([]);
-			// console.log('new weight added', json);
+			console.log('new gig added', json);
 			dispatch({ type: 'CREATE_GIG', payload: json });
 		}
-		setIsFormActive(!isFormActive);
+		// setIsFormActive(!isFormActive);
+		navigate('/home');
 	};
 	const handleClose = () => {
-		// navigate('/home');
-		setIsFormActive(!isFormActive);
+		navigate('/home');
+		// setIsFormActive(!isFormActive);
 	};
 
 	return (
@@ -81,6 +322,27 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 
 			<div className='input-wrapper'>
 				<label>Headline Band:</label>
+				<Auto
+					setDisplay={setDisplay}
+					display={display}
+					setHeadline_band={setHeadline_band}
+					headline_band={headline_band}
+					emptyFields={emptyFields}
+					setCreateNewBand={setCreateNewBand}
+				/>
+				{/* <input
+					type='text'
+					id='input-number'
+					placeholder='type to search'
+					onClick={() => setDisplay(!display)}
+					value={headline_band}
+					onChange={(e) => setHeadline_band(e.target.value)}
+					className={emptyFields.includes('headline_band') ? 'error' : ''}
+					autoFocus
+				/> */}
+			</div>
+			{/* <div className='input-wrapper'>
+				<label>Headline Band:</label>
 				<input
 					type='text'
 					id='input-number'
@@ -89,7 +351,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 					className={emptyFields.includes('headline_band') ? 'error' : ''}
 					autoFocus
 				/>
-			</div>
+			</div> */}
 
 			<div className='input-wrapper'>
 				<label>Venue:</label>

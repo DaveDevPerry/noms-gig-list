@@ -13,6 +13,7 @@ import Loader from './pages/Loader';
 import Gigs from './pages/Gigs';
 import History from './pages/History';
 import Bands from './pages/Bands';
+import CreateGig from './pages/CreateGig';
 // import { groupsReducer } from './context/GroupContext';
 // import GroupsFullDetails from './pages/groups/[slug]';
 
@@ -39,6 +40,10 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 					<Route
 						path='/gigs'
 						element={user ? <Gigs /> : <Navigate to='/login' />}
+					/>
+					<Route
+						path='/gigs/new'
+						element={user ? <CreateGig /> : <Navigate to='/login' />}
 					/>
 					<Route
 						path='/history'

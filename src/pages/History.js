@@ -7,7 +7,8 @@ import { motion } from 'framer-motion';
 
 // components
 import GigsList from '../components/GigsList';
-import HistoryWidget from '../components/HistoryWidget';
+import { FaUsers } from 'react-icons/fa';
+// import HistoryWidget from '../components/HistoryWidget';
 // import WeightsProgressWidget from '../components/WeightsProgressWidget';
 // import WeightUnitsWidget from '../components/WeightUnitsWidget';
 
@@ -66,13 +67,20 @@ const History = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{previous_gigs && <HistoryWidget gigs={previous_gigs} />}
+			{/* {previous_gigs && <HistoryWidget gigs={previous_gigs} />} */}
 			{/* {gigs && <HistoryWidget gigs={gigs} />} */}
 			{/* <WeightForm /> */}
 			{/* <WeightUnitsWidget gigs={gigs} /> */}
 			{/* <WeightConvertor /> */}
 			{/* <gigsProgressWidget gigs={gigs} /> */}
-			<p className='gig-history-list-header'>History</p>
+			{/* <p className='gig-history-list-header'>History</p> */}
+			<div className='gig-history-list-header'>
+				<p>History</p>
+				<div>
+					<FaUsers className='nav-icon' />x
+					{previous_gigs && previous_gigs.length}
+				</div>
+			</div>
 			<GigsList gigs={previous_gigs} />
 			{/* <GigsList gigs={gigs} /> */}
 		</StyledHistory>
@@ -89,9 +97,21 @@ const StyledHistory = styled(motion.div)`
 	/* overflow-y: auto; */
 	/* border: 2px solid red; */
 	.gig-history-list-header {
-		color: ${({ theme }) => theme.secondaryColor};
-		font-weight: bold;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
+		p {
+			color: ${({ theme }) => theme.secondaryColor};
+			font-weight: bold;
+		}
+		div {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			column-gap: 0.5rem;
+		}
 	}
 `;
 

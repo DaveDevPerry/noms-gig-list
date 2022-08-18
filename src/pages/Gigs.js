@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { BsMusicNoteList } from 'react-icons/bs';
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -12,7 +13,8 @@ import GigsList from '../components/GigsList';
 
 const Gigs = () => {
 	// const [workouts, setWorkouts] = useState(null);
-	const { gigs, dispatch } = useGigsContext();
+	const { upcoming_gigs, dispatch } = useGigsContext();
+	// const { gigs, dispatch } = useGigsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	const { user } = useAuthContext();
 
@@ -29,7 +31,8 @@ const Gigs = () => {
 			const json = await response.json();
 			// get future gigs only
 			console.log(json, 'json set gigs');
-			const upcomingGigs = json.sort((a, b) => {
+			const clonedGigs = [...json];
+			const upcomingGigs = clonedGigs.sort((a, b) => {
 				return new Date(b.gig_date) - new Date(a.gig_date);
 			});
 			console.log(upcomingGigs, 'upcoming');
@@ -48,7 +51,7 @@ const Gigs = () => {
 			if (response.ok) {
 				// setWorkouts(json);
 				dispatch({
-					type: 'SET_GIGS',
+					type: 'SET_UPCOMING_GIGS',
 					payload: filtered,
 					// payload: json,
 				});
@@ -71,8 +74,16 @@ const Gigs = () => {
 			{/* <WeightUnitsWidget gigs={gigs} /> */}
 			{/* <WeightConvertor /> */}
 			{/* <gigsProgressWidget gigs={gigs} /> */}
-			<p className='next-five-list-header'>Upcoming gigs</p>
-			<GigsList gigs={gigs} />
+			{/* <p className='upcoming-gigs-list-header'>Upcoming gigs</p> */}
+			<div className='upcoming-gigs-list-header'>
+				<p>Upcoming gigs</p>
+				<div>
+					<BsMusicNoteList className='nav-icon' />x
+					{upcoming_gigs && upcoming_gigs.length}
+				</div>
+			</div>
+			<GigsList gigs={upcoming_gigs} />
+			{/* <GigsList gigs={gigs} /> */}
 		</StyledGigs>
 	);
 };
@@ -86,10 +97,22 @@ const StyledGigs = styled(motion.div)`
 	/* flex: 1; */
 	/* overflow-y: auto; */
 	/* border: 2px solid red; */
-	.next-five-list-header {
-		color: ${({ theme }) => theme.secondaryColor};
-		font-weight: bold;
+	.upcoming-gigs-list-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
+		p {
+			color: ${({ theme }) => theme.secondaryColor};
+			font-weight: bold;
+		}
+		div {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			column-gap: 0.5rem;
+		}
 	}
 `;
 

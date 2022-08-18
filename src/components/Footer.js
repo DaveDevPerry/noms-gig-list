@@ -15,9 +15,9 @@ const Footer = () => {
 	const { user } = useAuthContext();
 	const [isFormActive, setIsFormActive] = useState(false);
 
-	const handleClick = () => {
-		setIsFormActive(!isFormActive);
-	};
+	// const handleClick = () => {
+	// 	// setIsFormActive(!isFormActive);
+	// };
 
 	return (
 		<StyledFooter>
@@ -44,7 +44,14 @@ const Footer = () => {
 							to='/add-weight'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						> */}
-						<BsPlusCircleFill className='add-icon' onClick={handleClick} />
+						<NavLink
+							to='/gigs/new'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+						>
+							<BsPlusCircleFill className='add-icon' />
+							{/* <BsPlusCircleFill className='add-icon' onClick={handleClick} /> */}
+						</NavLink>
+						{/* <BsPlusCircleFill className='add-icon' onClick={handleClick} /> */}
 						{/* </NavLink> */}
 
 						<NavLink

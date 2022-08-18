@@ -3,15 +3,72 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { BsMusicNoteList } from 'react-icons/bs';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useGigsContext } from '../hooks/useGigsContext';
+import { useBandsContext } from '../hooks/useBandsContext';
 // import { motion } from 'framer-motion';
 
 const Loader = () => {
+	const { dispatch } = useGigsContext();
+	const { dispatch: bandDispatch } = useBandsContext();
+	const { user } = useAuthContext();
 	const navigate = useNavigate();
+
 	useEffect(() => {
+		const fetchGigs = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
+				{
+					// const response = await fetch('/api/weights', {
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+
+			if (response.ok) {
+				// setWorkouts(json);
+				dispatch({
+					type: 'SET_GIGS',
+					payload: json,
+				});
+			}
+		};
+		if (user) {
+			// fetchGigs();
+			fetchGigs();
+		}
 		setTimeout(() => {
 			navigate('/home');
 		}, 3000);
-	});
+	}, [dispatch, user]);
+
+	useEffect(() => {
+		const fetchBands = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/bands`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+
+			if (response.ok) {
+				// setWorkouts(json);
+				bandDispatch({
+					type: 'SET_BANDS',
+					payload: json,
+				});
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchBands();
+		}
+	}, [bandDispatch, user]);
 	return (
 		<StyledLoader
 			className='site-loader'

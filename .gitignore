@@ -1,3 +1,8 @@
 node_modules
 .env
 .env.production
+
+/src/pages/Bands copy.js
+/src/components/GigForm copy.js
+
+

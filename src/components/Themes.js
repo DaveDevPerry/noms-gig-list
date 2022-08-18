@@ -21,6 +21,7 @@ export const lightTheme = {
 	red: '#980303',
 	green: '#156d01',
 	isComplete: 'rgb(228, 207, 23)',
+	gold: 'rgb(250, 186, 11)',
 };
 export const darkTheme = {
 	primaryColor: '#fff700',
@@ -46,4 +47,5 @@ export const darkTheme = {
 	red: '#980303',
 	green: '#156d01',
 	isComplete: 'rgb(228, 207, 23)',
+	gold: 'rgb(250, 186, 11)',
 };
