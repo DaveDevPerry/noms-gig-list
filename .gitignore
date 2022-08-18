@@ -3,6 +3,7 @@ node_modules
 .env.production
 
 /src/pages/Bands copy.js
+/src/components/GigForm1 copy.js
 /src/components/GigForm copy.js
 
 

@@ -5,6 +5,7 @@ import App from './App';
 import { GigsContextProvider } from './context/GigContext';
 import { AuthContextProvider } from './context/AuthContext';
 import { BandsContextProvider } from './context/BandContext';
+import { CitiesContextProvider } from './context/CityContext';
 // import { TargetsContextProvider } from './context/TargetContext';
 // import { GroupsContextProvider } from './context/GroupContext';
 // import { UsersContextProvider } from './context/UserContext';
@@ -18,7 +19,9 @@ root.render(
 			{/* <TargetsContextProvider> */}
 			<GigsContextProvider>
 				<BandsContextProvider>
-					<App />
+					<CitiesContextProvider>
+						<App />
+					</CitiesContextProvider>
 				</BandsContextProvider>
 			</GigsContextProvider>
 			{/* </TargetsContextProvider> */}
