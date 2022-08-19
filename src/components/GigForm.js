@@ -8,7 +8,9 @@ import { CgCloseR } from 'react-icons/cg';
 import { useBandsContext } from '../hooks/useBandsContext';
 import GigFormBands from './GigFormBands';
 import { useCitiesContext } from '../hooks/useCitiesContext';
+import { useVenuesContext } from '../hooks/useVenuesContext';
 import GigFormCities from './GigFormCities';
+import GigFormVenues from './GigFormVenues';
 // import { motion } from 'framer-motion';
 
 // const Auto = ({
@@ -109,14 +111,17 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 	const { dispatch } = useGigsContext();
 	const { dispatch: bandDispatch } = useBandsContext();
 	const { dispatch: cityDispatch } = useCitiesContext();
+	const { dispatch: venueDispatch } = useVenuesContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	const { user } = useAuthContext();
 
 	const [createNewBand, setCreateNewBand] = useState(true);
 	const [createNewCity, setCreateNewCity] = useState(true);
+	const [createNewVenue, setCreateNewVenue] = useState(true);
 
 	const [display, setDisplay] = useState(false);
 	const [cityDisplay, setCityDisplay] = useState(false);
+	const [venueDisplay, setVenueDisplay] = useState(false);
 	const [headline_band, setHeadline_band] = useState('');
 	const [gig_date, setGig_date] = useState('');
 	const [venue, setVenue] = useState('');
@@ -172,6 +177,40 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 		// 	// setIsFormActive(!isFormActive);
 		// };
 		// }
+
+		// check if new venue and action
+		if (createNewVenue === false) {
+			console.log('new gig, existing venue');
+			// gig = { headline_band, venue, venue, gig_date, gig_details };
+		}
+		if (createNewVenue === true) {
+			console.log('new gig, create new venue');
+			// gig = { headline_band, venue, city, gig_date, gig_details };
+			const currentVenue = { name: venue };
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/venues`,
+				{
+					// const response = await fetch('/api/weights', {
+					method: 'POST',
+					body: JSON.stringify(currentVenue),
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			console.log(json, 'json creating venue in form post submit');
+			if (!response.ok) {
+				setError(json.error);
+			}
+			if (response.ok) {
+				setError(null);
+				console.log('new city added', json);
+				venueDispatch({ type: 'CREATE_VENUE', payload: json });
+			}
+			console.log('new venue added', json);
+		}
 
 		// check if new city and action
 		if (createNewCity === false) {
@@ -308,15 +347,25 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 
 			<div className='input-wrapper-band'>
 				<label>Venue:</label>
+				<GigFormVenues
+					setVenueDisplay={setVenueDisplay}
+					venueDisplay={venueDisplay}
+					setVenue={setVenue}
+					venue={venue}
+					emptyFields={emptyFields}
+					setCreateNewVenue={setCreateNewVenue}
+				/>
+			</div>
+			{/* <div className='input-wrapper-band'>
+				<label>Venue:</label>
 				<input
 					type='text'
 					id='input-number'
 					onChange={(e) => setVenue(e.target.value)}
 					value={venue}
 					className={emptyFields.includes('venue') ? 'error' : ''}
-					// autoFocus
 				/>
-			</div>
+			</div> */}
 			<div className='input-wrapper-band'>
 				<label>City:</label>
 				<GigFormCities

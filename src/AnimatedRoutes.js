@@ -14,6 +14,8 @@ import Gigs from './pages/Gigs';
 import History from './pages/History';
 import Bands from './pages/Bands';
 import CreateGig from './pages/CreateGig';
+import Venues from './pages/Venues';
+import Cities from './pages/Cities';
 // import { groupsReducer } from './context/GroupContext';
 // import GroupsFullDetails from './pages/groups/[slug]';
 
@@ -52,6 +54,14 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 					<Route
 						path='/bands'
 						element={user ? <Bands /> : <Navigate to='/login' />}
+					/>
+					<Route
+						path='/venues'
+						element={user ? <Venues /> : <Navigate to='/login' />}
+					/>
+					<Route
+						path='/cities'
+						element={user ? <Cities /> : <Navigate to='/login' />}
 					/>
 					<Route
 						path='/settings'

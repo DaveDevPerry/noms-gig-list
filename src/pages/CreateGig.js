@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import GigsForm from '../components/GigForm';
 import { useBandsContext } from '../hooks/useBandsContext';
 import { useCitiesContext } from '../hooks/useCitiesContext';
+import { useVenuesContext } from '../hooks/useVenuesContext';
 
 // components
 // import GigsList from '../components/GigsList';
@@ -18,6 +19,7 @@ const CreateGig = () => {
 	const { gigData, dispatch } = useGigsContext();
 	const { dispatch: bandDispatch } = useBandsContext();
 	const { dispatch: cityDispatch } = useCitiesContext();
+	const { dispatch: venueDispatch } = useVenuesContext();
 	// const { bands, dispatch: bandDispatch} = useBandsContext();
 	// const { gigs, dispatch } = useGigsContext();
 	// const { gigs, dispatch } = useGigsContext();
@@ -118,6 +120,51 @@ const CreateGig = () => {
 	// console.log(gigData.bandStats, 'gig data');
 	// console.log(bands, 'gig data - bands');
 	// console.log(all_gigs, 'gig data - gigs');
+
+	useEffect(() => {
+		const fetchVenues = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/venues`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			// // get future gigs only
+			// console.log(json, 'json set gigs');
+			// const clonedGigs = [...json];
+			// const upcomingGigs = clonedGigs.sort((a, b) => {
+			// 	return new Date(b.gig_date) - new Date(a.gig_date);
+			// });
+			// console.log(upcomingGigs, 'upcoming');
+			// const upcomingGigsSort = json.sort((a, b) => {
+			// 	return new Date(a.gig_date) - new Date(b.gig_date);
+			// });
+			// console.log(upcomingGigsSort, 'upcoming');
+			// const filtered = upcomingGigsSort.filter((gig) => {
+			// 	return (
+			// 		new Date(gig.gig_date) > new Date() ||
+			// 		new Date(gig.gig_date) === new Date()
+			// 	);
+			// });
+			// console.log(filtered, 'filtered');
+
+			if (response.ok) {
+				// setWorkouts(json);
+				venueDispatch({
+					type: 'SET_VENUES',
+					payload: json,
+					// payload: json,
+				});
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchVenues();
+		}
+	}, [venueDispatch, user]);
 
 	useEffect(() => {
 		const fetchCities = async () => {
