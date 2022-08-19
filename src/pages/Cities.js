@@ -10,13 +10,18 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useEffect } from 'react';
 import CityCard from '../components/CityCard';
 import { FaUsers } from 'react-icons/fa';
+import { useGigsContext } from '../hooks/useGigsContext';
+import { useStateContext } from '../lib/context';
 // import { useEffect } from 'react';
 
 const Cities = () => {
 	// const { cities } = useCitiesContext();
 	const { cities, dispatch } = useCitiesContext();
+	const { citiesGigCount, dispatch: gigsDispatch } = useGigsContext();
 	// const { band_gig_data, dispatch } = useGigsContext();
 	const { user } = useAuthContext();
+
+	const { setTotalGigsPerCity, totalGigsPerCity } = useStateContext();
 
 	useEffect(() => {
 		const fetchCities = async () => {
@@ -43,6 +48,39 @@ const Cities = () => {
 			fetchCities();
 		}
 	}, [dispatch, user]);
+
+	useEffect(() => {
+		const fetchGigCountPerCity = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+
+			// json.sort((a,b) => a.name > b.name ? 1 : -1)
+
+			if (response.ok) {
+				// setWorkouts(json);
+				gigsDispatch({
+					type: 'SET_CITIES_GIG_COUNT',
+					payload: json,
+					// payload: json.sort((a, b) => (a.name > b.name ? 1 : -1)),
+				});
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchGigCountPerCity();
+		}
+	}, [gigsDispatch, user]);
+
+	useEffect(() => {
+		setTotalGigsPerCity(citiesGigCount && citiesGigCount);
+	}, [citiesGigCount]);
 	// useEffect(() => {
 	// 	const fetchGigCountPerBand = async () => {
 	// 		const response = await fetch(
@@ -70,6 +108,7 @@ const Cities = () => {
 	// }, [dispatch, user]);
 
 	// console.log(band_gig_data, 'band gig data - bands');
+	console.log(totalGigsPerCity, 'totalGigsPerCity - cities');
 
 	return (
 		<StyledCities
@@ -90,7 +129,11 @@ const Cities = () => {
 					<FaUsers className='nav-icon' />x{cities && cities.length}
 				</div>
 			</div>
-			{cities && cities.map((city) => <CityCard key={city._id} city={city} />)}
+			{citiesGigCount &&
+				citiesGigCount.map((city, index) => (
+					<CityCard key={index} city={city} />
+				))}
+			{/* {cities && cities.map((city) => <CityCard key={city._id} city={city} />)} */}
 			{/* <p>city PAGE</p> */}
 			{/* <Auto /> */}
 		</StyledCities>

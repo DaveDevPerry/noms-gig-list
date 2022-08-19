@@ -51,17 +51,32 @@ export const gigsReducer = (state, action) => {
 			});
 			return {
 				bandsGigCount: sortBandsByGigCount,
-				// bandsGigCount: gigCountArrOfObj,
-				// bandsGigCount: clonedGigs
-				// 	.map(({ headline_band }) => headline_band)
-				// 	.reduce(function (count, currentValue) {
-				// 		return (
-				// 			count[currentValue]
-				// 				? ++count[currentValue]
-				// 				: (count[currentValue] = 1),
-				// 			count
-				// 		);
-				// 	}, {}),
+			};
+		case 'SET_CITIES_GIG_COUNT':
+			const clonedGigsForCityCount = [...action.payload];
+			const citiesGigCountObj = clonedGigsForCityCount
+				// bandsGigCount: action.payload
+				.map(({ city }) => city)
+				.reduce(function (count, currentValue) {
+					return (
+						count[currentValue]
+							? ++count[currentValue]
+							: (count[currentValue] = 1),
+						count
+					);
+				}, {});
+			// convert object to array of key value pair objects
+			const citiesGigCountArrOfObj = Object.entries(citiesGigCountObj).map(
+				([key, value]) => ({
+					key,
+					value,
+				})
+			);
+			const sortCitiesByGigCount = citiesGigCountArrOfObj.sort((a, b) => {
+				return b.value - a.value;
+			});
+			return {
+				citiesGigCount: sortCitiesByGigCount,
 			};
 
 		case 'SET_GIG_COUNTER_DATA':
@@ -268,6 +283,7 @@ export const GigsContextProvider = ({ children }) => {
 		band_gig_data: null,
 		gigCounterData: null,
 		bandsGigCount: null,
+		citiesGigCount: null,
 	});
 
 	return (

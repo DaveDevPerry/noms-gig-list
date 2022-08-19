@@ -42,10 +42,18 @@ const CityCard = ({ city, difference }) => {
 			<div className='full'>
 				<p>
 					{/* <strong> */}
-					{city.name}
+					{city.key}
+					{/* {city.name} */}
 					{/* </strong> */}
 				</p>
-				{/* <p>{city.city}</p> */}
+			</div>
+			<div className='right'>
+				<p>
+					{/* <strong> */}
+					{city.value}
+					{/* {band.name} */}
+					{/* </strong> */}
+				</p>
 			</div>
 			{/* <p>{city.city_date}</p> */}
 			{/* <div>
@@ -70,7 +78,7 @@ const StyledCityCard = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0.5rem 0; */
-	padding: 0.5rem;
+	padding: 0.5rem 1rem;
 	position: relative;
 	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
 	display: flex;
@@ -90,7 +98,7 @@ const StyledCityCard = styled.div`
 		}
 	}
 	.full {
-		/* flex: 1; */
+		flex: 1;
 		p {
 			/* margin: 0;
 		font-size: 0.8em;
@@ -151,6 +159,8 @@ const StyledCityCard = styled.div`
 	}
 	.right p {
 		text-align: right;
+		color: ${({ theme }) => theme.secondaryColor};
+		font-size: 1.6rem;
 	}
 `;
 

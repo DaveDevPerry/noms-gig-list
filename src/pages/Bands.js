@@ -145,7 +145,8 @@ const Bands = () => {
 	// const { band_gig_data, dispatch } = useGigsContext();
 	const { user } = useAuthContext();
 
-	const { gigCountPerBand } = useStateContext();
+	const { gigCountPerBand, setTotalGigsPerBand, totalGigsPerBand } =
+		useStateContext();
 
 	useEffect(() => {
 		const fetchBands = async () => {
@@ -205,6 +206,10 @@ const Bands = () => {
 		}
 	}, [gigsDispatch, user]);
 
+	useEffect(() => {
+		setTotalGigsPerBand(bandsGigCount && bandsGigCount);
+	}, [bandsGigCount]);
+
 	// useEffect(() => {
 	// 	const fetchGigCountPerBand = async () => {
 	// 		const response = await fetch(
@@ -235,6 +240,7 @@ const Bands = () => {
 
 	console.log(gigCountPerBand, 'gig count per band in bands page');
 	console.log(bandsGigCount, 'bands gig count - bands');
+	console.log(totalGigsPerBand, 'totalGigsPerBand - bands');
 
 	return (
 		<StyledBands
@@ -280,7 +286,7 @@ const StyledBands = styled(motion.div)`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-
+		padding: 0rem 1rem;
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
 		p {
 			color: ${({ theme }) => theme.secondaryColor};

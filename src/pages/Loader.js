@@ -7,16 +7,16 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useGigsContext } from '../hooks/useGigsContext';
 import { useBandsContext } from '../hooks/useBandsContext';
 
-import { useStateContext } from '../lib/context';
+// import { useStateContext } from '../lib/context';
 // import { motion } from 'framer-motion';
 
 const Loader = () => {
-	const { gigs, dispatch } = useGigsContext();
+	const { dispatch } = useGigsContext();
 	const { dispatch: bandDispatch } = useBandsContext();
 	const { user } = useAuthContext();
 	const navigate = useNavigate();
 
-	const { getGigCountPerBand, gigCountPerBand } = useStateContext();
+	// const { getGigCountPerBand, gigCountPerBand } = useStateContext();
 
 	useEffect(() => {
 		const fetchGigs = async () => {
@@ -49,9 +49,9 @@ const Loader = () => {
 		}, 3000);
 	}, [dispatch, user]);
 
-	useEffect(() => {
-		getGigCountPerBand(gigs && gigs);
-	}, [gigs]);
+	// useEffect(() => {
+	// 	getGigCountPerBand(gigs && gigs);
+	// }, [gigs]);
 
 	useEffect(() => {
 		const fetchBands = async () => {

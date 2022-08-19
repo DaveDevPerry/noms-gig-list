@@ -66,7 +66,12 @@ const Settings = ({ themeToggler, theme }) => {
 			{/* {targets && targets.length === 0 && <TargetForm />} */}
 			{/* <UserForm /> */}
 
-			<a href='https://www.daveperry.tech' className='developer-link'>
+			<a
+				href='https://www.daveperry.tech'
+				className='developer-link'
+				rel='noopener noreferrer'
+				target='_blank'
+			>
 				developed by © daveperry.tech 2022
 			</a>
 		</StyledSettings>
