@@ -8,10 +8,11 @@ import { motion } from 'framer-motion';
 // import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useEffect } from 'react';
-import VenueCard from '../components/VenueCard';
+// import VenueCard from '../components/VenueCard';
 import { FaUsers } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
+import VenuesList from '../components/VenuesList';
 // import { useEffect } from 'react';
 
 const Venues = () => {
@@ -102,8 +103,9 @@ const Venues = () => {
 					<FaUsers className='nav-icon' />x{venues && venues.length}
 				</div>
 			</div>
-			{venues &&
-				venues.map((venue) => <VenueCard key={venue._id} venue={venue} />)}
+			{/* {venues &&
+				venues.map((venue) => <VenueCard key={venue._id} venue={venue} />)} */}
+			<VenuesList venues={venues} />
 			{/* <p>venue PAGE</p> */}
 			{/* <Auto /> */}
 		</StyledVenues>
@@ -128,6 +130,17 @@ const StyledVenues = styled(motion.div)`
 	/* flex: 1; */
 	/* overflow-y: auto; */
 	/* border: 2px solid red; */
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
+
+	flex: 1;
+	max-width: 42rem;
+	padding: 0 1rem;
+	/* overflow-y: auto; */
+	/* overflow: hidden; */
+	overflow: hidden;
+	transition: all 200ms linear;
 	.venue-name-list-header {
 		display: flex;
 		justify-content: space-between;

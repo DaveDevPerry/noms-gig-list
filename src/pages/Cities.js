@@ -6,11 +6,12 @@ import { motion } from 'framer-motion';
 // import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useEffect } from 'react';
-import CityCard from '../components/CityCard';
+// import CityCard from '../components/CityCard';
 import { FaUsers } from 'react-icons/fa';
 // import { useGigsContext } from '../hooks/useGigsContext';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
+import CitiesList from '../components/CitiesList';
 // import { useEffect } from 'react';
 
 const Cities = () => {
@@ -138,10 +139,11 @@ const Cities = () => {
 					<FaUsers className='nav-icon' />x{cities && cities.length}
 				</div>
 			</div>
-			{totalGigsPerCity &&
+			{/* {totalGigsPerCity &&
 				totalGigsPerCity.map((city, index) => (
 					<CityCard key={index} city={city} />
-				))}
+				))} */}
+			<CitiesList cities={totalGigsPerCity} />
 			{/* {cities && cities.map((city) => <CityCard key={city._id} city={city} />)} */}
 			{/* <p>city PAGE</p> */}
 			{/* <Auto /> */}
@@ -167,6 +169,17 @@ const StyledCities = styled(motion.div)`
 	/* flex: 1; */
 	/* overflow-y: auto; */
 	/* border: 2px solid red; */
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
+
+	flex: 1;
+	max-width: 42rem;
+	padding: 0 1rem;
+	/* overflow-y: auto; */
+	/* overflow: hidden; */
+	overflow: hidden;
+	transition: all 200ms linear;
 	.city-name-list-header {
 		display: flex;
 		justify-content: space-between;

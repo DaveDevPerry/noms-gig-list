@@ -102,12 +102,14 @@ const StyledHistory = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
-	/* justify-content: flex-start; */
+
+	flex: 1;
+	max-width: 42rem;
+	padding: 0 1rem;
 	/* overflow-y: auto; */
-	/* overflow-y: hidden; */
-	/* flex: 1; */
-	/* overflow-y: auto; */
-	/* border: 2px solid red; */
+	/* overflow: hidden; */
+	overflow: hidden;
+	transition: all 200ms linear;
 	.gig-history-list-header {
 		display: flex;
 		justify-content: space-between;

@@ -2,9 +2,10 @@ import React from 'react';
 // import { useState } from 'react';
 // import { useEffect } from 'react';
 import styled from 'styled-components';
-import GigDetails from './GigDetails';
+import CityCard from './CityCard';
+// import GigDetails from './GigDetails';
 
-const GigsList = ({ gigs }) => {
+const CitiesList = ({ cities }) => {
 	// const [testgigs, setTestgigs] = useState('');
 	// // const weightDiffs = [];
 	// useEffect(() => {
@@ -24,18 +25,19 @@ const GigsList = ({ gigs }) => {
 	// 	console.log(weightDiffs, 'weight diffs');
 	// }, [weights]);
 	return (
-		<StyledGigsList className='gig-list-container'>
+		<StyledCitiesList className='gig-list-container'>
 			{/* <p className='gigs-list-header'>Recorded weigh-ins</p> */}
 			<div className='gigs-list'>
-				{gigs &&
-					gigs.map((gig, index) => <GigDetails key={gig._id} gig={gig} />)}
+				{cities &&
+					cities.map((city, index) => <CityCard key={index} city={city} />)}
 			</div>
-		</StyledGigsList>
+		</StyledCitiesList>
 	);
 };
-const StyledGigsList = styled.div`
+const StyledCitiesList = styled.div`
 	/* overflow-y: scroll; */
 	overflow-y: auto;
+	/* ******** CHANGE TO SCROLL IF NOT WORKING WHEN NEEDED ******* */
 	flex: 1;
 	scroll-behavior: smooth;
 	scroll-behavior: smooth;
@@ -77,4 +79,4 @@ const StyledGigsList = styled.div`
 	}
 `;
 
-export default GigsList;
+export default CitiesList;

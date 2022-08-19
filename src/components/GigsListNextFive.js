@@ -34,8 +34,10 @@ const GigsListNextFive = ({ gigs }) => {
 	);
 };
 const StyledGigsListNextFive = styled.div`
+	/* overflow-y: scroll; */
 	/* overflow-y: auto; */
 	flex: 1;
+
 	p.gigs-list-header {
 		padding: 0 1rem;
 		border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
@@ -50,7 +52,7 @@ const StyledGigsListNextFive = styled.div`
 		row-gap: 0.3rem;
 		/* overflow-y: auto; */
 		/* overflow-y: hidden; */
-		overflow-y: scroll;
+		/* overflow-y: scroll; */
 	}
 `;
 

@@ -102,13 +102,26 @@ const Gigs = () => {
 const StyledGigs = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
-	row-gap: 1rem;
+	/* row-gap: 1rem; */
+	row-gap: 0.3rem;
 	/* justify-content: flex-start; */
 	/* overflow-y: auto; */
 	/* overflow-y: hidden; */
 	/* flex: 1; */
 	/* overflow-y: auto; */
 	/* border: 2px solid red; */
+	/* border: 2px solid red; */
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
+
+	flex: 1;
+	max-width: 42rem;
+	padding: 0 1rem;
+	/* overflow-y: auto; */
+	/* overflow: hidden; */
+	overflow: hidden;
+	transition: all 200ms linear;
 	.upcoming-gigs-list-header {
 		display: flex;
 		justify-content: space-between;

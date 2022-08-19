@@ -31,15 +31,20 @@ function App() {
 				<div className='App'>
 					<BrowserRouter>
 						<Header />
-						<div className='pages'>
+						{/* <div className='pages'> */}
+						<AnimatedRoutes
+							user={user}
+							themeToggler={themeToggler}
+							theme={theme}
+						/>
+						{/* </div> */}
+						{/* <div className='pages'>
 							<AnimatedRoutes
 								user={user}
 								themeToggler={themeToggler}
 								theme={theme}
-								// dataLoaded={dataLoaded}
-								// setDataLoaded={setDataLoaded}
 							/>
-						</div>
+						</div> */}
 						<Footer />
 					</BrowserRouter>
 				</div>

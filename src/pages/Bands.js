@@ -8,10 +8,11 @@ import { motion } from 'framer-motion';
 // import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useEffect } from 'react';
-import BandCard from '../components/BandCard';
+// import BandCard from '../components/BandCard';
 import { FaUsers } from 'react-icons/fa';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
+import BandsList from '../components/BandsList';
 // import { useGigsContext } from '../hooks/useGigsContext';
 // import { useEffect } from 'react';
 
@@ -236,10 +237,11 @@ const Bands = () => {
 					<FaUsers className='nav-icon' />x{bands && bands.length}
 				</div>
 			</div>
-			{totalGigsPerBand &&
+			{/* {totalGigsPerBand &&
 				totalGigsPerBand.map((band, index) => (
 					<BandCard key={index} band={band} />
-				))}
+				))} */}
+			<BandsList bands={totalGigsPerBand} />
 			{/* {bandsGigCount &&
 				bandsGigCount.map((band, index) => (
 					<BandCard key={index} band={band} />
@@ -267,6 +269,17 @@ const StyledBands = styled(motion.div)`
 	/* flex: 1; */
 	/* overflow-y: auto; */
 	/* border: 2px solid red; */
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
+
+	flex: 1;
+	max-width: 42rem;
+	padding: 0 1rem;
+	/* overflow-y: auto; */
+	/* overflow: hidden; */
+	overflow: hidden;
+	transition: all 200ms linear;
 	.band-name-list-header {
 		display: flex;
 		justify-content: space-between;

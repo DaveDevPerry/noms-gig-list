@@ -45,18 +45,15 @@ export const GlobalStyles = createGlobalStyle`
     border: 2px solid blue;
   } */
 	}
-  .pages{
+  ${
+		'' /* .pages{
     flex: 1;
-    ${'' /* border: 2px solid red; */}
   max-width: 42rem;
   padding: 0 1rem;
   overflow-y:auto;
-  ${'' /* overflow: hidden; */}
-  ${'' /* overflow-y: auto; */}
-  ${'' /* margin-bottom: 1rem; */}
-  ${'' /* margin: 0 auto; */}
   transition: all 200ms linear;
-}
+} */
+	}
   }
   ${
 		'' /* header {
