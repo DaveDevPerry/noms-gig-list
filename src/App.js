@@ -5,6 +5,8 @@ import { useDarkMode } from './components/useDarkMode';
 import { GlobalStyles } from './components/globalStyles';
 import { lightTheme, darkTheme } from './components/Themes';
 
+import { StateContext } from './lib/context';
+
 // pages & components
 import AnimatedRoutes from './AnimatedRoutes';
 import Footer from './components/Footer';
@@ -20,19 +22,21 @@ function App() {
 	return (
 		<ThemeProvider theme={themeMode}>
 			<GlobalStyles />
-			<div className='App'>
-				<BrowserRouter>
-					<Header />
-					<div className='pages'>
-						<AnimatedRoutes
-							user={user}
-							themeToggler={themeToggler}
-							theme={theme}
-						/>
-					</div>
-					<Footer />
-				</BrowserRouter>
-			</div>
+			<StateContext>
+				<div className='App'>
+					<BrowserRouter>
+						<Header />
+						<div className='pages'>
+							<AnimatedRoutes
+								user={user}
+								themeToggler={themeToggler}
+								theme={theme}
+							/>
+						</div>
+						<Footer />
+					</BrowserRouter>
+				</div>
+			</StateContext>
 		</ThemeProvider>
 	);
 }

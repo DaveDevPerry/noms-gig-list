@@ -10,6 +10,8 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useEffect } from 'react';
 import BandCard from '../components/BandCard';
 import { FaUsers } from 'react-icons/fa';
+import { useStateContext } from '../lib/context';
+import { useGigsContext } from '../hooks/useGigsContext';
 // import { useEffect } from 'react';
 
 // components
@@ -139,8 +141,11 @@ import { FaUsers } from 'react-icons/fa';
 const Bands = () => {
 	// const { bands } = useBandsContext();
 	const { bands, dispatch } = useBandsContext();
+	const { bandsGigCount, dispatch: gigsDispatch } = useGigsContext();
 	// const { band_gig_data, dispatch } = useGigsContext();
 	const { user } = useAuthContext();
+
+	const { gigCountPerBand } = useStateContext();
 
 	useEffect(() => {
 		const fetchBands = async () => {
@@ -154,11 +159,14 @@ const Bands = () => {
 			);
 			const json = await response.json();
 
+			// json.sort((a,b) => a.name > b.name ? 1 : -1)
+
 			if (response.ok) {
 				// setWorkouts(json);
 				dispatch({
 					type: 'SET_BANDS',
 					payload: json,
+					// payload: json.sort((a, b) => (a.name > b.name ? 1 : -1)),
 				});
 			}
 		};
@@ -167,6 +175,36 @@ const Bands = () => {
 			fetchBands();
 		}
 	}, [dispatch, user]);
+
+	useEffect(() => {
+		const fetchGigCountPerBand = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+
+			// json.sort((a,b) => a.name > b.name ? 1 : -1)
+
+			if (response.ok) {
+				// setWorkouts(json);
+				gigsDispatch({
+					type: 'SET_BANDS_GIG_COUNT',
+					payload: json,
+					// payload: json.sort((a, b) => (a.name > b.name ? 1 : -1)),
+				});
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchGigCountPerBand();
+		}
+	}, [gigsDispatch, user]);
+
 	// useEffect(() => {
 	// 	const fetchGigCountPerBand = async () => {
 	// 		const response = await fetch(
@@ -195,6 +233,9 @@ const Bands = () => {
 
 	// console.log(band_gig_data, 'band gig data - bands');
 
+	console.log(gigCountPerBand, 'gig count per band in bands page');
+	console.log(bandsGigCount, 'bands gig count - bands');
+
 	return (
 		<StyledBands
 			className='bands-page'
@@ -202,21 +243,17 @@ const Bands = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{/* <WeightForm /> */}
-			{/* <WeightUnitsWidget gigs={gigs} /> */}
-			{/* <WeightConvertor /> */}
-			{/* <gigsProgressWidget gigs={gigs} /> */}
-			{/* <GigsList gigs={gigs} /> */}
-			{/* {bands && bands.map((band) => <p key={band._id}>{band.name}</p>)} */}
 			<div className='band-name-list-header'>
 				<p>All Bands</p>
 				<div>
 					<FaUsers className='nav-icon' />x{bands && bands.length}
 				</div>
 			</div>
-			{bands && bands.map((band) => <BandCard key={band._id} band={band} />)}
-			{/* <p>BAND PAGE</p> */}
-			{/* <Auto /> */}
+			{bandsGigCount &&
+				bandsGigCount.map((band, index) => (
+					<BandCard key={index} band={band} />
+				))}
+			{/* {bands && bands.map((band) => <BandCard key={band._id} band={band} />)} */}
 		</StyledBands>
 	);
 };

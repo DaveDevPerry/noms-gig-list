@@ -6,13 +6,17 @@ import { BsMusicNoteList } from 'react-icons/bs';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useGigsContext } from '../hooks/useGigsContext';
 import { useBandsContext } from '../hooks/useBandsContext';
+
+import { useStateContext } from '../lib/context';
 // import { motion } from 'framer-motion';
 
 const Loader = () => {
-	const { dispatch } = useGigsContext();
+	const { gigs, dispatch } = useGigsContext();
 	const { dispatch: bandDispatch } = useBandsContext();
 	const { user } = useAuthContext();
 	const navigate = useNavigate();
+
+	const { getGigCountPerBand, gigCountPerBand } = useStateContext();
 
 	useEffect(() => {
 		const fetchGigs = async () => {
@@ -38,11 +42,16 @@ const Loader = () => {
 		if (user) {
 			// fetchGigs();
 			fetchGigs();
+			// getGigCountPerBand(gigs && gigs);
 		}
 		setTimeout(() => {
 			navigate('/home');
 		}, 3000);
 	}, [dispatch, user]);
+
+	useEffect(() => {
+		getGigCountPerBand(gigs && gigs);
+	}, [gigs]);
 
 	useEffect(() => {
 		const fetchBands = async () => {

@@ -6,7 +6,7 @@ export const citiesReducer = (state, action) => {
 	switch (action.type) {
 		case 'SET_CITIES':
 			return {
-				cities: action.payload,
+				cities: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
 			};
 		// case 'SET_NEXT_GIG':
 		// 	const next = [...action.payload];
