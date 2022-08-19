@@ -1,14 +1,20 @@
 import { NavLink } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
-import { BsPlusCircleFill } from 'react-icons/bs';
+// import { BsPlusCircleFill } from 'react-icons/bs';
 // import { BsPlusCircleFill, BsMusicNoteList } from 'react-icons/bs';
 import GigForm from './GigForm';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { HiPresentationChartLine } from 'react-icons/hi';
+// import { HiPresentationChartLine } from 'react-icons/hi';
 import { FaUsers } from 'react-icons/fa';
-import { RiMenuFoldFill, RiMenuUnfoldFill } from 'react-icons/ri';
+import {
+	RiMenuFoldFill,
+	RiMenuUnfoldFill,
+	RiRoadMapLine,
+} from 'react-icons/ri';
+// import { GrMap } from 'react-icons/gr';
+import { MdOutlineMapsHomeWork } from 'react-icons/md';
 // import { IoScale } from 'react-icons/io5';
 
 const Footer = () => {
@@ -24,13 +30,12 @@ const Footer = () => {
 			<nav>
 				{user && (
 					<div>
-						<NavLink
+						{/* <NavLink
 							to='/home'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
-							{/* Home */}
 							<HiPresentationChartLine className='nav-icon' />
-						</NavLink>
+						</NavLink> */}
 						<NavLink
 							to='/gigs'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
@@ -44,31 +49,50 @@ const Footer = () => {
 							to='/add-weight'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						> */}
-						<NavLink
+						{/* <NavLink
 							to='/gigs/new'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<BsPlusCircleFill className='add-icon' />
-							{/* <BsPlusCircleFill className='add-icon' onClick={handleClick} /> */}
-						</NavLink>
-						{/* <BsPlusCircleFill className='add-icon' onClick={handleClick} /> */}
-						{/* </NavLink> */}
+						</NavLink> */}
 
-						<NavLink
-							to='/history'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						>
-							{/* Weights */}
-							<RiMenuFoldFill className='nav-icon' />
-							{/* <BsMusicNoteList className='nav-icon' /> */}
-						</NavLink>
 						<NavLink
 							to='/bands'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
-							{/* Weights */}
 							<FaUsers className='nav-icon' />
 						</NavLink>
+						<NavLink
+							to='/venues'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+						>
+							<MdOutlineMapsHomeWork className='nav-icon' />
+						</NavLink>
+
+						<NavLink
+							to='/cities'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+						>
+							<RiRoadMapLine className='nav-icon' />
+						</NavLink>
+						{/* <NavLink
+							to='/cities'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+						>
+							<GrMap className='nav-icon' />
+						</NavLink> */}
+						<NavLink
+							to='/history'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+						>
+							<RiMenuFoldFill className='nav-icon' />
+						</NavLink>
+						{/* <NavLink
+							to='/bands'
+							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+						>
+							<FaUsers className='nav-icon' />
+						</NavLink> */}
 					</div>
 				)}
 			</nav>

@@ -115,7 +115,7 @@ const StyledCities = styled(motion.div)`
 	/* flex: 1; */
 	/* overflow-y: auto; */
 	/* border: 2px solid red; */
-	.venue-name-list-header {
+	.city-name-list-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;

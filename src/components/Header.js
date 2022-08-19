@@ -4,6 +4,9 @@ import { Link, NavLink } from 'react-router-dom';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { IoSettingsOutline } from 'react-icons/io5';
+import { HiPresentationChartLine } from 'react-icons/hi';
+import { BsPlusCircleFill } from 'react-icons/bs';
+
 // import { RiGroup2Fill } from 'react-icons/ri';
 
 const Header = () => {
@@ -26,12 +29,26 @@ const Header = () => {
 				>
 					<RiGroup2Fill className='settings-icon' />
 				</NavLink> */}
-				<NavLink
-					to='/settings'
-					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-				>
-					<IoSettingsOutline className='settings-icon' />
-				</NavLink>
+				<nav className='top-nav'>
+					<NavLink
+						to='/gigs/new'
+						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+					>
+						<BsPlusCircleFill className='add-icon' />
+					</NavLink>
+					<NavLink
+						to='/home'
+						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+					>
+						<HiPresentationChartLine className='nav-icon' />
+					</NavLink>
+					<NavLink
+						to='/settings'
+						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+					>
+						<IoSettingsOutline className='settings-icon' />
+					</NavLink>
+				</nav>
 			</div>
 		</StyledHeader>
 	);
@@ -57,12 +74,30 @@ const StyledHeader = styled.header`
 				color: ${({ theme }) => theme.txtDarkGrey};
 				font-size: 3rem;
 			}
+			.nav-icon {
+				color: ${({ theme }) => theme.txtDarkGrey};
+				font-size: 3rem;
+			}
 		}
 		a.active {
 			.settings-icon {
 				color: ${({ theme }) => theme.secondaryColor};
 				/* color: ${({ theme }) => theme.primaryColor}; */
 			}
+			.nav-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				/* color: ${({ theme }) => theme.primaryColor}; */
+			}
+		}
+		.add-icon {
+			color: ${({ theme }) => theme.primaryColor};
+			font-size: 2.6rem;
+		}
+		nav.top-nav {
+			display: flex;
+			align-items: center;
+			/* justify-content: space-between; */
+			column-gap: 1rem;
 		}
 	}
 	/* nav {
