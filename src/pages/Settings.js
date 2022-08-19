@@ -8,6 +8,7 @@ import Navbar from '../components/Navbar';
 // import TargetForm from '../components/TargetForm';
 import { CgCloseR } from 'react-icons/cg';
 import { useNavigate } from 'react-router-dom';
+import AppDetails from '../components/AppDetails';
 // import { useEffect } from 'react';
 // import UserForm from '../components/UserForm';
 
@@ -54,17 +55,36 @@ const Settings = ({ themeToggler, theme }) => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<h3>
+			<div className='settings-modal'>
+				<h3>
+					User settings
+					<CgCloseR className='close-icon' onClick={handleClose} />
+				</h3>
+
+				<Toggle toggleTheme={themeToggler} theme={theme} />
+				<Navbar />
+				{/* <Navbar targets={targets} /> */}
+				{/* {!targets && <TargetForm />} */}
+				{/* {targets && targets.length === 0 && <TargetForm />} */}
+				{/* <UserForm /> */}
+
+				{/* <a
+					href='https://www.daveperry.tech'
+					className='developer-link'
+					rel='noopener noreferrer'
+					target='_blank'
+				>
+					developed by © daveperry.tech 2022
+				</a> */}
+			</div>
+			{/* <h3>
 				User settings
 				<CgCloseR className='close-icon' onClick={handleClose} />
 			</h3>
 
 			<Toggle toggleTheme={themeToggler} theme={theme} />
 			<Navbar />
-			{/* <Navbar targets={targets} /> */}
-			{/* {!targets && <TargetForm />} */}
-			{/* {targets && targets.length === 0 && <TargetForm />} */}
-			{/* <UserForm /> */}
+		
 
 			<a
 				href='https://www.daveperry.tech'
@@ -73,19 +93,44 @@ const Settings = ({ themeToggler, theme }) => {
 				target='_blank'
 			>
 				developed by © daveperry.tech 2022
-			</a>
+			</a> */}
+			<AppDetails />
 		</StyledSettings>
 	);
 };
 const StyledSettings = styled(motion.div)`
-	display: flex;
+	/* display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
 	padding: 2rem;
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+	transition: all 200ms linear; */
+
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
+
+	flex: 1;
+	max-width: 42rem;
+	padding: 0 1rem;
+	/* overflow-y: auto; */
+	/* overflow: hidden; */
+	overflow: hidden;
 	transition: all 200ms linear;
+	/* margin: 1rem; */
+	.settings-modal {
+		display: flex;
+		flex-direction: column;
+		row-gap: 1rem;
+		padding: 2rem;
+		background: ${({ theme }) => theme.white};
+		border-radius: 4px;
+		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+		transition: all 200ms linear;
+		/* flex: 1; */
+	}
 	h3 {
 		text-align: center;
 		position: relative;
@@ -99,13 +144,13 @@ const StyledSettings = styled(motion.div)`
 			color: ${({ theme }) => theme.txtDarkGrey};
 		}
 	}
-	a.developer-link {
+	/* a.developer-link {
 		text-decoration: none;
 		align-self: center;
 		margin-top: 6rem;
 		font-size: 1.2rem;
 		color: ${({ theme }) => theme.txtDarkGrey};
-	}
+	} */
 `;
 
 export default Settings;
