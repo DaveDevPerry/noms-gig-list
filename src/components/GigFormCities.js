@@ -6,23 +6,23 @@ import styled from 'styled-components';
 // import { CgCloseR } from 'react-icons/cg';
 // import { useBandsContext } from '../hooks/useBandsContext';
 
-const GigFormBands = ({
-	setDisplay,
-	display,
-	setHeadline_band,
+const GigFormCities = ({
+	setCityDisplay,
+	cityDisplay,
+	setCity,
 	emptyFields,
-	setCreateNewBand,
+	setCreateNewCity,
 }) => {
 	const { user } = useAuthContext();
-	// const [display, setDisplay] = useState(false);
+	// const [display, setCityDisplay] = useState(false);
 	const [options, setOptions] = useState([]);
 	const [search, setSearch] = useState('');
 	const wrapperRef = useRef(null);
 
 	useEffect(() => {
-		const fetchAllBands = async () => {
+		const fetchAllCities = async () => {
 			const response = await fetch(
-				`${process.env.REACT_APP_BACKEND_URL}/api/bands`,
+				`${process.env.REACT_APP_BACKEND_URL}/api/cities`,
 				{
 					headers: {
 						Authorization: `Bearer ${user.token}`,
@@ -36,7 +36,7 @@ const GigFormBands = ({
 		};
 		// if we have a value for the user then fetch the workouts
 		if (user) {
-			fetchAllBands();
+			fetchAllCities();
 		}
 	}, []);
 
@@ -51,33 +51,33 @@ const GigFormBands = ({
 	const handleClickOutside = (event) => {
 		const { current: wrap } = wrapperRef;
 		if (wrap && !wrap.contains(event.target)) {
-			setDisplay(false);
+			setCityDisplay(false);
 		}
 	};
 
-	const setBandDex = (poke) => {
-		console.log(poke, 'poke setBandDex');
+	const setCityDex = (poke) => {
+		console.log(poke, 'poke setCityDex');
 		setSearch(poke);
-		setHeadline_band(poke);
-		setCreateNewBand(false);
-		setDisplay(false);
+		setCity(poke);
+		setCreateNewCity(false);
+		setCityDisplay(false);
 	};
 
 	return (
-		<StyledGigFormBands className='search-container' ref={wrapperRef}>
+		<StyledGigFormCities className='search-container' ref={wrapperRef}>
 			<input
 				id='auto'
-				onClick={() => setDisplay(!display)}
-				className={emptyFields.includes('headline_band') ? 'error' : ''}
-				autoFocus
+				onClick={() => setCityDisplay(!cityDisplay)}
+				className={emptyFields.includes('city') ? 'error' : ''}
+				// autoFocus
 				value={search}
 				onChange={(event) => {
 					setSearch(event.target.value);
-					setHeadline_band(event.target.value);
+					setCity(event.target.value);
 				}}
 				autoComplete='off'
 			/>
-			{display && (
+			{cityDisplay && (
 				<div className='autoContainer'>
 					{options
 						.filter(({ name }) => name.indexOf(search.toLowerCase()) > -1)
@@ -86,7 +86,7 @@ const GigFormBands = ({
 								<div
 									key={i}
 									className='option'
-									onClick={() => setBandDex(v.name)}
+									onClick={() => setCityDex(v.name)}
 								>
 									<span>{v.name}</span>
 								</div>
@@ -94,10 +94,10 @@ const GigFormBands = ({
 						})}
 				</div>
 			)}
-		</StyledGigFormBands>
+		</StyledGigFormCities>
 	);
 };
-const StyledGigFormBands = styled.div`
+const StyledGigFormCities = styled.div`
 	position: relative;
 	.autoContainer {
 		position: absolute;
@@ -113,4 +113,4 @@ const StyledGigFormBands = styled.div`
 	}
 `;
 
-export default GigFormBands;
+export default GigFormCities;

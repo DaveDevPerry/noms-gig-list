@@ -254,6 +254,7 @@ const StyledBands = styled(motion.div)`
 			justify-content: space-between;
 			align-items: center;
 			column-gap: 0.5rem;
+			color: ${({ theme }) => theme.txtGrey};
 		}
 	}
 `;

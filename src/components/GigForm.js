@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
+// import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -6,6 +7,8 @@ import styled from 'styled-components';
 import { CgCloseR } from 'react-icons/cg';
 import { useBandsContext } from '../hooks/useBandsContext';
 import GigFormBands from './GigFormBands';
+import { useCitiesContext } from '../hooks/useCitiesContext';
+import GigFormCities from './GigFormCities';
 // import { motion } from 'framer-motion';
 
 // const Auto = ({
@@ -105,12 +108,15 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 
 	const { dispatch } = useGigsContext();
 	const { dispatch: bandDispatch } = useBandsContext();
+	const { dispatch: cityDispatch } = useCitiesContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	const { user } = useAuthContext();
 
 	const [createNewBand, setCreateNewBand] = useState(true);
+	const [createNewCity, setCreateNewCity] = useState(true);
 
 	const [display, setDisplay] = useState(false);
+	const [cityDisplay, setCityDisplay] = useState(false);
 	const [headline_band, setHeadline_band] = useState('');
 	const [gig_date, setGig_date] = useState('');
 	const [venue, setVenue] = useState('');
@@ -127,7 +133,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 			setError('You must be logged in');
 			return;
 		}
-		// let gig;
+		// check if new band and action
 		if (createNewBand === false) {
 			console.log('new gig, existing band');
 			// gig = { headline_band, venue, city, gig_date, gig_details };
@@ -154,21 +160,10 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 				setError(json.error);
 			}
 			if (response.ok) {
-				// setNewWeight('');
-				// setVenue('');
-				// setCity('');
-				// setHeadline_band('');
-				// setGig_date('');
-				// setGig_details('');
-				// setGig_details('');
-				// setReps('');
 				setError(null);
-				// setEmptyFields([]);
 				console.log('new band added', json);
 				bandDispatch({ type: 'CREATE_BAND', payload: json });
 			}
-			// setIsFormActive(!isFormActive);
-			// navigate('/home');
 			console.log('new band added', json);
 		}
 		console.log('new band added, now adding gig');
@@ -177,6 +172,42 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 		// 	// setIsFormActive(!isFormActive);
 		// };
 		// }
+
+		// check if new city and action
+		if (createNewCity === false) {
+			console.log('new gig, existing city');
+			// gig = { headline_band, venue, city, gig_date, gig_details };
+		}
+		if (createNewCity === true) {
+			console.log('new gig, create new city');
+			// gig = { headline_band, venue, city, gig_date, gig_details };
+			const currentCity = { name: city };
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/cities`,
+				{
+					// const response = await fetch('/api/weights', {
+					method: 'POST',
+					body: JSON.stringify(currentCity),
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			console.log(json, 'json creating city in form post submit');
+			if (!response.ok) {
+				setError(json.error);
+			}
+			if (response.ok) {
+				setError(null);
+				console.log('new city added', json);
+				cityDispatch({ type: 'CREATE_CITY', payload: json });
+			}
+			console.log('new city added', json);
+		}
+		console.log('new city added, now adding gig');
+
 		const gig = { headline_band, venue, city, gig_date, gig_details };
 		console.log(gig, 'gig post submit');
 
@@ -288,6 +319,17 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 			</div>
 			<div className='input-wrapper-band'>
 				<label>City:</label>
+				<GigFormCities
+					setCityDisplay={setCityDisplay}
+					cityDisplay={cityDisplay}
+					setCity={setCity}
+					city={city}
+					emptyFields={emptyFields}
+					setCreateNewCity={setCreateNewCity}
+				/>
+			</div>
+			{/* <div className='input-wrapper-band'>
+				<label>City:</label>
 				<input
 					type='text'
 					id='input-number'
@@ -296,7 +338,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 					className={emptyFields.includes('city') ? 'error' : ''}
 					// autoFocus
 				/>
-			</div>
+			</div> */}
 			<div className='input-wrapper'>
 				<label>Date:</label>
 				<input
@@ -379,8 +421,7 @@ const StyledForm = styled.form`
 			flex: 1;
 		}
 	}
-	.search-container {
-		/* overflow-x: hidden; */
+	/* .search-container {
 		position: relative;
 		.autoContainer {
 			position: absolute;
@@ -394,7 +435,7 @@ const StyledForm = styled.form`
 				padding: 0.3rem 0;
 			}
 		}
-	}
+	} */
 	.input-wrapper-band {
 		display: flex;
 		flex-direction: column;

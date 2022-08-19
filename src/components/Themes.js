@@ -34,7 +34,7 @@ export const darkTheme = {
 	txtDarkGrey: '#e2e2e2',
 	borderGrey: '#ddd',
 	// modeIcon: '#555',
-	modeIcon: '#fff700',
+	modeIcon: 'rgb(250, 186, 11)',
 	// modeIcon: 'rgb(250, 186, 11)',
 	bgCircle: '#3b4045',
 	borderCircle: '#36383a',

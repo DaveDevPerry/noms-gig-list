@@ -41,7 +41,9 @@ const BandCard = ({ band, difference }) => {
 			</div> */}
 			<div className='full'>
 				<p>
-					<strong>{band.name}</strong>
+					{/* <strong> */}
+					{band.name}
+					{/* </strong> */}
 				</p>
 				{/* <p>{band.venue}</p> */}
 			</div>
@@ -93,7 +95,7 @@ const StyledBandCard = styled.div`
 			/* margin: 0;
 		font-size: 0.8em;
 		color: ${({ theme }) => theme.txtGrey}; */
-			text-transform: uppercase;
+			text-transform: capitalize;
 			font-size: 0.9em;
 			width: unset;
 		}
