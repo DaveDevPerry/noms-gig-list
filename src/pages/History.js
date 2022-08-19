@@ -8,6 +8,8 @@ import { motion } from 'framer-motion';
 // components
 import GigsList from '../components/GigsList';
 import { FaUsers } from 'react-icons/fa';
+import { useStateContext } from '../lib/context';
+import { useNavigate } from 'react-router-dom';
 // import HistoryWidget from '../components/HistoryWidget';
 // import WeightsProgressWidget from '../components/WeightsProgressWidget';
 // import WeightUnitsWidget from '../components/WeightUnitsWidget';
@@ -18,6 +20,16 @@ const History = () => {
 	// const { gigs, dispatch } = useGigsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	const { user } = useAuthContext();
+
+	const { dataLoaded } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		// console.log(lastDrawDate, 'last draw data');
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+	}, [navigate, dataLoaded]);
 
 	useEffect(() => {
 		const fetchGigs = async () => {

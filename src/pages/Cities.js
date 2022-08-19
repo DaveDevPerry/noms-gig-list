@@ -1,5 +1,3 @@
-// import { useEffect, useRef, useState } from 'react';
-// import { useGigsContext } from '../hooks/useGigsContext';
 import { useCitiesContext } from '../hooks/useCitiesContext';
 // import { useAuthContext } from '../hooks/useAuthContext';
 
@@ -10,18 +8,29 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useEffect } from 'react';
 import CityCard from '../components/CityCard';
 import { FaUsers } from 'react-icons/fa';
-import { useGigsContext } from '../hooks/useGigsContext';
+// import { useGigsContext } from '../hooks/useGigsContext';
 import { useStateContext } from '../lib/context';
+import { useNavigate } from 'react-router-dom';
 // import { useEffect } from 'react';
 
 const Cities = () => {
 	// const { cities } = useCitiesContext();
 	const { cities, dispatch } = useCitiesContext();
-	const { citiesGigCount, dispatch: gigsDispatch } = useGigsContext();
+	// const { citiesGigCount, dispatch: gigsDispatch } = useGigsContext();
 	// const { band_gig_data, dispatch } = useGigsContext();
 	const { user } = useAuthContext();
 
-	const { setTotalGigsPerCity, totalGigsPerCity } = useStateContext();
+	const { totalGigsPerCity, dataLoaded } = useStateContext();
+
+	// const { dataLoaded } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		// console.log(lastDrawDate, 'last draw data');
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+	}, [navigate, dataLoaded]);
 
 	useEffect(() => {
 		const fetchCities = async () => {
@@ -49,38 +58,38 @@ const Cities = () => {
 		}
 	}, [dispatch, user]);
 
-	useEffect(() => {
-		const fetchGigCountPerCity = async () => {
-			const response = await fetch(
-				`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
-				{
-					headers: {
-						Authorization: `Bearer ${user.token}`,
-					},
-				}
-			);
-			const json = await response.json();
+	// useEffect(() => {
+	// 	const fetchGigCountPerCity = async () => {
+	// 		const response = await fetch(
+	// 			`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
+	// 			{
+	// 				headers: {
+	// 					Authorization: `Bearer ${user.token}`,
+	// 				},
+	// 			}
+	// 		);
+	// 		const json = await response.json();
 
-			// json.sort((a,b) => a.name > b.name ? 1 : -1)
+	// 		// json.sort((a,b) => a.name > b.name ? 1 : -1)
 
-			if (response.ok) {
-				// setWorkouts(json);
-				gigsDispatch({
-					type: 'SET_CITIES_GIG_COUNT',
-					payload: json,
-					// payload: json.sort((a, b) => (a.name > b.name ? 1 : -1)),
-				});
-			}
-		};
-		// if we have a value for the user then fetch the workouts
-		if (user) {
-			fetchGigCountPerCity();
-		}
-	}, [gigsDispatch, user]);
+	// 		if (response.ok) {
+	// 			// setWorkouts(json);
+	// 			gigsDispatch({
+	// 				type: 'SET_CITIES_GIG_COUNT',
+	// 				payload: json,
+	// 				// payload: json.sort((a, b) => (a.name > b.name ? 1 : -1)),
+	// 			});
+	// 		}
+	// 	};
+	// 	// if we have a value for the user then fetch the workouts
+	// 	if (user) {
+	// 		fetchGigCountPerCity();
+	// 	}
+	// }, [gigsDispatch, user]);
 
-	useEffect(() => {
-		setTotalGigsPerCity(citiesGigCount && citiesGigCount);
-	}, [citiesGigCount]);
+	// useEffect(() => {
+	// 	setTotalGigsPerCity(citiesGigCount && citiesGigCount);
+	// }, [citiesGigCount]);
 	// useEffect(() => {
 	// 	const fetchGigCountPerBand = async () => {
 	// 		const response = await fetch(
@@ -129,8 +138,8 @@ const Cities = () => {
 					<FaUsers className='nav-icon' />x{cities && cities.length}
 				</div>
 			</div>
-			{citiesGigCount &&
-				citiesGigCount.map((city, index) => (
+			{totalGigsPerCity &&
+				totalGigsPerCity.map((city, index) => (
 					<CityCard key={index} city={city} />
 				))}
 			{/* {cities && cities.map((city) => <CityCard key={city._id} city={city} />)} */}

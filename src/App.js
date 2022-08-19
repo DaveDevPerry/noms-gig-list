@@ -11,9 +11,14 @@ import { StateContext } from './lib/context';
 import AnimatedRoutes from './AnimatedRoutes';
 import Footer from './components/Footer';
 import Header from './components/Header';
+// import { useState } from 'react';
 
 function App() {
 	const { user } = useAuthContext();
+
+	// const {dataLoaded, setDataLoaded} = useStateContext()
+
+	// const [dataLoaded, setDataLoaded] = useState(false);
 
 	const [theme, themeToggler, mountedComponent] = useDarkMode();
 	const themeMode = theme === 'light' ? lightTheme : darkTheme;
@@ -31,6 +36,8 @@ function App() {
 								user={user}
 								themeToggler={themeToggler}
 								theme={theme}
+								// dataLoaded={dataLoaded}
+								// setDataLoaded={setDataLoaded}
 							/>
 						</div>
 						<Footer />

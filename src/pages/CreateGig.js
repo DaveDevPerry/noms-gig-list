@@ -8,6 +8,8 @@ import GigsForm from '../components/GigForm';
 import { useBandsContext } from '../hooks/useBandsContext';
 import { useCitiesContext } from '../hooks/useCitiesContext';
 import { useVenuesContext } from '../hooks/useVenuesContext';
+import { useStateContext } from '../lib/context';
+import { useNavigate } from 'react-router-dom';
 
 // components
 // import GigsList from '../components/GigsList';
@@ -25,6 +27,16 @@ const CreateGig = () => {
 	// const { gigs, dispatch } = useGigsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	const { user } = useAuthContext();
+
+	const { dataLoaded } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		// console.log(lastDrawDate, 'last draw data');
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+	}, [navigate, dataLoaded]);
 
 	useEffect(() => {
 		const fetchGigs = async () => {

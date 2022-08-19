@@ -49,7 +49,11 @@ const CityTotalWidget = ({ gigCounterData }) => {
 			<div className='gig-widget-wrapper-container'>
 				<div className='wrapper'>
 					<p className='figure'>
-						<strong>12</strong>
+						<strong>
+							{gigCounterData && gigCounterData.length < 10
+								? `0${gigCounterData.length}`
+								: gigCounterData.length}
+						</strong>
 						{/* <strong>
 							{gigCounterData.previous_gig_count < 10
 								? `0${gigCounterData.previous_gig_count}`

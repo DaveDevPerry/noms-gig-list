@@ -16,6 +16,10 @@ import TopBandWidget from '../components/TopBandWidget';
 import GigTotalWidget from '../components/GigTotalWidget';
 import PieWidget from '../components/PieWidget';
 import ChartYearWidget from '../components/ChartYearWidget';
+import { useStateContext } from '../lib/context';
+import TopCityWidget from '../components/TopCityWidget';
+import CityTotalWidget from '../components/CityTotalWidget';
+import { useNavigate } from 'react-router-dom';
 // import NextGigCountdownWidget from '../components/NextGigCountdownWidget';
 
 // components
@@ -38,6 +42,17 @@ const Home = () => {
 	// const { gigs, next_gig, dispatch } = useGigsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	const { user } = useAuthContext();
+
+	const { totalGigsPerBand, totalGigsPerCity, dataLoaded } = useStateContext();
+	// const {dataLoaded, setDataLoaded} = useStateContext()
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		// console.log(lastDrawDate, 'last draw data');
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+	}, [navigate, dataLoaded]);
 
 	useEffect(() => {
 		// const fetchGigs = async () => {
@@ -178,8 +193,16 @@ const Home = () => {
 			)}
 			{gigCounterData && (
 				<div className='stat-container'>
-					<TopBandWidget gigCounterData={gigCounterData} />
+					<TopBandWidget gigCounterData={totalGigsPerBand[0]} />
+					{/* <TopBandWidget gigCounterData={gigCounterData} /> */}
 					<GigTotalWidget gigCounterData={gigCounterData} />
+				</div>
+			)}
+			{gigCounterData && (
+				<div className='stat-container'>
+					<CityTotalWidget gigCounterData={totalGigsPerCity} />
+					<TopCityWidget gigCounterData={totalGigsPerCity[0]} />
+					{/* <TopBandWidget gigCounterData={gigCounterData} /> */}
 				</div>
 			)}
 			{/* {gigCounterData && <TopBandWidget gigCounterData={gigCounterData} />} */}

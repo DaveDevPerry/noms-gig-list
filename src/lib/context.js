@@ -25,15 +25,15 @@ export const StateContext = ({ children }) => {
 	// sorts out appStats into relevant objects for rendering stat widget in metrics page
 
 	// FETCH GIGS AND RETURN NEW ARRAY OF OBJECTS SHOWING HOW MANY TIMES A BAND HAS PLAYED
-	const [gigCountPerBand, setGigCountPerBand] = useState(null);
-	const getGigCountPerBand = (gigs) => {
-		console.log(gigs, 'gigs in context');
+	// const [gigCountPerBand, setGigCountPerBand] = useState(null);
+	// const getGigCountPerBand = (gigs) => {
+	// 	console.log(gigs, 'gigs in context');
 
-		setGigCountPerBand([
-			{ name: 'tv', count: 5 },
-			{ name: 'slade', count: 15 },
-		]);
-	};
+	// 	setGigCountPerBand([
+	// 		{ name: 'tv', count: 5 },
+	// 		{ name: 'slade', count: 15 },
+	// 	]);
+	// };
 
 	// ************* GET ALL TASKS IN A CATEGORY *********************
 
@@ -150,6 +150,7 @@ export const StateContext = ({ children }) => {
 
 	// 	setFinanceMetrics(financeData);
 	// };
+	const [dataLoaded, setDataLoaded] = useState(false);
 
 	return (
 		<AppContext.Provider
@@ -181,14 +182,16 @@ export const StateContext = ({ children }) => {
 				// getTodoMetrics,
 				// todoMetrics,
 
-				getGigCountPerBand,
-				gigCountPerBand,
+				// getGigCountPerBand,
+				// gigCountPerBand,
 				setTotalGigsPerBand,
 				totalGigsPerBand,
 
 				totalGigsPerCity,
 				setTotalGigsPerCity,
 				// setGlobalGigsPerBandCount,
+				dataLoaded,
+				setDataLoaded,
 			}}
 		>
 			{children}

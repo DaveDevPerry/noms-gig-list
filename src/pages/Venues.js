@@ -10,6 +10,8 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useEffect } from 'react';
 import VenueCard from '../components/VenueCard';
 import { FaUsers } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { useStateContext } from '../lib/context';
 // import { useEffect } from 'react';
 
 const Venues = () => {
@@ -17,6 +19,16 @@ const Venues = () => {
 	const { venues, dispatch } = useVenuesContext();
 	// const { band_gig_data, dispatch } = useGigsContext();
 	const { user } = useAuthContext();
+
+	const { dataLoaded } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		// console.log(lastDrawDate, 'last draw data');
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+	}, [navigate, dataLoaded]);
 
 	useEffect(() => {
 		const fetchVenues = async () => {

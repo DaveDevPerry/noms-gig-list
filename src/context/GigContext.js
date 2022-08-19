@@ -26,7 +26,59 @@ export const gigsReducer = (state, action) => {
 			return {
 				gigs: action.payload,
 			};
-		case 'SET_BANDS_GIG_COUNT':
+		// case 'SET_BANDS_GIG_COUNT':
+		// 	const clonedGigs = [...action.payload];
+		// 	const gigCountObj = clonedGigs
+		// 		// bandsGigCount: action.payload
+		// 		.map(({ headline_band }) => headline_band)
+		// 		.reduce(function (count, currentValue) {
+		// 			return (
+		// 				count[currentValue]
+		// 					? ++count[currentValue]
+		// 					: (count[currentValue] = 1),
+		// 				count
+		// 			);
+		// 		}, {});
+		// 	// convert object to array of key value pair objects
+		// 	const gigCountArrOfObj = Object.entries(gigCountObj).map(
+		// 		([key, value]) => ({
+		// 			key,
+		// 			value,
+		// 		})
+		// 	);
+		// 	const sortBandsByGigCount = gigCountArrOfObj.sort((a, b) => {
+		// 		return b.value - a.value;
+		// 	});
+		// 	return {
+		// 		bandsGigCount: sortBandsByGigCount,
+		// 	};
+		// case 'SET_CITIES_GIG_COUNT':
+		// 	const clonedGigsForCityCount = [...action.payload];
+		// 	const citiesGigCountObj = clonedGigsForCityCount
+		// 		// bandsGigCount: action.payload
+		// 		.map(({ city }) => city)
+		// 		.reduce(function (count, currentValue) {
+		// 			return (
+		// 				count[currentValue]
+		// 					? ++count[currentValue]
+		// 					: (count[currentValue] = 1),
+		// 				count
+		// 			);
+		// 		}, {});
+		// 	// convert object to array of key value pair objects
+		// 	const citiesGigCountArrOfObj = Object.entries(citiesGigCountObj).map(
+		// 		([key, value]) => ({
+		// 			key,
+		// 			value,
+		// 		})
+		// 	);
+		// 	const sortCitiesByGigCount = citiesGigCountArrOfObj.sort((a, b) => {
+		// 		return b.value - a.value;
+		// 	});
+		// 	return {
+		// 		citiesGigCount: sortCitiesByGigCount,
+		// 	};
+		case 'SET_GLOBAL_STATS':
 			const clonedGigs = [...action.payload];
 			const gigCountObj = clonedGigs
 				// bandsGigCount: action.payload
@@ -49,10 +101,6 @@ export const gigsReducer = (state, action) => {
 			const sortBandsByGigCount = gigCountArrOfObj.sort((a, b) => {
 				return b.value - a.value;
 			});
-			return {
-				bandsGigCount: sortBandsByGigCount,
-			};
-		case 'SET_CITIES_GIG_COUNT':
 			const clonedGigsForCityCount = [...action.payload];
 			const citiesGigCountObj = clonedGigsForCityCount
 				// bandsGigCount: action.payload
@@ -76,7 +124,11 @@ export const gigsReducer = (state, action) => {
 				return b.value - a.value;
 			});
 			return {
-				citiesGigCount: sortCitiesByGigCount,
+				globalStatData: {
+					bandsGigCount: sortBandsByGigCount,
+					citiesGigCount: sortCitiesByGigCount,
+					// gigsPerDecadeCount: gigsdecade,
+				},
 			};
 
 		case 'SET_GIG_COUNTER_DATA':
@@ -284,6 +336,7 @@ export const GigsContextProvider = ({ children }) => {
 		gigCounterData: null,
 		bandsGigCount: null,
 		citiesGigCount: null,
+		globalStatData: null,
 	});
 
 	return (

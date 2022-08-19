@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GiLaurelsTrophy } from 'react-icons/gi';
-import { SiBandsintown } from 'react-icons/si';
 // import { useAuthContext } from '../hooks/useAuthContext';
 // import { useGigsContext } from '../hooks/useGigsContext';
 // import { ImArrowUp, ImArrowDown, ImArrowRight } from 'react-icons/im';
 // import { FaCheck } from 'react-icons/fa';
 // import gigBarWidget from './gigBarWidget';
 
-const TopBandWidget = ({ gigCounterData }) => {
+const TopCityWidget = ({ gigCounterData }) => {
 	// const percentage = 20.345;
 	// const { gigCounterData } = useGigsContext();
 	// const { gigCounterData, dispatch } = useGigsContext();
@@ -46,11 +45,10 @@ const TopBandWidget = ({ gigCounterData }) => {
 	console.log(gigCounterData, 'gig counter data');
 
 	return (
-		<StyledTopBandWidget className='gig-widget'>
+		<StyledTopCityWidget className='gig-widget'>
 			<div className='gig-widget-wrapper-container'>
 				<div className='wrapper-icon'>
-					<SiBandsintown className='arrow-icon hand gold' />
-					{/* <GiLaurelsTrophy className='arrow-icon gold' /> */}
+					<GiLaurelsTrophy className='arrow-icon gold' />
 				</div>
 				<div className='wrapper'>
 					<p className='stat-name'>
@@ -65,7 +63,7 @@ const TopBandWidget = ({ gigCounterData }) => {
 						</strong>
 						{/* <span> Kgs</span> */}
 					</p>
-					<p className='figure'>seen {gigCounterData.value} times</p>
+					<p className='figure'>visited {gigCounterData.value} times</p>
 					{/* <p className='figure'>
 						<strong>
 							{(
@@ -114,10 +112,10 @@ const TopBandWidget = ({ gigCounterData }) => {
 				<gig value={percentage} max='100' className='gig' />
 				<p>{percentage.toFixed(2)}% of goal reached</p>
 			</div> */}
-		</StyledTopBandWidget>
+		</StyledTopCityWidget>
 	);
 };
-const StyledTopBandWidget = styled.div`
+const StyledTopCityWidget = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0 auto 10px auto; */
@@ -183,9 +181,6 @@ const StyledTopBandWidget = styled.div`
 			.arrow-icon {
 				font-size: 3.5rem;
 			}
-			.arrow-icon.hand {
-				font-size: 2.5rem;
-			}
 			.arrow-icon.green {
 				color: ${({ theme }) => theme.primaryColor};
 			}
@@ -230,4 +225,4 @@ const StyledTopBandWidget = styled.div`
 	} */
 `;
 
-export default TopBandWidget;
+export default TopCityWidget;

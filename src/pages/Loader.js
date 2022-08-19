@@ -7,16 +7,20 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { useGigsContext } from '../hooks/useGigsContext';
 import { useBandsContext } from '../hooks/useBandsContext';
 
-// import { useStateContext } from '../lib/context';
+import { useStateContext } from '../lib/context';
 // import { motion } from 'framer-motion';
 
 const Loader = () => {
 	const { dispatch } = useGigsContext();
 	const { dispatch: bandDispatch } = useBandsContext();
+	const { globalStatData, dispatch: gigsDispatch } = useGigsContext();
 	const { user } = useAuthContext();
 	const navigate = useNavigate();
 
-	// const { getGigCountPerBand, gigCountPerBand } = useStateContext();
+	// const {setDataLoaded} = useStateContext();
+
+	const { setTotalGigsPerCity, setTotalGigsPerBand, setDataLoaded } =
+		useStateContext();
 
 	useEffect(() => {
 		const fetchGigs = async () => {
@@ -40,18 +44,13 @@ const Loader = () => {
 			}
 		};
 		if (user) {
-			// fetchGigs();
 			fetchGigs();
-			// getGigCountPerBand(gigs && gigs);
 		}
 		setTimeout(() => {
+			setDataLoaded(true);
 			navigate('/home');
 		}, 3000);
 	}, [dispatch, user]);
-
-	// useEffect(() => {
-	// 	getGigCountPerBand(gigs && gigs);
-	// }, [gigs]);
 
 	useEffect(() => {
 		const fetchBands = async () => {
@@ -78,6 +77,41 @@ const Loader = () => {
 			fetchBands();
 		}
 	}, [bandDispatch, user]);
+
+	useEffect(() => {
+		const fetchGlobalStats = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+
+			// json.sort((a,b) => a.name > b.name ? 1 : -1)
+
+			if (response.ok) {
+				// setWorkouts(json);
+				gigsDispatch({
+					type: 'SET_GLOBAL_STATS',
+					payload: json,
+					// payload: json.sort((a, b) => (a.name > b.name ? 1 : -1)),
+				});
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchGlobalStats();
+		}
+	}, [gigsDispatch, user]);
+
+	useEffect(() => {
+		setTotalGigsPerBand(globalStatData && globalStatData.bandsGigCount);
+		setTotalGigsPerCity(globalStatData && globalStatData.citiesGigCount);
+	}, [globalStatData]);
+
 	return (
 		<StyledLoader
 			className='site-loader'

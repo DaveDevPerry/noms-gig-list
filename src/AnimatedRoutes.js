@@ -16,16 +16,26 @@ import Bands from './pages/Bands';
 import CreateGig from './pages/CreateGig';
 import Venues from './pages/Venues';
 import Cities from './pages/Cities';
+// import { useStateContext } from './lib/context';
 // import { groupsReducer } from './context/GroupContext';
 // import GroupsFullDetails from './pages/groups/[slug]';
 
-const AnimatedRoutes = ({ user, themeToggler, theme }) => {
+const AnimatedRoutes = ({
+	dataLoaded,
+	setDataLoaded,
+	user,
+	themeToggler,
+	theme,
+}) => {
 	// const tempGroupID = '62f5817cdb2d716e19dfaba7';
 	// const [currentFormOpen, setCurrentFormOpen] = useState('');
 
 	// const handleFormChoice = (str) => {
 	// 	setCurrentFormOpen(str);
 	// };
+
+	// const {dataLoaded, setDataLoaded} = useStateContext()
+
 	return (
 		<>
 			<AnimatePresence exitBeforeEnter>

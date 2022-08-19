@@ -42,6 +42,7 @@ const Footer = () => {
 						>
 							{/* Home */}
 							<RiMenuUnfoldFill className='nav-icon' />
+							<p>future</p>
 							{/* <BsMusicNoteList className='nav-icon' /> */}
 							{/* <HiPresentationChartLine className='nav-icon' /> */}
 						</NavLink>
@@ -61,12 +62,14 @@ const Footer = () => {
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<FaUsers className='nav-icon' />
+							<p>bands</p>
 						</NavLink>
 						<NavLink
 							to='/venues'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<MdOutlineMapsHomeWork className='nav-icon' />
+							<p>venues</p>
 						</NavLink>
 
 						<NavLink
@@ -74,6 +77,7 @@ const Footer = () => {
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<RiRoadMapLine className='nav-icon' />
+							<p>cities</p>
 						</NavLink>
 						{/* <NavLink
 							to='/cities'
@@ -86,6 +90,7 @@ const Footer = () => {
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
 							<RiMenuFoldFill className='nav-icon' />
+							<p>history</p>
 						</NavLink>
 						{/* <NavLink
 							to='/bands'
@@ -124,7 +129,8 @@ const StyledFooter = styled.footer`
 			/* padding: 1rem; */
 			display: flex;
 			align-items: center;
-			justify-content: space-between;
+			justify-content: space-evenly;
+			/* justify-content: space-between; */
 			a {
 				color: ${({ theme }) => theme.txtDarkGrey};
 				text-decoration: none;
@@ -132,11 +138,16 @@ const StyledFooter = styled.footer`
 				text-align: center;
 				text-transform: uppercase;
 				font-weight: bold;
-				margin: 1rem;
-				display: grid;
-				place-content: center;
+				padding: 1rem 0 0.5rem 0;
+				/* margin: 1rem; */
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				/* display: grid;
+				place-content: center; */
 				.nav-icon {
-					font-size: 3rem;
+					font-size: 2rem;
 					color: ${({ theme }) => theme.txtGrey};
 				}
 				&.active {
@@ -148,6 +159,11 @@ const StyledFooter = styled.footer`
 					.nav-icon {
 						color: ${({ theme }) => theme.secondaryColor};
 					}
+				}
+				p {
+					text-transform: uppercase;
+					font-size: 1rem;
+					font-weight: normal;
 				}
 			}
 			.add-icon {

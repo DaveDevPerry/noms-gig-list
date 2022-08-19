@@ -10,27 +10,43 @@ const BandPieChart = ({ gigs }) => {
 		plugins: {
 			legend: {
 				position: 'left',
+				// labels: {
+				// 	color: 'blue',
+				// 	// fontSize: 18,
+				// },
 				// display: false,
 			},
 			title: {
 				display: false,
 				text: 'gigs timeline',
+				position: 'top',
 			},
 		},
 	};
+
+	const bandNames = gigs.map(function (obj) {
+		return obj.key;
+	});
+
+	const gigCount = gigs.map(function (obj) {
+		return obj.value;
+	});
+
 	const data = {
-		labels: [
-			'terrorvision',
-			'slade',
-			'motorhead',
-			'led zeppelin',
-			'deep purple',
-			'saxon',
-		],
+		labels: bandNames,
+		// labels: [
+		// 	'terrorvision',
+		// 	'slade',
+		// 	'motorhead',
+		// 	'led zeppelin',
+		// 	'deep purple',
+		// 	'saxon',
+		// ],
 		datasets: [
 			{
 				label: '# of gigs',
-				data: [12, 19, 3, 5, 2, 3],
+				data: gigCount,
+				// data: [12, 19, 3, 5, 2, 3],
 				backgroundColor: [
 					'rgba(255, 99, 132, 0.2)',
 					'rgba(54, 162, 235, 0.2)',

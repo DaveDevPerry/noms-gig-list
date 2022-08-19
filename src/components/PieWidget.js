@@ -3,6 +3,7 @@
 // import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 // import { formatDistance } from 'date-fns';
 import styled from 'styled-components';
+import { useStateContext } from '../lib/context';
 import BandPieChart from './BandPieChart';
 // import GigLineChart from './GigLineChart';
 // import WeightLineChart from './WeightLineChart';
@@ -10,10 +11,12 @@ import BandPieChart from './BandPieChart';
 // import { differenceInDays } from 'date-fns';
 
 const PieWidget = ({ gigs }) => {
+	const { totalGigsPerBand } = useStateContext();
+
 	return (
 		<StyledPieWidget className='chart-widget'>
 			{/* <p>chart widget</p> */}
-			<BandPieChart gigs={gigs} />
+			<BandPieChart gigs={totalGigsPerBand.slice(0, 5)} />
 		</StyledPieWidget>
 	);
 };
