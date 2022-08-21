@@ -17,6 +17,7 @@ import CreateGig from './pages/CreateGig';
 import Venues from './pages/Venues';
 import Cities from './pages/Cities';
 import Band from './pages/Band';
+import City from './pages/City';
 // import { useStateContext } from './lib/context';
 // import { groupsReducer } from './context/GroupContext';
 // import GroupsFullDetails from './pages/groups/[slug]';
@@ -77,6 +78,10 @@ const AnimatedRoutes = ({
 					<Route
 						path='/cities'
 						element={user ? <Cities /> : <Navigate to='/login' />}
+					/>
+					<Route
+						path='/city'
+						element={user ? <City /> : <Navigate to='/login' />}
 					/>
 					<Route
 						path='/settings'

@@ -1,20 +1,15 @@
-// import { usebandsContext } from '../hooks/usebandsContext';
+// import { usegigsContext } from '../hooks/usegigsContext';
 // import { useAuthContext } from '../hooks/useAuthContext';
 
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { useStateContext } from '../lib/context';
 // import { ImArrowUp, ImArrowDown } from 'react-icons/im';
 
 // date fns
 // import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-// import { format } from 'date-fns';
+import { format } from 'date-fns';
 
-const CityCard = ({ city, difference }) => {
-	const { setCityToView } = useStateContext();
-
-	const navigate = useNavigate();
-	// const { dispatch } = usecitysContext();
+const CityGigCard = ({ gig, difference }) => {
+	// const { dispatch } = usegigsContext();
 	// const { user } = useAuthContext();
 
 	// const handleClick = async () => {
@@ -23,7 +18,7 @@ const CityCard = ({ city, difference }) => {
 	// 		return;
 	// 	}
 
-	// 	const response = await fetch('/api/citys/' + city._id, {
+	// 	const response = await fetch('/api/gigs/' + gig._id, {
 	// 		method: 'DELETE',
 	// 		headers: {
 	// 			Authorization: `Bearer ${user.token}`,
@@ -32,62 +27,42 @@ const CityCard = ({ city, difference }) => {
 	// 	const json = await response.json();
 
 	// 	if (response.ok) {
-	// 		dispatch({ type: 'DELETE_city', payload: json });
+	// 		dispatch({ type: 'DELETE_gig', payload: json });
 	// 	}
 	// };
 
 	return (
-		<StyledCityCard
-			className='city-card'
-			onClick={(e) => {
-				e.preventDefault();
-				console.log(city.key, 'city on click');
-				setCityToView(city.key);
-				navigate('/city');
-			}}
-		>
-			{/* <div>
-				<p className='left'>{format(new Date(city.city_date), 'dd/MM/yyyy')}</p>
-				<p>
-					{formatDistanceToNow(new Date(city.city_date), { addSuffix: true })}
-				</p>
-			</div> */}
-			<div className='full'>
-				<p>
-					{/* <strong> */}
-					{city.key}
-					{/* {city.name} */}
-					{/* </strong> */}
-				</p>
-			</div>
+		<StyledCityGigCard className='gig-details'>
 			<div className='right'>
 				<p>
 					{/* <strong> */}
-					{city.value}
-					{/* {band.name} */}
+					{format(new Date(gig.gig_date), 'dd/MM/yyyy')}
 					{/* </strong> */}
 				</p>
+				{/* <p>
+					{formatDistanceToNow(new Date(gig.gig_date), { addSuffix: true })}
+				</p> */}
 			</div>
-			{/* <p>{city.city_date}</p> */}
-			{/* <div>
-				<p>{city.city}</p>
+			<div className='full'>
 				<p>
-					{formatDistanceToNow(new Date(city.city_date), { addSuffix: true })}
+					<strong>{gig.headline_band}</strong>
 				</p>
-			</div> */}
+				<p>{gig.venue}</p>
+			</div>
+			{/* <p>{gig.gig_date}</p> */}
 
-			{/* <div className='city-figures'>
+			{/* <div className='right'>
 				<p>
-					<strong>{city.headline_city}</strong>
+					<strong>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</strong>
 				</p>
 				<p>
-					<strong>{city.city}</strong>
+					{formatDistanceToNow(new Date(gig.gig_date), { addSuffix: true })}
 				</p>
 			</div> */}
-		</StyledCityCard>
+		</StyledCityGigCard>
 	);
 };
-const StyledCityCard = styled.div`
+const StyledCityGigCard = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0.5rem 0; */
@@ -95,31 +70,21 @@ const StyledCityCard = styled.div`
 	position: relative;
 	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
 	display: flex;
-	justify-content: flex-start;
+	justify-content: space-between;
 	align-items: center;
 	column-gap: 1rem;
-
+	.full {
+		flex: 1;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		column-gap: 1rem;
+	}
 	p {
 		margin: 0;
 		font-size: 0.8em;
 		color: ${({ theme }) => theme.txtGrey};
 		text-transform: capitalize;
-		/* &:first-child {
-		} */
-		&.left {
-			width: 8rem;
-		}
-	}
-	.full {
-		flex: 1;
-		p {
-			/* margin: 0;
-		font-size: 0.8em;
-		color: ${({ theme }) => theme.txtGrey}; */
-			text-transform: capitalize;
-			font-size: 0.9em;
-			width: unset;
-		}
 	}
 	span {
 		display: none;
@@ -167,14 +132,13 @@ const StyledCityCard = styled.div`
 				text-transform: uppercase;
 			} */
 	}
-	.city-figures {
+	.gig-figures {
 		width: 8rem;
 	}
 	.right p {
 		text-align: right;
-		color: ${({ theme }) => theme.secondaryColor};
-		font-size: 1.6rem;
+		width: 7.5rem;
 	}
 `;
 
-export default CityCard;
+export default CityGigCard;

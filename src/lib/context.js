@@ -153,8 +153,10 @@ export const StateContext = ({ children }) => {
 	const [dataLoaded, setDataLoaded] = useState(false);
 
 	const [bandToView, setBandToView] = useState(null);
-
 	const [bandDetailsData, setBandDetailsData] = useState(null);
+
+	const [cityToView, setCityToView] = useState(null);
+	const [cityDetailsData, setCityDetailsData] = useState(null);
 
 	return (
 		<AppContext.Provider
@@ -200,6 +202,11 @@ export const StateContext = ({ children }) => {
 				bandToView,
 				setBandDetailsData,
 				bandDetailsData,
+
+				cityToView,
+				setCityToView,
+				cityDetailsData,
+				setCityDetailsData,
 			}}
 		>
 			{children}

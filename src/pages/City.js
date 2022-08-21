@@ -4,18 +4,18 @@ import { motion } from 'framer-motion';
 import { useStateContext } from '../lib/context';
 import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
-import BandGigsList from '../components/BandGigsList';
+import CityGigsList from '../components/CityGigsList';
 import { FaUsers } from 'react-icons/fa';
 
-const Band = ({ band, id }) => {
+const City = ({ band, id }) => {
 	const { user } = useAuthContext();
 	const { dispatch } = useGigsContext();
-	const { bandToView, setBandDetailsData, bandDetailsData } = useStateContext();
+	const { cityToView, setCityDetailsData, cityDetailsData } = useStateContext();
 
 	useEffect(() => {
-		console.log(bandToView, ' band in band');
+		console.log(cityToView, ' band in band');
 
-		const fetchBand = async () => {
+		const fetchCity = async () => {
 			const response = await fetch(
 				`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
 				{
@@ -26,19 +26,19 @@ const Band = ({ band, id }) => {
 			);
 			const json = await response.json();
 
-			// const bandData = json.filter((obj) => obj.headline_band === bandToView);
-			const bandData = json
-				.filter((obj) => obj.headline_band === bandToView)
+			// const bandData = json.filter((obj) => obj.headline_band === cityToView);
+			const cityData = json
+				.filter((obj) => obj.city === cityToView)
 				.sort((a, b) => {
 					return new Date(b.gig_date) - new Date(a.gig_date);
 				});
 
-			// const sortedByDate = bandData.sort((a, b) => {
+			// const sortedByDate = cityData.sort((a, b) => {
 			// 	return new Date(b.gig_date) - new Date(a.gig_date);
 			// });
 
 			if (response.ok) {
-				setBandDetailsData(bandData);
+				setCityDetailsData(cityData);
 				// dispatch({
 				// 	type: 'SET_BAND_GIGS',
 				// 	payload: bandData,
@@ -48,36 +48,36 @@ const Band = ({ band, id }) => {
 			}
 		};
 		if (user) {
-			fetchBand();
+			fetchCity();
 		}
-	}, [bandToView, dispatch, user]);
+	}, [cityToView, dispatch, user]);
 
 	return (
-		<StyledBand
-			className='band-page'
+		<StyledCity
+			className='city-page'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
 			{/* <div>Band {band._id}</div>
 			<div>Band {band.name}</div> */}
-			{/* <p>band page</p> */}
-			<div className='band-gigs-list-header'>
+			{/* <p>city page</p> */}
+			<div className='city-gigs-list-header'>
 				<p>
-					All Gigs by
-					<span> {bandToView}</span>
+					All Gigs in
+					<span> {cityToView}</span>
 				</p>
 				<div>
 					<FaUsers className='nav-icon' />x
-					{bandDetailsData && bandDetailsData.length}
+					{cityDetailsData && cityDetailsData.length}
 				</div>
 			</div>
 			{/* <div> */}
-			{bandDetailsData && <BandGigsList gigs={bandDetailsData} />}
+			{cityDetailsData && <CityGigsList gigs={cityDetailsData} />}
 			{/* </div> */}
 			{/* <div>
-				{bandDetailsData &&
-					bandDetailsData.map((gig, index) => {
+				{cityDetailsData &&
+					cityDetailsData.map((gig, index) => {
 						return (
 							<li key={index}>
 								{gig.gig_date} - {gig.venue} - {gig.city}
@@ -85,10 +85,10 @@ const Band = ({ band, id }) => {
 						);
 					})}
 			</div> */}
-		</StyledBand>
+		</StyledCity>
 	);
 };
-const StyledBand = styled(motion.div)`
+const StyledCity = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
@@ -120,7 +120,7 @@ const StyledBand = styled(motion.div)`
 	::-webkit-scrollbar-corner {
 		background: rgb(75, 74, 74);
 	}
-	.band-gigs-list-header {
+	.city-gigs-list-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -143,4 +143,4 @@ const StyledBand = styled(motion.div)`
 	}
 `;
 
-export default Band;
+export default City;
