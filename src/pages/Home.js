@@ -10,12 +10,13 @@ import { motion } from 'framer-motion';
 // components
 import CountdownWidget from '../components/CountdownWidget';
 import GigsListNextFive from '../components/GigsListNextFive';
-import TopBandWidget from '../components/TopBandWidget';
-import GigTotalWidget from '../components/GigTotalWidget';
-import PieWidget from '../components/PieWidget';
-import TopCityWidget from '../components/TopCityWidget';
-import CityTotalWidget from '../components/CityTotalWidget';
-// import ChartYearWidget from '../components/ChartYearWidget';
+// import TopBandWidget from '../components/TopBandWidget';
+// import GigTotalWidget from '../components/GigTotalWidget';
+// import PieWidget from '../components/PieWidget';
+// import TopCityWidget from '../components/TopCityWidget';
+// import CityTotalWidget from '../components/CityTotalWidget';
+import AllTopsWidget from '../components/AllTopsWidget';
+import ChartYearWidget from '../components/ChartYearWidget';
 // import NextGigCountdownWidget from '../components/NextGigCountdownWidget';
 
 const Home = () => {
@@ -68,18 +69,26 @@ const Home = () => {
 			)}
 			{gigCounterData && (
 				<div className='stat-container'>
+					<AllTopsWidget
+						bandWinner={totalGigsPerBand[0]}
+						cityWinner={totalGigsPerCity[0]}
+					/>
+				</div>
+			)}
+			{/* {gigCounterData && (
+				<div className='stat-container'>
 					<TopBandWidget gigCounterData={totalGigsPerBand[0]} />
 					<GigTotalWidget gigCounterData={gigCounterData} />
 				</div>
-			)}
-			{gigCounterData && (
+			)} */}
+			{/* {gigCounterData && (
 				<div className='stat-container'>
 					<CityTotalWidget gigCounterData={totalGigsPerCity} />
 					<TopCityWidget gigCounterData={totalGigsPerCity[0]} />
 				</div>
-			)}
-			{gigCounterData && <PieWidget gigs={gigCounterData.all_gigs} />}
-			{/* {gigCounterData && <ChartYearWidget gigs={gigCounterData.all_gigs} />} */}
+			)} */}
+			{/* {gigCounterData && <PieWidget gigs={gigCounterData.all_gigs} />} */}
+			{gigCounterData && <ChartYearWidget gigs={gigCounterData.all_gigs} />}
 			<p className='next-five-list-header'>Coming Up</p>
 			{gigCounterData && (
 				<GigsListNextFive gigs={gigCounterData.next_five_gigs} />

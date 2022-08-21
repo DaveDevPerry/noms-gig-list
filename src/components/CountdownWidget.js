@@ -41,6 +41,9 @@ const CountdownWidget = ({ gig }) => {
 							<strong>{gig.headline_band}</strong>
 						</p>
 					)}
+					<p>
+						@ {gig.venue}, {gig.city}
+					</p>
 
 					<p>in {differenceInDays(new Date(gig.gig_date), new Date())} days</p>
 				</div>
@@ -97,12 +100,15 @@ const StyledCountdownWidget = styled.div`
 			p {
 				margin: 0;
 				color: ${({ theme }) => theme.txtGrey};
-
+				text-transform: capitalize;
 				text-align: center;
+				font-weight: lighter;
+				font-size: 1.4rem;
 			}
 			.band-title {
 				text-transform: uppercase;
 				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 2rem;
 			}
 		}
 		.share-icon {
