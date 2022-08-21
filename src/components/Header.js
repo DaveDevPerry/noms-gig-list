@@ -4,8 +4,10 @@ import { Link, NavLink } from 'react-router-dom';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { IoSettingsOutline } from 'react-icons/io5';
-import { HiPresentationChartLine } from 'react-icons/hi';
+// import { HiPresentationChartLine } from 'react-icons/hi';
+// import { GrHomeRounded } from 'react-icons/gr';
 import { BsPlusCircleFill } from 'react-icons/bs';
+import { RiHomeLine } from 'react-icons/ri';
 
 // import { RiGroup2Fill } from 'react-icons/ri';
 
@@ -40,7 +42,9 @@ const Header = () => {
 						to='/home'
 						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 					>
-						<HiPresentationChartLine className='nav-icon' />
+						{/* <HiPresentationChartLine className='nav-icon' /> */}
+						{/* <GrHomeRounded className='nav-icon' /> */}
+						<RiHomeLine className='nav-icon' />
 					</NavLink>
 					<NavLink
 						to='/settings'
