@@ -152,6 +152,10 @@ export const StateContext = ({ children }) => {
 	// };
 	const [dataLoaded, setDataLoaded] = useState(false);
 
+	const [bandToView, setBandToView] = useState(null);
+
+	const [bandDetailsData, setBandDetailsData] = useState(null);
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -192,6 +196,10 @@ export const StateContext = ({ children }) => {
 				// setGlobalGigsPerBandCount,
 				dataLoaded,
 				setDataLoaded,
+				setBandToView,
+				bandToView,
+				setBandDetailsData,
+				bandDetailsData,
 			}}
 		>
 			{children}
