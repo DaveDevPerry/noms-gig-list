@@ -41,7 +41,7 @@ const AnimatedRoutes = ({
 	// const {dataLoaded, setDataLoaded} = useStateContext()
 
 	// log('only log', user);
-	log('Hello animated routes', 1, 2, 3, Date.now());
+	log('Hello animated routes', 1, 2, Date.now());
 
 	return (
 		<>
