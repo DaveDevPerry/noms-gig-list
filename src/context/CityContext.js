@@ -6,8 +6,14 @@ export const citiesReducer = (state, action) => {
 	switch (action.type) {
 		case 'SET_CITIES':
 			return {
-				cities: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
+				cities:
+					action.payload === null
+						? action.payload
+						: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
 			};
+		// return {
+		// 	cities: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
+		// };
 		// case 'SET_NEXT_GIG':
 		// 	const next = [...action.payload];
 		// 	return {

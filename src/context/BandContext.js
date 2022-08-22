@@ -6,8 +6,14 @@ export const bandsReducer = (state, action) => {
 	switch (action.type) {
 		case 'SET_BANDS':
 			return {
-				bands: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
+				bands:
+					action.payload === null
+						? action.payload
+						: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
 			};
+		// return {
+		// 	bands: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
+		// };
 		// case 'SET_NEXT_GIG':
 		// 	const next = [...action.payload];
 		// 	return {

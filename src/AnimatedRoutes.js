@@ -18,6 +18,8 @@ import Venues from './pages/Venues';
 import Cities from './pages/Cities';
 import Band from './pages/Band';
 import City from './pages/City';
+import { log } from './helper';
+// import { log } from './helper';
 // import { useStateContext } from './lib/context';
 // import { groupsReducer } from './context/GroupContext';
 // import GroupsFullDetails from './pages/groups/[slug]';
@@ -37,6 +39,9 @@ const AnimatedRoutes = ({
 	// };
 
 	// const {dataLoaded, setDataLoaded} = useStateContext()
+
+	// log('only log', user);
+	log('Hello animated routes', 1, 2, 3, Date.now());
 
 	return (
 		<>

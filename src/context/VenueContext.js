@@ -6,8 +6,14 @@ export const venuesReducer = (state, action) => {
 	switch (action.type) {
 		case 'SET_VENUES':
 			return {
-				venues: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
+				venues:
+					action.payload === null
+						? action.payload
+						: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
 			};
+		// return {
+		// 	venues: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
+		// };
 		case 'CREATE_VENUE':
 			return {
 				// ...state.workouts is previous state, action.payload is new workout to add
