@@ -6,6 +6,7 @@ import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import CityGigsList from '../components/CityGigsList';
 import { FaUsers } from 'react-icons/fa';
+import { log } from '../helper';
 
 const City = ({ band, id }) => {
 	const { user } = useAuthContext();
@@ -13,7 +14,7 @@ const City = ({ band, id }) => {
 	const { cityToView, setCityDetailsData, cityDetailsData } = useStateContext();
 
 	useEffect(() => {
-		console.log(cityToView, ' band in band');
+		log(cityToView, ' band in band');
 
 		const fetchCity = async () => {
 			const response = await fetch(
@@ -43,8 +44,8 @@ const City = ({ band, id }) => {
 				// 	type: 'SET_BAND_GIGS',
 				// 	payload: bandData,
 				// });
-				// console.log(bandData, 'res ok band data');
-				// console.log(sortedByDate, 'res ok sorted band data');
+				// log(bandData, 'res ok band data');
+				// log(sortedByDate, 'res ok sorted band data');
 			}
 		};
 		if (user) {

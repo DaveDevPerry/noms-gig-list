@@ -5,7 +5,7 @@ const NextGigCountdownWidget = () => {
 	useEffect(() => {
 		// const countdown = () => {
 		// 	const countDate = new Date('Aug 17, 2022 21:00:00').getTime();
-		// 	console.log(countDate);
+		// 	log(countDate);
 		// 	const now = new Date().getTime();
 		// 	const gap = countDate - now;
 		// 	const second = 1000;
@@ -25,7 +25,7 @@ const NextGigCountdownWidget = () => {
 	}, []);
 
 	// const countDate = new Date('Aug 17, 2022 21:00:00').getTime();
-	// 	console.log(countDate);
+	// 	log(countDate);
 	// 	const now = new Date().getTime();
 	// 	const gap = countDate - now;
 

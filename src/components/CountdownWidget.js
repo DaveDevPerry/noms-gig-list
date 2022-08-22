@@ -6,16 +6,17 @@ import styled from 'styled-components';
 import { BsFillShareFill, BsWhatsapp } from 'react-icons/bs';
 import { format } from 'date-fns';
 import { differenceInDays } from 'date-fns';
+import { log } from '../helper';
 
 const CountdownWidget = ({ gig }) => {
-	console.log(gig, 'countdown widget gig');
+	log(gig, 'countdown widget gig');
 	const shareMobile = () => {
 		const nextBand = gig.headline_band;
 		const nextVenue = gig.venue;
 		const nextCity = gig.city;
 		const nextDate = new Date(gig.gig_date).toLocaleDateString();
 
-		console.log(
+		log(
 			`Liz and I are going to the ${nextBand} gig at ${nextVenue} in ${nextCity} on ${nextDate}. Will we see you there?`
 		);
 

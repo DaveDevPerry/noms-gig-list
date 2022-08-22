@@ -74,7 +74,7 @@ const GroupsFullDetails = ({ tempGroupID }) => {
 	// 		fetchTargets();
 	// 	}
 	// }, [targetDispatch, user]);
-	console.log(group, 'group slug');
+	log(group, 'group slug');
 
 	return (
 		<StyledGroupsFullDetails

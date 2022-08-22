@@ -1,4 +1,5 @@
 import { createContext, useReducer } from 'react';
+import { log } from '../helper';
 
 export const GigsContext = createContext();
 
@@ -184,7 +185,7 @@ export const gigsReducer = (state, action) => {
 					// return acc;
 				}, {})
 			);
-			console.log(res, 'res gig context');
+			log(res, 'res gig context');
 			// const arr = [
 			// 	{
 			// 					"id": "561",
@@ -224,7 +225,7 @@ export const gigsReducer = (state, action) => {
 			// 	 }
 			// 	 return acc;
 			// }, {}));
-			// console.log(res);
+			// log(res);
 			return {
 				globalStatData: {
 					bandsGigCount: sortBandsByGigCount,

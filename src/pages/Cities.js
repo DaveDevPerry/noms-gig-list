@@ -12,6 +12,7 @@ import { FaUsers } from 'react-icons/fa';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
 import CitiesList from '../components/CitiesList';
+import { log } from '../helper';
 // import { useEffect } from 'react';
 
 const Cities = () => {
@@ -27,7 +28,7 @@ const Cities = () => {
 
 	let navigate = useNavigate();
 	useEffect(() => {
-		// console.log(lastDrawDate, 'last draw data');
+		// log(lastDrawDate, 'last draw data');
 		if (dataLoaded === false) {
 			navigate('/');
 		}
@@ -117,8 +118,8 @@ const Cities = () => {
 	// 	}
 	// }, [dispatch, user]);
 
-	// console.log(band_gig_data, 'band gig data - bands');
-	console.log(totalGigsPerCity, 'totalGigsPerCity - cities');
+	// log(band_gig_data, 'band gig data - bands');
+	log(totalGigsPerCity, 'totalGigsPerCity - cities');
 
 	return (
 		<StyledCities

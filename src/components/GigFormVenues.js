@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 // import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
+import { log } from '../helper';
 // import { CgCloseR } from 'react-icons/cg';
 // import { useBandsContext } from '../hooks/useBandsContext';
 
@@ -56,7 +57,7 @@ const GigFormVenues = ({
 	};
 
 	const setVenueDex = (poke) => {
-		console.log(poke, 'poke setVenueDex');
+		log(poke, 'poke setVenueDex');
 		setSearch(poke);
 		setVenue(poke);
 		setCreateNewVenue(false);

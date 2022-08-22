@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { GiLaurelsTrophy } from 'react-icons/gi';
 import { SiBandsintown } from 'react-icons/si';
+import { log } from '../helper';
 // import { useAuthContext } from '../hooks/useAuthContext';
 // import { useGigsContext } from '../hooks/useGigsContext';
 // import { ImArrowUp, ImArrowDown, ImArrowRight } from 'react-icons/im';
@@ -43,7 +44,7 @@ const TopBandWidget = ({ gigCounterData }) => {
 	// 	}
 	// }, [dispatch, user]);
 
-	console.log(gigCounterData, 'gig counter data');
+	log(gigCounterData, 'gig counter data');
 
 	return (
 		<StyledTopBandWidget className='gig-widget'>

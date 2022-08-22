@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BsFillShareFill, BsWhatsapp } from 'react-icons/bs';
+import { log } from '../helper';
 
 const InviteWidget = ({ gig }) => {
 	const shareMobile = () => {
@@ -9,7 +10,7 @@ const InviteWidget = ({ gig }) => {
 		const nextCity = gig.city;
 		const nextDate = new Date(gig.gig_date).toLocaleDateString();
 
-		console.log(
+		log(
 			`Liz and I are going to the ${nextBand} gig at ${nextVenue} in ${nextCity} on ${nextDate}. Will we see you there?`
 		);
 

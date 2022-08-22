@@ -43,7 +43,7 @@ const AllTopsWidget = ({ bandWinner, cityWinner }) => {
 	// 	}
 	// }, [dispatch, user]);
 
-	// console.log(gigCounterData, 'gig counter data');
+	// log(gigCounterData, 'gig counter data');
 
 	return (
 		<StyledAllTopsWidget className='gig-widget'>

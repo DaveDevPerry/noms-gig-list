@@ -11,6 +11,7 @@ import { useCitiesContext } from '../hooks/useCitiesContext';
 import { useVenuesContext } from '../hooks/useVenuesContext';
 import GigFormCities from './GigFormCities';
 import GigFormVenues from './GigFormVenues';
+import { log } from '../helper';
 // import { motion } from 'framer-motion';
 
 // const Auto = ({
@@ -63,7 +64,7 @@ import GigFormVenues from './GigFormVenues';
 // 	};
 
 // 	const setBandDex = (poke) => {
-// 		console.log(poke, 'poke setBandDex');
+// 		log(poke, 'poke setBandDex');
 // 		setSearch(poke);
 // 		setHeadline_band(poke);
 // 		setCreateNewBand(false);
@@ -140,11 +141,11 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 		}
 		// check if new band and action
 		if (createNewBand === false) {
-			console.log('new gig, existing band');
+			log('new gig, existing band');
 			// gig = { headline_band, venue, city, gig_date, gig_details };
 		}
 		if (createNewBand === true) {
-			console.log('new gig, create new band');
+			log('new gig, create new band');
 			// gig = { headline_band, venue, city, gig_date, gig_details };
 			const band = { name: headline_band };
 			const response = await fetch(
@@ -160,18 +161,18 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 				}
 			);
 			const json = await response.json();
-			console.log(json, 'json creating band in form post submit');
+			log(json, 'json creating band in form post submit');
 			if (!response.ok) {
 				setError(json.error);
 			}
 			if (response.ok) {
 				setError(null);
-				console.log('new band added', json);
+				log('new band added', json);
 				bandDispatch({ type: 'CREATE_BAND', payload: json });
 			}
-			console.log('new band added', json);
+			log('new band added', json);
 		}
-		console.log('new band added, now adding gig');
+		log('new band added, now adding gig');
 		// const handleClose = () => {
 		// 	navigate('/home');
 		// 	// setIsFormActive(!isFormActive);
@@ -180,11 +181,11 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 
 		// check if new venue and action
 		if (createNewVenue === false) {
-			console.log('new gig, existing venue');
+			log('new gig, existing venue');
 			// gig = { headline_band, venue, venue, gig_date, gig_details };
 		}
 		if (createNewVenue === true) {
-			console.log('new gig, create new venue');
+			log('new gig, create new venue');
 			// gig = { headline_band, venue, city, gig_date, gig_details };
 			const currentVenue = { name: venue };
 			const response = await fetch(
@@ -200,25 +201,25 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 				}
 			);
 			const json = await response.json();
-			console.log(json, 'json creating venue in form post submit');
+			log(json, 'json creating venue in form post submit');
 			if (!response.ok) {
 				setError(json.error);
 			}
 			if (response.ok) {
 				setError(null);
-				console.log('new city added', json);
+				log('new city added', json);
 				venueDispatch({ type: 'CREATE_VENUE', payload: json });
 			}
-			console.log('new venue added', json);
+			log('new venue added', json);
 		}
 
 		// check if new city and action
 		if (createNewCity === false) {
-			console.log('new gig, existing city');
+			log('new gig, existing city');
 			// gig = { headline_band, venue, city, gig_date, gig_details };
 		}
 		if (createNewCity === true) {
-			console.log('new gig, create new city');
+			log('new gig, create new city');
 			// gig = { headline_band, venue, city, gig_date, gig_details };
 			const currentCity = { name: city };
 			const response = await fetch(
@@ -234,21 +235,21 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 				}
 			);
 			const json = await response.json();
-			console.log(json, 'json creating city in form post submit');
+			log(json, 'json creating city in form post submit');
 			if (!response.ok) {
 				setError(json.error);
 			}
 			if (response.ok) {
 				setError(null);
-				console.log('new city added', json);
+				log('new city added', json);
 				cityDispatch({ type: 'CREATE_CITY', payload: json });
 			}
-			console.log('new city added', json);
+			log('new city added', json);
 		}
-		console.log('new city added, now adding gig');
+		log('new city added, now adding gig');
 
 		const gig = { headline_band, venue, city, gig_date, gig_details };
-		console.log(gig, 'gig post submit');
+		log(gig, 'gig post submit');
 
 		const response = await fetch(
 			`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
@@ -264,7 +265,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 		);
 		const json = await response.json();
 
-		console.log(json, 'json in form post submit');
+		log(json, 'json in form post submit');
 
 		if (!response.ok) {
 			setError(json.error);
@@ -281,7 +282,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 			// setReps('');
 			setError(null);
 			setEmptyFields([]);
-			console.log('new gig added', json);
+			log('new gig added', json);
 			dispatch({ type: 'CREATE_GIG', payload: json });
 		}
 		// setIsFormActive(!isFormActive);

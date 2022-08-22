@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GiLaurelsTrophy } from 'react-icons/gi';
+import { log } from '../helper';
 // import { useAuthContext } from '../hooks/useAuthContext';
 // import { useGigsContext } from '../hooks/useGigsContext';
 // import { ImArrowUp, ImArrowDown, ImArrowRight } from 'react-icons/im';
@@ -42,7 +43,7 @@ const TopCityWidget = ({ gigCounterData }) => {
 	// 	}
 	// }, [dispatch, user]);
 
-	console.log(gigCounterData, 'gig counter data');
+	log(gigCounterData, 'gig counter data');
 
 	return (
 		<StyledTopCityWidget className='gig-widget'>

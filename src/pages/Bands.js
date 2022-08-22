@@ -13,6 +13,7 @@ import { FaUsers } from 'react-icons/fa';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
 import BandsList from '../components/BandsList';
+import { log } from '../helper';
 // import { useGigsContext } from '../hooks/useGigsContext';
 // import { useEffect } from 'react';
 
@@ -152,7 +153,7 @@ const Bands = () => {
 
 	let navigate = useNavigate();
 	useEffect(() => {
-		// console.log(lastDrawDate, 'last draw data');
+		// log(lastDrawDate, 'last draw data');
 		if (dataLoaded === false) {
 			navigate('/');
 		}
@@ -220,9 +221,9 @@ const Bands = () => {
 	// 	setTotalGigsPerBand(bandsGigCount && bandsGigCount);
 	// }, [bandsGigCount]);
 
-	// console.log(gigCountPerBand, 'gig count per band in bands page');
-	// console.log(bandsGigCount, 'bands gig count - bands');
-	console.log(totalGigsPerBand, 'totalGigsPerBand - bands');
+	// log(gigCountPerBand, 'gig count per band in bands page');
+	// log(bandsGigCount, 'bands gig count - bands');
+	log(totalGigsPerBand, 'totalGigsPerBand - bands');
 
 	return (
 		<StyledBands

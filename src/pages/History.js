@@ -25,7 +25,7 @@ const History = () => {
 
 	let navigate = useNavigate();
 	useEffect(() => {
-		// console.log(lastDrawDate, 'last draw data');
+		// log(lastDrawDate, 'last draw data');
 		if (dataLoaded === false) {
 			navigate('/');
 		}
@@ -44,19 +44,19 @@ const History = () => {
 			const json = await response.json();
 
 			// get future gigs only
-			// console.log(json, 'json set gigs');
+			// log(json, 'json set gigs');
 			// const upcomingGigs = json.sort((a, b) => {
 			// 	return new Date(a.gig_date) - new Date(b.gig_date);
 			// });
-			// console.log(upcomingGigs, 'upcoming');
+			// log(upcomingGigs, 'upcoming');
 			// const upcomingGigsSort = json.sort((a, b) => {
 			// 	return new Date(b.gig_date) - new Date(a.gig_date);
 			// });
-			// console.log(upcomingGigsSort, 'upcoming');
+			// log(upcomingGigsSort, 'upcoming');
 			// const filtered = upcomingGigsSort.filter((gig) => {
 			// 	return new Date(gig.gig_date) < new Date();
 			// });
-			// console.log(filtered, 'filtered');
+			// log(filtered, 'filtered');
 
 			if (response.ok) {
 				// setWorkouts(json);

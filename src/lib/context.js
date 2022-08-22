@@ -27,7 +27,7 @@ export const StateContext = ({ children }) => {
 	// FETCH GIGS AND RETURN NEW ARRAY OF OBJECTS SHOWING HOW MANY TIMES A BAND HAS PLAYED
 	// const [gigCountPerBand, setGigCountPerBand] = useState(null);
 	// const getGigCountPerBand = (gigs) => {
-	// 	console.log(gigs, 'gigs in context');
+	// 	log(gigs, 'gigs in context');
 
 	// 	setGigCountPerBand([
 	// 		{ name: 'tv', count: 5 },
@@ -41,23 +41,23 @@ export const StateContext = ({ children }) => {
 	// const [individualCategoryStats, setIndividualCategoryStats] = useState(null);
 
 	// const getAllTasksInACategory = (data, categoryName) => {
-	// 	console.log(data, categoryName, 'getAllTasksInACategory data');
+	// 	log(data, categoryName, 'getAllTasksInACategory data');
 
 	// 	const testData = data.map((item) => item.tasks);
-	// 	console.log(testData, 'test');
+	// 	log(testData, 'test');
 
 	// 	const merged = [].concat.apply([], testData);
-	// 	console.log(merged);
+	// 	log(merged);
 
 	// 	const filteredCategory = merged.filter(
 	// 		(item) => item.category === categoryName
 	// 	);
-	// 	console.log(filteredCategory, 'filtered category');
+	// 	log(filteredCategory, 'filtered category');
 
 	// 	const tasksInCategory = [
 	// 		...new Set(filteredCategory.map((item) => item.task)),
 	// 	];
-	// 	console.log(tasksInCategory, 'today categories');
+	// 	log(tasksInCategory, 'today categories');
 
 	// 	const tasksInCatStatsArr = [];
 	// 	const totalStatsInACategory = {
@@ -98,20 +98,20 @@ export const StateContext = ({ children }) => {
 	// 			(totalStatsInACategory.completedTaskCount /
 	// 				totalStatsInACategory.assignedTaskCount) *
 	// 			100;
-	// 		console.log(taskObj, 'task obj');
+	// 		log(taskObj, 'task obj');
 	// 		tasksInCatStatsArr.push(taskObj);
 	// 	}
 
 	// 	setCategoryDetails(tasksInCatStatsArr);
-	// 	console.log(categoryDetails, 'cat details');
+	// 	log(categoryDetails, 'cat details');
 	// 	setIndividualCategoryStats(totalStatsInACategory);
-	// 	console.log(totalStatsInACategory, 'total stats in a category');
+	// 	log(totalStatsInACategory, 'total stats in a category');
 	// };
 
 	// const [todoMetrics, setTodoMetrics] = useState(null);
 
 	// const getTodoMetrics = (todos) => {
-	// 	console.log(todos, 'todos context');
+	// 	log(todos, 'todos context');
 	// 	const totalTodos = todos.length;
 	// 	const completedTodos = todos.filter((todo) => {
 	// 		return todo.completed === true;
@@ -128,7 +128,7 @@ export const StateContext = ({ children }) => {
 	// const [financeMetrics, setFinanceMetrics] = useState(null);
 
 	// const getFinanceMetrics = (finances) => {
-	// 	console.log(finances, 'finances context');
+	// 	log(finances, 'finances context');
 	// 	const totalAmountBorrowed = finances.reduce((r, a) => {
 	// 		return r + parseInt(a.amount);
 	// 	}, 0);
@@ -146,7 +146,7 @@ export const StateContext = ({ children }) => {
 	// 		amountOwing: totalAmountBorrowed - totalAmountRepaid,
 	// 	};
 
-	// 	console.log(financeData, 'context');
+	// 	log(financeData, 'context');
 
 	// 	setFinanceMetrics(financeData);
 	// };

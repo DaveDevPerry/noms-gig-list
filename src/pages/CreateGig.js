@@ -10,6 +10,7 @@ import { useCitiesContext } from '../hooks/useCitiesContext';
 import { useVenuesContext } from '../hooks/useVenuesContext';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
+import { log } from '../helper';
 
 // components
 // import GigsList from '../components/GigsList';
@@ -32,7 +33,7 @@ const CreateGig = () => {
 
 	let navigate = useNavigate();
 	useEffect(() => {
-		// console.log(lastDrawDate, 'last draw data');
+		// log(lastDrawDate, 'last draw data');
 		if (dataLoaded === false) {
 			navigate('/');
 		}
@@ -50,23 +51,23 @@ const CreateGig = () => {
 			);
 			const json = await response.json();
 			// // get future gigs only
-			// console.log(json, 'json set gigs');
+			// log(json, 'json set gigs');
 			// const clonedGigs = [...json];
 			// const upcomingGigs = clonedGigs.sort((a, b) => {
 			// 	return new Date(b.gig_date) - new Date(a.gig_date);
 			// });
-			// console.log(upcomingGigs, 'upcoming');
+			// log(upcomingGigs, 'upcoming');
 			// const upcomingGigsSort = json.sort((a, b) => {
 			// 	return new Date(a.gig_date) - new Date(b.gig_date);
 			// });
-			// console.log(upcomingGigsSort, 'upcoming');
+			// log(upcomingGigsSort, 'upcoming');
 			// const filtered = upcomingGigsSort.filter((gig) => {
 			// 	return (
 			// 		new Date(gig.gig_date) > new Date() ||
 			// 		new Date(gig.gig_date) === new Date()
 			// 	);
 			// });
-			// console.log(filtered, 'filtered');
+			// log(filtered, 'filtered');
 
 			if (response.ok) {
 				// setWorkouts(json);
@@ -95,23 +96,23 @@ const CreateGig = () => {
 			);
 			const json = await response.json();
 			// // get future gigs only
-			// console.log(json, 'json set gigs');
+			// log(json, 'json set gigs');
 			// const clonedGigs = [...json];
 			// const upcomingGigs = clonedGigs.sort((a, b) => {
 			// 	return new Date(b.gig_date) - new Date(a.gig_date);
 			// });
-			// console.log(upcomingGigs, 'upcoming');
+			// log(upcomingGigs, 'upcoming');
 			// const upcomingGigsSort = json.sort((a, b) => {
 			// 	return new Date(a.gig_date) - new Date(b.gig_date);
 			// });
-			// console.log(upcomingGigsSort, 'upcoming');
+			// log(upcomingGigsSort, 'upcoming');
 			// const filtered = upcomingGigsSort.filter((gig) => {
 			// 	return (
 			// 		new Date(gig.gig_date) > new Date() ||
 			// 		new Date(gig.gig_date) === new Date()
 			// 	);
 			// });
-			// console.log(filtered, 'filtered');
+			// log(filtered, 'filtered');
 
 			if (response.ok) {
 				// setWorkouts(json);
@@ -128,10 +129,10 @@ const CreateGig = () => {
 		}
 	}, [bandDispatch, user]);
 
-	// console.log(gigData, 'gig data');
-	// console.log(gigData.bandStats, 'gig data');
-	// console.log(bands, 'gig data - bands');
-	// console.log(all_gigs, 'gig data - gigs');
+	// log(gigData, 'gig data');
+	// log(gigData.bandStats, 'gig data');
+	// log(bands, 'gig data - bands');
+	// log(all_gigs, 'gig data - gigs');
 
 	useEffect(() => {
 		const fetchVenues = async () => {
@@ -145,23 +146,23 @@ const CreateGig = () => {
 			);
 			const json = await response.json();
 			// // get future gigs only
-			// console.log(json, 'json set gigs');
+			// log(json, 'json set gigs');
 			// const clonedGigs = [...json];
 			// const upcomingGigs = clonedGigs.sort((a, b) => {
 			// 	return new Date(b.gig_date) - new Date(a.gig_date);
 			// });
-			// console.log(upcomingGigs, 'upcoming');
+			// log(upcomingGigs, 'upcoming');
 			// const upcomingGigsSort = json.sort((a, b) => {
 			// 	return new Date(a.gig_date) - new Date(b.gig_date);
 			// });
-			// console.log(upcomingGigsSort, 'upcoming');
+			// log(upcomingGigsSort, 'upcoming');
 			// const filtered = upcomingGigsSort.filter((gig) => {
 			// 	return (
 			// 		new Date(gig.gig_date) > new Date() ||
 			// 		new Date(gig.gig_date) === new Date()
 			// 	);
 			// });
-			// console.log(filtered, 'filtered');
+			// log(filtered, 'filtered');
 
 			if (response.ok) {
 				// setWorkouts(json);
@@ -190,23 +191,23 @@ const CreateGig = () => {
 			);
 			const json = await response.json();
 			// // get future gigs only
-			// console.log(json, 'json set gigs');
+			// log(json, 'json set gigs');
 			// const clonedGigs = [...json];
 			// const upcomingGigs = clonedGigs.sort((a, b) => {
 			// 	return new Date(b.gig_date) - new Date(a.gig_date);
 			// });
-			// console.log(upcomingGigs, 'upcoming');
+			// log(upcomingGigs, 'upcoming');
 			// const upcomingGigsSort = json.sort((a, b) => {
 			// 	return new Date(a.gig_date) - new Date(b.gig_date);
 			// });
-			// console.log(upcomingGigsSort, 'upcoming');
+			// log(upcomingGigsSort, 'upcoming');
 			// const filtered = upcomingGigsSort.filter((gig) => {
 			// 	return (
 			// 		new Date(gig.gig_date) > new Date() ||
 			// 		new Date(gig.gig_date) === new Date()
 			// 	);
 			// });
-			// console.log(filtered, 'filtered');
+			// log(filtered, 'filtered');
 
 			if (response.ok) {
 				// setWorkouts(json);
@@ -223,7 +224,7 @@ const CreateGig = () => {
 		}
 	}, [cityDispatch, user]);
 
-	console.log(gigData, 'gig data');
+	log(gigData, 'gig data');
 
 	return (
 		<StyledGigs

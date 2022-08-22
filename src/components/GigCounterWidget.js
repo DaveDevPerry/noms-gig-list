@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { log } from '../helper';
 // import { useAuthContext } from '../hooks/useAuthContext';
 // import { useGigsContext } from '../hooks/useGigsContext';
 // import { ImArrowUp, ImArrowDown, ImArrowRight } from 'react-icons/im';
@@ -41,7 +42,7 @@ const GigCounterWidget = ({ gigCounterData }) => {
 	// 	}
 	// }, [dispatch, user]);
 
-	console.log(gigCounterData, 'gig counter data');
+	log(gigCounterData, 'gig counter data');
 
 	return (
 		<StyledGigCounterWidget className='gig-widget'>

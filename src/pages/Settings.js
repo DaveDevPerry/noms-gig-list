@@ -47,7 +47,7 @@ const Settings = ({ themeToggler, theme }) => {
 	const handleClose = () => {
 		navigate('/home');
 	};
-	// console.log(targets, 'targets');
+	// log(targets, 'targets');
 	return (
 		<StyledSettings
 			className='settings-page'

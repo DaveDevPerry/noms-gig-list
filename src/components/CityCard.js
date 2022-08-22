@@ -3,6 +3,7 @@
 
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { log } from '../helper';
 import { useStateContext } from '../lib/context';
 // import { ImArrowUp, ImArrowDown } from 'react-icons/im';
 
@@ -41,7 +42,7 @@ const CityCard = ({ city, difference }) => {
 			className='city-card'
 			onClick={(e) => {
 				e.preventDefault();
-				console.log(city.key, 'city on click');
+				log(city.key, 'city on click');
 				setCityToView(city.key);
 				navigate('/city');
 			}}

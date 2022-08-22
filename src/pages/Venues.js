@@ -25,7 +25,7 @@ const Venues = () => {
 
 	let navigate = useNavigate();
 	useEffect(() => {
-		// console.log(lastDrawDate, 'last draw data');
+		// log(lastDrawDate, 'last draw data');
 		if (dataLoaded === false) {
 			navigate('/');
 		}
@@ -82,7 +82,7 @@ const Venues = () => {
 	// 	}
 	// }, [dispatch, user]);
 
-	// console.log(band_gig_data, 'band gig data - bands');
+	// log(band_gig_data, 'band gig data - bands');
 
 	return (
 		<StyledVenues

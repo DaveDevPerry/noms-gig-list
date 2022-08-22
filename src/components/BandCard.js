@@ -4,6 +4,7 @@
 // import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { log } from '../helper';
 import { useStateContext } from '../lib/context';
 // import Band from '../pages/Band';
 // import { ImArrowUp, ImArrowDown } from 'react-icons/im';
@@ -44,7 +45,7 @@ const BandCard = ({ band, difference }) => {
 			// onClick={setBandToView(band._id)}
 			onClick={(e) => {
 				e.preventDefault();
-				console.log(band.key, 'band on click');
+				log(band.key, 'band on click');
 				setBandToView(band.key);
 				navigate('/band');
 			}}

@@ -16,6 +16,7 @@ import PieWidget from '../components/PieWidget';
 // import TopCityWidget from '../components/TopCityWidget';
 // import CityTotalWidget from '../components/CityTotalWidget';
 import AllTopsWidget from '../components/AllTopsWidget';
+import { log } from '../helper';
 // import ChartYearWidget from '../components/ChartYearWidget';
 // import NextGigCountdownWidget from '../components/NextGigCountdownWidget';
 
@@ -55,7 +56,7 @@ const Home = () => {
 		}
 	}, [dispatch, user]);
 
-	console.log(gigCounterData, 'gig counter data');
+	log(gigCounterData, 'gig counter data');
 
 	return (
 		<StyledHome

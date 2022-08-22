@@ -2,6 +2,7 @@ import { useState } from 'react';
 // import { useUsersContext } from '../hooks/useUserContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
+import { log } from '../helper';
 
 const UserForm = () => {
 	// const { dispatch } = useUsersContext();
@@ -15,7 +16,7 @@ const UserForm = () => {
 	const [error, setError] = useState(null);
 	const [emptyFields, setEmptyFields] = useState([]);
 
-	console.log(user, 'user in user form');
+	log(user, 'user in user form');
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -52,7 +53,7 @@ const UserForm = () => {
 			// setReps('');
 			setError(null);
 			setEmptyFields([]);
-			console.log('new target added', json);
+			log('new target added', json);
 			// dispatch({ type: 'UPDATE_USER', payload: json });
 		}
 	};

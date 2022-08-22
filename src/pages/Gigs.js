@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import GigsList from '../components/GigsList';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
+import { log } from '../helper';
 // import WeightsProgressWidget from '../components/WeightsProgressWidget';
 // import WeightUnitsWidget from '../components/WeightUnitsWidget';
 
@@ -24,7 +25,7 @@ const Gigs = () => {
 
 	let navigate = useNavigate();
 	useEffect(() => {
-		// console.log(lastDrawDate, 'last draw data');
+		// log(lastDrawDate, 'last draw data');
 		if (dataLoaded === false) {
 			navigate('/');
 		}
@@ -42,23 +43,23 @@ const Gigs = () => {
 			);
 			const json = await response.json();
 			// get future gigs only
-			console.log(json, 'json set gigs');
+			log(json, 'json set gigs');
 			const clonedGigs = [...json];
 			const upcomingGigs = clonedGigs.sort((a, b) => {
 				return new Date(b.gig_date) - new Date(a.gig_date);
 			});
-			console.log(upcomingGigs, 'upcoming');
+			log(upcomingGigs, 'upcoming');
 			const upcomingGigsSort = json.sort((a, b) => {
 				return new Date(a.gig_date) - new Date(b.gig_date);
 			});
-			console.log(upcomingGigsSort, 'upcoming');
+			log(upcomingGigsSort, 'upcoming');
 			const filtered = upcomingGigsSort.filter((gig) => {
 				return (
 					new Date(gig.gig_date) > new Date() ||
 					new Date(gig.gig_date) === new Date()
 				);
 			});
-			console.log(filtered, 'filtered');
+			log(filtered, 'filtered');
 
 			if (response.ok) {
 				// setWorkouts(json);

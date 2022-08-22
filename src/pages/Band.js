@@ -6,6 +6,7 @@ import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import BandGigsList from '../components/BandGigsList';
 import { FaUsers } from 'react-icons/fa';
+import { log } from '../helper';
 
 const Band = ({ band, id }) => {
 	const { user } = useAuthContext();
@@ -13,7 +14,7 @@ const Band = ({ band, id }) => {
 	const { bandToView, setBandDetailsData, bandDetailsData } = useStateContext();
 
 	useEffect(() => {
-		console.log(bandToView, ' band in band');
+		log(bandToView, ' band in band');
 
 		const fetchBand = async () => {
 			const response = await fetch(
@@ -43,8 +44,8 @@ const Band = ({ band, id }) => {
 				// 	type: 'SET_BAND_GIGS',
 				// 	payload: bandData,
 				// });
-				// console.log(bandData, 'res ok band data');
-				// console.log(sortedByDate, 'res ok sorted band data');
+				// log(bandData, 'res ok band data');
+				// log(sortedByDate, 'res ok sorted band data');
 			}
 		};
 		if (user) {

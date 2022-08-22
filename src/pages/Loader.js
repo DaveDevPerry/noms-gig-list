@@ -8,7 +8,7 @@ import { useGigsContext } from '../hooks/useGigsContext';
 import { useBandsContext } from '../hooks/useBandsContext';
 
 import { useStateContext } from '../lib/context';
-import { log } from '../helper';
+// import { log } from '../helper';
 // import { motion } from 'framer-motion';
 
 const Loader = () => {
@@ -113,7 +113,7 @@ const Loader = () => {
 		setTotalGigsPerCity(globalStatData && globalStatData.citiesGigCount);
 	}, [globalStatData]);
 
-	log('Hello loader', 1, 2, 3, Date.now());
+	// log('Hello loader', 1, 2, 3, Date.now());
 
 	return (
 		<StyledLoader
