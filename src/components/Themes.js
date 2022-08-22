@@ -9,6 +9,7 @@ export const lightTheme = {
 	txtGrey: '#555',
 	txtDarkGrey: '#333',
 	borderGrey: '#ddd',
+	bgLoader: '#f1f1f1',
 	// modeIcon: 'rgb(38, 151, 244)',
 	modeIcon: '#555',
 	bgCircle: '#3b4045',
@@ -25,7 +26,7 @@ export const lightTheme = {
 };
 export const darkTheme = {
 	primaryColor: 'rgb(250, 186, 11)',
-	secondaryColor: 'rgb(216, 0, 184)',
+	secondaryColor: '#d800b8',
 	error: '#e71919',
 	bgError: '#ffefef',
 	white: '#040404',
@@ -33,6 +34,7 @@ export const darkTheme = {
 	txtGrey: '#adadad',
 	txtDarkGrey: '#e2e2e2',
 	borderGrey: '#ddd',
+	bgLoader: 'rgb(216, 0, 184)',
 	// modeIcon: '#555',
 	modeIcon: 'rgb(250, 186, 11)',
 	// modeIcon: 'rgb(250, 186, 11)',
