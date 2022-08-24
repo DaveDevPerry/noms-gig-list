@@ -141,6 +141,7 @@ const StyledVenues = styled(motion.div)`
 	/* overflow: hidden; */
 	overflow: hidden;
 	transition: all 200ms linear;
+	margin: 0 auto;
 	.venue-name-list-header {
 		display: flex;
 		justify-content: space-between;

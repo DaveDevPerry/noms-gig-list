@@ -22,7 +22,7 @@ const Header = () => {
 		<StyledHeader>
 			<div className='container'>
 				<Link to='/'>
-					<h1>Celebrity Gig List</h1>
+					<h1>Gig List</h1>
 				</Link>
 
 				{/* <NavLink
@@ -61,7 +61,8 @@ const StyledHeader = styled.header`
 	background: ${({ theme }) => theme.white};
 	transition: all 200ms linear;
 	.container {
-		max-width: 1400px;
+		max-width: 60rem;
+		/* max-width: 1400px; */
 		margin: 0 auto;
 		padding: 1rem;
 		display: flex;

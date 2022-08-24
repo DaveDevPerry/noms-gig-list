@@ -8,6 +8,8 @@ import styled from 'styled-components';
 // import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { format } from 'date-fns';
 
+import { GiCampingTent } from 'react-icons/gi';
+
 const GigCard = ({ gig, difference }) => {
 	// const { dispatch } = usegigsContext();
 	// const { user } = useAuthContext();
@@ -52,6 +54,18 @@ const GigCard = ({ gig, difference }) => {
 					{formatDistanceToNow(new Date(gig.gig_date), { addSuffix: true })}
 				</p> */}
 			</div>
+			<div className='gig-icons-wrapper'>
+				{gig.isFestival && gig.isFestival === true && (
+					<GiCampingTent className='gig-icon' />
+				)}
+			</div>
+			{/* <div className='gig-icons-wrapper'>
+				{gig.isFestival && gig.isFestival === true ? (
+					<GiCampingTent className='gig-icon' />
+				) : (
+					<p>no</p>
+				)}
+			</div> */}
 
 			{/* <div className='gig-figures'>
 				<p>
@@ -108,6 +122,17 @@ const StyledGigCard = styled.div`
 		padding: 0.6rem;
 		border-radius: 50%;
 		color: ${({ theme }) => theme.txtDarkGrey};
+	}
+	.gig-icons-wrapper {
+		justify-content: flex-end;
+		align-items: center;
+		display: flex;
+		flex: 1;
+		text-align: right;
+		.gig-icon {
+			color: ${({ theme }) => theme.secondaryColor};
+			font-size: 2rem;
+		}
 	}
 	.wrapper-icon {
 		background: ${({ theme }) => theme.white};

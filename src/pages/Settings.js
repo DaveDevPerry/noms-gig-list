@@ -119,6 +119,7 @@ const StyledSettings = styled(motion.div)`
 	/* overflow: hidden; */
 	overflow: hidden;
 	transition: all 200ms linear;
+	margin: 0 auto;
 	/* margin: 1rem; */
 	.settings-modal {
 		display: flex;

@@ -99,6 +99,7 @@ const StyledCity = styled(motion.div)`
 	overflow: hidden;
 	overflow-y: auto;
 	transition: all 200ms linear;
+	margin: 0 auto;
 	scroll-behavior: smooth;
 	scroll-behavior: smooth;
 	scrollbar-width: normal;

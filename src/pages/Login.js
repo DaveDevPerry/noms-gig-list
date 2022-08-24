@@ -58,7 +58,16 @@ const StyledLogin = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 2rem;
+	margin: 0 auto;
+	max-width: 42rem;
+	padding: 0 1rem;
+	/* overflow-y: auto; */
+	/* overflow: hidden; */
+	overflow: hidden;
+	transition: all 200ms linear;
 	.login {
+		/* max-width: 80rem; */
+		/* margin: 0 auto; */
 		display: flex;
 		flex-direction: column;
 		row-gap: 1rem;

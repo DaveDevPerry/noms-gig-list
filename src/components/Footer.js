@@ -124,6 +124,8 @@ const StyledFooter = styled.footer`
 	transition: all 200ms linear;
 	/* z-index: 5; */
 	nav {
+		max-width: 60rem;
+		margin: 0 auto;
 		div {
 			max-width: 1400px;
 			/* padding: 1rem; */

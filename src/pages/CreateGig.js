@@ -254,6 +254,7 @@ const StyledGigs = styled(motion.div)`
 	row-gap: 1rem;
 	/* border: 2px solid green; */
 	height: -webkit-fill-available;
+	margin: 0 auto;
 	/* justify-content: flex-start; */
 	/* overflow-y: auto; */
 	/* overflow-y: hidden; */
@@ -265,6 +266,12 @@ const StyledGigs = styled(motion.div)`
 		font-weight: bold;
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
 	} */
+	max-width: 42rem;
+	padding: 0 1rem;
+	/* overflow-y: auto; */
+	/* overflow: hidden; */
+	overflow: hidden;
+	transition: all 200ms linear;
 `;
 
 export default CreateGig;

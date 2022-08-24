@@ -128,6 +128,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 	const [venue, setVenue] = useState('');
 	const [city, setCity] = useState('');
 	const [gig_details, setGig_details] = useState('');
+	const [isFestival, setIsFestival] = useState(false);
 
 	const [error, setError] = useState(null);
 	const [emptyFields, setEmptyFields] = useState([]);
@@ -248,7 +249,14 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 		}
 		log('new city added, now adding gig');
 
-		const gig = { headline_band, venue, city, gig_date, gig_details };
+		const gig = {
+			headline_band,
+			venue,
+			city,
+			gig_date,
+			gig_details,
+			isFestival,
+		};
 		log(gig, 'gig post submit');
 
 		const response = await fetch(
@@ -278,6 +286,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 			setHeadline_band('');
 			setGig_date('');
 			setGig_details('');
+			setIsFestival(false);
 			// setGig_details('');
 			// setReps('');
 			setError(null);
@@ -389,6 +398,16 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 					// autoFocus
 				/>
 			</div> */}
+			<div className='input-wrapper'>
+				<label>Festival?:</label>
+				<input
+					type='checkbox'
+					id='input-number'
+					onChange={() => setIsFestival(!isFestival)}
+					value={isFestival}
+					// className={emptyFields.includes('gig_date') ? 'error' : ''}
+				/>
+			</div>
 			<div className='input-wrapper'>
 				<label>Date:</label>
 				<input
