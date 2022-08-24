@@ -7,11 +7,24 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import BandGigsList from '../components/BandGigsList';
 import { FaUsers } from 'react-icons/fa';
 import { log } from '../helper';
+import BandSupportGigsList from '../components/BandSupportGigsList';
+import BandHeadlineGigsList from '../components/BandHeadlineGigsList';
+import TopBandWidget from '../components/TopBandWidget';
 
 const Band = ({ band, id }) => {
 	const { user } = useAuthContext();
 	const { dispatch } = useGigsContext();
-	const { bandToView, setBandDetailsData, bandDetailsData } = useStateContext();
+	const {
+		bandToView,
+		setBandDetailsData,
+		bandDetailsData,
+		setBandSupportGigsData,
+		bandSupportGigsData,
+		setBandHeadlineGigsData,
+		bandHeadlineGigsData,
+		setBandAllGigsData,
+		bandAllGigsData,
+	} = useStateContext();
 
 	useEffect(() => {
 		log(bandToView, ' band in band');
@@ -27,6 +40,33 @@ const Band = ({ band, id }) => {
 			);
 			const json = await response.json();
 
+			// support
+			const clonedBandSupportData = [...json];
+			const bandSupportData = clonedBandSupportData
+				.filter((obj) => obj.support_band === bandToView)
+				.sort((a, b) => {
+					return new Date(b.gig_date) - new Date(a.gig_date);
+				});
+
+			// headline
+			const clonedBandHeadlineData = [...json];
+			const bandHeadlineData = clonedBandHeadlineData
+				.filter((obj) => obj.headline_band === bandToView)
+				.sort((a, b) => {
+					return new Date(b.gig_date) - new Date(a.gig_date);
+				});
+
+			// all
+			const clonedBandAllData = [...json];
+			const bandAllData = clonedBandAllData
+				.filter(
+					(obj) =>
+						obj.headline_band === bandToView || obj.support_band === bandToView
+				)
+				.sort((a, b) => {
+					return new Date(b.gig_date) - new Date(a.gig_date);
+				});
+
 			// const bandData = json.filter((obj) => obj.headline_band === bandToView);
 			const bandData = json
 				.filter((obj) => obj.headline_band === bandToView)
@@ -40,6 +80,9 @@ const Band = ({ band, id }) => {
 
 			if (response.ok) {
 				setBandDetailsData(bandData);
+				setBandSupportGigsData(bandSupportData);
+				setBandHeadlineGigsData(bandHeadlineData);
+				setBandAllGigsData(bandAllData);
 				// dispatch({
 				// 	type: 'SET_BAND_GIGS',
 				// 	payload: bandData,
@@ -53,6 +96,8 @@ const Band = ({ band, id }) => {
 		}
 	}, [bandToView, dispatch, user]);
 
+	log(bandAllGigsData, 'band all gigs data - band');
+
 	return (
 		<StyledBand
 			className='band-page'
@@ -60,10 +105,7 @@ const Band = ({ band, id }) => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{/* <div>Band {band._id}</div>
-			<div>Band {band.name}</div> */}
-			{/* <p>band page</p> */}
-			<div className='band-gigs-list-header'>
+			{/* <div className='band-gigs-list-header'>
 				<p>
 					All Gigs by
 					<span> {bandToView}</span>
@@ -72,9 +114,63 @@ const Band = ({ band, id }) => {
 					<FaUsers className='nav-icon' />x
 					{bandDetailsData && bandDetailsData.length}
 				</div>
-			</div>
-			{/* <div> */}
-			{bandDetailsData && <BandGigsList gigs={bandDetailsData} />}
+			</div> */}
+			{bandDetailsData && bandAllGigsData && (
+				<TopBandWidget gigCounterData={bandAllGigsData} />
+			)}
+
+			{bandDetailsData && bandAllGigsData.length > 0 && (
+				<>
+					<div className='band-gigs-list-header'>
+						<p>
+							all
+							{/* <span> {bandToView}</span> */}
+						</p>
+						<div>
+							<FaUsers className='nav-icon' />x
+							{bandDetailsData && bandAllGigsData.length}
+						</div>
+					</div>
+					{bandDetailsData && <BandGigsList gigs={bandAllGigsData} />}
+				</>
+			)}
+			{bandDetailsData && bandHeadlineGigsData.length > 0 && (
+				<>
+					<div className='band-gigs-list-header'>
+						<p>
+							headline
+							{/* <span> {bandToView}</span> */}
+						</p>
+						<div>
+							<FaUsers className='nav-icon' />x
+							{bandDetailsData && bandHeadlineGigsData.length}
+						</div>
+					</div>
+					{bandDetailsData && (
+						<BandHeadlineGigsList gigs={bandHeadlineGigsData} />
+					)}
+				</>
+			)}
+
+			{/* {bandDetailsData && <BandHeadlineGigsList gigs={bandDetailsData} />} */}
+
+			{bandDetailsData && bandSupportGigsData.length > 0 && (
+				<>
+					<div className='band-gigs-list-header'>
+						<p>
+							support
+							{/* <span> {bandToView}</span> */}
+						</p>
+						<div>
+							<FaUsers className='nav-icon' />x
+							{bandDetailsData && bandSupportGigsData.length}
+						</div>
+					</div>
+					{bandDetailsData && (
+						<BandSupportGigsList gigs={bandSupportGigsData} />
+					)}
+				</>
+			)}
 			{/* </div> */}
 			{/* <div>
 				{bandDetailsData &&
@@ -92,6 +188,7 @@ const Band = ({ band, id }) => {
 const StyledBand = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-start;
 	row-gap: 1rem;
 	flex: 1;
 	max-width: 42rem;

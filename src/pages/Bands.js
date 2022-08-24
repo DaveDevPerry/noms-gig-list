@@ -264,7 +264,7 @@ const StyledBands = styled(motion.div)`
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	row-gap: 0.3rem;
 	/* justify-content: flex-start; */
 	/* overflow-y: auto; */

@@ -2,11 +2,10 @@ import React from 'react';
 // import { useState } from 'react';
 // import { useEffect } from 'react';
 import styled from 'styled-components';
-import BandCard from './BandCard';
-// import CityCard from './CityCard';
+import BandGigCard from './BandGigCard';
 // import GigDetails from './GigDetails';
 
-const BandsList = ({ bands }) => {
+const BandSupportGigsList = ({ gigs }) => {
 	// const [testgigs, setTestgigs] = useState('');
 	// // const weightDiffs = [];
 	// useEffect(() => {
@@ -26,20 +25,21 @@ const BandsList = ({ bands }) => {
 	// 	log(weightDiffs, 'weight diffs');
 	// }, [weights]);
 	return (
-		<StyledBandsList className='gig-list-container'>
+		<StyledBandSupportGigsList className='gig-list-container'>
 			{/* <p className='gigs-list-header'>Recorded weigh-ins</p> */}
 			<div className='gigs-list'>
-				{bands &&
-					bands.map((band, index) => <BandCard key={index} band={band} />)}
+				{gigs &&
+					gigs.map((gig, index) => (
+						<BandGigCard key={gig._id} gig={gig} showGigLetter={false} />
+					))}
 			</div>
-		</StyledBandsList>
+		</StyledBandSupportGigsList>
 	);
 };
-const StyledBandsList = styled.div`
+const StyledBandSupportGigsList = styled.div`
 	/* overflow-y: scroll; */
 	overflow-y: auto;
-	/* ******** CHANGE TO SCROLL IF NOT WORKING WHEN NEEDED ******* */
-	/* flex: 1; */
+	flex: 1;
 	scroll-behavior: smooth;
 	scroll-behavior: smooth;
 	scrollbar-width: normal;
@@ -80,4 +80,4 @@ const StyledBandsList = styled.div`
 	}
 `;
 
-export default BandsList;
+export default BandSupportGigsList;

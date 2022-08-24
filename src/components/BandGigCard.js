@@ -7,8 +7,12 @@ import styled from 'styled-components';
 // date fns
 // import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { format } from 'date-fns';
+import { useStateContext } from '../lib/context';
 
-const BandGigCard = ({ gig, difference }) => {
+import { GiCampingTent } from 'react-icons/gi';
+
+const BandGigCard = ({ gig, showGigLetter }) => {
+	const { bandToView } = useStateContext();
 	// const { dispatch } = usegigsContext();
 	// const { user } = useAuthContext();
 
@@ -49,6 +53,32 @@ const BandGigCard = ({ gig, difference }) => {
 				</p>
 				<p>{gig.city}</p>
 			</div>
+			<div className='gig-icons-wrapper'>
+				{gig.isFestival && gig.isFestival === true && (
+					<GiCampingTent className='gig-icon' />
+				)}
+			</div>
+
+			{showGigLetter === true && (
+				<div className='counter'>
+					{gig.headline_band === bandToView && (
+						<p>
+							<strong>H</strong>
+						</p>
+					)}
+					{gig.support_band === bandToView && (
+						<p>
+							<strong>S</strong>
+						</p>
+					)}
+				</div>
+			)}
+			{/* <div className='gig-icons-wrapper'>
+				{gig.isFestival && gig.isFestival === true && (
+					<GiCampingTent className='gig-icon' />
+				)}
+			</div> */}
+
 			{/* <p>{gig.gig_date}</p> */}
 
 			{/* <div className='right'>
@@ -97,6 +127,19 @@ const StyledBandGigCard = styled.div`
 		border-radius: 50%;
 		color: ${({ theme }) => theme.txtDarkGrey};
 	}
+	.gig-icons-wrapper {
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		/* flex: 1; */
+		/* text-align: right; */
+		.gig-icon {
+			color: ${({ theme }) => theme.primaryColor};
+			/* color: ${({ theme }) => theme.secondaryColor}; */
+			/* font-size: 2rem; */
+			font-size: 0.9em;
+		}
+	}
 	.wrapper-icon {
 		background: ${({ theme }) => theme.white};
 		border-radius: 4px;
@@ -138,6 +181,18 @@ const StyledBandGigCard = styled.div`
 	.right p {
 		text-align: right;
 		width: 7.5rem;
+	}
+	.counter {
+		/* flex: 1; */
+		p {
+			text-align: right;
+			color: ${({ theme }) => theme.txtGrey};
+			font-size: 0.9em;
+			strong {
+				color: ${({ theme }) => theme.secondaryColor};
+				/* font-size: 1.8rem; */
+			}
+		}
 	}
 `;
 

@@ -29,7 +29,9 @@ const BandGigsList = ({ gigs }) => {
 			{/* <p className='gigs-list-header'>Recorded weigh-ins</p> */}
 			<div className='gigs-list'>
 				{gigs &&
-					gigs.map((gig, index) => <BandGigCard key={gig._id} gig={gig} />)}
+					gigs.map((gig, index) => (
+						<BandGigCard key={gig._id} gig={gig} showGigLetter={true} />
+					))}
 			</div>
 		</StyledBandGigsList>
 	);
@@ -37,7 +39,7 @@ const BandGigsList = ({ gigs }) => {
 const StyledBandGigsList = styled.div`
 	/* overflow-y: scroll; */
 	overflow-y: auto;
-	flex: 1;
+	/* flex: 1; */
 	scroll-behavior: smooth;
 	scroll-behavior: smooth;
 	scrollbar-width: normal;

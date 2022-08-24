@@ -130,7 +130,8 @@ const StyledGigCard = styled.div`
 		flex: 1;
 		text-align: right;
 		.gig-icon {
-			color: ${({ theme }) => theme.secondaryColor};
+			/* color: ${({ theme }) => theme.secondaryColor}; */
+			color: ${({ theme }) => theme.primaryColor};
 			font-size: 2rem;
 		}
 	}

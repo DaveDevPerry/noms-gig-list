@@ -45,8 +45,8 @@ const BandCard = ({ band, difference }) => {
 			// onClick={setBandToView(band._id)}
 			onClick={(e) => {
 				e.preventDefault();
-				log(band.key, 'band on click');
-				setBandToView(band.key);
+				log(band.bandName, 'band on click');
+				setBandToView(band.bandName);
 				navigate('/band');
 			}}
 		>

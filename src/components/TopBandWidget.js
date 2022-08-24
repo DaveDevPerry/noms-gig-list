@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GiLaurelsTrophy } from 'react-icons/gi';
-import { SiBandsintown } from 'react-icons/si';
+// import { SiBandsintown } from 'react-icons/si';
 import { log } from '../helper';
+import { useStateContext } from '../lib/context';
 // import { useAuthContext } from '../hooks/useAuthContext';
 // import { useGigsContext } from '../hooks/useGigsContext';
 // import { ImArrowUp, ImArrowDown, ImArrowRight } from 'react-icons/im';
@@ -10,6 +11,7 @@ import { log } from '../helper';
 // import gigBarWidget from './gigBarWidget';
 
 const TopBandWidget = ({ gigCounterData }) => {
+	const { bandToView } = useStateContext();
 	// const percentage = 20.345;
 	// const { gigCounterData } = useGigsContext();
 	// const { gigCounterData, dispatch } = useGigsContext();
@@ -50,14 +52,14 @@ const TopBandWidget = ({ gigCounterData }) => {
 		<StyledTopBandWidget className='gig-widget'>
 			<div className='gig-widget-wrapper-container'>
 				<div className='wrapper-icon'>
-					<SiBandsintown className='arrow-icon hand gold' />
-					{/* <GiLaurelsTrophy className='arrow-icon gold' /> */}
+					{/* <SiBandsintown className='arrow-icon hand gold' /> */}
+					<GiLaurelsTrophy className='arrow-icon gold' />
 				</div>
 				<div className='wrapper'>
 					<p className='stat-name'>
 						<strong>
 							{/* {gigCounterData.upcoming_gig_count} */}
-							{gigCounterData.key}
+							{bandToView}
 							{/* {gigs
 								.sort((a, b) => {
 									return new Date(a.createdAt) - new Date(b.createdAt);
@@ -66,7 +68,7 @@ const TopBandWidget = ({ gigCounterData }) => {
 						</strong>
 						{/* <span> Kgs</span> */}
 					</p>
-					<p className='figure'>seen {gigCounterData.value} times</p>
+					<p className='figure'>seen {gigCounterData.length} times</p>
 					{/* <p className='figure'>
 						<strong>
 							{(
@@ -129,7 +131,7 @@ const StyledTopBandWidget = styled.div`
 	/* flex-direction: column; */
 	/* align-items: center; */
 	/* justify-content: center; */
-	flex: 1;
+	/* flex: 1; */
 	/* row-gap: 1rem; */
 	.gig-widget-wrapper-container {
 		display: flex;

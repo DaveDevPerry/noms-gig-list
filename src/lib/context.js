@@ -157,6 +157,10 @@ export const StateContext = ({ children }) => {
 	const [bandToView, setBandToView] = useState(null);
 	const [bandDetailsData, setBandDetailsData] = useState(null);
 
+	const [bandAllGigsData, setBandAllGigsData] = useState(null);
+	const [bandHeadlineGigsData, setBandHeadlineGigsData] = useState(null);
+	const [bandSupportGigsData, setBandSupportGigsData] = useState(null);
+
 	const [cityToView, setCityToView] = useState(null);
 	const [cityDetailsData, setCityDetailsData] = useState(null);
 
@@ -216,6 +220,15 @@ export const StateContext = ({ children }) => {
 				setCityToView,
 				cityDetailsData,
 				setCityDetailsData,
+
+				bandSupportGigsData,
+				setBandSupportGigsData,
+
+				setBandHeadlineGigsData,
+				bandHeadlineGigsData,
+
+				bandAllGigsData,
+				setBandAllGigsData,
 			}}
 		>
 			{children}
