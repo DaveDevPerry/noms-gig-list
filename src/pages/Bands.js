@@ -148,7 +148,8 @@ const Bands = () => {
 	// const { band_gig_data, dispatch } = useGigsContext();
 	const { user } = useAuthContext();
 
-	const { totalGigsPerBand, dataLoaded } = useStateContext();
+	const { totalGigsPerBand, combinedGigsPerBand, dataLoaded } =
+		useStateContext();
 	// const { dataLoaded } = useStateContext();
 
 	let navigate = useNavigate();
@@ -242,7 +243,8 @@ const Bands = () => {
 				totalGigsPerBand.map((band, index) => (
 					<BandCard key={index} band={band} />
 				))} */}
-			<BandsList bands={totalGigsPerBand} />
+			<BandsList bands={combinedGigsPerBand} />
+			{/* <BandsList bands={totalGigsPerBand} /> */}
 			{/* {bandsGigCount &&
 				bandsGigCount.map((band, index) => (
 					<BandCard key={index} band={band} />

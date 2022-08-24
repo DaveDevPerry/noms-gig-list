@@ -174,7 +174,8 @@ const StyledCityCard = styled.div`
 	.right p {
 		text-align: right;
 		color: ${({ theme }) => theme.secondaryColor};
-		font-size: 1.6rem;
+		/* font-size: 1.6rem; */
+		font-size: 0.9em;
 	}
 `;
 

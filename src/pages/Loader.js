@@ -20,8 +20,13 @@ const Loader = () => {
 
 	// const {setDataLoaded} = useStateContext();
 
-	const { setTotalGigsPerCity, setTotalGigsPerBand, setDataLoaded } =
-		useStateContext();
+	const {
+		setTotalGigsPerCity,
+		setTotalGigsPerBand,
+		setTotalSupportGigsPerBand,
+		setDataLoaded,
+		setCombinedGigsPerBand,
+	} = useStateContext();
 
 	useEffect(() => {
 		const fetchGigs = async () => {
@@ -109,8 +114,15 @@ const Loader = () => {
 	}, [gigsDispatch, user]);
 
 	useEffect(() => {
+		// setTotalGigsPerBand(globalStatData && globalStatData.combinedBandGigsCount);
 		setTotalGigsPerBand(globalStatData && globalStatData.bandsGigCount);
 		setTotalGigsPerCity(globalStatData && globalStatData.citiesGigCount);
+		setTotalSupportGigsPerBand(
+			globalStatData && globalStatData.supportBandsGigCount
+		);
+		setCombinedGigsPerBand(
+			globalStatData && globalStatData.combinedBandGigsCount
+		);
 	}, [globalStatData]);
 
 	// log('Hello loader', 1, 2, 3, Date.now());

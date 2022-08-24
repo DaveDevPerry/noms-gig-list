@@ -6,6 +6,8 @@ const AppContext = createContext();
 
 export const StateContext = ({ children }) => {
 	const [totalGigsPerBand, setTotalGigsPerBand] = useState(null);
+	const [totalSupportGigsPerBand, setTotalSupportGigsPerBand] = useState(null);
+	const [combinedGigsPerBand, setCombinedGigsPerBand] = useState(null);
 	const [totalGigsPerCity, setTotalGigsPerCity] = useState(null);
 	// const [isFormOpen, setIsFormOpen] = useState(false);
 	// const [isFinanceFormOpen, setIsFinanceFormOpen] = useState(false);
@@ -193,9 +195,16 @@ export const StateContext = ({ children }) => {
 				setTotalGigsPerBand,
 				totalGigsPerBand,
 
+				totalSupportGigsPerBand,
+				setTotalSupportGigsPerBand,
+
+				combinedGigsPerBand,
+				setCombinedGigsPerBand,
+
 				totalGigsPerCity,
 				setTotalGigsPerCity,
 				// setGlobalGigsPerBandCount,
+
 				dataLoaded,
 				setDataLoaded,
 				setBandToView,

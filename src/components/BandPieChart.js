@@ -25,11 +25,11 @@ const BandPieChart = ({ gigs }) => {
 	};
 
 	const bandNames = gigs.map(function (obj) {
-		return obj.key;
+		return obj.bandName;
 	});
 
 	const gigCount = gigs.map(function (obj) {
-		return obj.value;
+		return obj.totalGigCount;
 	});
 
 	const data = {

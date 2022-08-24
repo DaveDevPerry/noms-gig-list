@@ -57,21 +57,46 @@ const BandCard = ({ band, difference }) => {
 				</p>
 			</div> */}
 			<div className='full'>
+				<p>{band.bandName}</p>
+			</div>
+			<div className='band-counts-container'>
+				<div className='counter'>
+					<p>
+						<strong>H </strong>
+						{band.headlineCount < 10
+							? `0${band.headlineCount}`
+							: band.headlineCount}
+					</p>
+				</div>
+				<div className='counter'>
+					<p>
+						<strong>S </strong>
+						{band.supportCount < 10
+							? `0${band.supportCount}`
+							: band.supportCount}
+					</p>
+				</div>
+				<div className='counter'>
+					<p>
+						<strong>T </strong>
+						{band.totalGigCount < 10
+							? `0${band.totalGigCount}`
+							: band.totalGigCount}
+					</p>
+				</div>
+			</div>
+
+			{/* <div className='full'>
 				<p>
-					{/* <strong> */}
-					{band.key}
-					{/* {band.name} */}
-					{/* </strong> */}
+					{band.bandName}
 				</p>
 			</div>
 			<div className='right'>
 				<p>
-					{/* <strong> */}
 					{band.value}
-					{/* {band.name} */}
-					{/* </strong> */}
 				</p>
-			</div>
+			</div> */}
+
 			{/* <Band band={band} /> */}
 			{/* <p>{band.band_date}</p> */}
 			{/* <div>
@@ -126,6 +151,13 @@ const StyledBandCard = styled.div`
 			width: unset;
 		}
 	}
+	.band-counts-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		column-gap: 1rem;
+		flex: 1;
+	}
 	span {
 		display: none;
 		position: absolute;
@@ -175,10 +207,17 @@ const StyledBandCard = styled.div`
 	.band-figures {
 		width: 8rem;
 	}
-	.right p {
-		text-align: right;
-		color: ${({ theme }) => theme.secondaryColor};
-		font-size: 1.6rem;
+	.counter {
+		flex: 1;
+		p {
+			text-align: right;
+			color: ${({ theme }) => theme.txtGrey};
+			font-size: 0.9em;
+			strong {
+				color: ${({ theme }) => theme.secondaryColor};
+				/* font-size: 1.8rem; */
+			}
+		}
 	}
 `;
 

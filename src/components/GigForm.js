@@ -12,6 +12,7 @@ import { useVenuesContext } from '../hooks/useVenuesContext';
 import GigFormCities from './GigFormCities';
 import GigFormVenues from './GigFormVenues';
 import { log } from '../helper';
+import GigFormSupportBands from './GigFormSupportBands';
 // import { motion } from 'framer-motion';
 
 // const Auto = ({
@@ -117,13 +118,16 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 	const { user } = useAuthContext();
 
 	const [createNewBand, setCreateNewBand] = useState(true);
+	const [createNewSupportBand, setCreateNewSupportBand] = useState(true);
 	const [createNewCity, setCreateNewCity] = useState(true);
 	const [createNewVenue, setCreateNewVenue] = useState(true);
 
 	const [display, setDisplay] = useState(false);
+	const [supportDisplay, setSupportDisplay] = useState(false);
 	const [cityDisplay, setCityDisplay] = useState(false);
 	const [venueDisplay, setVenueDisplay] = useState(false);
 	const [headline_band, setHeadline_band] = useState('');
+	const [support_band, setSupport_band] = useState('');
 	const [gig_date, setGig_date] = useState('');
 	const [venue, setVenue] = useState('');
 	const [city, setCity] = useState('');
@@ -172,6 +176,45 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 				bandDispatch({ type: 'CREATE_BAND', payload: json });
 			}
 			log('new band added', json);
+		}
+		log('new band added, now adding gig');
+		// const handleClose = () => {
+		// 	navigate('/home');
+		// 	// setIsFormActive(!isFormActive);
+		// };
+		// }
+		// check if new band (support) and action
+		if (createNewSupportBand === false) {
+			log('new gig, existing band');
+			// gig = { headline_band, venue, city, gig_date, gig_details };
+		}
+		if (createNewSupportBand === true) {
+			log('new gig, create new support band');
+			// gig = { headline_band, venue, city, gig_date, gig_details };
+			const band = { name: support_band };
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/bands`,
+				{
+					// const response = await fetch('/api/weights', {
+					method: 'POST',
+					body: JSON.stringify(band),
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			log(json, 'json creating band in form post submit');
+			if (!response.ok) {
+				setError(json.error);
+			}
+			if (response.ok) {
+				setError(null);
+				log('new band added', json);
+				bandDispatch({ type: 'CREATE_BAND', payload: json });
+			}
+			log('new  support band added', json);
 		}
 		log('new band added, now adding gig');
 		// const handleClose = () => {
@@ -251,6 +294,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 
 		const gig = {
 			headline_band,
+			support_band,
 			venue,
 			city,
 			gig_date,
@@ -284,6 +328,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 			setVenue('');
 			setCity('');
 			setHeadline_band('');
+			setSupport_band('');
 			setGig_date('');
 			setGig_details('');
 			setIsFestival(false);
@@ -324,24 +369,17 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 					emptyFields={emptyFields}
 					setCreateNewBand={setCreateNewBand}
 				/>
-				{/* <Auto
-					setDisplay={setDisplay}
-					display={display}
-					setHeadline_band={setHeadline_band}
-					headline_band={headline_band}
+			</div>
+			<div className='input-wrapper-band'>
+				<label>Support Band:</label>
+				<GigFormSupportBands
+					setSupportDisplay={setSupportDisplay}
+					supportDisplay={supportDisplay}
+					setSupport_band={setSupport_band}
+					support_band={support_band}
 					emptyFields={emptyFields}
-					setCreateNewBand={setCreateNewBand}
-				/> */}
-				{/* <input
-					type='text'
-					id='input-number'
-					placeholder='type to search'
-					onClick={() => setDisplay(!display)}
-					value={headline_band}
-					onChange={(e) => setHeadline_band(e.target.value)}
-					className={emptyFields.includes('headline_band') ? 'error' : ''}
-					autoFocus
-				/> */}
+					setCreateNewSupportBand={setCreateNewSupportBand}
+				/>
 			</div>
 			{/* <div className='input-wrapper'>
 				<label>Headline Band:</label>

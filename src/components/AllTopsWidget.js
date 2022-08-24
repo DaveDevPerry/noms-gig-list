@@ -55,9 +55,9 @@ const AllTopsWidget = ({ bandWinner, cityWinner }) => {
 				<ul className='wrapper'>
 					<li>
 						<p className='stat-name'>
-							<strong>{bandWinner.key}</strong>
+							<strong>{bandWinner.bandName}</strong>
 						</p>
-						<p className='figure'>seen {bandWinner.value} times</p>
+						<p className='figure'>seen {bandWinner.totalGigCount} times</p>
 					</li>
 					<li>
 						<p className='stat-name'>
