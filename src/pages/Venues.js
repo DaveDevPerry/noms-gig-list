@@ -13,15 +13,17 @@ import { FaUsers } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
 import VenuesList from '../components/VenuesList';
+// import { log } from '../helper';
 // import { useEffect } from 'react';
 
 const Venues = () => {
 	// const { venues } = useVenuesContext();
-	const { venues, dispatch } = useVenuesContext();
+	const { dispatch } = useVenuesContext();
+	// const { venues, dispatch } = useVenuesContext();
 	// const { band_gig_data, dispatch } = useGigsContext();
 	const { user } = useAuthContext();
 
-	const { dataLoaded } = useStateContext();
+	const { totalGigsPerVenue, dataLoaded } = useStateContext();
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -56,6 +58,33 @@ const Venues = () => {
 			fetchVenues();
 		}
 	}, [dispatch, user]);
+
+	// useEffect(() => {
+	// 	const fetchGigsPerUniqueVenue = async () => {
+	// 		const response = await fetch(
+	// 			`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
+	// 			{
+	// 				headers: {
+	// 					Authorization: `Bearer ${user.token}`,
+	// 				},
+	// 			}
+	// 		);
+	// 		const json = await response.json();
+	// 		log(json, 'json in venues')
+
+	// 		if (response.ok) {
+	// 			// setWorkouts(json);
+	// 			dispatch({
+	// 				type: 'SET_VENUES',
+	// 				payload: json,
+	// 			});
+	// 		}
+	// 	};
+	// 	// if we have a value for the user then fetch the workouts
+	// 	if (user) {
+	// 		fetchGigsPerUniqueVenue();
+	// 	}
+	// }, [dispatch, user]);
 	// useEffect(() => {
 	// 	const fetchGigCountPerBand = async () => {
 	// 		const response = await fetch(
@@ -91,23 +120,17 @@ const Venues = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{/* <WeightForm /> */}
-			{/* <WeightUnitsWidget gigs={gigs} /> */}
-			{/* <WeightConvertor /> */}
-			{/* <gigsProgressWidget gigs={gigs} /> */}
-			{/* <GigsList gigs={gigs} /> */}
-			{/* {venues && venues.map((band) => <p key={band._id}>{band.name}</p>)} */}
 			<div className='venue-name-list-header'>
 				<p>All venues</p>
 				<div>
-					<FaUsers className='nav-icon' />x{venues && venues.length}
+					<FaUsers className='nav-icon' />x
+					{totalGigsPerVenue && totalGigsPerVenue.length}
+					{/* <FaUsers className='nav-icon' />x{venues && venues.length} */}
 				</div>
 			</div>
-			{/* {venues &&
-				venues.map((venue) => <VenueCard key={venue._id} venue={venue} />)} */}
-			<VenuesList venues={venues} />
-			{/* <p>venue PAGE</p> */}
-			{/* <Auto /> */}
+
+			<VenuesList venues={totalGigsPerVenue} />
+			{/* <VenuesList venues={venues} /> */}
 		</StyledVenues>
 	);
 };

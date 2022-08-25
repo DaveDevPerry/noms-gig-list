@@ -26,6 +26,7 @@ const Loader = () => {
 		setTotalSupportGigsPerBand,
 		setDataLoaded,
 		setCombinedGigsPerBand,
+		setTotalGigsPerVenue,
 	} = useStateContext();
 
 	useEffect(() => {
@@ -123,6 +124,8 @@ const Loader = () => {
 		setCombinedGigsPerBand(
 			globalStatData && globalStatData.combinedBandGigsCount
 		);
+		setTotalGigsPerVenue(globalStatData && globalStatData.uniqueVenueCount);
+		// run global context function to return array of unique venue gigs obj
 	}, [globalStatData]);
 
 	// log('Hello loader', 1, 2, 3, Date.now());

@@ -9,6 +9,7 @@ export const StateContext = ({ children }) => {
 	const [totalSupportGigsPerBand, setTotalSupportGigsPerBand] = useState(null);
 	const [combinedGigsPerBand, setCombinedGigsPerBand] = useState(null);
 	const [totalGigsPerCity, setTotalGigsPerCity] = useState(null);
+	const [totalGigsPerVenue, setTotalGigsPerVenue] = useState(null);
 	// const [isFormOpen, setIsFormOpen] = useState(false);
 	// const [isFinanceFormOpen, setIsFinanceFormOpen] = useState(false);
 	// const [isTaskFormOpen, setIsTaskFormOpen] = useState(false);
@@ -166,6 +167,10 @@ export const StateContext = ({ children }) => {
 
 	const [gigToView, setGigToView] = useState(null);
 
+	const [venueToView, setVenueToView] = useState(null);
+	const [venueDetailsData, setVenueDetailsData] = useState(null);
+	const [venueAllGigsData, setVenueAllGigsData] = useState(null);
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -234,6 +239,17 @@ export const StateContext = ({ children }) => {
 
 				gigToView,
 				setGigToView,
+
+				totalGigsPerVenue,
+				setTotalGigsPerVenue,
+
+				venueToView,
+				setVenueToView,
+
+				venueDetailsData,
+				setVenueDetailsData,
+				venueAllGigsData,
+				setVenueAllGigsData,
 			}}
 		>
 			{children}

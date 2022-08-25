@@ -137,6 +137,10 @@ export const gigsReducer = (state, action) => {
 
 			// support count only
 			const clonedSupportGigs = [...action.payload];
+			// const gigSupportCountObj = clonedSupportGigs.map(
+			// 	({ support_band }) => support_band
+			// );
+			// log(gigSupportCountObj, 'gigSupportCountObj');
 			const gigSupportCountObj = clonedSupportGigs
 				.map(({ support_band }) => support_band)
 				.reduce(function (count, currentValue) {
@@ -147,6 +151,7 @@ export const gigsReducer = (state, action) => {
 						count
 					);
 				}, {});
+			log(gigSupportCountObj, 'gigSupportCountObj');
 			// convert object to array of key value pair objects
 			const gigSupportCountArrOfObj = Object.entries(gigSupportCountObj)
 				.map(([key, value]) => ({
@@ -242,9 +247,88 @@ export const gigsReducer = (state, action) => {
 			});
 			log(merged, 'merged');
 			const uniqueVenues = [...new Set(merged)];
+
 			log(uniqueVenues, 'uniqueVenues');
 			const sortedUniqueVenues = uniqueVenues.sort();
 			log(sortedUniqueVenues, 'sortedUniqueVenues');
+
+			// get all gigs per unique venue
+			const clonedGigUniqueVenue = [...action.payload];
+			// const uniqueVenueCountObj = clonedGigUniqueVenue.map((gig) => {
+			// 	return {
+			// 		gigId: gig._id,
+			// 		venue: gig.venue,
+			// 		city: gig.city,
+			// 		combined: `${gig.venue}${gig.city}`,
+			// 	};
+			// });
+
+			// log(uniqueVenueCountObj, 'uniqueVenueCountObj');
+			const uniqueVenueCountObj = clonedGigUniqueVenue
+				.map((gig) => {
+					return {
+						gigId: gig._id,
+						venue: gig.venue,
+						city: gig.city,
+						combined: `${gig.venue}|${gig.city}`,
+					};
+				})
+				.reduce(function (count, currentValue) {
+					return (
+						count[currentValue.combined]
+							? ++count[currentValue.combined]
+							: (count[currentValue.combined] = 1),
+						count
+					);
+				}, {});
+			log(uniqueVenueCountObj, 'uniqueVenueCountObj');
+
+			// convert object to array of key value pair objects
+			const uniqueVenueGigCountArrOfObj = Object.entries(
+				uniqueVenueCountObj
+			).map(([key, value]) => ({
+				combinedVenueCity: key,
+				venueCount: value,
+				venueName: key.substring(0, key.indexOf('|')),
+				cityName: key.substring(key.indexOf('|') + 1),
+			}));
+
+			// const uniqueVenueGigCountArrOfObj = Object.entries(
+			// 	uniqueVenueCountObj
+			// ).map(([key, value]) => ({
+			// 	combinedVenueCity: key,
+			// 	venueCount: value,
+			// }));
+
+			// const sortVenues = uniqueVenueGigCountArrOfObj.sort((a, b) => {
+			// 	return b.combinedVenueCity > a.combinedVenueCity;
+			// });
+			// reduce
+			// const reducedCount = uniqueVenueCountObj.reduce(function (
+			// 	count,
+			// 	combined
+			// ) {
+			// 	return (
+			// 		count[combined] ? ++count[combined] : (count[combined] = 1), count
+			// 	);
+			// },
+			// {});
+			// // reduce
+			// const reducedCount = uniqueVenueCountObj.reduce(function (
+			// 	count,
+			// 	currentValue
+			// ) {
+			// 	return (
+			// 		count[currentValue]
+			// 			? ++count[currentValue]
+			// 			: (count[currentValue] = 1),
+			// 		count
+			// 	);
+			// },
+			// {});
+			// log(reducedCount, 'reducedCount');
+
+			// iterate sortedUniqueVenues to get count
 
 			return {
 				globalStatData: {
@@ -258,6 +342,12 @@ export const gigsReducer = (state, action) => {
 						a.bandName > b.bandName ? 1 : -1
 					),
 					uniqueVenues: sortedUniqueVenues,
+					uniqueVenueCount: uniqueVenueGigCountArrOfObj.sort((a, b) =>
+						a.combinedVenueCity > b.combinedVenueCity ? 1 : -1
+					),
+					// uniqueVenueCount: sortVenues,
+					// uniqueVenueCount: uniqueVenueGigCountArrOfObj,
+					// uniqueVenueCount: uniqueVenueCountObj,
 					// combinedBandGigsCount: mergedBandGigCounts,
 					// venuesGigCount: sortVenuesByGigCount,
 					// gigsPerDecadeCount: gigsdecade,

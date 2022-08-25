@@ -1,7 +1,10 @@
 // import { usebandsContext } from '../hooks/usebandsContext';
 // import { useAuthContext } from '../hooks/useAuthContext';
 
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { log } from '../helper';
+import { useStateContext } from '../lib/context';
 // import { ImArrowUp, ImArrowDown } from 'react-icons/im';
 
 // date fns
@@ -9,6 +12,9 @@ import styled from 'styled-components';
 // import { format } from 'date-fns';
 
 const VenueCard = ({ venue, difference }) => {
+	const { setVenueToView } = useStateContext();
+
+	const navigate = useNavigate();
 	// const { dispatch } = usevenuesContext();
 	// const { user } = useAuthContext();
 
@@ -32,35 +38,31 @@ const VenueCard = ({ venue, difference }) => {
 	// };
 
 	return (
-		<StyledVenueCard className='venue-card'>
-			{/* <div>
-				<p className='left'>{format(new Date(venue.venue_date), 'dd/MM/yyyy')}</p>
-				<p>
-					{formatDistanceToNow(new Date(venue.venue_date), { addSuffix: true })}
-				</p>
-			</div> */}
+		<StyledVenueCard
+			className='venue-card'
+			onClick={(e) => {
+				e.preventDefault();
+				log(venue, 'venue on click');
+				setVenueToView({ city: venue.cityName, venue: venue.venueName });
+				// setVenueToView(venue.combinedVenueCity);
+				navigate('/venue');
+			}}
+		>
 			<div className='full'>
+				<p>{venue.venueName}</p>
+				<span>{venue.cityName}</span>
+			</div>
+			<div className='right'>
 				<p>
 					{/* <strong> */}
-					{venue.name}
+					{venue.venueCount < 10 ? `0${venue.venueCount}` : venue.venueCount}
+					{/* {band.name} */}
 					{/* </strong> */}
 				</p>
-				{/* <p>{venue.venue}</p> */}
 			</div>
-			{/* <p>{venue.venue_date}</p> */}
-			{/* <div>
-				<p>{venue.venue}</p>
+			{/* <div className='full'>
 				<p>
-					{formatDistanceToNow(new Date(venue.venue_date), { addSuffix: true })}
-				</p>
-			</div> */}
-
-			{/* <div className='venue-figures'>
-				<p>
-					<strong>{venue.headline_venue}</strong>
-				</p>
-				<p>
-					<strong>{venue.venue}</strong>
+					{venue.name}
 				</p>
 			</div> */}
 		</StyledVenueCard>
@@ -90,7 +92,11 @@ const StyledVenueCard = styled.div`
 		}
 	}
 	.full {
-		/* flex: 1; */
+		flex: 1;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		column-gap: 1rem;
 		p {
 			/* margin: 0;
 		font-size: 0.8em;
@@ -99,8 +105,16 @@ const StyledVenueCard = styled.div`
 			font-size: 0.9em;
 			width: unset;
 		}
+		span {
+			/* margin: 0;
+		font-size: 0.8em;
+		color: ${({ theme }) => theme.txtGrey}; */
+			text-transform: capitalize;
+			font-size: 0.9em;
+			width: unset;
+		}
 	}
-	span {
+	/* span {
 		display: none;
 		position: absolute;
 		top: 1.2rem;
@@ -110,7 +124,7 @@ const StyledVenueCard = styled.div`
 		padding: 0.6rem;
 		border-radius: 50%;
 		color: ${({ theme }) => theme.txtDarkGrey};
-	}
+	} */
 	.wrapper-icon {
 		background: ${({ theme }) => theme.white};
 		border-radius: 4px;
@@ -151,6 +165,9 @@ const StyledVenueCard = styled.div`
 	}
 	.right p {
 		text-align: right;
+		color: ${({ theme }) => theme.secondaryColor};
+		/* font-size: 1.6rem; */
+		font-size: 0.9em;
 	}
 `;
 

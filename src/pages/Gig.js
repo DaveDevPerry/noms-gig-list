@@ -7,6 +7,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 // import BandGigsList from '../components/BandGigsList';
 // import { FaUsers } from 'react-icons/fa';
 import { log } from '../helper';
+import { useNavigate } from 'react-router-dom';
 // import { format } from 'date-fns';
 // import BandSupportGigsList from '../components/BandSupportGigsList';
 // import BandHeadlineGigsList from '../components/BandHeadlineGigsList';
@@ -17,6 +18,7 @@ const Gig = ({ band, id }) => {
 	const { gig, dispatch } = useGigsContext();
 	const {
 		gigToView,
+		dataLoaded,
 		// setBandDetailsData,
 		// bandDetailsData,
 		// setBandSupportGigsData,
@@ -26,6 +28,13 @@ const Gig = ({ band, id }) => {
 		// setBandAllGigsData,
 		// bandAllGigsData,
 	} = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+	}, [navigate, dataLoaded]);
 
 	useEffect(() => {
 		log(gigToView, ' gig id to view  in gig');

@@ -42,7 +42,7 @@ const CountdownWidget = ({ gig }) => {
 							<strong>{gig.headline_band}</strong>
 						</p>
 					)}
-					<p>
+					<p className='countdown-location'>
 						@ {gig.venue}, {gig.city}
 					</p>
 
@@ -110,6 +110,9 @@ const StyledCountdownWidget = styled.div`
 				text-transform: uppercase;
 				color: ${({ theme }) => theme.secondaryColor};
 				font-size: 2rem;
+			}
+			.countdown-location {
+				font-weight: bolder;
 			}
 		}
 		.share-icon {
