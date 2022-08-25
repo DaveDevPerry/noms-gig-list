@@ -7,8 +7,14 @@ import styled from 'styled-components';
 // date fns
 // import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { format } from 'date-fns';
+import { log } from '../helper';
+import { useStateContext } from '../lib/context';
+import { useNavigate } from 'react-router-dom';
 
 const CityGigCard = ({ gig, difference }) => {
+	const { setGigToView } = useStateContext();
+
+	const navigate = useNavigate();
 	// const { dispatch } = usegigsContext();
 	// const { user } = useAuthContext();
 
@@ -32,7 +38,15 @@ const CityGigCard = ({ gig, difference }) => {
 	// };
 
 	return (
-		<StyledCityGigCard className='gig-details'>
+		<StyledCityGigCard
+			className='gig-details'
+			onClick={(e) => {
+				e.preventDefault();
+				log(gig._id, 'gig id on click');
+				setGigToView(gig._id);
+				navigate('/gig');
+			}}
+		>
 			<div className='right'>
 				<p>
 					{/* <strong> */}

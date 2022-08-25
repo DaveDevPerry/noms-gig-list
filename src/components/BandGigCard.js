@@ -10,9 +10,14 @@ import { format } from 'date-fns';
 import { useStateContext } from '../lib/context';
 
 import { GiCampingTent } from 'react-icons/gi';
+import { useNavigate } from 'react-router-dom';
+import { log } from '../helper';
 
 const BandGigCard = ({ gig, showGigLetter }) => {
 	const { bandToView } = useStateContext();
+	const { setGigToView } = useStateContext();
+
+	const navigate = useNavigate();
 	// const { dispatch } = usegigsContext();
 	// const { user } = useAuthContext();
 
@@ -36,7 +41,15 @@ const BandGigCard = ({ gig, showGigLetter }) => {
 	// };
 
 	return (
-		<StyledBandGigCard className='gig-details'>
+		<StyledBandGigCard
+			className='gig-details'
+			onClick={(e) => {
+				e.preventDefault();
+				log(gig._id, 'gig id on click');
+				setGigToView(gig._id);
+				navigate('/gig');
+			}}
+		>
 			<div className='right'>
 				<p>
 					{/* <strong> */}

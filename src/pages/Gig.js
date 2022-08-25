@@ -131,8 +131,12 @@ const Gig = ({ band, id }) => {
 						<strong>{gig[0].headline_band}</strong>
 					</p>
 					<p className='header-location'>
-						<span>{gig[0].venue}</span> | <span>{gig[0].city}</span>
+						<span>{gig[0].venue}</span>
+						<span>{gig[0].city}</span>
 					</p>
+					{/* <p className='header-location'>
+						<span>{gig[0].venue}</span> | <span>{gig[0].city}</span>
+					</p> */}
 					<p className='header-date'>
 						{new Date(gig[0].gig_date).toLocaleDateString('en-us', {
 							weekday: 'long',
@@ -144,13 +148,13 @@ const Gig = ({ band, id }) => {
 					</p>
 				</StyledGigHeaderWidget>
 			)}
-			{gig && (
+			{gig && gig[0].support_band !== '' && (
 				<StyledGigSupportWidget>
 					<p className='support-title'>support</p>
 					<p className='support-band'>{gig[0].support_band}</p>
 				</StyledGigSupportWidget>
 			)}
-			{gig && (
+			{gig && gig[0].gig_details !== '' && (
 				<StyledGigDetailsWidget>
 					<p className='details-title'>details</p>
 					<p className='details-band'>{gig[0].gig_details}</p>
@@ -294,6 +298,18 @@ const StyledGigHeaderWidget = styled.div`
 	}
 	.header-location {
 		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		font-size: 2rem;
+		/* row-gap: 1rem; */
+		span {
+			text-transform: capitalize;
+			font-weight: bolder;
+		}
+	}
+	/* .header-location {
+		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
@@ -303,7 +319,7 @@ const StyledGigHeaderWidget = styled.div`
 			text-transform: capitalize;
 			font-weight: bolder;
 		}
-	}
+	} */
 	.header-date {
 		font-size: 2rem;
 	}
