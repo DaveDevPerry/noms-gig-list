@@ -164,6 +164,8 @@ export const StateContext = ({ children }) => {
 	const [cityToView, setCityToView] = useState(null);
 	const [cityDetailsData, setCityDetailsData] = useState(null);
 
+	const [gigToView, setGigToView] = useState(null);
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -229,6 +231,9 @@ export const StateContext = ({ children }) => {
 
 				bandAllGigsData,
 				setBandAllGigsData,
+
+				gigToView,
+				setGigToView,
 			}}
 		>
 			{children}

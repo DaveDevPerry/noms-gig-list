@@ -27,6 +27,15 @@ export const gigsReducer = (state, action) => {
 			return {
 				gigs: action.payload,
 			};
+
+		case 'SET_GIG':
+			log(action.payload, 'action payload gig');
+			return {
+				gig: action.payload,
+			};
+		// return {
+		// 	gig:
+		// }
 		// case 'SET_BANDS_GIG_COUNT':
 		// 	const clonedGigs = [...action.payload];
 		// 	const gigCountObj = clonedGigs
@@ -212,19 +221,30 @@ export const gigsReducer = (state, action) => {
 				return b.value - a.value;
 			});
 			// venues
-			const clonedUniqueVenueCount = [...action.payload];
+			// const clonedUniqueVenueCount = [...action.payload];
 
-			const res = Object.values(
-				clonedUniqueVenueCount.reduce(function (acc, item) {
-					return (
-						acc[`${item.venue}-${item.city}`]
-							? ++acc[`${item.venue}-${item.city}`]
-							: (acc[`${item.venue}-${item.city}`] = 1),
-						acc
-					);
-				}, {})
-			);
-			log(res, 'res gig context');
+			// const res = Object.values(
+			// 	clonedUniqueVenueCount.reduce(function (acc, item) {
+			// 		return (
+			// 			acc[`${item.venue}-${item.city}`]
+			// 				? ++acc[`${item.venue}-${item.city}`]
+			// 				: (acc[`${item.venue}-${item.city}`] = 1),
+			// 			acc
+			// 		);
+			// 	}, {})
+			// );
+			// log(res, 'res gig context');
+
+			const clonedUniqueVenueCount = [...action.payload];
+			log(clonedUniqueVenueCount, 'cloned unique venue');
+			const merged = clonedUniqueVenueCount.map((gig, index) => {
+				return `${gig.venue},${gig.city}`;
+			});
+			log(merged, 'merged');
+			const uniqueVenues = [...new Set(merged)];
+			log(uniqueVenues, 'uniqueVenues');
+			const sortedUniqueVenues = uniqueVenues.sort();
+			log(sortedUniqueVenues, 'sortedUniqueVenues');
 
 			return {
 				globalStatData: {
@@ -237,6 +257,7 @@ export const gigsReducer = (state, action) => {
 					combinedBandGigsCount: mergedBandGigCounts.sort((a, b) =>
 						a.bandName > b.bandName ? 1 : -1
 					),
+					uniqueVenues: sortedUniqueVenues,
 					// combinedBandGigsCount: mergedBandGigCounts,
 					// venuesGigCount: sortVenuesByGigCount,
 					// gigsPerDecadeCount: gigsdecade,
@@ -449,6 +470,7 @@ export const GigsContextProvider = ({ children }) => {
 		bandsGigCount: null,
 		citiesGigCount: null,
 		globalStatData: null,
+		gig: null,
 	});
 
 	return (

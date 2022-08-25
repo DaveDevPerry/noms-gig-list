@@ -9,8 +9,14 @@ import styled from 'styled-components';
 import { format } from 'date-fns';
 
 import { GiCampingTent } from 'react-icons/gi';
+import { useStateContext } from '../lib/context';
+import { useNavigate } from 'react-router-dom';
+import { log } from '../helper';
 
 const GigCard = ({ gig, difference }) => {
+	const { setGigToView } = useStateContext();
+
+	const navigate = useNavigate();
 	// const { dispatch } = usegigsContext();
 	// const { user } = useAuthContext();
 
@@ -34,7 +40,15 @@ const GigCard = ({ gig, difference }) => {
 	// };
 
 	return (
-		<StyledGigCard className='gig-card'>
+		<StyledGigCard
+			className='gig-card'
+			onClick={(e) => {
+				e.preventDefault();
+				log(gig._id, 'gig id on click');
+				setGigToView(gig._id);
+				navigate('/gig');
+			}}
+		>
 			<div>
 				<p className='left'>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</p>
 				{/* <p>

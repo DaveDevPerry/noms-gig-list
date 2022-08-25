@@ -57,6 +57,8 @@ const Login = () => {
 const StyledLogin = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
+	/* justify-content: flex-start; */
+
 	row-gap: 2rem;
 	margin: 0 auto;
 	max-width: 42rem;
