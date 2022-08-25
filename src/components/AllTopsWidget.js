@@ -8,7 +8,7 @@ import { GiLaurelsTrophy } from 'react-icons/gi';
 // import { FaCheck } from 'react-icons/fa';
 // import gigBarWidget from './gigBarWidget';
 
-const AllTopsWidget = ({ bandWinner, cityWinner }) => {
+const AllTopsWidget = ({ bandWinner, cityWinner, venueWinner }) => {
 	// const percentage = 20.345;
 	// const { gigCounterData } = useGigsContext();
 	// const { gigCounterData, dispatch } = useGigsContext();
@@ -57,7 +57,35 @@ const AllTopsWidget = ({ bandWinner, cityWinner }) => {
 						<p className='stat-name'>
 							<strong>{bandWinner.bandName}</strong>
 						</p>
+						<p className='figure'>{bandWinner.totalGigCount} gigs</p>
+					</li>
+					<li>
+						<p className='stat-name'>
+							<strong>{venueWinner.venueName}</strong>
+						</p>
+						<p className='stat-city-name'>{venueWinner.cityName}</p>
+						<p className='figure'>{venueWinner.venueCount} gigs</p>
+					</li>
+					<li>
+						<p className='stat-name'>
+							<strong>{cityWinner.key}</strong>
+						</p>
+						<p className='figure'>{cityWinner.value} gigs</p>
+					</li>
+				</ul>
+				{/* <ul className='wrapper'>
+					<li>
+						<p className='stat-name'>
+							<strong>{bandWinner.bandName}</strong>
+						</p>
 						<p className='figure'>seen {bandWinner.totalGigCount} times</p>
+					</li>
+					<li>
+						<p className='stat-name'>
+							<strong>{venueWinner.venueName}</strong>
+						</p>
+						<p className='stat-city-name'>{venueWinner.cityName}</p>
+						<p className='figure'>visited {venueWinner.venueCount} times</p>
 					</li>
 					<li>
 						<p className='stat-name'>
@@ -65,15 +93,8 @@ const AllTopsWidget = ({ bandWinner, cityWinner }) => {
 						</p>
 						<p className='figure'>visited {cityWinner.value} times</p>
 					</li>
-				</ul>
-				{/* <div className='wrapper'>
-					<p className='stat-name'>
-						<strong>
-							{gigCounterData.key}
-						</strong>
-					</p>
-					<p className='figure'>seen {gigCounterData.value} times</p>
-				</div> */}
+				</ul> */}
+
 				<div className='wrapper-icon'>
 					<GiLaurelsTrophy className='arrow-icon gold' />
 				</div>
@@ -131,6 +152,7 @@ const StyledAllTopsWidget = styled.div`
 		flex-direction: row;
 		/* align-items: center; */
 		justify-content: space-between;
+		column-gap: 2rem;
 		/* justify-content: space-around; */
 		.wrapper {
 			/* background: ${({ theme }) => theme.white}; */
@@ -138,14 +160,15 @@ const StyledAllTopsWidget = styled.div`
 			/* padding: 0px; */
 			display: flex;
 			flex-direction: column;
-			justify-content: space-between;
+			/* justify-content: space-between; */
 			/* width: 90px; */
+			flex: 1;
 			li {
 				display: flex;
 				flex-direction: row;
 				align-items: center;
 				justify-content: flex-start;
-				column-gap: 1rem;
+				column-gap: 0.5rem;
 			}
 			p {
 				/* text-align: center; */
@@ -155,6 +178,8 @@ const StyledAllTopsWidget = styled.div`
 				margin: 0;
 				font-size: 0.8em;
 				color: ${({ theme }) => theme.txtGrey};
+				flex: 1;
+				text-align: right;
 			}
 			p.stat-name {
 				margin: 0;
@@ -162,6 +187,10 @@ const StyledAllTopsWidget = styled.div`
 				color: ${({ theme }) => theme.secondaryColor};
 				/* color: ${({ theme }) => theme.txtGrey}; */
 				text-transform: uppercase;
+			}
+			p.stat-city-name {
+				font-size: 1.4rem;
+				color: ${({ theme }) => theme.txtDarkGrey};
 			}
 		}
 		.wrapper-icon {

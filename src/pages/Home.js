@@ -23,7 +23,8 @@ import { log } from '../helper';
 const Home = () => {
 	const { gigCounterData, dispatch } = useGigsContext();
 	const { user } = useAuthContext();
-	const { totalGigsPerBand, totalGigsPerCity, dataLoaded } = useStateContext();
+	const { totalGigsPerBand, totalGigsPerCity, totalGigsPerVenue, dataLoaded } =
+		useStateContext();
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -57,6 +58,7 @@ const Home = () => {
 	}, [dispatch, user]);
 
 	log(gigCounterData, 'gig counter data');
+	log(totalGigsPerVenue, 'totalGigsPerVenue data');
 
 	return (
 		<StyledHome
@@ -72,6 +74,7 @@ const Home = () => {
 				<div className='stat-container'>
 					<AllTopsWidget
 						bandWinner={totalGigsPerBand[0]}
+						venueWinner={totalGigsPerVenue[0]}
 						cityWinner={totalGigsPerCity[0]}
 					/>
 				</div>
