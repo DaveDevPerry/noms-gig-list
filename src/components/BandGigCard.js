@@ -51,7 +51,7 @@ const BandGigCard = ({ gig, showGigLetter }) => {
 			}}
 		>
 			<div className='right'>
-				<p>
+				<p className='mono-font'>
 					{/* <strong> */}
 					{format(new Date(gig.gig_date), 'dd/MM/yyyy')}
 					{/* </strong> */}
@@ -109,19 +109,22 @@ const StyledBandGigCard = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0.5rem 0; */
-	padding: 0.5rem 1rem;
+	padding: 0.5rem;
+	/* padding: 0.5rem 1rem; */
 	position: relative;
 	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	column-gap: 1rem;
+	column-gap: 0.5rem;
+	/* column-gap: 1rem; */
 	.full {
 		flex: 1;
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
-		column-gap: 1rem;
+		/* column-gap: 1rem; */
+		column-gap: 0.5rem;
 	}
 	p {
 		margin: 0;
@@ -193,7 +196,8 @@ const StyledBandGigCard = styled.div`
 	}
 	.right p {
 		text-align: right;
-		width: 7.5rem;
+		/* width: 7.5rem; */
+		font-size: 0.7em;
 	}
 	.counter {
 		/* flex: 1; */

@@ -23,8 +23,13 @@ import { log } from '../helper';
 const Home = () => {
 	const { gigCounterData, dispatch } = useGigsContext();
 	const { user } = useAuthContext();
-	const { totalGigsPerBand, totalGigsPerCity, totalGigsPerVenue, dataLoaded } =
-		useStateContext();
+	const {
+		totalGigsPerBand,
+		totalGigsPerCity,
+		totalGigsPerVenue,
+		totalSupportGigsPerBand,
+		dataLoaded,
+	} = useStateContext();
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -76,6 +81,7 @@ const Home = () => {
 						bandWinner={totalGigsPerBand[0]}
 						venueWinner={totalGigsPerVenue[0]}
 						cityWinner={totalGigsPerCity[0]}
+						supportWinner={totalSupportGigsPerBand[0]}
 					/>
 				</div>
 			)}

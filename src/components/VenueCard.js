@@ -53,7 +53,7 @@ const VenueCard = ({ venue, difference }) => {
 				<span>{venue.cityName}</span>
 			</div>
 			<div className='right'>
-				<p>
+				<p className='mono-font'>
 					{/* <strong> */}
 					{venue.venueCount < 10 ? `0${venue.venueCount}` : venue.venueCount}
 					{/* {band.name} */}

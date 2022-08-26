@@ -48,7 +48,7 @@ const CityGigCard = ({ gig, difference }) => {
 			}}
 		>
 			<div className='right'>
-				<p>
+				<p className='mono-font'>
 					{/* <strong> */}
 					{format(new Date(gig.gig_date), 'dd/MM/yyyy')}
 					{/* </strong> */}
@@ -80,19 +80,19 @@ const StyledCityGigCard = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0.5rem 0; */
-	padding: 0.5rem 1rem;
+	padding: 0.5rem;
 	position: relative;
 	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	column-gap: 1rem;
+	column-gap: 0.5rem;
 	.full {
 		flex: 1;
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
-		column-gap: 1rem;
+		column-gap: 0.5rem;
 	}
 	p {
 		margin: 0;
@@ -120,7 +120,7 @@ const StyledCityGigCard = styled.div`
 		justify-content: center;
 		align-items: center;
 		/* width: 100px; */
-		column-gap: 0.8rem;
+		column-gap: 0.5rem;
 		p {
 			text-align: right;
 			margin: 0;
@@ -151,7 +151,8 @@ const StyledCityGigCard = styled.div`
 	}
 	.right p {
 		text-align: right;
-		width: 7.5rem;
+		/* width: 7.5rem; */
+		font-size: 0.7em;
 	}
 `;
 

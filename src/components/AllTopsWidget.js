@@ -8,7 +8,12 @@ import { GiLaurelsTrophy } from 'react-icons/gi';
 // import { FaCheck } from 'react-icons/fa';
 // import gigBarWidget from './gigBarWidget';
 
-const AllTopsWidget = ({ bandWinner, cityWinner, venueWinner }) => {
+const AllTopsWidget = ({
+	bandWinner,
+	cityWinner,
+	venueWinner,
+	supportWinner,
+}) => {
 	// const percentage = 20.345;
 	// const { gigCounterData } = useGigsContext();
 	// const { gigCounterData, dispatch } = useGigsContext();
@@ -57,7 +62,15 @@ const AllTopsWidget = ({ bandWinner, cityWinner, venueWinner }) => {
 						<p className='stat-name'>
 							<strong>{bandWinner.bandName}</strong>
 						</p>
+						<p className='stat-city-name'>headline</p>
 						<p className='figure'>{bandWinner.totalGigCount} gigs</p>
+					</li>
+					<li>
+						<p className='stat-name'>
+							<strong>{supportWinner.bandName}</strong>
+						</p>
+						<p className='stat-city-name'>support</p>
+						<p className='figure'>{supportWinner.supportCount} gigs</p>
 					</li>
 					<li>
 						<p className='stat-name'>
@@ -138,7 +151,8 @@ const StyledAllTopsWidget = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0 auto 10px auto; */
-	padding: 1rem 2rem;
+	padding: 1rem;
+	/* padding: 1rem 2rem; */
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 
 	/* display: flex; */
@@ -152,7 +166,7 @@ const StyledAllTopsWidget = styled.div`
 		flex-direction: row;
 		/* align-items: center; */
 		justify-content: space-between;
-		column-gap: 2rem;
+		column-gap: 1rem;
 		/* justify-content: space-around; */
 		.wrapper {
 			/* background: ${({ theme }) => theme.white}; */
@@ -180,6 +194,7 @@ const StyledAllTopsWidget = styled.div`
 				color: ${({ theme }) => theme.txtGrey};
 				flex: 1;
 				text-align: right;
+				/* font-weight: bold; */
 			}
 			p.stat-name {
 				margin: 0;
@@ -187,10 +202,12 @@ const StyledAllTopsWidget = styled.div`
 				color: ${({ theme }) => theme.secondaryColor};
 				/* color: ${({ theme }) => theme.txtGrey}; */
 				text-transform: uppercase;
+				line-height: 0.8;
 			}
 			p.stat-city-name {
 				font-size: 1.4rem;
 				color: ${({ theme }) => theme.txtDarkGrey};
+				font-style: italic;
 			}
 		}
 		.wrapper-icon {

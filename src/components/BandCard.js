@@ -61,24 +61,24 @@ const BandCard = ({ band, difference }) => {
 			</div>
 			<div className='band-counts-container'>
 				<div className='counter'>
-					<p>
-						<strong>H </strong>
+					<p className='mono-font'>
+						<strong>H</strong>
 						{band.headlineCount < 10
 							? `0${band.headlineCount}`
 							: band.headlineCount}
 					</p>
 				</div>
 				<div className='counter'>
-					<p>
-						<strong>S </strong>
+					<p className='mono-font'>
+						<strong>S</strong>
 						{band.supportCount < 10
 							? `0${band.supportCount}`
 							: band.supportCount}
 					</p>
 				</div>
 				<div className='counter'>
-					<p>
-						<strong>T </strong>
+					<p className='mono-font'>
+						<strong>T</strong>
 						{band.totalGigCount < 10
 							? `0${band.totalGigCount}`
 							: band.totalGigCount}
@@ -156,7 +156,7 @@ const StyledBandCard = styled.div`
 		justify-content: space-between;
 		align-items: center;
 		column-gap: 1rem;
-		flex: 1;
+		/* flex: 1; */
 	}
 	span {
 		display: none;
@@ -212,10 +212,13 @@ const StyledBandCard = styled.div`
 		p {
 			text-align: right;
 			color: ${({ theme }) => theme.txtGrey};
-			font-size: 0.9em;
+			font-size: 0.7em;
+			/* font-size: 0.9em; */
+
 			strong {
 				color: ${({ theme }) => theme.secondaryColor};
-				/* font-size: 1.8rem; */
+				font-size: 1.6rem;
+				/* font-size: 0.9em; */
 			}
 		}
 	}

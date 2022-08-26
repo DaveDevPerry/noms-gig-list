@@ -56,7 +56,7 @@ const GigDetails = ({ gig, difference }) => {
 			{/* <p>{gig.gig_date}</p> */}
 
 			<div className='right'>
-				<p>
+				<p className='mono-font'>
 					<strong>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</strong>
 				</p>
 				<p>
@@ -79,13 +79,13 @@ const StyledGigDetails = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0.5rem 0; */
-	padding: 0.5rem 1rem;
+	padding: 0.5rem;
 	position: relative;
 	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	column-gap: 1rem;
+	column-gap: 0.5rem;
 	.full {
 		flex: 1;
 	}
@@ -146,6 +146,7 @@ const StyledGigDetails = styled.div`
 	}
 	.right p {
 		text-align: right;
+		font-size: 0.7em;
 	}
 `;
 

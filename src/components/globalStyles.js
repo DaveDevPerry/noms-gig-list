@@ -366,4 +366,8 @@ ${
   border-radius: 4px;
 } */
 }
+
+.mono-font{
+  font-family: 'Roboto Mono', monospace;
+}
 `;

@@ -43,7 +43,7 @@ const CountdownWidget = ({ gig }) => {
 						</p>
 					)}
 					<p className='countdown-location'>
-						@ {gig.venue}, {gig.city}
+						{gig.venue}, {gig.city}
 					</p>
 
 					<p>in {differenceInDays(new Date(gig.gig_date), new Date())} days</p>
@@ -82,7 +82,7 @@ const StyledCountdownWidget = styled.div`
 		justify-content: space-between;
 		/* letter-spacing: 2px; */
 		font-size: 1.6rem;
-		padding: 1rem 2rem;
+		padding: 1rem;
 		background-color: ${({ theme }) => theme.white};
 		border: none;
 		border-radius: 5px;
@@ -90,7 +90,7 @@ const StyledCountdownWidget = styled.div`
 		font-weight: bold;
 		cursor: pointer;
 		/* padding: 0.2rem 1rem; */
-		column-gap: 1rem;
+		column-gap: 0.5rem;
 		flex: 1;
 		font-style: italic;
 		.details-wrapper {
@@ -113,6 +113,7 @@ const StyledCountdownWidget = styled.div`
 			}
 			.countdown-location {
 				font-weight: bolder;
+				/* flex-wrap: wrap; */
 			}
 		}
 		.share-icon {

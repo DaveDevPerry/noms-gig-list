@@ -50,7 +50,9 @@ const GigCard = ({ gig, difference }) => {
 			}}
 		>
 			<div>
-				<p className='left'>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</p>
+				<p className='left mono-font'>
+					{format(new Date(gig.gig_date), 'dd/MM/yyyy')}
+				</p>
 				{/* <p>
 					{formatDistanceToNow(new Date(gig.gig_date), { addSuffix: true })}
 				</p> */}
@@ -102,7 +104,7 @@ const StyledGigCard = styled.div`
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	column-gap: 1rem;
+	column-gap: 0.5rem;
 
 	p {
 		margin: 0;
@@ -112,7 +114,8 @@ const StyledGigCard = styled.div`
 		/* &:first-child {
 		} */
 		&.left {
-			width: 8rem;
+			/* width: 8rem; */
+			font-size: 0.7em;
 		}
 	}
 	.full {
