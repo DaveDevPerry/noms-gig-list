@@ -114,7 +114,7 @@ const StyledHome = styled(motion.div)`
 	max-width: 42rem;
 	padding: 0 1rem;
 	overflow: hidden;
-	overflow-y: auto;
+	/* overflow-y: auto; */
 	transition: all 200ms linear;
 	margin: 0 auto;
 	scroll-behavior: smooth;
@@ -122,14 +122,13 @@ const StyledHome = styled(motion.div)`
 	scrollbar-width: normal;
 	scrollbar-color: ${({ theme }) => theme.primaryColor};
 	::-webkit-scrollbar {
-		/* height: 12px !important; */
 		width: 5px;
 		background: rgb(75, 74, 74);
-		user-select: none; /* supported by Chrome and Opera */
-		-webkit-user-select: none; /* Safari */
-		-khtml-user-select: none; /* Konqueror HTML */
-		-moz-user-select: none; /* Firefox */
-		-ms-user-select: none; /* Internet Explorer/Edge */
+		user-select: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
 	}
 	::-webkit-scrollbar-thumb {
 		background-color: ${({ theme }) => theme.primaryColor};

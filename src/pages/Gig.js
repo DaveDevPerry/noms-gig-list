@@ -8,6 +8,9 @@ import { useAuthContext } from '../hooks/useAuthContext';
 // import { FaUsers } from 'react-icons/fa';
 import { log } from '../helper';
 import { useNavigate } from 'react-router-dom';
+
+import { GiCampingTent } from 'react-icons/gi';
+import { intlFormatDistance } from 'date-fns';
 // import { format } from 'date-fns';
 // import BandSupportGigsList from '../components/BandSupportGigsList';
 // import BandHeadlineGigsList from '../components/BandHeadlineGigsList';
@@ -134,13 +137,27 @@ const Gig = ({ band, id }) => {
 			)} */}
 
 			{/* {gig && <p>{gig[0].headline_band}</p>} */}
-			{gig && (
+			{gig && gig[0] && (
 				<StyledGigHeaderWidget>
+					<p className='header-time'>
+						<strong>
+							{intlFormatDistance(new Date(gig[0].gig_date), new Date(), {
+								numeric: 'auto',
+							})}
+						</strong>
+					</p>
 					<p className='header-title'>
 						<strong>{gig[0].headline_band}</strong>
 					</p>
+					{gig[0].isFestival && gig[0].isFestival === true && (
+						<div className='gig-icons-wrapper'>
+							<GiCampingTent className='gig-icon' />
+						</div>
+					)}
 					<p className='header-location'>
-						<span>{gig[0].venue}</span>
+						<span>
+							<strong>{gig[0].venue}</strong>
+						</span>
 						<span>{gig[0].city}</span>
 					</p>
 					{/* <p className='header-location'>
@@ -292,29 +309,60 @@ const StyledGigHeaderWidget = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0 auto 10px auto; */
+	/* padding: 2rem 1rem;
+	padding: 1rem 2rem; */
 	padding: 2rem;
-	/* padding: 1rem 2rem; */
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 	row-gap: 1rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	.header-time {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.6rem;
+		font-size: 2rem;
+		/* margin-bottom: 1rem; */
+	}
 	.header-title {
 		color: ${({ theme }) => theme.secondaryColor};
 		text-transform: uppercase;
 		font-size: 3rem;
+		text-align: center;
+		line-height: 1;
+	}
+	.gig-icons-wrapper {
+		/* justify-content: flex-end; */
+		align-items: center;
+		display: flex;
+		/* flex: 1; */
+		/* border: 1px solid; */
+		/* text-align: right; */
+		.gig-icon {
+			/* color: ${({ theme }) => theme.secondaryColor}; */
+			color: ${({ theme }) => theme.primaryColor};
+			font-size: 6rem;
+		}
 	}
 	.header-location {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		font-size: 2rem;
+		font-size: 1.6rem;
 		/* row-gap: 1rem; */
 		span {
 			text-transform: capitalize;
-			font-weight: bolder;
+			/* font-weight: bolder; */
+			/* font-weight: bold; */
+
+			strong {
+				/* font-weight: bolder; */
+				font-size: 2rem;
+			}
 		}
 	}
 	/* .header-location {
@@ -330,7 +378,10 @@ const StyledGigHeaderWidget = styled.div`
 		}
 	} */
 	.header-date {
-		font-size: 2rem;
+		font-size: 1.6rem;
+		font-style: italic;
+		/* margin-top: 1rem; */
+		color: ${({ theme }) => theme.secondaryColor};
 	}
 `;
 const StyledGigSupportWidget = styled.div`

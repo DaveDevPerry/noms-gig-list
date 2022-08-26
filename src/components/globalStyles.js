@@ -27,7 +27,8 @@ export const GlobalStyles = createGlobalStyle`
   background-color: ${({ theme }) => theme.bgGrey};
 	font-size: 1.6rem;
 	font-weight: 400;
-  font-family: "Poppins";
+  ${'' /* font-family: "Poppins"; */}
+  font-family: "Arial";
   transition: all 200ms linear;
   width: 100vw;
 	height: 100vh;

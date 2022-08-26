@@ -398,7 +398,7 @@ export const gigsReducer = (state, action) => {
 						.sort((a, b) => {
 							return new Date(a.gig_date) - new Date(b.gig_date);
 						})
-						.splice(0, 4),
+						.splice(0, 5),
 				},
 			};
 		case 'SET_GIG_COUNT_PER_BAND':

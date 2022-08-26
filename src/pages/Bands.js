@@ -288,7 +288,8 @@ const StyledBands = styled(motion.div)`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0rem 1rem;
+		/* padding: 0rem 1rem; */
+		padding: 0.2rem 0.5rem;
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
 		p {
 			color: ${({ theme }) => theme.secondaryColor};

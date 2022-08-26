@@ -5,8 +5,8 @@ import styled from 'styled-components';
 // import { ImArrowUp, ImArrowDown } from 'react-icons/im';
 
 // date fns
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { format } from 'date-fns';
+// import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import { format, intlFormatDistance } from 'date-fns';
 import { log } from '../helper';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
@@ -60,7 +60,10 @@ const GigDetails = ({ gig, difference }) => {
 					<strong>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</strong>
 				</p>
 				<p>
-					{formatDistanceToNow(new Date(gig.gig_date), { addSuffix: true })}
+					{intlFormatDistance(new Date(gig.gig_date), new Date(), {
+						numeric: 'auto',
+					})}
+					{/* {formatDistanceToNow(new Date(gig.gig_date), { addSuffix: true })} */}
 				</p>
 			</div>
 

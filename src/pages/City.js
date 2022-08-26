@@ -65,7 +65,6 @@ const City = ({ band, id }) => {
 			{/* <p>city page</p> */}
 			<div className='city-gigs-list-header'>
 				<p>
-					All Gigs in
 					<span> {cityToView}</span>
 				</p>
 				<div>
@@ -126,7 +125,8 @@ const StyledCity = styled(motion.div)`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0rem 1rem;
+		/* padding: 0rem 1rem; */
+		padding: 0.2rem 0.5rem;
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
 		p {
 			color: ${({ theme }) => theme.secondaryColor};

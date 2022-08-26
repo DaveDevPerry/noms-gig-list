@@ -4,8 +4,8 @@
 // import { formatDistance } from 'date-fns';
 import styled from 'styled-components';
 import { BsFillShareFill, BsWhatsapp } from 'react-icons/bs';
-import { format } from 'date-fns';
-import { differenceInDays } from 'date-fns';
+import { format, intlFormatDistance } from 'date-fns';
+// import { differenceInDays } from 'date-fns';
 import { log } from '../helper';
 
 const CountdownWidget = ({ gig }) => {
@@ -45,8 +45,17 @@ const CountdownWidget = ({ gig }) => {
 					<p className='countdown-location'>
 						{gig.venue}, {gig.city}
 					</p>
-
-					<p>in {differenceInDays(new Date(gig.gig_date), new Date())} days</p>
+					{/* intlFormatDistance(
+  new Date(gig.gig_date),
+  new Date(),
+  { numeric: 'always' }
+) */}
+					<p>
+						{intlFormatDistance(new Date(gig.gig_date), new Date(), {
+							numeric: 'auto',
+						})}
+					</p>
+					{/* <p>in {differenceInDays(new Date(gig.gig_date), new Date())} days</p> */}
 				</div>
 				<BsWhatsapp size='25px' className='share-icon' />
 			</button>

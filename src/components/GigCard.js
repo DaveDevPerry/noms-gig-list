@@ -51,7 +51,8 @@ const GigCard = ({ gig, difference }) => {
 		>
 			<div>
 				<p className='left mono-font'>
-					{format(new Date(gig.gig_date), 'dd/MM/yyyy')}
+					{format(new Date(gig.gig_date), 'dd/MM')}
+					{/* {format(new Date(gig.gig_date), 'dd/MM/yyyy')} */}
 				</p>
 				{/* <p>
 					{formatDistanceToNow(new Date(gig.gig_date), { addSuffix: true })}
@@ -64,12 +65,9 @@ const GigCard = ({ gig, difference }) => {
 				{/* <p>{gig.venue}</p> */}
 			</div>
 			{/* <p>{gig.gig_date}</p> */}
-			<div>
+			{/* <div>
 				<p>{gig.venue}</p>
-				{/* <p>
-					{formatDistanceToNow(new Date(gig.gig_date), { addSuffix: true })}
-				</p> */}
-			</div>
+			</div> */}
 			<div className='gig-icons-wrapper'>
 				{gig.isFestival && gig.isFestival === true && (
 					<GiCampingTent className='gig-icon' />
