@@ -9,6 +9,7 @@ import Navbar from '../components/Navbar';
 import { CgCloseR } from 'react-icons/cg';
 import { useNavigate } from 'react-router-dom';
 import AppDetails from '../components/AppDetails';
+import KeyWidget from '../components/KeyWidget';
 // import { useEffect } from 'react';
 // import UserForm from '../components/UserForm';
 
@@ -94,6 +95,8 @@ const Settings = ({ themeToggler, theme }) => {
 			>
 				developed by © daveperry.tech 2022
 			</a> */}
+			<KeyWidget />
+
 			<AppDetails />
 		</StyledSettings>
 	);
@@ -135,7 +138,7 @@ const StyledSettings = styled(motion.div)`
 	h3 {
 		text-align: center;
 		position: relative;
-		color: ${({ theme }) => theme.txtDarkGrey};
+		color: ${({ theme }) => theme.secondaryColor};
 		.close-icon {
 			position: absolute;
 			right: 0;

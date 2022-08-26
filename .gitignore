@@ -10,3 +10,4 @@ node_modules
 # /src/lib
 
 /public/_redirects
+/public/bg_band.webp

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
 import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
@@ -17,6 +17,8 @@ import PieWidget from '../components/PieWidget';
 // import CityTotalWidget from '../components/CityTotalWidget';
 import AllTopsWidget from '../components/AllTopsWidget';
 import { log } from '../helper';
+import FirstGigWidget from '../components/FirstGigWidget';
+import KeyWidget from '../components/KeyWidget';
 // import ChartYearWidget from '../components/ChartYearWidget';
 // import NextGigCountdownWidget from '../components/NextGigCountdownWidget';
 
@@ -72,19 +74,37 @@ const Home = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{gigCounterData && (
+			{gigCounterData &&
+				totalGigsPerBand.length === 0 &&
+				totalGigsPerVenue.length === 0 &&
+				totalGigsPerCity.length === 0 &&
+				totalSupportGigsPerBand.length === 0 && (
+					<>
+						<FirstGigWidget />
+						<KeyWidget />
+					</>
+				)}
+
+			{/* <FirstGigWidget />
+			<KeyWidget /> */}
+
+			{gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
 				<CountdownWidget gig={gigCounterData.next_five_gigs[0]} />
 			)}
-			{gigCounterData && (
-				<div className='stat-container'>
-					<AllTopsWidget
-						bandWinner={totalGigsPerBand[0]}
-						venueWinner={totalGigsPerVenue[0]}
-						cityWinner={totalGigsPerCity[0]}
-						supportWinner={totalSupportGigsPerBand[0]}
-					/>
-				</div>
-			)}
+			{gigCounterData &&
+				totalGigsPerBand.length > 0 &&
+				totalGigsPerVenue.length > 0 &&
+				totalGigsPerCity.length > 0 &&
+				totalSupportGigsPerBand.length > 0 && (
+					<div className='stat-container'>
+						<AllTopsWidget
+							bandWinner={totalGigsPerBand[0]}
+							venueWinner={totalGigsPerVenue[0]}
+							cityWinner={totalGigsPerCity[0]}
+							supportWinner={totalSupportGigsPerBand[0]}
+						/>
+					</div>
+				)}
 			{/* {gigCounterData && (
 				<div className='stat-container'>
 					<TopBandWidget gigCounterData={totalGigsPerBand[0]} />
@@ -97,12 +117,39 @@ const Home = () => {
 					<TopCityWidget gigCounterData={totalGigsPerCity[0]} />
 				</div>
 			)} */}
-			{gigCounterData && <PieWidget gigs={gigCounterData.all_gigs} />}
-			{/* {gigCounterData && <ChartYearWidget gigs={gigCounterData.all_gigs} />} */}
-			<p className='next-five-list-header'>Coming Up</p>
-			{gigCounterData && (
-				<GigsListNextFive gigs={gigCounterData.next_five_gigs} />
+			{gigCounterData && gigCounterData.all_gigs.length > 2 && (
+				<PieWidget gigs={gigCounterData.all_gigs} />
 			)}
+			{/* {gigCounterData && <ChartYearWidget gigs={gigCounterData.all_gigs} />} */}
+
+			{/* {gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
+				<>
+					<p className='next-five-list-header'>Coming Up</p>
+					{gigCounterData && (
+						<GigsListNextFive gigs={gigCounterData.next_five_gigs} />
+					)}
+				</>
+			)} */}
+			{gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
+				<>
+					<div className='next-five-list-header'>
+						<p>Coming Up</p>
+						<NavLink to='/gigs'>view all</NavLink>
+					</div>
+					{gigCounterData && (
+						<GigsListNextFive gigs={gigCounterData.next_five_gigs} />
+					)}
+				</>
+			)}
+
+			{/* {gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
+				<>
+					<p className='next-five-list-header'>Coming Up</p>
+					{gigCounterData && (
+						<GigsListNextFive gigs={gigCounterData.next_five_gigs} />
+					)}
+				</>
+			)} */}
 		</StyledHome>
 	);
 };
@@ -147,10 +194,34 @@ const StyledHome = styled(motion.div)`
 		color: ${({ theme }) => theme.secondaryColor};
 		font-weight: bold;
 	}
-	.next-five-list-header {
+	/* .next-five-list-header {
 		color: ${({ theme }) => theme.secondaryColor};
 		font-weight: bold;
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
+	} */
+	.next-five-list-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		/* padding: 0rem 1rem; */
+		padding: 0.2rem 0.5rem;
+		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
+		p {
+			color: ${({ theme }) => theme.secondaryColor};
+			font-weight: bold;
+		}
+		div {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			column-gap: 0.5rem;
+			color: ${({ theme }) => theme.txtGrey};
+		}
+		a {
+			font-style: italic;
+			color: ${({ theme }) => theme.txtDarkGrey};
+			text-decoration: none;
+		}
 	}
 `;
 

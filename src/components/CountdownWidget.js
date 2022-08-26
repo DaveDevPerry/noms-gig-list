@@ -16,12 +16,12 @@ const CountdownWidget = ({ gig }) => {
 		const nextCity = gig.city;
 		const nextDate = new Date(gig.gig_date).toLocaleDateString();
 
-		log(
-			`Liz and I are going to the ${nextBand} gig at ${nextVenue} in ${nextCity} on ${nextDate}. Will we see you there?`
-		);
+		// log(
+		// 	`Liz and I are going to the ${nextBand} gig at ${nextVenue} in ${nextCity} on ${nextDate}. Will we see you there?`
+		// );
 
 		window.open(
-			`whatsapp://send?text=Liz and I are going to the ${nextBand} gig at ${nextVenue} in ${nextCity} on ${nextDate}. Will we see you there?`
+			`whatsapp://send?text=I'm going to the ${nextBand} gig at ${nextVenue} in ${nextCity} on ${nextDate}. Will I see you there?`
 		);
 	};
 	return (
@@ -36,7 +36,12 @@ const CountdownWidget = ({ gig }) => {
 			>
 				<BsFillShareFill size='20px' className='share-icon' />
 				<div className='details-wrapper'>
-					<p>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</p>
+					<p>
+						{intlFormatDistance(new Date(gig.gig_date), new Date(), {
+							numeric: 'auto',
+						})}
+					</p>
+					{/* <p>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</p> */}
 					{gig.headline_band && (
 						<p className='band-title'>
 							<strong>{gig.headline_band}</strong>
@@ -50,11 +55,12 @@ const CountdownWidget = ({ gig }) => {
   new Date(),
   { numeric: 'always' }
 ) */}
-					<p>
+					<p>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</p>
+					{/* <p>
 						{intlFormatDistance(new Date(gig.gig_date), new Date(), {
 							numeric: 'auto',
 						})}
-					</p>
+					</p> */}
 					{/* <p>in {differenceInDays(new Date(gig.gig_date), new Date())} days</p> */}
 				</div>
 				<BsWhatsapp size='25px' className='share-icon' />

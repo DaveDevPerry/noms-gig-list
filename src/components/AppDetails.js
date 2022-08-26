@@ -4,21 +4,25 @@ import styled from 'styled-components';
 const AppDetails = () => {
 	return (
 		<StyledAppDetails>
-			<p>developed by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-			<a
-				href='https://www.daveperry.tech'
-				className='developer-link'
-				rel='noopener noreferrer'
-				target='_blank'
-			>
-				<Brand id='brand'>
-					{/* <div className='email-block'></div>
+			<div className='label-img'></div>
+			<div className='dev-link-container'>
+				<p>developed by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+				<a
+					href='https://www.daveperry.tech'
+					className='developer-link'
+					rel='noopener noreferrer'
+					target='_blank'
+				>
+					<Brand id='brand'>
+						{/* <div className='email-block'></div>
 				<div className='email-bar'></div>
 				<div className='email-address'>dave@daveperry.tech</div> */}
-					dave<span>perry</span>
-					<span>.</span>tech
-				</Brand>
-			</a>
+						dave<span>perry</span>
+						<span>.</span>tech
+					</Brand>
+				</a>
+			</div>
+			<div className='studio-img'></div>
 			<StyledLogoAnimation>
 				<svg id='dp-logo-svg' viewBox='0 0 520 520' fill='#c40303'>
 					<path
@@ -42,14 +46,21 @@ const AppDetails = () => {
 };
 const StyledAppDetails = styled.div`
 	display: flex;
-	flex-direction: column;
-	/* row-gap: 1rem; */
-	padding: 2rem;
+	flex-direction: row;
+	column-gap: 2rem;
+	justify-content: space-between;
+	/* display: flex;
+	flex-direction: column; */
+	padding: 2rem 1rem;
 	padding-bottom: 3rem;
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 	/* transition: all 200ms linear; */
+	.dev-link-container {
+		display: flex;
+		flex-direction: column;
+	}
 	p {
 		align-self: center;
 		/* margin-top: 6rem; */
@@ -62,6 +73,21 @@ const StyledAppDetails = styled.div`
 		/* margin-top: 6rem; */
 		font-size: 1.2rem;
 		color: ${({ theme }) => theme.txtDarkGrey};
+	}
+	.label-img {
+		background-image: url('KTMA_logo.webp');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		width: 6rem;
+		/* aspect-ratio: 1; */
+	}
+	.studio-img {
+		background-image: url('Rox_logo.webp');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		width: 6rem;
 	}
 `;
 

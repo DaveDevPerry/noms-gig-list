@@ -78,7 +78,7 @@ const GigFormBands = ({
 				}}
 				autoComplete='off'
 			/>
-			{display && (
+			{display && options.length > 0 && (
 				<div className='autoContainer'>
 					{options
 						.filter(({ name }) => name.indexOf(search.toLowerCase()) > -1)

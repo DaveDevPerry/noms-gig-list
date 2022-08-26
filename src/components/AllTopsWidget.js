@@ -58,6 +58,15 @@ const AllTopsWidget = ({
 					<GiLaurelsTrophy className='arrow-icon gold' />
 				</div>
 				<ul className='wrapper'>
+					{/* {bandWinner.length >= 0 && (
+						<li>
+							<p className='stat-name'>
+								<strong>{bandWinner.bandName}</strong>
+							</p>
+							<p className='stat-city-name'>headline</p>
+							<p className='figure'>{bandWinner.totalGigCount} gigs</p>
+						</li>
+					)} */}
 					<li>
 						<p className='stat-name'>
 							<strong>{bandWinner.bandName}</strong>
@@ -65,6 +74,32 @@ const AllTopsWidget = ({
 						<p className='stat-city-name'>headline</p>
 						<p className='figure'>{bandWinner.totalGigCount} gigs</p>
 					</li>
+					{/* {supportWinner.length >= 0 && (
+						<li>
+							<p className='stat-name'>
+								<strong>{supportWinner.bandName}</strong>
+							</p>
+							<p className='stat-city-name'>support</p>
+							<p className='figure'>{supportWinner.supportCount} gigs</p>
+						</li>
+					)}
+					{venueWinner.length >= 0 && (
+						<li>
+							<p className='stat-name'>
+								<strong>{venueWinner.venueName}</strong>
+							</p>
+							<p className='stat-city-name'>{venueWinner.cityName}</p>
+							<p className='figure'>{venueWinner.venueCount} gigs</p>
+						</li>
+					)}
+					{cityWinner.length >= 0 && (
+						<li>
+							<p className='stat-name'>
+								<strong>{cityWinner.key}</strong>
+							</p>
+							<p className='figure'>{cityWinner.value} gigs</p>
+						</li>
+					)} */}
 					<li>
 						<p className='stat-name'>
 							<strong>{supportWinner.bandName}</strong>
