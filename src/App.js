@@ -11,6 +11,7 @@ import { StateContext } from './lib/context';
 import AnimatedRoutes from './AnimatedRoutes';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import { Toaster } from 'react-hot-toast';
 // import { useState } from 'react';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
 			<StateContext>
 				<div className='App'>
 					<BrowserRouter>
+						<Toaster />
 						<Header />
 						{/* <div className='pages'> */}
 						<AnimatedRoutes

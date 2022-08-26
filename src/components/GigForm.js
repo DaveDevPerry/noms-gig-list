@@ -13,6 +13,7 @@ import GigFormCities from './GigFormCities';
 import GigFormVenues from './GigFormVenues';
 import { log } from '../helper';
 import GigFormSupportBands from './GigFormSupportBands';
+import toast from 'react-hot-toast';
 // import { motion } from 'framer-motion';
 
 // const Auto = ({
@@ -340,11 +341,20 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 			dispatch({ type: 'CREATE_GIG', payload: json });
 		}
 		// setIsFormActive(!isFormActive);
+		notify();
 		navigate('/home');
 	};
 	const handleClose = () => {
 		navigate('/home');
 		// setIsFormActive(!isFormActive);
+	};
+
+	// create a toast
+	const notify = () => {
+		// toast('Hello');
+		toast.success(`${headline_band} gig successfully added.`, {
+			duration: 3000,
+		});
 	};
 
 	return (
@@ -463,7 +473,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 					id='input-number'
 					onChange={(e) => setGig_details(e.target.value)}
 					value={gig_details}
-					className={emptyFields.includes('gig_details') ? 'error' : ''}
+					// className={emptyFields.includes('gig_details') ? 'error' : ''}
 					// autoFocus
 				/>
 			</div>
@@ -499,7 +509,8 @@ const StyledForm = styled.form`
 		text-align: center;
 		margin: 0;
 		position: relative;
-		color: ${({ theme }) => theme.txtDarkGrey};
+		color: ${({ theme }) => theme.secondaryColor};
+		/* color: ${({ theme }) => theme.txtDarkGrey}; */
 		.close-icon {
 			position: absolute;
 			right: 0;
@@ -519,6 +530,8 @@ const StyledForm = styled.form`
 			font-size: 0.9em;
 			text-align: right;
 			flex: 1;
+			color: ${({ theme }) => theme.txtDarkGrey};
+			font-weight: bold;
 		}
 		#input-number {
 			padding: 0.8rem 1rem;
@@ -554,6 +567,8 @@ const StyledForm = styled.form`
 			text-align: left;
 			flex: 1;
 			text-transform: capitalize;
+			color: ${({ theme }) => theme.txtDarkGrey};
+			font-weight: bold;
 		}
 		#auto {
 			padding: 0.8rem 1rem;
