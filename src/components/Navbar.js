@@ -96,8 +96,8 @@ const StyledNavbar = styled.nav`
 				align-items: center;
 				column-gap: 1rem;
 				p {
-					width: 5rem;
-					text-align: right;
+					/* width: 5rem; */
+					/* text-align: right; */
 				}
 			}
 		}

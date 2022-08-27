@@ -74,28 +74,76 @@ const Home = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{gigCounterData &&
+			{/* {gigCounterData &&
 				totalGigsPerBand.length === 0 &&
 				totalGigsPerVenue.length === 0 &&
 				totalGigsPerCity.length === 0 &&
-				totalSupportGigsPerBand.length === 0 && (
+				totalSupportGigsPerBand.length === 0 &&
+				gigCounterData.next_five_gigs.length === 0 && (
 					<>
 						<FirstGigWidget />
 						<KeyWidget />
 					</>
-				)}
+				)} */}
+			{gigCounterData &&
+			totalGigsPerBand.length === 0 &&
+			totalGigsPerVenue.length === 0 &&
+			totalGigsPerCity.length === 0 &&
+			totalSupportGigsPerBand.length === 0 &&
+			gigCounterData.next_five_gigs.length === 0 ? (
+				<>
+					<FirstGigWidget />
+					<KeyWidget />
+				</>
+			) : (
+				<>
+					{gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
+						<CountdownWidget gig={gigCounterData.next_five_gigs[0]} />
+					)}
+					{gigCounterData &&
+						totalGigsPerBand.length > 0 &&
+						totalGigsPerVenue.length > 0 &&
+						totalGigsPerCity.length > 0 &&
+						totalSupportGigsPerBand.length > 0 &&
+						gigCounterData.next_five_gigs.length > 0 && (
+							<div className='stat-container'>
+								<AllTopsWidget
+									bandWinner={totalGigsPerBand[0]}
+									venueWinner={totalGigsPerVenue[0]}
+									cityWinner={totalGigsPerCity[0]}
+									supportWinner={totalSupportGigsPerBand[0]}
+								/>
+							</div>
+						)}
+					{gigCounterData && gigCounterData.all_gigs.length > 2 && (
+						<PieWidget gigs={gigCounterData.all_gigs} />
+					)}
+					{gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
+						<>
+							<div className='next-five-list-header'>
+								<p>Coming Up</p>
+								<NavLink to='/gigs'>view all</NavLink>
+							</div>
+							{gigCounterData && (
+								<GigsListNextFive gigs={gigCounterData.next_five_gigs} />
+							)}
+						</>
+					)}
+				</>
+			)}
 
 			{/* <FirstGigWidget />
 			<KeyWidget /> */}
 
-			{gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
+			{/* {gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
 				<CountdownWidget gig={gigCounterData.next_five_gigs[0]} />
 			)}
 			{gigCounterData &&
 				totalGigsPerBand.length > 0 &&
 				totalGigsPerVenue.length > 0 &&
 				totalGigsPerCity.length > 0 &&
-				totalSupportGigsPerBand.length > 0 && (
+				totalSupportGigsPerBand.length > 0 &&
+				gigCounterData.next_five_gigs.length > 0 && (
 					<div className='stat-container'>
 						<AllTopsWidget
 							bandWinner={totalGigsPerBand[0]}
@@ -104,7 +152,8 @@ const Home = () => {
 							supportWinner={totalSupportGigsPerBand[0]}
 						/>
 					</div>
-				)}
+				)} */}
+
 			{/* {gigCounterData && (
 				<div className='stat-container'>
 					<TopBandWidget gigCounterData={totalGigsPerBand[0]} />
@@ -117,9 +166,9 @@ const Home = () => {
 					<TopCityWidget gigCounterData={totalGigsPerCity[0]} />
 				</div>
 			)} */}
-			{gigCounterData && gigCounterData.all_gigs.length > 2 && (
+			{/* {gigCounterData && gigCounterData.all_gigs.length > 2 && (
 				<PieWidget gigs={gigCounterData.all_gigs} />
-			)}
+			)} */}
 			{/* {gigCounterData && <ChartYearWidget gigs={gigCounterData.all_gigs} />} */}
 
 			{/* {gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
@@ -130,7 +179,7 @@ const Home = () => {
 					)}
 				</>
 			)} */}
-			{gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
+			{/* {gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
 				<>
 					<div className='next-five-list-header'>
 						<p>Coming Up</p>
@@ -140,7 +189,7 @@ const Home = () => {
 						<GigsListNextFive gigs={gigCounterData.next_five_gigs} />
 					)}
 				</>
-			)}
+			)} */}
 
 			{/* {gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
 				<>

@@ -446,7 +446,29 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 					// autoFocus
 				/>
 			</div> */}
-			<div className='input-wrapper'>
+			<div className='small-input-wrappers'>
+				<div className='input-wrapper'>
+					<label>Festival:</label>
+					<input
+						type='checkbox'
+						id='input-checkbox'
+						onChange={() => setIsFestival(!isFestival)}
+						value={isFestival}
+						// className={emptyFields.includes('gig_date') ? 'error' : ''}
+					/>
+				</div>
+				<div className='input-wrapper-date'>
+					<label>Date:</label>
+					<input
+						type='date'
+						id='input-date'
+						onChange={(e) => setGig_date(e.target.value)}
+						value={gig_date}
+						className={emptyFields.includes('gig_date') ? 'error' : ''}
+					/>
+				</div>
+			</div>
+			{/* <div className='input-wrapper'>
 				<label>Festival?:</label>
 				<input
 					type='checkbox'
@@ -465,7 +487,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 					value={gig_date}
 					className={emptyFields.includes('gig_date') ? 'error' : ''}
 				/>
-			</div>
+			</div> */}
 			<div className='input-wrapper-band'>
 				<label>details:</label>
 				<input
@@ -520,7 +542,54 @@ const StyledForm = styled.form`
 			color: ${({ theme }) => theme.txtDarkGrey};
 		}
 	}
-	.input-wrapper {
+	.small-input-wrappers {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		column-gap: 0.5rem;
+		margin-top: 0.5rem;
+		.input-wrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			column-gap: 0.5rem;
+			label {
+				font-size: 0.9em;
+				text-align: right;
+				color: ${({ theme }) => theme.txtDarkGrey};
+				font-weight: bold;
+			}
+			#input-checkbox {
+				padding: 0.8rem 1rem;
+				margin: 0;
+				font-size: 1.8rem;
+				color: ${({ theme }) => theme.black};
+				/* flex: 1; */
+				width: 3rem;
+				height: 3rem;
+			}
+		}
+		.input-wrapper-date {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			column-gap: 0.5rem;
+			label {
+				font-size: 0.9em;
+				text-align: right;
+				color: ${({ theme }) => theme.txtDarkGrey};
+				font-weight: bold;
+			}
+			#input-date {
+				padding: 0.8rem 0.5rem;
+				margin: 0;
+				font-size: 1.8rem;
+				color: ${({ theme }) => theme.black};
+				flex: 1;
+			}
+		}
+	}
+	/* .input-wrapper {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -540,22 +609,8 @@ const StyledForm = styled.form`
 			color: ${({ theme }) => theme.black};
 			flex: 1;
 		}
-	}
-	/* .search-container {
-		position: relative;
-		.autoContainer {
-			position: absolute;
-			background-color: ${({ theme }) => theme.white};
-			z-index: 500;
-			width: 100%;
-			padding: 0 1rem;
-			left: 0;
-			border: 1px solid ${({ theme }) => theme.primaryColor};
-			.option {
-				padding: 0.3rem 0;
-			}
-		}
 	} */
+
 	.input-wrapper-band {
 		display: flex;
 		flex-direction: column;

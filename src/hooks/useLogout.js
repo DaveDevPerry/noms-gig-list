@@ -20,6 +20,7 @@ export const useLogout = () => {
 		setTotalSupportGigsPerBand,
 		setCombinedGigsPerBand,
 		setTotalGigsPerCity,
+		setTotalGigsPerVenue,
 		setGigToView,
 		setBandToView,
 	} = useStateContext();
@@ -44,6 +45,7 @@ export const useLogout = () => {
 		setTotalSupportGigsPerBand(null);
 		setCombinedGigsPerBand(null);
 		setTotalGigsPerCity(null);
+		setTotalGigsPerVenue(null);
 		setGigToView(null);
 		setBandToView(null);
 	};

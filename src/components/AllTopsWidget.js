@@ -52,11 +52,11 @@ const AllTopsWidget = ({
 
 	return (
 		<StyledAllTopsWidget className='gig-widget'>
+			{/* <SiBandsintown className='arrow-icon hand gold' /> */}
 			<div className='gig-widget-wrapper-container'>
-				<div className='wrapper-icon'>
-					{/* <SiBandsintown className='arrow-icon hand gold' /> */}
+				{/* <div className='wrapper-icon'>
 					<GiLaurelsTrophy className='arrow-icon gold' />
-				</div>
+				</div> */}
 				<ul className='wrapper'>
 					{/* {bandWinner.length >= 0 && (
 						<li>
@@ -121,64 +121,11 @@ const AllTopsWidget = ({
 						<p className='figure'>{cityWinner.value} gigs</p>
 					</li>
 				</ul>
-				{/* <ul className='wrapper'>
-					<li>
-						<p className='stat-name'>
-							<strong>{bandWinner.bandName}</strong>
-						</p>
-						<p className='figure'>seen {bandWinner.totalGigCount} times</p>
-					</li>
-					<li>
-						<p className='stat-name'>
-							<strong>{venueWinner.venueName}</strong>
-						</p>
-						<p className='stat-city-name'>{venueWinner.cityName}</p>
-						<p className='figure'>visited {venueWinner.venueCount} times</p>
-					</li>
-					<li>
-						<p className='stat-name'>
-							<strong>{cityWinner.key}</strong>
-						</p>
-						<p className='figure'>visited {cityWinner.value} times</p>
-					</li>
-				</ul> */}
-
-				<div className='wrapper-icon'>
-					<GiLaurelsTrophy className='arrow-icon gold' />
-				</div>
 
 				{/* <div className='wrapper-icon'>
-					<p className='figure'>
-						
-						{(gigs[gigs.length - 1].load - target.target_weight).toFixed(
-							2
-						)}
-						
-					</p>
-					{(gigs[gigs.length - 1].load - target.target_weight).toFixed(
-						2
-					) > 0 && <ImArrowRight className='arrow-icon red' />}
-					{(gigs[gigs.length - 1].load - target.target_weight).toFixed(
-						2
-					) <= 0 && <FaCheck className='arrow-icon green' />}
-					<p className='figure'>
-						
-						{(
-							(gigs[gigs.length - 1].load - target.target_weight) *
-							2.20462
-						).toFixed(2)}
-
-						
-						
-					</p>
+					<GiLaurelsTrophy className='arrow-icon gold' />
 				</div> */}
 			</div>
-			{/* <gigBarWidget percentage={percentage} /> */}
-			{/* <div className='gig-bar-container'>
-				<p>You have lost 20.30 Kgs</p>
-				<gig value={percentage} max='100' className='gig' />
-				<p>{percentage.toFixed(2)}% of goal reached</p>
-			</div> */}
 		</StyledAllTopsWidget>
 	);
 };
@@ -237,7 +184,7 @@ const StyledAllTopsWidget = styled.div`
 				color: ${({ theme }) => theme.secondaryColor};
 				/* color: ${({ theme }) => theme.txtGrey}; */
 				text-transform: uppercase;
-				line-height: 0.8;
+				/* line-height: 0.8; */
 			}
 			p.stat-city-name {
 				font-size: 1.4rem;
