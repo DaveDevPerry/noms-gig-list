@@ -13,6 +13,7 @@ import BandSupportGigsList from '../components/BandSupportGigsList';
 import BandHeadlineGigsList from '../components/BandHeadlineGigsList';
 import TopBandWidget from '../components/TopBandWidget';
 import BandCountRankWidget from '../components/BandCountRankWidget';
+import BandAllTopsWidget from '../components/BandAllTopsWidget';
 // import BandAllTopsWidget from '../components/BandAllTopsWidget';
 
 const Band = ({ band, id }) => {
@@ -30,10 +31,12 @@ const Band = ({ band, id }) => {
 		bandAllGigsData,
 		bandFestivalCount,
 		setBandFestivalCount,
+		bandWinnersStats,
 	} = useStateContext();
 
 	useEffect(() => {
 		log(bandToView, ' band in band');
+		log(bandWinnersStats, 'bandWinnersStats in band');
 
 		const fetchBand = async () => {
 			const response = await fetch(
@@ -128,9 +131,9 @@ const Band = ({ band, id }) => {
 			{bandDetailsData && bandFestivalCount && (
 				<BandCountRankWidget bandCounterData={bandAllGigsData} />
 			)}
-			{/* {bandDetailsData && bandAllGigsData && (
+			{bandDetailsData && bandAllGigsData && bandWinnersStats && (
 				<BandAllTopsWidget gigCounterData={bandAllGigsData} />
-			)} */}
+			)}
 			{bandDetailsData && bandAllGigsData && (
 				<TopBandWidget gigCounterData={bandAllGigsData} />
 			)}

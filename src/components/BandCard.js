@@ -5,6 +5,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { log } from '../helper';
+import { useAuthContext } from '../hooks/useAuthContext';
 import { useStateContext } from '../lib/context';
 // import Band from '../pages/Band';
 // import { ImArrowUp, ImArrowDown } from 'react-icons/im';
@@ -14,11 +15,11 @@ import { useStateContext } from '../lib/context';
 // import { format } from 'date-fns';
 
 const BandCard = ({ band, difference }) => {
-	const { setBandToView } = useStateContext();
+	const { setBandToView, getBandsTopStats } = useStateContext();
 
 	const navigate = useNavigate();
 	// const { dispatch } = usebandsContext();
-	// const { user } = useAuthContext();
+	const { user } = useAuthContext();
 
 	// const handleClick = async () => {
 	// 	if (!user) {
@@ -39,16 +40,81 @@ const BandCard = ({ band, difference }) => {
 	// 	}
 	// };
 
+	// fetch selected bands gigs
+	const getAllBandsGigs = async (bandName) => {
+		// e.preventDefault();
+		log(bandName, 'band name in function');
+
+		setBandToView(bandName);
+		const chosenBand = bandName;
+		log(chosenBand, 'chosenBand name in function');
+
+		const response = await fetch(
+			`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
+			{
+				headers: {
+					Authorization: `Bearer ${user.token}`,
+				},
+			}
+		);
+		const json = await response.json();
+		log(json, 'json in band card');
+		const clonedData = [...json];
+		const bandData = clonedData.filter(
+			(obj) =>
+				obj.headline_band === chosenBand || obj.support_band === chosenBand
+		);
+		log(bandData, 'band data in band card');
+		if (response.ok) {
+			// dispatch({
+			// 	type: 'SET_GIG_COUNTER_DATA',
+			// 	payload: json,
+			// });
+			getBandsTopStats(bandData, chosenBand);
+			navigate('/band');
+		}
+
+		// const fetchGigCounterData = async () => {
+		// 	const response = await fetch(
+		// 		`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
+		// 		{
+		// 			headers: {
+		// 				Authorization: `Bearer ${user.token}`,
+		// 			},
+		// 		}
+		// 	);
+		// 	const json = await response.json();
+		// 	if (response.ok) {
+		// 		dispatch({
+		// 			type: 'SET_GIG_COUNTER_DATA',
+		// 			payload: json,
+		// 		});
+		// 	}
+	};
+	// if we have a value for the user then fetch the workouts
+	// if (user) {
+	// 	fetchGigCounterData();
+	// }
+
+	// navigate('/band');
+	// }
+
 	return (
 		<StyledBandCard
 			className='band-card'
-			// onClick={setBandToView(band._id)}
-			onClick={(e) => {
-				e.preventDefault();
-				log(band.bandName, 'band on click');
-				setBandToView(band.bandName);
-				navigate('/band');
+			onClick={() => {
+				// e.preventDefault();
+				// log(band.bandName, 'band on click');
+				// setBandToView(band.bandName);
+				// navigate('/band');
+				getAllBandsGigs(band.bandName);
 			}}
+			// onClick={(e) => {
+			// 	e.preventDefault();
+			// 	log(band.bandName, 'band on click');
+			// 	setBandToView(band.bandName);
+			// 	navigate('/band');
+			// }}
 		>
 			{/* <div>
 				<p className='left'>{format(new Date(band.band_date), 'dd/MM/yyyy')}</p>

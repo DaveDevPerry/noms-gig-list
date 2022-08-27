@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GiLaurelsTrophy } from 'react-icons/gi';
+import { log } from '../helper';
+import { useStateContext } from '../lib/context';
 // import { SiBandsintown } from 'react-icons/si';
 // import { useAuthContext } from '../hooks/useAuthContext';
 // import { useGigsContext } from '../hooks/useGigsContext';
@@ -13,7 +15,10 @@ const BandAllTopsWidget = ({
 	cityWinner,
 	venueWinner,
 	supportWinner,
+	// bandWinnersStats,
 }) => {
+	const { bandWinnersStats } = useStateContext();
+	log(bandWinnersStats, 'bandWinnersStats in band all tops widget');
 	return (
 		<StyledBandAllTopsWidget className='gig-widget'>
 			{/* <SiBandsintown className='arrow-icon hand gold' /> */}
@@ -22,7 +27,7 @@ const BandAllTopsWidget = ({
 					<GiLaurelsTrophy className='arrow-icon gold' />
 				</div> */}
 				<ul className='wrapper'>
-					<li>
+					{/* <li>
 						<p className='stat-name'>
 							<strong>{bandWinner.bandName}</strong>
 						</p>
@@ -36,20 +41,24 @@ const BandAllTopsWidget = ({
 						</p>
 						<p className='stat-city-name'>support</p>
 						<p className='figure'>{supportWinner.supportCount} gigs</p>
-					</li>
+					</li> */}
 					<li>
 						<p className='stat-name'>
-							<strong>{venueWinner.venueName}</strong>
+							<strong>{bandWinnersStats.topVenue.venueName}</strong>
 						</p>
-						<p className='stat-city-name'>{venueWinner.cityName}</p>
-						<p className='figure'>{venueWinner.venueCount} gigs</p>
+						<p className='stat-city-name'>
+							{bandWinnersStats.topVenue.cityName}
+						</p>
+						<p className='figure'>
+							{bandWinnersStats.topVenue.venueCount} gigs
+						</p>
 					</li>
-					<li>
+					{/* <li>
 						<p className='stat-name'>
 							<strong>{cityWinner.key}</strong>
 						</p>
 						<p className='figure'>{cityWinner.value} gigs</p>
-					</li>
+					</li> */}
 				</ul>
 
 				{/* <div className='wrapper-icon'>
