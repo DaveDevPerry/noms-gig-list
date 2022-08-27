@@ -11,7 +11,7 @@ import { BsMusicNoteList } from 'react-icons/bs';
 import { log } from '../helper';
 import BandSupportGigsList from '../components/BandSupportGigsList';
 import BandHeadlineGigsList from '../components/BandHeadlineGigsList';
-import TopBandWidget from '../components/TopBandWidget';
+// import TopBandWidget from '../components/TopBandWidget';
 import BandCountRankWidget from '../components/BandCountRankWidget';
 import BandAllTopsWidget from '../components/BandAllTopsWidget';
 // import BandAllTopsWidget from '../components/BandAllTopsWidget';
@@ -134,9 +134,9 @@ const Band = ({ band, id }) => {
 			{bandDetailsData && bandAllGigsData && bandWinnersStats && (
 				<BandAllTopsWidget gigCounterData={bandAllGigsData} />
 			)}
-			{bandDetailsData && bandAllGigsData && (
+			{/* {bandDetailsData && bandAllGigsData && (
 				<TopBandWidget gigCounterData={bandAllGigsData} />
-			)}
+			)} */}
 
 			{bandDetailsData && bandAllGigsData.length > 0 && (
 				<>

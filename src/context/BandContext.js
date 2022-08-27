@@ -1,4 +1,5 @@
 import { createContext, useReducer } from 'react';
+import { log } from '../helper';
 
 export const BandsContext = createContext();
 
@@ -10,6 +11,35 @@ export const bandsReducer = (state, action) => {
 					action.payload === null
 						? action.payload
 						: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
+			};
+
+		case 'SET_BAND':
+			const clonedBand = [...action.payload];
+			log(clonedBand, 'clonedBand');
+			const bandGigDataObj = clonedBand
+				.map(({ city }) => city)
+				.reduce(function (count, currentValue) {
+					return (
+						count[currentValue]
+							? ++count[currentValue]
+							: (count[currentValue] = 1),
+						count
+					);
+				}, {});
+			log(bandGigDataObj, 'bandGigDataObj');
+			// convert to arr of obj
+			const citiesGigCountArrOfObj = Object.entries(bandGigDataObj).map(
+				([key, value]) => ({
+					key,
+					value,
+				})
+			);
+			log(citiesGigCountArrOfObj, 'citiesGigCountArrOfObj');
+			return {
+				currentBand: clonedBand,
+				currentCityCount: citiesGigCountArrOfObj.sort((a, b) => {
+					return b.value - a.value;
+				}),
 			};
 		// return {
 		// 	bands: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
@@ -100,6 +130,8 @@ export const bandsReducer = (state, action) => {
 export const BandsContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(bandsReducer, {
 		bands: null,
+		currentBand: null,
+		currentCityCount: null,
 	});
 
 	return (

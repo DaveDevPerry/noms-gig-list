@@ -157,11 +157,43 @@ export const StateContext = ({ children }) => {
 			(a, b) => b.venueCount - a.venueCount
 		);
 		log(sortedVenuesByCount, 'sortedVenuesByCount');
+
+		// sort by city count
+		// const clonedCityData = [...uniqueVenueGigCountArrOfObj]
+		// get top city
+		// const cityCountObj = clonedCityData.map(({}))
+
 		const bandStatObj = {
 			bandName: chosenBand,
 			topVenue: sortedVenuesByCount[0],
 		};
 		setBandWinnersStats(bandStatObj);
+
+		// cities
+		const clonedGigsForCityCount = [...gigs];
+		const citiesGigCountObj = clonedGigsForCityCount
+			// bandsGigCount: action.payload
+			.map(({ city }) => city)
+			.reduce(function (count, currentValue) {
+				return (
+					count[currentValue]
+						? ++count[currentValue]
+						: (count[currentValue] = 1),
+					count
+				);
+			}, {});
+		// convert object to array of key value pair objects
+		const citiesGigCountArrOfObj = Object.entries(citiesGigCountObj).map(
+			([key, value]) => ({
+				key,
+				value,
+			})
+		);
+		const sortCitiesByGigCount = citiesGigCountArrOfObj.sort((a, b) => {
+			return b.value - a.value;
+		});
+		log(sortCitiesByGigCount, 'sortCitiesByGigCount');
+
 		return;
 	};
 	return (

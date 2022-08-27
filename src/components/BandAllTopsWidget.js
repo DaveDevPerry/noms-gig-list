@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GiLaurelsTrophy } from 'react-icons/gi';
+// import { GiLaurelsTrophy } from 'react-icons/gi';
 import { log } from '../helper';
 import { useStateContext } from '../lib/context';
+import { useBandsContext } from '../hooks/useBandsContext';
 // import { SiBandsintown } from 'react-icons/si';
 // import { useAuthContext } from '../hooks/useAuthContext';
 // import { useGigsContext } from '../hooks/useGigsContext';
@@ -17,6 +18,7 @@ const BandAllTopsWidget = ({
 	supportWinner,
 	// bandWinnersStats,
 }) => {
+	const { currentCityCount } = useBandsContext();
 	const { bandWinnersStats } = useStateContext();
 	log(bandWinnersStats, 'bandWinnersStats in band all tops widget');
 	return (
@@ -53,6 +55,15 @@ const BandAllTopsWidget = ({
 							{bandWinnersStats.topVenue.venueCount} gigs
 						</p>
 					</li>
+					<li>
+						<p className='stat-name'>
+							<strong>{currentCityCount[0].key}</strong>
+						</p>
+						{/* <p className='stat-city-name'>
+							{bandWinnersStats.topVenue.cityName}
+						</p> */}
+						<p className='figure'>{currentCityCount[0].value} gigs</p>
+					</li>
 					{/* <li>
 						<p className='stat-name'>
 							<strong>{cityWinner.key}</strong>
@@ -80,7 +91,7 @@ const StyledBandAllTopsWidget = styled.div`
 	/* flex-direction: column; */
 	/* align-items: center; */
 	/* justify-content: center; */
-	flex: 1;
+	/* flex: 1; */
 	/* row-gap: 1rem; */
 	.gig-widget-wrapper-container {
 		display: flex;
@@ -151,7 +162,7 @@ const StyledBandAllTopsWidget = styled.div`
 				color: ${({ theme }) => theme.txtGrey};
 			} */
 			.arrow-icon {
-				font-size: 3.5rem;
+				font-size: 2rem;
 			}
 			.arrow-icon.hand {
 				font-size: 2.5rem;

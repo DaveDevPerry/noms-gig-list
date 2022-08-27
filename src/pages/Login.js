@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useLogin } from '../hooks/useLogin';
 import { Link } from 'react-router-dom';
+import AppDetails from '../components/AppDetails';
 
 const Login = () => {
 	const [email, setEmail] = useState('');
@@ -51,6 +52,7 @@ const Login = () => {
 			<p>
 				Need an account? Sign up<Link to='/signup'> here</Link>
 			</p>
+			<AppDetails />
 		</StyledLogin>
 	);
 };
@@ -67,6 +69,9 @@ const StyledLogin = styled(motion.div)`
 	/* overflow: hidden; */
 	overflow: hidden;
 	transition: all 200ms linear;
+
+	flex: 1;
+	justify-content: space-between;
 	.login {
 		/* max-width: 80rem; */
 		/* margin: 0 auto; */

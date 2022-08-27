@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { log } from '../helper';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useBandsContext } from '../hooks/useBandsContext';
 import { useStateContext } from '../lib/context';
 // import Band from '../pages/Band';
 // import { ImArrowUp, ImArrowDown } from 'react-icons/im';
@@ -18,7 +19,7 @@ const BandCard = ({ band, difference }) => {
 	const { setBandToView, getBandsTopStats } = useStateContext();
 
 	const navigate = useNavigate();
-	// const { dispatch } = usebandsContext();
+	const { dispatch } = useBandsContext();
 	const { user } = useAuthContext();
 
 	// const handleClick = async () => {
@@ -66,10 +67,10 @@ const BandCard = ({ band, difference }) => {
 		);
 		log(bandData, 'band data in band card');
 		if (response.ok) {
-			// dispatch({
-			// 	type: 'SET_GIG_COUNTER_DATA',
-			// 	payload: json,
-			// });
+			dispatch({
+				type: 'SET_BAND',
+				payload: bandData,
+			});
 			getBandsTopStats(bandData, chosenBand);
 			navigate('/band');
 		}
