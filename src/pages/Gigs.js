@@ -91,8 +91,11 @@ const Gigs = () => {
 			<div className='upcoming-gigs-list-header'>
 				<p>Upcoming gigs</p>
 				<div>
-					<BsMusicNoteList className='nav-icon' />x
+					<BsMusicNoteList className='nav-icon' />
 					{upcoming_gigs && upcoming_gigs.length}
+					{/* {upcoming_gigs && upcoming_gigs.length < 10
+						? `0${upcoming_gigs.length}`
+						: upcoming_gigs.length} */}
 				</div>
 			</div>
 			<GigsList gigs={upcoming_gigs} />
@@ -141,6 +144,13 @@ const StyledGigs = styled(motion.div)`
 			align-items: center;
 			column-gap: 0.5rem;
 			color: ${({ theme }) => theme.txtGrey};
+			font-size: 1.4rem;
+			font-weight: bolder;
+			/* font-size: 0.7em; */
+			.nav-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 1.6rem;
+			}
 		}
 	}
 `;

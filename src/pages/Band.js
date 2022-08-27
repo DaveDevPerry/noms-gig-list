@@ -5,11 +5,15 @@ import { useStateContext } from '../lib/context';
 import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import BandGigsList from '../components/BandGigsList';
-import { FaUsers } from 'react-icons/fa';
+// import { FaUsers } from 'react-icons/fa';
+import { BsMusicNoteList } from 'react-icons/bs';
+
 import { log } from '../helper';
 import BandSupportGigsList from '../components/BandSupportGigsList';
 import BandHeadlineGigsList from '../components/BandHeadlineGigsList';
 import TopBandWidget from '../components/TopBandWidget';
+import BandCountRankWidget from '../components/BandCountRankWidget';
+// import BandAllTopsWidget from '../components/BandAllTopsWidget';
 
 const Band = ({ band, id }) => {
 	const { user } = useAuthContext();
@@ -24,6 +28,8 @@ const Band = ({ band, id }) => {
 		bandHeadlineGigsData,
 		setBandAllGigsData,
 		bandAllGigsData,
+		bandFestivalCount,
+		setBandFestivalCount,
 	} = useStateContext();
 
 	useEffect(() => {
@@ -67,6 +73,12 @@ const Band = ({ band, id }) => {
 					return new Date(b.gig_date) - new Date(a.gig_date);
 				});
 
+			// festival count
+			const clonedFestivalCount = [...json];
+			const festivalCount = clonedFestivalCount.filter(
+				(obj) => obj.isFestival === true
+			).length;
+
 			// const bandData = json.filter((obj) => obj.headline_band === bandToView);
 			const bandData = json
 				.filter((obj) => obj.headline_band === bandToView)
@@ -83,12 +95,9 @@ const Band = ({ band, id }) => {
 				setBandSupportGigsData(bandSupportData);
 				setBandHeadlineGigsData(bandHeadlineData);
 				setBandAllGigsData(bandAllData);
-				// dispatch({
-				// 	type: 'SET_BAND_GIGS',
-				// 	payload: bandData,
-				// });
-				// log(bandData, 'res ok band data');
-				// log(sortedByDate, 'res ok sorted band data');
+				// set band counts
+				setBandFestivalCount(festivalCount);
+				// set band ranks
 			}
 		};
 		if (user) {
@@ -97,6 +106,7 @@ const Band = ({ band, id }) => {
 	}, [bandToView, dispatch, user]);
 
 	log(bandAllGigsData, 'band all gigs data - band');
+	log(bandDetailsData, 'band details data - band');
 
 	return (
 		<StyledBand
@@ -115,6 +125,12 @@ const Band = ({ band, id }) => {
 					{bandDetailsData && bandDetailsData.length}
 				</div>
 			</div> */}
+			{bandDetailsData && bandFestivalCount && (
+				<BandCountRankWidget bandCounterData={bandAllGigsData} />
+			)}
+			{/* {bandDetailsData && bandAllGigsData && (
+				<BandAllTopsWidget gigCounterData={bandAllGigsData} />
+			)} */}
 			{bandDetailsData && bandAllGigsData && (
 				<TopBandWidget gigCounterData={bandAllGigsData} />
 			)}
@@ -127,7 +143,8 @@ const Band = ({ band, id }) => {
 							{/* <span> {bandToView}</span> */}
 						</p>
 						<div>
-							<FaUsers className='nav-icon' />x
+							{/* <FaUsers className='nav-icon' />x */}
+							<BsMusicNoteList className='nav-icon' />
 							{bandDetailsData && bandAllGigsData.length}
 						</div>
 					</div>
@@ -142,7 +159,8 @@ const Band = ({ band, id }) => {
 							{/* <span> {bandToView}</span> */}
 						</p>
 						<div>
-							<FaUsers className='nav-icon' />x
+							{/* <FaUsers className='nav-icon' />x */}
+							<BsMusicNoteList className='nav-icon' />
 							{bandDetailsData && bandHeadlineGigsData.length}
 						</div>
 					</div>
@@ -162,7 +180,9 @@ const Band = ({ band, id }) => {
 							{/* <span> {bandToView}</span> */}
 						</p>
 						<div>
-							<FaUsers className='nav-icon' />x
+							{/* <FaUsers className='nav-icon' />x */}
+							<BsMusicNoteList className='nav-icon' />
+
 							{bandDetailsData && bandSupportGigsData.length}
 						</div>
 					</div>
@@ -239,6 +259,13 @@ const StyledBand = styled(motion.div)`
 			align-items: center;
 			column-gap: 0.5rem;
 			color: ${({ theme }) => theme.txtGrey};
+			font-size: 1.4rem;
+			font-weight: bolder;
+			/* font-size: 0.7em; */
+			.nav-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 1.6rem;
+			}
 		}
 	}
 `;

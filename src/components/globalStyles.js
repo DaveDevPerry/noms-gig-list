@@ -338,6 +338,7 @@ input.error {
   border: 1px solid ${({ theme }) => theme.error};
 }
 
+
 ${
 	'' /* nav {
   display: flex;
@@ -370,5 +371,9 @@ ${
 
 .mono-font{
   font-family: 'Roboto Mono', monospace;
+}
+label .field-required{
+  color: ${({ theme }) => theme.error};
+  font-size: 1.8rem;
 }
 `;

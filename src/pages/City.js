@@ -5,7 +5,8 @@ import { useStateContext } from '../lib/context';
 import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import CityGigsList from '../components/CityGigsList';
-import { FaUsers } from 'react-icons/fa';
+// import { FaUsers } from 'react-icons/fa';
+import { BsMusicNoteList } from 'react-icons/bs';
 import { log } from '../helper';
 
 const City = ({ band, id }) => {
@@ -68,7 +69,8 @@ const City = ({ band, id }) => {
 					<span> {cityToView}</span>
 				</p>
 				<div>
-					<FaUsers className='nav-icon' />x
+					{/* <FaUsers className='nav-icon' />x */}
+					<BsMusicNoteList className='nav-icon' />
 					{cityDetailsData && cityDetailsData.length}
 				</div>
 			</div>
@@ -141,6 +143,13 @@ const StyledCity = styled(motion.div)`
 			align-items: center;
 			column-gap: 0.5rem;
 			color: ${({ theme }) => theme.txtGrey};
+			font-size: 1.4rem;
+			font-weight: bolder;
+			/* font-size: 0.7em; */
+			.nav-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 1.6rem;
+			}
 		}
 	}
 `;

@@ -7,7 +7,9 @@ import { motion } from 'framer-motion';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useEffect } from 'react';
 // import CityCard from '../components/CityCard';
-import { FaUsers } from 'react-icons/fa';
+// import { FaUsers } from 'react-icons/fa';
+import { BsMusicNoteList } from 'react-icons/bs';
+
 // import { useGigsContext } from '../hooks/useGigsContext';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
@@ -137,7 +139,10 @@ const Cities = () => {
 			<div className='city-name-list-header'>
 				<p>All cities</p>
 				<div>
-					<FaUsers className='nav-icon' />x{cities && cities.length}
+					{/* <FaUsers className='nav-icon' />x */}
+					<BsMusicNoteList className='nav-icon' />
+
+					{cities && cities.length}
 				</div>
 			</div>
 			{/* {totalGigsPerCity &&
@@ -199,6 +204,13 @@ const StyledCities = styled(motion.div)`
 			align-items: center;
 			column-gap: 0.5rem;
 			color: ${({ theme }) => theme.txtGrey};
+			font-size: 1.4rem;
+			font-weight: bolder;
+			/* font-size: 0.7em; */
+			.nav-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 1.6rem;
+			}
 		}
 	}
 `;

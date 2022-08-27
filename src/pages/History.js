@@ -7,7 +7,8 @@ import { motion } from 'framer-motion';
 
 // components
 import GigsList from '../components/GigsList';
-import { FaUsers } from 'react-icons/fa';
+// import { FaUsers } from 'react-icons/fa';
+import { BsMusicNoteList } from 'react-icons/bs';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
 // import HistoryWidget from '../components/HistoryWidget';
@@ -89,8 +90,12 @@ const History = () => {
 			<div className='gig-history-list-header'>
 				<p>History</p>
 				<div>
-					<FaUsers className='nav-icon' />x
+					{/* <FaUsers className='nav-icon' />x */}
+					<BsMusicNoteList className='nav-icon' />
 					{previous_gigs && previous_gigs.length}
+					{/* {previous_gigs.length && previous_gigs.length < 10
+						? `0${previous_gigs.length}`
+						: previous_gigs.length} */}
 				</div>
 			</div>
 			<GigsList gigs={previous_gigs} />
@@ -128,6 +133,13 @@ const StyledHistory = styled(motion.div)`
 			align-items: center;
 			column-gap: 0.5rem;
 			color: ${({ theme }) => theme.txtGrey};
+			font-size: 1.4rem;
+			font-weight: bolder;
+			/* font-size: 0.7em; */
+			.nav-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 1.6rem;
+			}
 		}
 	}
 `;

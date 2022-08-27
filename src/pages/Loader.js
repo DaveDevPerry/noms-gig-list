@@ -34,7 +34,6 @@ const Loader = () => {
 			const response = await fetch(
 				`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
 				{
-					// const response = await fetch('/api/weights', {
 					headers: {
 						Authorization: `Bearer ${user.token}`,
 					},

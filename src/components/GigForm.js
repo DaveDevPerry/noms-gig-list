@@ -370,7 +370,10 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 			</h3>
 
 			<div className='input-wrapper-band'>
-				<label>Headline Band:</label>
+				{/* <span className="field-required">*</span> */}
+				<label>
+					Headline Band:<span className='field-required'>*</span>
+				</label>
 				<GigFormBands
 					setDisplay={setDisplay}
 					display={display}
@@ -404,7 +407,9 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 			</div> */}
 
 			<div className='input-wrapper-band'>
-				<label>Venue:</label>
+				<label>
+					Venue:<span className='field-required'>*</span>
+				</label>
 				<GigFormVenues
 					setVenueDisplay={setVenueDisplay}
 					venueDisplay={venueDisplay}
@@ -425,7 +430,9 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 				/>
 			</div> */}
 			<div className='input-wrapper-band'>
-				<label>City:</label>
+				<label>
+					City:<span className='field-required'>*</span>
+				</label>
 				<GigFormCities
 					setCityDisplay={setCityDisplay}
 					cityDisplay={cityDisplay}
@@ -458,7 +465,9 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 					/>
 				</div>
 				<div className='input-wrapper-date'>
-					<label>Date:</label>
+					<label>
+						Date:<span className='field-required'>*</span>
+					</label>
 					<input
 						type='date'
 						id='input-date'
@@ -490,6 +499,22 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 			</div> */}
 			<div className='input-wrapper-band'>
 				<label>details:</label>
+				<textarea
+					id='input-area'
+					cols='30'
+					rows='3'
+					onChange={(e) => setGig_details(e.target.value)}
+					value={gig_details}
+				></textarea>
+				{/* <input
+					type='text'
+					id='input-number'
+					onChange={(e) => setGig_details(e.target.value)}
+					value={gig_details}
+				/> */}
+			</div>
+			{/* <div className='input-wrapper-band'>
+				<label>details:</label>
 				<input
 					type='text'
 					id='input-number'
@@ -498,7 +523,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 					// className={emptyFields.includes('gig_details') ? 'error' : ''}
 					// autoFocus
 				/>
-			</div>
+			</div> */}
 
 			<div className='btn-container'>
 				{error && <div className='error'>{error}</div>}
@@ -512,12 +537,14 @@ const StyledForm = styled.form`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0 auto 10px auto; */
-	padding: 1rem 2rem 2rem 2rem;
+	padding: 1rem;
+	/* padding: 1rem 2rem 2rem 2rem; */
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 1rem;
+	row-gap: 0.5rem;
+	/* row-gap: 1rem; */
 	flex: 1;
 	p.form-title {
 		padding: 0 2rem;
@@ -559,14 +586,52 @@ const StyledForm = styled.form`
 				color: ${({ theme }) => theme.txtDarkGrey};
 				font-weight: bold;
 			}
-			#input-checkbox {
-				padding: 0.8rem 1rem;
+			/* #input-checkbox {
 				margin: 0;
 				font-size: 1.8rem;
 				color: ${({ theme }) => theme.black};
-				/* flex: 1; */
 				width: 3rem;
 				height: 3rem;
+				border: 2px solid ${({ theme }) => theme.borderGrey};
+				border-radius: 4px;
+			} */
+			input[type='checkbox'] {
+				/* ...existing styles */
+				display: grid;
+				place-content: center;
+				/* margin: 0; */
+				/* font-size: 1.8rem; */
+				color: ${({ theme }) => theme.black};
+				width: 3rem;
+				height: 3rem;
+				/* width: 4.2rem;
+				height: 4.2rem; */
+				/* border: 2px solid ${({ theme }) => theme.borderGrey}; */
+				border-radius: 4px;
+
+				appearance: none;
+				background-color: transparent;
+				margin: 0;
+				font: inherit;
+				/* color: currentColor; */
+				/* width: 1.15em; */
+				/* height: 1.15em; */
+				/* border: 0.15em solid currentColor; */
+				/* border-radius: 0.15em; */
+				transform: translateY(-0.075em);
+			}
+
+			input[type='checkbox']::before {
+				content: '';
+				width: 1em;
+				height: 1em;
+				transform: scale(0);
+				transition: 120ms transform ease-in-out;
+				box-shadow: inset 1em 1em ${({ theme }) => theme.primaryColor};
+			}
+
+			input[type='checkbox']:checked::before {
+				transform: scale(1);
 			}
 		}
 		.input-wrapper-date {
@@ -638,6 +703,21 @@ const StyledForm = styled.form`
 			font-size: 1.8rem;
 			color: ${({ theme }) => theme.black};
 			flex: 1;
+		}
+		textarea {
+			border: 2px solid ${({ theme }) => theme.borderGrey};
+			border-radius: 4px;
+			padding: 10px;
+			font-size: 1.8rem;
+			color: ${({ theme }) => theme.black};
+			font-family: 'Arial';
+			&:focus {
+				outline: none;
+				border: none;
+				border: 2px solid ${({ theme }) => theme.primaryColor};
+				border-radius: 4px;
+				box-sizing: border-box;
+			}
 		}
 	}
 	.btn-container {

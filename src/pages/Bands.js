@@ -236,7 +236,8 @@ const Bands = () => {
 			<div className='band-name-list-header'>
 				<p>All Bands</p>
 				<div>
-					<FaUsers className='nav-icon' />x{bands && bands.length}
+					<FaUsers className='nav-icon' />
+					{bands && bands.length}
 				</div>
 			</div>
 			{/* {totalGigsPerBand &&
@@ -301,6 +302,13 @@ const StyledBands = styled(motion.div)`
 			align-items: center;
 			column-gap: 0.5rem;
 			color: ${({ theme }) => theme.txtGrey};
+			font-size: 1.4rem;
+			font-weight: bolder;
+			/* font-size: 0.7em; */
+			.nav-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 1.6rem;
+			}
 		}
 	}
 `;

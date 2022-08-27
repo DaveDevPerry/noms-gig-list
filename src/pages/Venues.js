@@ -9,7 +9,9 @@ import { motion } from 'framer-motion';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { useEffect } from 'react';
 // import VenueCard from '../components/VenueCard';
-import { FaUsers } from 'react-icons/fa';
+// import { FaUsers } from 'react-icons/fa';
+import { BsMusicNoteList } from 'react-icons/bs';
+
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
 import VenuesList from '../components/VenuesList';
@@ -123,7 +125,9 @@ const Venues = () => {
 			<div className='venue-name-list-header'>
 				<p>All venues</p>
 				<div>
-					<FaUsers className='nav-icon' />x
+					{/* <FaUsers className='nav-icon' />x */}
+					<BsMusicNoteList className='nav-icon' />
+
 					{totalGigsPerVenue && totalGigsPerVenue.length}
 					{/* <FaUsers className='nav-icon' />x{venues && venues.length} */}
 				</div>
@@ -182,6 +186,13 @@ const StyledVenues = styled(motion.div)`
 			align-items: center;
 			column-gap: 0.5rem;
 			color: ${({ theme }) => theme.txtGrey};
+			font-size: 1.4rem;
+			font-weight: bolder;
+			/* font-size: 0.7em; */
+			.nav-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 1.6rem;
+			}
 		}
 	}
 `;
