@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GiLaurelsTrophy } from 'react-icons/gi';
+// import { GiLaurelsTrophy } from 'react-icons/gi';
 import { GiCampingTent } from 'react-icons/gi';
 // import { SiBandsintown } from 'react-icons/si';
 // import { useAuthContext } from '../hooks/useAuthContext';
@@ -9,14 +9,7 @@ import { GiCampingTent } from 'react-icons/gi';
 // import { FaCheck } from 'react-icons/fa';
 // import gigBarWidget from './gigBarWidget';
 
-const KeyWidget = (
-	{
-		// bandWinner,
-		// cityWinner,
-		// venueWinner,
-		// supportWinner,
-	}
-) => {
+const KeyWidget = () => {
 	// const percentage = 20.345;
 	// const { gigCounterData } = useGigsContext();
 	// const { gigCounterData, dispatch } = useGigsContext();
@@ -105,6 +98,7 @@ const StyledKeyWidget = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	transition: all 200ms linear;
 	/* justify-content: center; */
 	/* flex: 1; */
 	h3 {
@@ -145,7 +139,8 @@ const StyledKeyWidget = styled.div`
 				/* text-align: right; */
 				width: 2.4rem;
 				.gig-icon {
-					color: ${({ theme }) => theme.primaryColor};
+					/* color: ${({ theme }) => theme.primaryColor}; */
+					color: ${({ theme }) => theme.green};
 					/* color: ${({ theme }) => theme.secondaryColor}; */
 					/* font-size: 2rem; */
 					font-size: 2.2rem;

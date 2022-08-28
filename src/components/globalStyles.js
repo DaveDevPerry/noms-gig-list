@@ -112,7 +112,7 @@ ${
   padding: 0 20px;
   border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
   margin-bottom: 5px;
-  font-size: 0.9em;
+  font-size: 1.6rem;
   text-align: center;
   margin-top: 10px;
 }
@@ -127,7 +127,7 @@ ${
   column-gap: 10px;
 }
 .create .input-wrapper label{
-  font-size: 0.9em;
+  font-size: 1.6rem;
   text-align: right;
 }
 .create .input-wrapper #input-number{
@@ -158,7 +158,7 @@ ${
 }
 .weight-details p {
   margin: 0;
-  font-size: 0.9em;
+  font-size: 1.6rem;
   color: ${({ theme }) => theme.txtGrey};
 }
 .weight-details span {
@@ -192,7 +192,7 @@ ${
 }
 .target-details p {
   margin: 0;
-  font-size: 0.9em;
+  font-size: 1.6rem;
   color: ${({ theme }) => theme.txtGrey};
 }
 .target-details span {
@@ -261,12 +261,12 @@ ${
 }
 .wrapper p.figure{
   margin: 0;
-  font-size: 0.9em;
+  font-size: 1.6rem;
   color: ${({ theme }) => theme.txtGrey};
 }
 .wrapper p.stat-name{
   margin: 0;
-  font-size: 0.8em;
+  font-size: 1.4rem;
   color: ${({ theme }) => theme.txtGrey};
   text-transform: uppercase;
 } */
@@ -276,7 +276,7 @@ ${
   padding: 0 20px;
   border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
   margin-bottom: 5px;
-  font-size: 0.9em;
+  font-size: 1.6rem;
 } */
 }
 ${

@@ -56,7 +56,7 @@ const StyledAppDetails = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
-	/* transition: all 200ms linear; */
+	transition: all 200ms linear;
 	.dev-link-container {
 		display: flex;
 		flex-direction: column;

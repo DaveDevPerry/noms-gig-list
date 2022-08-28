@@ -37,9 +37,13 @@ const CountdownWidget = ({ gig }) => {
 				<BsFillShareFill size='20px' className='share-icon' />
 				<div className='details-wrapper'>
 					<p>
-						{intlFormatDistance(new Date(gig.gig_date), new Date(), {
-							numeric: 'auto',
-						})}
+						{intlFormatDistance(
+							new Date(new Date(gig.gig_date).toDateString()),
+							new Date(new Date(new Date().toDateString())),
+							{
+								numeric: 'auto',
+							}
+						)}
 					</p>
 					{/* <p>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</p> */}
 					{gig.headline_band && (

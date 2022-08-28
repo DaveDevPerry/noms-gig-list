@@ -128,7 +128,7 @@ const StyledBandGigCard = styled.div`
 	}
 	p {
 		margin: 0;
-		font-size: 0.8em;
+		font-size: 1.4rem;
 		color: ${({ theme }) => theme.txtGrey};
 		text-transform: capitalize;
 	}
@@ -150,10 +150,11 @@ const StyledBandGigCard = styled.div`
 		/* flex: 1; */
 		/* text-align: right; */
 		.gig-icon {
-			color: ${({ theme }) => theme.primaryColor};
+			/* color: ${({ theme }) => theme.primaryColor}; */
+			color: ${({ theme }) => theme.green};
 			/* color: ${({ theme }) => theme.secondaryColor}; */
 			/* font-size: 2rem; */
-			font-size: 0.9em;
+			font-size: 1.6rem;
 		}
 	}
 	.wrapper-icon {
@@ -186,7 +187,7 @@ const StyledBandGigCard = styled.div`
 		}
 		/* p.stat-name {
 				margin: 0;
-				font-size: 0.8em;
+				font-size: 1.4rem;
 				color: ${({ theme }) => theme.txtGrey};
 				text-transform: uppercase;
 			} */
@@ -197,14 +198,14 @@ const StyledBandGigCard = styled.div`
 	.right p {
 		text-align: right;
 		/* width: 7.5rem; */
-		font-size: 0.7em;
+		font-size: 1.4rem;
 	}
 	.counter {
 		/* flex: 1; */
 		p {
 			text-align: right;
 			color: ${({ theme }) => theme.txtGrey};
-			font-size: 0.9em;
+			font-size: 1.6rem;
 			strong {
 				color: ${({ theme }) => theme.secondaryColor};
 				/* font-size: 1.8rem; */

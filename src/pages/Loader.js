@@ -9,6 +9,7 @@ import { useBandsContext } from '../hooks/useBandsContext';
 
 import { useStateContext } from '../lib/context';
 // import { log } from '../helper';
+// import { log } from '../helper';
 // import { motion } from 'framer-motion';
 
 const Loader = () => {
@@ -40,6 +41,21 @@ const Loader = () => {
 				}
 			);
 			const json = await response.json();
+
+			// const clonedJson = [...json];
+			// const sortedGigs = clonedJson.sort((a, b) => {
+			// 	return new Date(b.gig_date) - new Date(a.gig_date);
+			// });
+
+			// log(sortedGigs, 'sortedGigs');
+			// const futureGigs = sortedGigs.filter((gig) => {
+			// 	return (
+			// 		new Date(gig.gig_date).setHours(0, 0, 0, 0) >=
+			// 		new Date().setHours(0, 0, 0, 0) - 1
+			// 	);
+			// });
+
+			// log(futureGigs, 'futureGigs');
 
 			if (response.ok) {
 				// setWorkouts(json);
@@ -96,14 +112,10 @@ const Loader = () => {
 			);
 			const json = await response.json();
 
-			// json.sort((a,b) => a.name > b.name ? 1 : -1)
-
 			if (response.ok) {
-				// setWorkouts(json);
 				gigsDispatch({
 					type: 'SET_GLOBAL_STATS',
 					payload: json,
-					// payload: json.sort((a, b) => (a.name > b.name ? 1 : -1)),
 				});
 			}
 		};

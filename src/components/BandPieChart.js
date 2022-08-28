@@ -1,10 +1,15 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import { log } from '../helper';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const BandPieChart = ({ gigs }) => {
+const BandPieChart = ({ gigs, themeToggler, theme }) => {
+	log(themeToggler, theme, 'themeToggler and theme');
+
+	const borderFromTheme = theme === 'light' ? '#ffffff' : '#040404';
+
 	const options = {
 		responsive: true,
 		aspectRatio: 3,
@@ -67,9 +72,15 @@ const BandPieChart = ({ gigs }) => {
 					// 'rgba(255, 159, 64, 0.2)',
 				],
 				borderColor: [
-					'#ffffff',
-					'#ffffff',
-					'#ffffff',
+					borderFromTheme,
+					borderFromTheme,
+					borderFromTheme,
+					// '#ffffff0',
+					// '#ffffff0',
+					// '#ffffff0',
+					// '#ffffff',
+					// '#ffffff',
+					// '#ffffff',
 					// 'rgba(255, 206, 86, 1)',
 					// 'rgba(54, 162, 235, 1)',
 					// 'rgba(255, 99, 132, 1)',

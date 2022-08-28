@@ -153,7 +153,7 @@ const StyledTopBandWidget = styled.div`
 			}
 			p.figure {
 				margin: 0;
-				font-size: 0.8em;
+				font-size: 1.4rem;
 				color: ${({ theme }) => theme.txtGrey};
 			}
 			p.stat-name {
@@ -197,7 +197,7 @@ const StyledTopBandWidget = styled.div`
 			}
 			/* p.stat-name {
 				margin: 0;
-				font-size: 0.8em;
+				font-size: 1.4rem;
 				color: ${({ theme }) => theme.txtGrey};
 				text-transform: uppercase;
 			} */

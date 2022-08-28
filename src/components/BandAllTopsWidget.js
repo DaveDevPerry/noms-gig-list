@@ -122,7 +122,7 @@ const StyledBandAllTopsWidget = styled.div`
 			}
 			p.figure {
 				margin: 0;
-				font-size: 0.8em;
+				font-size: 1.4rem;
 				color: ${({ theme }) => theme.txtGrey};
 				flex: 1;
 				text-align: right;
@@ -175,7 +175,7 @@ const StyledBandAllTopsWidget = styled.div`
 			}
 			/* p.stat-name {
 				margin: 0;
-				font-size: 0.8em;
+				font-size: 1.4rem;
 				color: ${({ theme }) => theme.txtGrey};
 				text-transform: uppercase;
 			} */

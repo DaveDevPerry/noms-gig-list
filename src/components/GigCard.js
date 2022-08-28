@@ -106,24 +106,24 @@ const StyledGigCard = styled.div`
 
 	p {
 		margin: 0;
-		font-size: 0.8em;
+		font-size: 1.4rem;
 		color: ${({ theme }) => theme.txtGrey};
 		text-transform: capitalize;
 		/* &:first-child {
 		} */
 		&.left {
 			/* width: 8rem; */
-			font-size: 0.7em;
+			font-size: 1.4rem;
 		}
 	}
 	.full {
 		/* flex: 1; */
 		p {
 			/* margin: 0;
-		font-size: 0.8em;
+		font-size: 1.4rem;
 		color: ${({ theme }) => theme.txtGrey}; */
 			text-transform: uppercase;
-			font-size: 0.9em;
+			font-size: 1.6rem;
 			width: unset;
 		}
 	}
@@ -146,7 +146,8 @@ const StyledGigCard = styled.div`
 		text-align: right;
 		.gig-icon {
 			/* color: ${({ theme }) => theme.secondaryColor}; */
-			color: ${({ theme }) => theme.primaryColor};
+			/* color: ${({ theme }) => theme.primaryColor}; */
+			color: ${({ theme }) => theme.green};
 			font-size: 2rem;
 		}
 	}
@@ -180,7 +181,7 @@ const StyledGigCard = styled.div`
 		}
 		/* p.stat-name {
 				margin: 0;
-				font-size: 0.8em;
+				font-size: 1.4rem;
 				color: ${({ theme }) => theme.txtGrey};
 				text-transform: uppercase;
 			} */

@@ -116,7 +116,7 @@ const StyledForm = styled.form`
 		padding: 0 2rem;
 		border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
 		margin-bottom: 0.5rem;
-		font-size: 0.9em;
+		font-size: 1.6rem;
 		text-align: center;
 		margin-top: 1rem;
 	}
@@ -130,7 +130,7 @@ const StyledForm = styled.form`
 		align-items: center;
 		column-gap: 1rem;
 		label {
-			font-size: 0.9em;
+			font-size: 1.6rem;
 			text-align: right;
 			flex: 1;
 		}

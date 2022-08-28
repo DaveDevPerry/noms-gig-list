@@ -10,13 +10,17 @@ import BandPieChart from './BandPieChart';
 // import { format } from 'date-fns';
 // import { differenceInDays } from 'date-fns';
 
-const PieWidget = ({ gigs }) => {
+const PieWidget = ({ gigs, themeToggler, theme }) => {
 	const { totalGigsPerBand } = useStateContext();
 
 	return (
 		<StyledPieWidget className='chart-widget'>
 			{/* <p>chart widget</p> */}
-			<BandPieChart gigs={totalGigsPerBand.slice(0, 5)} />
+			<BandPieChart
+				themeToggler={themeToggler}
+				theme={theme}
+				gigs={totalGigsPerBand.slice(0, 5)}
+			/>
 		</StyledPieWidget>
 	);
 };

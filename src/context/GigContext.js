@@ -283,6 +283,7 @@ export const gigsReducer = (state, action) => {
 			};
 
 		case 'SET_GIG_COUNTER_DATA':
+			const clonedUpcoming = [...action.payload];
 			return {
 				gigCounterData: {
 					all_gigs: action.payload,
@@ -313,20 +314,44 @@ export const gigsReducer = (state, action) => {
 						.sort((a, b) => {
 							return new Date(b.gig_date) - new Date(a.gig_date);
 						}).length,
-					next_five_gigs: action.payload
+					next_five_gigs: clonedUpcoming
 						.sort((a, b) => {
 							return new Date(b.gig_date) - new Date(a.gig_date);
 						})
 						.filter((gig) => {
 							return (
-								new Date(gig.gig_date) > new Date() ||
-								new Date(gig.gig_date) === new Date()
+								new Date(gig.gig_date).setHours(0, 0, 0, 0) >=
+								new Date().setHours(0, 0, 0, 0) - 1
 							);
 						})
 						.sort((a, b) => {
+							// return (
+							// 	new Date(b.gig_date).toDateString() -
+							// 	new Date(a.gig_date).toDateString()
+							// );
+							// return (
+							// 	new Date(a.gig_date).toDateString() -
+							// 	new Date(b.gig_date).toDateString()
+							// );
 							return new Date(a.gig_date) - new Date(b.gig_date);
 						})
-						.splice(0, 5),
+						.splice(0, 8),
+					// next_five_gigs: action.payload
+					// 	.sort((a, b) => {
+					// 		return (
+					// 			new Date(b.gig_date) - new Date(a.gig_date)
+					// 		);
+					// 	})
+					// 	.filter((gig) => {
+					// 		return (
+					// 			new Date(gig.gig_date).setHours(0, 0, 0, 0) >=
+					// 			new Date().setHours(0, 0, 0, 0) - 1
+					// 		);
+					// 	})
+					// 	.sort((a, b) => {
+					// 		return new Date(a.gig_date) - new Date(b.gig_date);
+					// 	})
+					// 	.splice(0, 8),
 				},
 			};
 		case 'SET_GIG_COUNT_PER_BAND':

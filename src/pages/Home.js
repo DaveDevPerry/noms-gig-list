@@ -22,7 +22,7 @@ import KeyWidget from '../components/KeyWidget';
 // import ChartYearWidget from '../components/ChartYearWidget';
 // import NextGigCountdownWidget from '../components/NextGigCountdownWidget';
 
-const Home = () => {
+const Home = ({ themeToggler, theme }) => {
 	const { gigCounterData, dispatch } = useGigsContext();
 	const { user } = useAuthContext();
 	const {
@@ -116,7 +116,11 @@ const Home = () => {
 							</div>
 						)}
 					{gigCounterData && gigCounterData.all_gigs.length > 2 && (
-						<PieWidget gigs={gigCounterData.all_gigs} />
+						<PieWidget
+							themeToggler={themeToggler}
+							theme={theme}
+							gigs={gigCounterData.all_gigs}
+						/>
 					)}
 					{gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
 						<>

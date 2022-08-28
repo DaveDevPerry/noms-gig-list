@@ -60,10 +60,16 @@ const GigDetails = ({ gig, difference }) => {
 					<strong>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</strong>
 				</p>
 				<p>
-					{intlFormatDistance(new Date(gig.gig_date), new Date(), {
+					{intlFormatDistance(
+						new Date(new Date(gig.gig_date).toDateString()),
+						new Date(new Date(new Date().toDateString())),
+						{
+							numeric: 'auto',
+						}
+					)}
+					{/* {intlFormatDistance(new Date(gig.gig_date), new Date(), {
 						numeric: 'auto',
-					})}
-					{/* {formatDistanceToNow(new Date(gig.gig_date), { addSuffix: true })} */}
+					})} */}
 				</p>
 			</div>
 
@@ -94,7 +100,7 @@ const StyledGigDetails = styled.div`
 	}
 	p {
 		margin: 0;
-		font-size: 0.8em;
+		font-size: 1.4rem;
 		color: ${({ theme }) => theme.txtGrey};
 		text-transform: capitalize;
 	}
@@ -139,7 +145,7 @@ const StyledGigDetails = styled.div`
 		}
 		/* p.stat-name {
 				margin: 0;
-				font-size: 0.8em;
+				font-size: 1.4rem;
 				color: ${({ theme }) => theme.txtGrey};
 				text-transform: uppercase;
 			} */
@@ -149,7 +155,7 @@ const StyledGigDetails = styled.div`
 	}
 	.right p {
 		text-align: right;
-		font-size: 0.7em;
+		font-size: 1.4rem;
 	}
 `;
 

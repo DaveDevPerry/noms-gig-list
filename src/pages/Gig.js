@@ -141,9 +141,16 @@ const Gig = ({ band, id }) => {
 				<StyledGigHeaderWidget>
 					<p className='header-time'>
 						<strong>
-							{intlFormatDistance(new Date(gig[0].gig_date), new Date(), {
+							{/* {intlFormatDistance(new Date(gig[0].gig_date), new Date(), {
 								numeric: 'auto',
-							})}
+							})} */}
+							{intlFormatDistance(
+								new Date(new Date(gig[0].gig_date).toDateString()),
+								new Date(new Date(new Date().toDateString())),
+								{
+									numeric: 'auto',
+								}
+							)}
 						</strong>
 					</p>
 					<p className='header-title'>
@@ -325,6 +332,7 @@ const StyledGigHeaderWidget = styled.div`
 		justify-content: center;
 		font-size: 1.6rem;
 		font-size: 2rem;
+		color: ${({ theme }) => theme.txtGrey};
 		/* margin-bottom: 1rem; */
 	}
 	.header-title {
@@ -343,7 +351,8 @@ const StyledGigHeaderWidget = styled.div`
 		/* text-align: right; */
 		.gig-icon {
 			/* color: ${({ theme }) => theme.secondaryColor}; */
-			color: ${({ theme }) => theme.primaryColor};
+			/* color: ${({ theme }) => theme.primaryColor}; */
+			color: ${({ theme }) => theme.green};
 			font-size: 6rem;
 		}
 	}
@@ -353,6 +362,7 @@ const StyledGigHeaderWidget = styled.div`
 		align-items: center;
 		justify-content: center;
 		font-size: 1.6rem;
+		color: ${({ theme }) => theme.txtGrey};
 		/* row-gap: 1rem; */
 		span {
 			text-transform: capitalize;
@@ -362,6 +372,7 @@ const StyledGigHeaderWidget = styled.div`
 			strong {
 				/* font-weight: bolder; */
 				font-size: 2rem;
+				/* color: ${({ theme }) => theme.txtGrey}; */
 			}
 		}
 	}
@@ -399,6 +410,7 @@ const StyledGigSupportWidget = styled.div`
 		color: ${({ theme }) => theme.secondaryColor};
 		text-transform: capitalize;
 		font-size: 1.6rem;
+		font-weight: bold;
 	}
 	.support-band {
 		/* display: flex;
@@ -410,6 +422,7 @@ const StyledGigSupportWidget = styled.div`
 		/* span { */
 		text-transform: uppercase;
 		font-weight: bolder;
+		color: ${({ theme }) => theme.txtGrey};
 		/* } */
 	}
 	/* .support-date {
@@ -431,6 +444,7 @@ const StyledGigDetailsWidget = styled.div`
 		color: ${({ theme }) => theme.secondaryColor};
 		text-transform: capitalize;
 		font-size: 1.6rem;
+		font-weight: bold;
 	}
 	.details-band {
 		/* display: flex;
@@ -441,6 +455,7 @@ const StyledGigDetailsWidget = styled.div`
 		/* column-gap: 1rem; */
 		/* span { */
 		text-transform: capitalize;
+		color: ${({ theme }) => theme.txtGrey};
 		/* font-weight: bolder; */
 		/* } */
 	}

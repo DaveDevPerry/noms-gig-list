@@ -146,7 +146,7 @@ const StyledGigs = styled(motion.div)`
 			color: ${({ theme }) => theme.txtGrey};
 			font-size: 1.4rem;
 			font-weight: bolder;
-			/* font-size: 0.7em; */
+			/* font-size: 1.4rem; */
 			.nav-icon {
 				color: ${({ theme }) => theme.secondaryColor};
 				font-size: 1.6rem;

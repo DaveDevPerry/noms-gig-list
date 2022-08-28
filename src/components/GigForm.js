@@ -550,7 +550,7 @@ const StyledForm = styled.form`
 		padding: 0 2rem;
 		border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
 		margin-bottom: 0.5rem;
-		font-size: 0.9em;
+		font-size: 1.6rem;
 		text-align: center;
 		margin-top: 1rem;
 	}
@@ -581,7 +581,7 @@ const StyledForm = styled.form`
 			align-items: center;
 			column-gap: 0.5rem;
 			label {
-				font-size: 0.9em;
+				font-size: 1.6rem;
 				text-align: right;
 				color: ${({ theme }) => theme.txtDarkGrey};
 				font-weight: bold;
@@ -640,7 +640,7 @@ const StyledForm = styled.form`
 			align-items: center;
 			column-gap: 0.5rem;
 			label {
-				font-size: 0.9em;
+				font-size: 1.6rem;
 				text-align: right;
 				color: ${({ theme }) => theme.txtDarkGrey};
 				font-weight: bold;
@@ -661,7 +661,7 @@ const StyledForm = styled.form`
 		column-gap: 1rem;
 		margin-top: 1.5rem;
 		label {
-			font-size: 0.9em;
+			font-size: 1.6rem;
 			text-align: right;
 			flex: 1;
 			color: ${({ theme }) => theme.txtDarkGrey};
@@ -683,7 +683,7 @@ const StyledForm = styled.form`
 		/* align-items: center; */
 		/* row-gap: 0.5rem; */
 		label {
-			font-size: 0.9em;
+			font-size: 1.6rem;
 			text-align: left;
 			flex: 1;
 			text-transform: capitalize;

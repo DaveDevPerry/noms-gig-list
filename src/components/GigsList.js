@@ -63,7 +63,7 @@ const StyledGigsList = styled.div`
 		padding: 0 1rem;
 		border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
 		margin-bottom: 0.5rem;
-		font-size: 0.9em;
+		font-size: 1.6rem;
 	}
 	.gigs-list {
 		/* border: 2px solid blue; */

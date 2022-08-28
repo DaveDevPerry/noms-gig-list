@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GiLaurelsTrophy } from 'react-icons/gi';
+// import { GiLaurelsTrophy } from 'react-icons/gi';
 // import { SiBandsintown } from 'react-icons/si';
 // import { useAuthContext } from '../hooks/useAuthContext';
 // import { useGigsContext } from '../hooks/useGigsContext';
@@ -172,7 +172,7 @@ const StyledAllTopsWidget = styled.div`
 			}
 			p.figure {
 				margin: 0;
-				font-size: 0.8em;
+				font-size: 1.4rem;
 				color: ${({ theme }) => theme.txtGrey};
 				flex: 1;
 				text-align: right;
@@ -225,7 +225,7 @@ const StyledAllTopsWidget = styled.div`
 			}
 			/* p.stat-name {
 				margin: 0;
-				font-size: 0.8em;
+				font-size: 1.4rem;
 				color: ${({ theme }) => theme.txtGrey};
 				text-transform: uppercase;
 			} */

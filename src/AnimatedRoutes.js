@@ -52,7 +52,13 @@ const AnimatedRoutes = ({
 					<Route path='/' element={<Loader />} />
 					<Route
 						path='/home'
-						element={user ? <Home /> : <Navigate to='/login' />}
+						element={
+							user ? (
+								<Home themeToggler={themeToggler} theme={theme} />
+							) : (
+								<Navigate to='/login' />
+							)
+						}
 					/>
 					{/* <Route
 						path='/'

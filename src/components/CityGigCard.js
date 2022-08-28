@@ -96,7 +96,7 @@ const StyledCityGigCard = styled.div`
 	}
 	p {
 		margin: 0;
-		font-size: 0.8em;
+		font-size: 1.4rem;
 		color: ${({ theme }) => theme.txtGrey};
 		text-transform: capitalize;
 	}
@@ -141,7 +141,7 @@ const StyledCityGigCard = styled.div`
 		}
 		/* p.stat-name {
 				margin: 0;
-				font-size: 0.8em;
+				font-size: 1.4rem;
 				color: ${({ theme }) => theme.txtGrey};
 				text-transform: uppercase;
 			} */
@@ -152,7 +152,7 @@ const StyledCityGigCard = styled.div`
 	.right p {
 		text-align: right;
 		/* width: 7.5rem; */
-		font-size: 0.7em;
+		font-size: 1.4rem;
 	}
 `;
 

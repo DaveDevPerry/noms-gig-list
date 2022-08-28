@@ -62,9 +62,9 @@ const CityCard = ({ city, difference }) => {
 				</p>
 			</div>
 			<div className='right'>
-				<p>
+				<p className='mono-font'>
 					{/* <strong> */}
-					{city.value}
+					{city.value < 10 ? `0${city.value}` : city.value}
 					{/* {band.name} */}
 					{/* </strong> */}
 				</p>
@@ -92,17 +92,17 @@ const StyledCityCard = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0.5rem 0; */
-	padding: 0.5rem 1rem;
+	padding: 0.5rem;
 	position: relative;
 	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	column-gap: 1rem;
+	column-gap: 0.5rem;
 
 	p {
 		margin: 0;
-		font-size: 0.8em;
+		font-size: 1.4rem;
 		color: ${({ theme }) => theme.txtGrey};
 		text-transform: capitalize;
 		/* &:first-child {
@@ -115,11 +115,12 @@ const StyledCityCard = styled.div`
 		flex: 1;
 		p {
 			/* margin: 0;
-		font-size: 0.8em;
+		font-size: 1.4rem;
 		color: ${({ theme }) => theme.txtGrey}; */
 			text-transform: capitalize;
-			font-size: 0.9em;
+			font-size: 1.6rem;
 			width: unset;
+			font-weight: bolder;
 		}
 	}
 	span {
@@ -163,7 +164,7 @@ const StyledCityCard = styled.div`
 		}
 		/* p.stat-name {
 				margin: 0;
-				font-size: 0.8em;
+				font-size: 1.4rem;
 				color: ${({ theme }) => theme.txtGrey};
 				text-transform: uppercase;
 			} */
@@ -175,7 +176,7 @@ const StyledCityCard = styled.div`
 		text-align: right;
 		color: ${({ theme }) => theme.secondaryColor};
 		/* font-size: 1.6rem; */
-		font-size: 0.9em;
+		font-size: 1.6rem;
 	}
 `;
 
