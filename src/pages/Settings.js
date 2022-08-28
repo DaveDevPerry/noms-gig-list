@@ -97,7 +97,7 @@ const Settings = ({ themeToggler, theme }) => {
 			</a> */}
 			<KeyWidget />
 
-			<AppDetails />
+			<AppDetails theme={theme} />
 		</StyledSettings>
 	);
 };

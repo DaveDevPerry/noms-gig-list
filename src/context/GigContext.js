@@ -95,7 +95,66 @@ export const gigsReducer = (state, action) => {
 		// return {
 		// }
 
+		// 		const groupedByYear = data.map((e) => ({ ...e, published_at: new Date(e.published_at) }))
+		// .reduce((acc, e) => {
+		//   const year = e.published_at.getFullYear();
+		//   const month = e.published_at.getMonth() + 1;
+		//   if (!acc[year]) acc[year] = { year };
+		//   if (!acc[year][month]) acc[year][month] = [];
+		//   acc[year][month] = e;
+		//   return acc;
+		// }, {})
+
+		// const result = Object.values(groupedByYear).reduce((acc, e) => {
+		//   const { year, ...months } = e;
+		//   acc.push({ year: year, months: months });
+		//   return acc;
+		// }, [])
+
 		case 'SET_GLOBAL_STATS':
+			// reduce gigs by year
+			const clonedToGroupByYear = [...action.payload];
+
+			const groupedByYear = clonedToGroupByYear
+				.map(({ gig_date }) => new Date(gig_date))
+				.reduce(function (count, currentValue) {
+					const year = currentValue.getFullYear();
+
+					return count[year] ? ++count[year] : (count[year] = 1), count;
+				}, {});
+			// convert object to array of key value pair objects
+			const gigCountByYearArrOfObj = Object.entries(groupedByYear).map(
+				([key, value]) => ({
+					year: key,
+					count: value,
+				})
+			);
+			// const result = Object.values(groupedByYear).reduce((acc, e) => {
+			// 	const { year, ...months } = e;
+			// 	acc.push({ year: year, months: months });
+			// 	return acc;
+			// }, []);
+
+			log(gigCountByYearArrOfObj, 'gigCountByYearArrOfObj');
+			// const groupedByYear = clonedToGroupByYear
+			// 	.map((e) => ({ ...e, gig_date: new Date(e.gig_date) }))
+			// 	.reduce((acc, e) => {
+			// 		const year = e.gig_date.getFullYear();
+			// 		const month = e.gig_date.getMonth() + 1;
+			// 		if (!acc[year]) acc[year] = { year };
+			// 		if (!acc[year][month]) acc[year][month] = [];
+			// 		acc[year][month] = e;
+			// 		return acc;
+			// 	}, {});
+
+			// const result = Object.values(groupedByYear).reduce((acc, e) => {
+			// 	const { year, ...months } = e;
+			// 	acc.push({ year: year, months: months });
+			// 	return acc;
+			// }, []);
+
+			// log(result, 'result');
+
 			// working headline count only
 			const clonedGigs = [...action.payload];
 			const gigCountObj = clonedGigs
@@ -279,6 +338,7 @@ export const gigsReducer = (state, action) => {
 					uniqueVenueCount: uniqueVenueGigCountArrOfObj.sort((a, b) =>
 						a.combinedVenueCity > b.combinedVenueCity ? 1 : -1
 					),
+					gigCountPerYear: gigCountByYearArrOfObj,
 				},
 			};
 

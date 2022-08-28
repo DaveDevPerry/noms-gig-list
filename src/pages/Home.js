@@ -12,13 +12,14 @@ import CountdownWidget from '../components/CountdownWidget';
 import GigsListNextFive from '../components/GigsListNextFive';
 // import TopBandWidget from '../components/TopBandWidget';
 // import GigTotalWidget from '../components/GigTotalWidget';
-import PieWidget from '../components/PieWidget';
+// import PieWidget from '../components/PieWidget';
 // import TopCityWidget from '../components/TopCityWidget';
 // import CityTotalWidget from '../components/CityTotalWidget';
 import AllTopsWidget from '../components/AllTopsWidget';
 import { log } from '../helper';
 import FirstGigWidget from '../components/FirstGigWidget';
 import KeyWidget from '../components/KeyWidget';
+import ChartDecadeWidget from '../components/ChartDecadeWidget';
 // import ChartYearWidget from '../components/ChartYearWidget';
 // import NextGigCountdownWidget from '../components/NextGigCountdownWidget';
 
@@ -115,8 +116,15 @@ const Home = ({ themeToggler, theme }) => {
 								/>
 							</div>
 						)}
-					{gigCounterData && gigCounterData.all_gigs.length > 2 && (
+					{/* {gigCounterData && gigCounterData.all_gigs.length > 2 && (
 						<PieWidget
+							themeToggler={themeToggler}
+							theme={theme}
+							gigs={gigCounterData.all_gigs}
+						/>
+					)} */}
+					{gigCounterData && gigCounterData.all_gigs.length > 2 && (
+						<ChartDecadeWidget
 							themeToggler={themeToggler}
 							theme={theme}
 							gigs={gigCounterData.all_gigs}

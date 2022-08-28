@@ -28,6 +28,7 @@ const Loader = () => {
 		setDataLoaded,
 		setCombinedGigsPerBand,
 		setTotalGigsPerVenue,
+		setTotalGigsEachYear,
 	} = useStateContext();
 
 	useEffect(() => {
@@ -136,6 +137,7 @@ const Loader = () => {
 			globalStatData && globalStatData.combinedBandGigsCount
 		);
 		setTotalGigsPerVenue(globalStatData && globalStatData.uniqueVenueCount);
+		setTotalGigsEachYear(globalStatData && globalStatData.gigCountPerYear);
 		// run global context function to return array of unique venue gigs obj
 	}, [globalStatData]);
 

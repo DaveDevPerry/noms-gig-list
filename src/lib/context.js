@@ -11,6 +11,7 @@ export const StateContext = ({ children }) => {
 	const [combinedGigsPerBand, setCombinedGigsPerBand] = useState(null);
 	const [totalGigsPerCity, setTotalGigsPerCity] = useState(null);
 	const [totalGigsPerVenue, setTotalGigsPerVenue] = useState(null);
+	const [totalGigsEachYear, setTotalGigsEachYear] = useState(null);
 
 	const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -252,6 +253,9 @@ export const StateContext = ({ children }) => {
 
 				getBandsTopStats,
 				bandWinnersStats,
+
+				totalGigsEachYear,
+				setTotalGigsEachYear,
 			}}
 		>
 			{children}

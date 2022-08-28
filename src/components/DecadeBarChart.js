@@ -21,7 +21,7 @@ ChartJS.register(
 	Legend
 );
 
-const YearBarChart = ({ gigs }) => {
+const DecadeBarChart = ({ gigs }) => {
 	// const {totalGigsEachYear} = useStateContext()
 	// export const data = {
 	// 	labels,
@@ -44,17 +44,31 @@ const YearBarChart = ({ gigs }) => {
 	// dummy data
 
 	const options = {
-		responsive: false,
+		responsive: true,
+		// aspectRatio: 3,
 		plugins: {
 			legend: {
 				display: false,
+				// position: 'left',
 			},
 			title: {
 				display: true,
-				text: 'gigs per decade',
+				text: 'total gigs per decade',
 			},
 		},
 	};
+	// const options = {
+	// 	responsive: false,
+	// 	plugins: {
+	// 		legend: {
+	// 			display: false,
+	// 		},
+	// 		title: {
+	// 			display: true,
+	// 			text: 'gigs per decade',
+	// 		},
+	// 	},
+	// };
 
 	// const labels = [
 	// 	'January',
@@ -80,7 +94,7 @@ const YearBarChart = ({ gigs }) => {
 				barPercentage: 0.9, // notice here
 				label: 'Band',
 				// data: gigs.map((a) => a.headline_band),
-				data: [100, 115, 200, 350, 523, 201],
+				data: [100, 245, 200, 350, 523, 201],
 				// data: labels.map(() =>
 				// 	faker.datatype.number({ min: -1000, max: 1000 })
 				// ),
@@ -101,4 +115,4 @@ const YearBarChart = ({ gigs }) => {
 	return <Bar options={options} data={data} />;
 };
 
-export default YearBarChart;
+export default DecadeBarChart;

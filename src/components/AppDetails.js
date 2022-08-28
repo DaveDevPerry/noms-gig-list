@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-const AppDetails = () => {
+const AppDetails = ({ theme }) => {
+	useEffect(() => {}, [theme]);
+	// const theme = 'dark';
 	return (
 		<StyledAppDetails>
-			<div className='label-img'></div>
+			<div
+				className={theme && theme === 'light' ? 'label-img' : 'label-img dark'}
+			></div>
+			{/* <div className='label-img'></div> */}
 			<div className='dev-link-container'>
 				<p>developed by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 				<a
@@ -81,6 +86,16 @@ const StyledAppDetails = styled.div`
 		background-size: contain;
 		width: 6rem;
 		/* aspect-ratio: 1; */
+		transition: all 200ms linear;
+	}
+	.label-img.dark {
+		background-image: url('KTMA_logo1.webp');
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		width: 6rem;
+		/* aspect-ratio: 1; */
+		transition: all 200ms linear;
 	}
 	.studio-img {
 		background-image: url('Rox_logo.webp');
@@ -88,6 +103,7 @@ const StyledAppDetails = styled.div`
 		background-position: center;
 		background-size: contain;
 		width: 6rem;
+		transition: all 200ms linear;
 	}
 `;
 
