@@ -14,11 +14,13 @@ import BandHeadlineGigsList from '../components/BandHeadlineGigsList';
 // import TopBandWidget from '../components/TopBandWidget';
 import BandCountRankWidget from '../components/BandCountRankWidget';
 import BandAllTopsWidget from '../components/BandAllTopsWidget';
+// import { useBandsContext } from '../hooks/useBandsContext';
 // import BandAllTopsWidget from '../components/BandAllTopsWidget';
 
 const Band = ({ band, id }) => {
 	const { user } = useAuthContext();
 	const { dispatch } = useGigsContext();
+	// const {currentFestivalCount} = useBandsContext()
 	const {
 		bandToView,
 		setBandDetailsData,
@@ -30,7 +32,7 @@ const Band = ({ band, id }) => {
 		setBandAllGigsData,
 		bandAllGigsData,
 		bandFestivalCount,
-		setBandFestivalCount,
+		// setBandFestivalCount,
 		bandWinnersStats,
 	} = useStateContext();
 
@@ -77,10 +79,10 @@ const Band = ({ band, id }) => {
 				});
 
 			// festival count
-			const clonedFestivalCount = [...json];
-			const festivalCount = clonedFestivalCount.filter(
-				(obj) => obj.isFestival === true
-			).length;
+			// const clonedFestivalCount = [...json];
+			// const festivalCount = clonedFestivalCount.filter(
+			// 	(obj) => obj.isFestival === true
+			// ).length;
 
 			// const bandData = json.filter((obj) => obj.headline_band === bandToView);
 			const bandData = json
@@ -99,7 +101,7 @@ const Band = ({ band, id }) => {
 				setBandHeadlineGigsData(bandHeadlineData);
 				setBandAllGigsData(bandAllData);
 				// set band counts
-				setBandFestivalCount(festivalCount);
+				// setBandFestivalCount(festivalCount);
 				// set band ranks
 			}
 		};
@@ -128,8 +130,14 @@ const Band = ({ band, id }) => {
 					{bandDetailsData && bandDetailsData.length}
 				</div>
 			</div> */}
+			{/* {bandDetailsData && bandFestivalCount && (
+				<BandCountRankWidget bandCounterData={currentFestivalCount} />
+			)} */}
 			{bandDetailsData && bandFestivalCount && (
-				<BandCountRankWidget bandCounterData={bandAllGigsData} />
+				<BandCountRankWidget
+					bandCounterData={bandAllGigsData}
+					bandFestivalCount={bandFestivalCount}
+				/>
 			)}
 			{bandDetailsData && bandAllGigsData && bandWinnersStats && (
 				<BandAllTopsWidget gigCounterData={bandAllGigsData} />

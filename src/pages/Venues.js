@@ -15,10 +15,12 @@ import { BsMusicNoteList } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
 import VenuesList from '../components/VenuesList';
+import VenuesPieWidget from '../components/VenuesPieWidget';
+import { log } from '../helper';
 // import { log } from '../helper';
 // import { useEffect } from 'react';
 
-const Venues = () => {
+const Venues = ({ theme }) => {
 	// const { venues } = useVenuesContext();
 	const { dispatch } = useVenuesContext();
 	// const { venues, dispatch } = useVenuesContext();
@@ -114,6 +116,7 @@ const Venues = () => {
 	// }, [dispatch, user]);
 
 	// log(band_gig_data, 'band gig data - bands');
+	log(totalGigsPerVenue, 'totalGigsPerVenue - venues');
 
 	return (
 		<StyledVenues
@@ -122,6 +125,10 @@ const Venues = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
+			{totalGigsPerVenue && (
+				<VenuesPieWidget theme={theme} venues={totalGigsPerVenue} />
+			)}
+
 			<div className='venue-name-list-header'>
 				<p>All venues</p>
 				<div>

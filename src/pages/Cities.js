@@ -15,9 +15,10 @@ import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
 import CitiesList from '../components/CitiesList';
 import { log } from '../helper';
+import CitiesPieWidget from '../components/CitiesPieWidget';
 // import { useEffect } from 'react';
 
-const Cities = () => {
+const Cities = ({ theme }) => {
 	// const { cities } = useCitiesContext();
 	const { cities, dispatch } = useCitiesContext();
 	// const { citiesGigCount, dispatch: gigsDispatch } = useGigsContext();
@@ -122,6 +123,7 @@ const Cities = () => {
 
 	// log(band_gig_data, 'band gig data - bands');
 	log(totalGigsPerCity, 'totalGigsPerCity - cities');
+	log(cities, 'cities in cities');
 
 	return (
 		<StyledCities
@@ -130,6 +132,13 @@ const Cities = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
+			{cities && cities.length > 4 && (
+				<CitiesPieWidget
+					// themeToggler={themeToggler}
+					theme={theme}
+					cities={totalGigsPerCity}
+				/>
+			)}
 			{/* <WeightForm /> */}
 			{/* <WeightUnitsWidget gigs={gigs} /> */}
 			{/* <WeightConvertor /> */}

@@ -40,11 +40,19 @@ export const bandsReducer = (state, action) => {
 			);
 			log(citiesGigCountArrOfObj, 'citiesGigCountArrOfObj');
 
+			const clonedForFestivals = [...action.payload];
+			const bandFestivalCount = clonedForFestivals.filter(
+				(gig) => gig.isFestival === true
+			).length;
+
+			log(bandFestivalCount, 'bandFestivalCount');
+
 			return {
 				currentBand: clonedBand,
 				currentCityCount: citiesGigCountArrOfObj.sort((a, b) => {
 					return b.value - a.value;
 				}),
+				currentFestivalCount: bandFestivalCount,
 			};
 
 		case 'CREATE_BAND':
@@ -67,6 +75,7 @@ export const BandsContextProvider = ({ children }) => {
 		currentBand: null,
 		currentCityCount: null,
 		bandCount: null,
+		currentFestivalCount: null,
 	});
 
 	return (

@@ -29,7 +29,11 @@ const CitiesList = ({ cities }) => {
 			{/* <p className='gigs-list-header'>Recorded weigh-ins</p> */}
 			<div className='gigs-list'>
 				{cities &&
-					cities.map((city, index) => <CityCard key={index} city={city} />)}
+					cities
+						.sort((a, b) => (a.key > b.key ? 1 : -1))
+						.map((city, index) => <CityCard key={index} city={city} />)}
+				{/* {cities &&
+					cities.map((city, index) => <CityCard key={index} city={city} />)} */}
 			</div>
 		</StyledCitiesList>
 	);

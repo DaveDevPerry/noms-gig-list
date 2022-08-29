@@ -254,9 +254,9 @@ export const gigsReducer = (state, action) => {
 					value,
 				})
 			);
-			const sortCitiesByGigCount = citiesGigCountArrOfObj.sort((a, b) => {
-				return b.value - a.value;
-			});
+			// const sortCitiesByGigCount = citiesGigCountArrOfObj.sort((a, b) => {
+			// 	return b.value - a.value;
+			// });
 			// venues
 			// const clonedUniqueVenueCount = [...action.payload];
 
@@ -336,7 +336,11 @@ export const gigsReducer = (state, action) => {
 						return b.totalGigCount - a.totalGigCount;
 					}),
 					// bandsGigCount: sortBandsByGigCount,
-					citiesGigCount: sortCitiesByGigCount,
+					citiesGigCount: citiesGigCountArrOfObj.sort((a, b) =>
+						a.key > b.key ? 1 : -1
+					),
+					// citiesGigCount: citiesGigCountArrOfObj,
+					// citiesGigCount: sortCitiesByGigCount,
 					supportBandsGigCount: sortSupportBandsByGigCount,
 					combinedBandGigsCount: mergedBandGigCounts.sort((a, b) =>
 						a.bandName > b.bandName ? 1 : -1

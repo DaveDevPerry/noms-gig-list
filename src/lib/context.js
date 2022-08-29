@@ -15,7 +15,6 @@ export const StateContext = ({ children }) => {
 	const [totalFestivalCount, setTotalFestivalCount] = useState(null);
 	const [totalBandCount, setTotalBandCount] = useState(null);
 	const [totalGigCount, setTotalGigCount] = useState(null);
-
 	const [dataLoaded, setDataLoaded] = useState(false);
 
 	const [bandToView, setBandToView] = useState(null);
@@ -24,6 +23,7 @@ export const StateContext = ({ children }) => {
 	const [bandAllGigsData, setBandAllGigsData] = useState(null);
 
 	const [bandFestivalCount, setBandFestivalCount] = useState(null);
+
 	const [bandHeadlineGigsData, setBandHeadlineGigsData] = useState(null);
 	const [bandSupportGigsData, setBandSupportGigsData] = useState(null);
 
@@ -41,6 +41,15 @@ export const StateContext = ({ children }) => {
 	// this function returns a bands top stats - top venue, top city with counts
 	const getBandsTopStats = (gigs, chosenBand) => {
 		log(gigs, 'gigs by band');
+
+		// get band festival count
+		const cloneForFestivalCount = [...gigs];
+		const festivalCount = cloneForFestivalCount.filter(
+			(gig) => gig.isFestival === true
+		);
+		log(festivalCount, 'festivalCount');
+		setBandFestivalCount(!festivalCount ? 0 : festivalCount.length);
+		log(festivalCount, 'festivalCount');
 
 		// get headline count
 		const clonedGigs = [...gigs];
@@ -252,7 +261,7 @@ export const StateContext = ({ children }) => {
 				setVenueAllGigsData,
 
 				bandFestivalCount,
-				setBandFestivalCount,
+				// setBandFestivalCount,
 
 				getBandsTopStats,
 				bandWinnersStats,

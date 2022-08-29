@@ -97,7 +97,7 @@ const AnimatedRoutes = ({
 					/>
 					<Route
 						path='/venues'
-						element={user ? <Venues /> : <Navigate to='/login' />}
+						element={user ? <Venues theme={theme} /> : <Navigate to='/login' />}
 					/>
 					<Route
 						path='/venue'
@@ -105,7 +105,7 @@ const AnimatedRoutes = ({
 					/>
 					<Route
 						path='/cities'
-						element={user ? <Cities /> : <Navigate to='/login' />}
+						element={user ? <Cities theme={theme} /> : <Navigate to='/login' />}
 					/>
 					<Route
 						path='/city'
