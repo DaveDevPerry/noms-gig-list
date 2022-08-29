@@ -11,6 +11,8 @@ export const bandsReducer = (state, action) => {
 					action.payload === null
 						? action.payload
 						: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
+				bandCount:
+					action.payload === null ? action.payload : action.payload.length,
 			};
 
 		// sets all details for a band
@@ -64,6 +66,7 @@ export const BandsContextProvider = ({ children }) => {
 		bands: null,
 		currentBand: null,
 		currentCityCount: null,
+		bandCount: null,
 	});
 
 	return (

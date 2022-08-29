@@ -567,6 +567,7 @@ const StyledForm = styled.form`
 			transform: translateY(-50%);
 			font-size: 2rem;
 			color: ${({ theme }) => theme.txtDarkGrey};
+			cursor: pointer;
 		}
 	}
 	.small-input-wrappers {

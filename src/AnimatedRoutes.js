@@ -20,6 +20,7 @@ import Band from './pages/Band';
 import City from './pages/City';
 import Gig from './pages/Gig';
 import Venue from './pages/Venue';
+import Statistics from './pages/Statistics';
 // import { log } from './helper';
 // import { log } from './helper';
 // import { useStateContext } from './lib/context';
@@ -82,7 +83,13 @@ const AnimatedRoutes = ({
 					/>
 					<Route
 						path='/bands'
-						element={user ? <Bands /> : <Navigate to='/login' />}
+						element={
+							user ? (
+								<Bands themeToggler={themeToggler} theme={theme} />
+							) : (
+								<Navigate to='/login' />
+							)
+						}
 					/>
 					<Route
 						path='/band'
@@ -112,6 +119,12 @@ const AnimatedRoutes = ({
 							) : (
 								<Navigate to='/login' />
 							)
+						}
+					/>
+					<Route
+						path='/statistics'
+						element={
+							user ? <Statistics theme={theme} /> : <Navigate to='/login' />
 						}
 					/>
 					<Route

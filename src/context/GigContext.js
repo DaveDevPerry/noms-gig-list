@@ -116,7 +116,9 @@ export const gigsReducer = (state, action) => {
 			const clonedToGroupByYear = [...action.payload];
 
 			const groupedByYear = clonedToGroupByYear
-				.map(({ gig_date }) => new Date(gig_date))
+				.map(({ gig_date }) => {
+					return new Date(gig_date);
+				})
 				.reduce(function (count, currentValue) {
 					const year = currentValue.getFullYear();
 
@@ -323,6 +325,11 @@ export const gigsReducer = (state, action) => {
 				cityName: key.substring(key.indexOf('|') + 1),
 			}));
 
+			const clonedForFestivalCount = [...action.payload];
+			const getFestivalCount = clonedForFestivalCount.filter(
+				(gig) => gig.isFestival === true
+			).length;
+
 			return {
 				globalStatData: {
 					bandsGigCount: newStats.sort((a, b) => {
@@ -339,6 +346,7 @@ export const gigsReducer = (state, action) => {
 						a.combinedVenueCity > b.combinedVenueCity ? 1 : -1
 					),
 					gigCountPerYear: gigCountByYearArrOfObj,
+					festivalCount: getFestivalCount,
 				},
 			};
 

@@ -1,19 +1,18 @@
-// import { useEffect, useRef, useState } from 'react';
-// import { useGigsContext } from '../hooks/useGigsContext';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useGigsContext } from '../hooks/useGigsContext';
 import { useBandsContext } from '../hooks/useBandsContext';
-// import { useAuthContext } from '../hooks/useAuthContext';
+import { useStateContext } from '../lib/context';
+import { log } from '../helper';
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-// import { useGigsContext } from '../hooks/useGigsContext';
-import { useAuthContext } from '../hooks/useAuthContext';
-import { useEffect } from 'react';
-// import BandCard from '../components/BandCard';
 import { FaUsers } from 'react-icons/fa';
-import { useStateContext } from '../lib/context';
-import { useNavigate } from 'react-router-dom';
+
+import PieWidget from '../components/PieWidget';
 import BandsList from '../components/BandsList';
-import { log } from '../helper';
 // import { useGigsContext } from '../hooks/useGigsContext';
 // import { useEffect } from 'react';
 
@@ -141,20 +140,16 @@ import { log } from '../helper';
 // 	);
 // };
 
-const Bands = () => {
-	// const { bands } = useBandsContext();
+const Bands = ({ themeToggler, theme }) => {
 	const { bands, dispatch } = useBandsContext();
-	// const { bandsGigCount, dispatch: gigsDispatch } = useGigsContext();
-	// const { band_gig_data, dispatch } = useGigsContext();
+	const { gigCounterData } = useGigsContext();
 	const { user } = useAuthContext();
 
 	const { totalGigsPerBand, combinedGigsPerBand, dataLoaded } =
 		useStateContext();
-	// const { dataLoaded } = useStateContext();
 
-	let navigate = useNavigate();
+	const navigate = useNavigate();
 	useEffect(() => {
-		// log(lastDrawDate, 'last draw data');
 		if (dataLoaded === false) {
 			navigate('/');
 		}
@@ -233,6 +228,13 @@ const Bands = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
+			{gigCounterData && gigCounterData.all_gigs.length > 2 && (
+				<PieWidget
+					themeToggler={themeToggler}
+					theme={theme}
+					gigs={gigCounterData.all_gigs}
+				/>
+			)}
 			<div className='band-name-list-header'>
 				<p>All Bands</p>
 				<div>
@@ -240,48 +242,21 @@ const Bands = () => {
 					{bands && bands.length}
 				</div>
 			</div>
-			{/* {totalGigsPerBand &&
-				totalGigsPerBand.map((band, index) => (
-					<BandCard key={index} band={band} />
-				))} */}
 			<BandsList bands={combinedGigsPerBand} />
-			{/* <BandsList bands={totalGigsPerBand} /> */}
-			{/* {bandsGigCount &&
-				bandsGigCount.map((band, index) => (
-					<BandCard key={index} band={band} />
-				))} */}
-			{/* {bands && bands.map((band) => <BandCard key={band._id} band={band} />)} */}
 		</StyledBands>
 	);
 };
 const StyledBands = styled(motion.div)`
-	/* display: flex;
-	flex-direction: column;
-	row-gap: 1rem;
-	color: ${({ theme }) => theme.txtGrey};
-	background: ${({ theme }) => theme.white};
-	border-radius: 4px;
-	padding: 1rem;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	row-gap: 0.3rem;
-	/* justify-content: flex-start; */
-	/* overflow-y: auto; */
-	/* overflow-y: hidden; */
-	/* flex: 1; */
-	/* overflow-y: auto; */
-	/* border: 2px solid red; */
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
-
 	flex: 1;
 	max-width: 42rem;
 	padding: 0 1rem;
-	/* overflow-y: auto; */
-	/* overflow: hidden; */
 	overflow: hidden;
 	transition: all 200ms linear;
 	margin: 0 auto;
@@ -289,7 +264,6 @@ const StyledBands = styled(motion.div)`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		/* padding: 0rem 1rem; */
 		padding: 0.2rem 0.5rem;
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
 		p {
@@ -304,7 +278,6 @@ const StyledBands = styled(motion.div)`
 			color: ${({ theme }) => theme.txtGrey};
 			font-size: 1.4rem;
 			font-weight: bolder;
-			/* font-size: 1.4rem; */
 			.nav-icon {
 				color: ${({ theme }) => theme.secondaryColor};
 				font-size: 1.6rem;

@@ -13,8 +13,8 @@ import { useStateContext } from '../lib/context';
 // import { motion } from 'framer-motion';
 
 const Loader = () => {
-	const { dispatch } = useGigsContext();
-	const { dispatch: bandDispatch } = useBandsContext();
+	const { gigs, dispatch } = useGigsContext();
+	const { bandCount, dispatch: bandDispatch } = useBandsContext();
 	const { globalStatData, dispatch: gigsDispatch } = useGigsContext();
 	const { user } = useAuthContext();
 	const navigate = useNavigate();
@@ -29,6 +29,9 @@ const Loader = () => {
 		setCombinedGigsPerBand,
 		setTotalGigsPerVenue,
 		setTotalGigsEachYear,
+		setTotalFestivalCount,
+		setTotalBandCount,
+		setTotalGigCount,
 	} = useStateContext();
 
 	useEffect(() => {
@@ -69,11 +72,16 @@ const Loader = () => {
 		if (user) {
 			fetchGigs();
 		}
+		// setTotalGigCount(gigs)
 		setTimeout(() => {
 			setDataLoaded(true);
 			navigate('/home');
 		}, 3000);
 	}, [dispatch, user]);
+
+	useEffect(() => {
+		setTotalGigCount(gigs && gigs);
+	}, [gigs]);
 
 	useEffect(() => {
 		const fetchBands = async () => {
@@ -100,6 +108,10 @@ const Loader = () => {
 			fetchBands();
 		}
 	}, [bandDispatch, user]);
+
+	useEffect(() => {
+		setTotalBandCount(bandCount && bandCount);
+	}, [bandCount]);
 
 	useEffect(() => {
 		const fetchGlobalStats = async () => {
@@ -138,6 +150,8 @@ const Loader = () => {
 		);
 		setTotalGigsPerVenue(globalStatData && globalStatData.uniqueVenueCount);
 		setTotalGigsEachYear(globalStatData && globalStatData.gigCountPerYear);
+
+		setTotalFestivalCount(globalStatData && globalStatData.festivalCount);
 		// run global context function to return array of unique venue gigs obj
 	}, [globalStatData]);
 

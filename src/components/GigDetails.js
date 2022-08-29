@@ -95,6 +95,7 @@ const StyledGigDetails = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	column-gap: 0.5rem;
+	cursor: pointer;
 	.full {
 		flex: 1;
 	}

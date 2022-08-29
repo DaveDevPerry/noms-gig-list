@@ -99,7 +99,7 @@ const StyledCityCard = styled.div`
 	justify-content: flex-start;
 	align-items: center;
 	column-gap: 0.5rem;
-
+	cursor: pointer;
 	p {
 		margin: 0;
 		font-size: 1.4rem;

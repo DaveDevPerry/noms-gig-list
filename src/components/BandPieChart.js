@@ -11,8 +11,8 @@ const BandPieChart = ({ gigs, themeToggler, theme }) => {
 	const borderFromTheme = theme === 'light' ? '#ffffff' : '#040404';
 
 	const options = {
-		responsive: true,
-		aspectRatio: 3,
+		responsive: false,
+		// aspectRatio: 3,
 		// maintainAspectRatio: true,
 		plugins: {
 			legend: {
@@ -24,8 +24,9 @@ const BandPieChart = ({ gigs, themeToggler, theme }) => {
 				// display: false,
 			},
 			title: {
-				display: false,
-				text: 'gigs timeline',
+				display: true,
+				text: 'bands seen the most times',
+				align: 'end',
 				position: 'top',
 			},
 		},
@@ -35,81 +36,38 @@ const BandPieChart = ({ gigs, themeToggler, theme }) => {
 		.map(function (obj) {
 			return obj.bandName;
 		})
-		.slice(0, 3);
+		.slice(0, 5);
 
 	const gigCount = gigs
 		.map(function (obj) {
 			return obj.totalGigCount;
 		})
-		.slice(0, 3);
+		.slice(0, 5);
 
 	const data = {
 		labels: bandNames,
-		// labels: [
-		// 	'terrorvision',
-		// 	'slade',
-		// 	'motorhead',
-		// 	'led zeppelin',
-		// 	'deep purple',
-		// 	'saxon',
-		// ],
 		datasets: [
 			{
 				label: '# of gigs',
 				data: gigCount,
-				// data: [12, 19, 3, 5, 2, 3],
 				backgroundColor: [
 					'#1aac83',
-					// 'rgba(75, 192, 192)',
 					'rgb(250, 186, 11)',
-					// 'rgba(255, 206, 86)',
-					'rgba(54, 162, 235)',
-					// 'rgba(75, 192, 192, 0.2)',
-					// 'rgba(255, 206, 86, 0.2)',
-					// 'rgba(54, 162, 235, 0.2)',
-					// 'rgba(255, 99, 132, 0.2)',
-					// 'rgba(153, 102, 255, 0.2)',
-					// 'rgba(255, 159, 64, 0.2)',
+					'rgb(158, 11, 250)',
+					'rgb(54, 162, 235)',
+					'rgb(250, 11, 234)',
 				],
 				borderColor: [
 					borderFromTheme,
 					borderFromTheme,
 					borderFromTheme,
-					// '#ffffff0',
-					// '#ffffff0',
-					// '#ffffff0',
-					// '#ffffff',
-					// '#ffffff',
-					// '#ffffff',
-					// 'rgba(255, 206, 86, 1)',
-					// 'rgba(54, 162, 235, 1)',
-					// 'rgba(255, 99, 132, 1)',
-					// 'rgba(153, 102, 255, 1)',
-					// 'rgba(255, 159, 64, 1)',
+					borderFromTheme,
+					borderFromTheme,
 				],
 				borderWidth: 2,
-				// backgroundColor: [
-				// 	'rgba(75, 192, 192, 0.2)',
-				// 	'rgba(255, 206, 86, 0.2)',
-				// 	'rgba(54, 162, 235, 0.2)',
-				// 	// 'rgba(255, 99, 132, 0.2)',
-				// 	// 'rgba(153, 102, 255, 0.2)',
-				// 	// 'rgba(255, 159, 64, 0.2)',
-				// ],
-				// borderColor: [
-				// 	'rgba(75, 192, 192, 1)',
-				// 	'rgba(255, 206, 86, 1)',
-				// 	'rgba(54, 162, 235, 1)',
-				// 	// 'rgba(255, 99, 132, 1)',
-				// 	// 'rgba(153, 102, 255, 1)',
-				// 	// 'rgba(255, 159, 64, 1)',
-				// ],
-				// borderWidth: 1,
 			},
 		],
 	};
-
-	// export function App() {
 	return <Pie data={data} options={options} />;
 };
 

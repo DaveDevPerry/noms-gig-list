@@ -118,6 +118,7 @@ const StyledVenueGigCard = styled.div`
 	align-items: center;
 	/* column-gap: 1rem; */
 	column-gap: 0.5rem;
+	cursor: pointer;
 	.full {
 		flex: 1;
 		display: flex;

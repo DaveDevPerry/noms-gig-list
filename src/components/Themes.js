@@ -21,6 +21,7 @@ export const lightTheme = {
 	black: '#000000',
 	red: '#980303',
 	green: '#156d01',
+	blue: '#123456',
 	isComplete: 'rgb(228, 207, 23)',
 	gold: 'rgb(250, 186, 11)',
 };
@@ -48,6 +49,7 @@ export const darkTheme = {
 
 	red: '#980303',
 	green: '#1da000',
+	blue: '#123456',
 	isComplete: 'rgb(228, 207, 23)',
 	gold: 'rgb(250, 186, 11)',
 };

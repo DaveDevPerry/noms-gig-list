@@ -1,33 +1,33 @@
 import { useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
 import { useGigsContext } from '../hooks/useGigsContext';
-import { useAuthContext } from '../hooks/useAuthContext';
+// import { useAuthContext } from '../hooks/useAuthContext';
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 // components
-import CountdownWidget from '../components/CountdownWidget';
-import GigsListNextFive from '../components/GigsListNextFive';
-import TopBandWidget from '../components/TopBandWidget';
+// import CountdownWidget from '../components/CountdownWidget';
+// import GigsListNextFive from '../components/GigsListNextFive';
+// import TopBandWidget from '../components/TopBandWidget';
 // import GigTotalWidget from '../components/GigTotalWidget';
-// import PieWidget from '../components/PieWidget';
+import PieWidget from '../components/PieWidget';
 // import TopCityWidget from '../components/TopCityWidget';
 // import CityTotalWidget from '../components/CityTotalWidget';
-// import AllTopsWidget from '../components/AllTopsWidget';
-import { log } from '../helper';
-import FirstGigWidget from '../components/FirstGigWidget';
-import KeyWidget from '../components/KeyWidget';
+import AllTopsWidget from '../components/AllTopsWidget';
+// import { log } from '../helper';
+// import FirstGigWidget from '../components/FirstGigWidget';
+// import KeyWidget from '../components/KeyWidget';
 import ChartDecadeWidget from '../components/ChartDecadeWidget';
 // import FestivalTotalWidget from '../components/FestivalTotalWidget';
 import CountersWidget from '../components/CountersWidget';
 // import ChartYearWidget from '../components/ChartYearWidget';
 // import NextGigCountdownWidget from '../components/NextGigCountdownWidget';
 
-const Home = ({ themeToggler, theme }) => {
-	const { gigCounterData, dispatch } = useGigsContext();
-	const { user } = useAuthContext();
+const Statistics = ({ themeToggler, theme }) => {
+	const { gigCounterData } = useGigsContext();
+	// const { user } = useAuthContext();
 	const {
 		totalGigsPerBand,
 		totalGigsPerCity,
@@ -43,36 +43,36 @@ const Home = ({ themeToggler, theme }) => {
 		}
 	}, [navigate, dataLoaded]);
 
-	useEffect(() => {
-		const fetchGigCounterData = async () => {
-			const response = await fetch(
-				`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
-				{
-					headers: {
-						Authorization: `Bearer ${user.token}`,
-					},
-				}
-			);
-			const json = await response.json();
-			if (response.ok) {
-				dispatch({
-					type: 'SET_GIG_COUNTER_DATA',
-					payload: json,
-				});
-			}
-		};
-		// if we have a value for the user then fetch the workouts
-		if (user) {
-			fetchGigCounterData();
-		}
-	}, [dispatch, user]);
+	// useEffect(() => {
+	// 	const fetchGigCounterData = async () => {
+	// 		const response = await fetch(
+	// 			`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
+	// 			{
+	// 				headers: {
+	// 					Authorization: `Bearer ${user.token}`,
+	// 				},
+	// 			}
+	// 		);
+	// 		const json = await response.json();
+	// 		if (response.ok) {
+	// 			dispatch({
+	// 				type: 'SET_GIG_COUNTER_DATA',
+	// 				payload: json,
+	// 			});
+	// 		}
+	// 	};
+	// 	// if we have a value for the user then fetch the workouts
+	// 	if (user) {
+	// 		fetchGigCounterData();
+	// 	}
+	// }, [dispatch, user]);
 
-	log(gigCounterData, 'gig counter data');
-	log(totalGigsPerVenue, 'totalGigsPerVenue data');
+	// log(gigCounterData, 'gig counter data');
+	// log(totalGigsPerVenue, 'totalGigsPerVenue data');
 
 	return (
-		<StyledHome
-			className='home'
+		<StyledStatistics
+			className='statistics-page'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
@@ -88,26 +88,15 @@ const Home = ({ themeToggler, theme }) => {
 						<KeyWidget />
 					</>
 				)} */}
-			{gigCounterData &&
-			totalGigsPerBand.length === 0 &&
-			totalGigsPerVenue.length === 0 &&
-			totalGigsPerCity.length === 0 &&
-			totalSupportGigsPerBand.length === 0 &&
-			gigCounterData.next_five_gigs.length === 0 ? (
-				<>
-					<FirstGigWidget />
-					<KeyWidget />
-				</>
-			) : (
-				<>
-					{gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
-						<CountdownWidget gig={gigCounterData.next_five_gigs[0]} />
-					)}
 
-					{gigCounterData && (
-						<CountersWidget gigCounterData={gigCounterData && gigCounterData} />
-					)}
-					{/* {gigCounterData && (
+			{/* {gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
+						<CountdownWidget gig={gigCounterData.next_five_gigs[0]} />
+					)} */}
+
+			{gigCounterData && (
+				<CountersWidget gigCounterData={gigCounterData && gigCounterData} />
+			)}
+			{/* {gigCounterData && (
 						<div className='stat-container'>
 							<TopBandWidget gigCounterData={totalGigsPerBand[0]} />
 							<GigTotalWidget gigCounterData={gigCounterData} />
@@ -116,42 +105,42 @@ const Home = ({ themeToggler, theme }) => {
 						</div>
 					)} */}
 
-					{gigCounterData && (
+			{/* {gigCounterData && (
 						<div className='stat-container'>
 							<TopBandWidget gigCounterData={totalGigsPerBand[0]} />
 						</div>
-					)}
-
-					{/* {gigCounterData &&
-						totalGigsPerBand.length > 0 &&
-						totalGigsPerVenue.length > 0 &&
-						totalGigsPerCity.length > 0 &&
-						totalSupportGigsPerBand.length > 0 &&
-						gigCounterData.next_five_gigs.length > 0 && (
-							<div className='stat-container'>
-								<AllTopsWidget
-									bandWinner={totalGigsPerBand[0]}
-									venueWinner={totalGigsPerVenue[0]}
-									cityWinner={totalGigsPerCity[0]}
-									supportWinner={totalSupportGigsPerBand[0]}
-								/>
-							</div>
-						)} */}
-					{/* {gigCounterData && gigCounterData.all_gigs.length > 2 && (
-						<PieWidget
-							themeToggler={themeToggler}
-							theme={theme}
-							gigs={gigCounterData.all_gigs}
-						/>
 					)} */}
-					{gigCounterData && gigCounterData.all_gigs.length > 2 && (
-						<ChartDecadeWidget
-							themeToggler={themeToggler}
-							theme={theme}
-							gigs={gigCounterData.all_gigs}
+
+			{gigCounterData &&
+				totalGigsPerBand.length > 0 &&
+				totalGigsPerVenue.length > 0 &&
+				totalGigsPerCity.length > 0 &&
+				totalSupportGigsPerBand.length > 0 &&
+				gigCounterData.next_five_gigs.length > 0 && (
+					<div className='stat-container'>
+						<AllTopsWidget
+							bandWinner={totalGigsPerBand[0]}
+							venueWinner={totalGigsPerVenue[0]}
+							cityWinner={totalGigsPerCity[0]}
+							supportWinner={totalSupportGigsPerBand[0]}
 						/>
-					)}
-					{gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
+					</div>
+				)}
+			{gigCounterData && gigCounterData.all_gigs.length > 2 && (
+				<PieWidget
+					themeToggler={themeToggler}
+					theme={theme}
+					gigs={gigCounterData.all_gigs}
+				/>
+			)}
+			{gigCounterData && gigCounterData.all_gigs.length > 2 && (
+				<ChartDecadeWidget
+					themeToggler={themeToggler}
+					theme={theme}
+					gigs={gigCounterData.all_gigs}
+				/>
+			)}
+			{/* {gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
 						<>
 							<div className='next-five-list-header'>
 								<p>Coming Up</p>
@@ -161,9 +150,7 @@ const Home = ({ themeToggler, theme }) => {
 								<GigsListNextFive gigs={gigCounterData.next_five_gigs} />
 							)}
 						</>
-					)}
-				</>
-			)}
+					)} */}
 
 			{/* <FirstGigWidget />
 			<KeyWidget /> */}
@@ -232,13 +219,13 @@ const Home = ({ themeToggler, theme }) => {
 					)}
 				</>
 			)} */}
-		</StyledHome>
+		</StyledStatistics>
 	);
 };
-const StyledHome = styled(motion.div)`
+const StyledStatistics = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
-	row-gap: 0.5rem;
+	row-gap: 1rem;
 	flex: 1;
 	max-width: 42rem;
 	padding: 0 1rem;
@@ -307,4 +294,4 @@ const StyledHome = styled(motion.div)`
 	}
 `;
 
-export default Home;
+export default Statistics;

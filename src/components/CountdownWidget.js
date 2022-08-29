@@ -1,11 +1,6 @@
-// import { usegigsContext } from '../hooks/usegigsContext';
-// import { useAuthContext } from '../hooks/useAuthContext';
-// import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-// import { formatDistance } from 'date-fns';
 import styled from 'styled-components';
 import { BsFillShareFill, BsWhatsapp } from 'react-icons/bs';
-import { format, intlFormatDistance } from 'date-fns';
-// import { differenceInDays } from 'date-fns';
+import { intlFormatDistance } from 'date-fns';
 import { log } from '../helper';
 
 const CountdownWidget = ({ gig }) => {
@@ -16,9 +11,9 @@ const CountdownWidget = ({ gig }) => {
 		const nextCity = gig.city;
 		const nextDate = new Date(gig.gig_date).toLocaleDateString();
 
-		// log(
-		// 	`Liz and I are going to the ${nextBand} gig at ${nextVenue} in ${nextCity} on ${nextDate}. Will we see you there?`
-		// );
+		log(
+			`I'm going to the ${nextBand} gig at ${nextVenue} in ${nextCity} on ${nextDate}. Will I see you there?`
+		);
 
 		window.open(
 			`whatsapp://send?text=I'm going to the ${nextBand} gig at ${nextVenue} in ${nextCity} on ${nextDate}. Will I see you there?`
@@ -26,60 +21,47 @@ const CountdownWidget = ({ gig }) => {
 	};
 	return (
 		<StyledCountdownWidget className='countdown-widget'>
-			{/* {!gig.deadline_reason && <p>No gig reason</p>} */}
 			<button
 				className='share-btn-whatsapp'
 				onClick={() => {
-					// playTile();
 					shareMobile();
 				}}
 			>
 				<BsFillShareFill size='20px' className='share-icon' />
 				<div className='details-wrapper'>
-					<p>
-						{intlFormatDistance(
-							new Date(new Date(gig.gig_date).toDateString()),
-							new Date(new Date(new Date().toDateString())),
-							{
-								numeric: 'auto',
-							}
-						)}
+					<p className='header-time'>
+						<strong>
+							{intlFormatDistance(
+								new Date(new Date(gig.gig_date).toDateString()),
+								new Date(new Date(new Date().toDateString())),
+								{
+									numeric: 'auto',
+								}
+							)}
+						</strong>
 					</p>
-					{/* <p>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</p> */}
 					{gig.headline_band && (
 						<p className='band-title'>
 							<strong>{gig.headline_band}</strong>
 						</p>
 					)}
-					<p className='countdown-location'>
-						{gig.venue}, {gig.city}
+					<p className='header-location'>
+						<span>
+							<strong>{gig.venue}</strong>
+						</span>
+						<span>{gig.city}</span>
 					</p>
-					{/* intlFormatDistance(
-  new Date(gig.gig_date),
-  new Date(),
-  { numeric: 'always' }
-) */}
-					<p>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</p>
-					{/* <p>
-						{intlFormatDistance(new Date(gig.gig_date), new Date(), {
-							numeric: 'auto',
+					<p className='header-date'>
+						{new Date(gig.gig_date).toLocaleDateString('en-us', {
+							weekday: 'long',
+							year: 'numeric',
+							month: 'short',
+							day: 'numeric',
 						})}
-					</p> */}
-					{/* <p>in {differenceInDays(new Date(gig.gig_date), new Date())} days</p> */}
+					</p>
 				</div>
 				<BsWhatsapp size='25px' className='share-icon' />
 			</button>
-			{/* <div className="details-wrapper">
-
-			<p>{format(new Date(gig.gig_date), 'dd/MM/yyyy')}</p>
-			{gig.headline_band && (
-				<p className='band-title'>
-					<strong>{gig.headline_band}</strong>
-				</p>
-			)}
-
-			<p>in {differenceInDays(new Date(gig.gig_date), new Date())} days</p>
-			</div> */}
 		</StyledCountdownWidget>
 	);
 };
@@ -87,19 +69,15 @@ const StyledCountdownWidget = styled.div`
 	color: ${({ theme }) => theme.txtGrey};
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
-	/* margin: 0 auto 10px auto; */
-	/* padding: 1rem; */
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	/* row-gap: 0.5rem; */
 	.share-btn-whatsapp {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
-		/* letter-spacing: 2px; */
 		font-size: 1.6rem;
 		padding: 1rem;
 		background-color: ${({ theme }) => theme.white};
@@ -108,7 +86,6 @@ const StyledCountdownWidget = styled.div`
 		color: ${({ theme }) => theme.secondaryColor};
 		font-weight: bold;
 		cursor: pointer;
-		/* padding: 0.2rem 1rem; */
 		column-gap: 0.5rem;
 		flex: 1;
 		font-style: italic;
@@ -125,14 +102,37 @@ const StyledCountdownWidget = styled.div`
 				font-weight: lighter;
 				font-size: 1.4rem;
 			}
+			.header-time {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.4rem;
+				color: ${({ theme }) => theme.txtGrey};
+			}
 			.band-title {
 				text-transform: uppercase;
 				color: ${({ theme }) => theme.secondaryColor};
 				font-size: 2rem;
 			}
-			.countdown-location {
-				font-weight: bolder;
-				/* flex-wrap: wrap; */
+			.header-location {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.4rem;
+				color: ${({ theme }) => theme.txtGrey};
+				span {
+					text-transform: capitalize;
+					strong {
+						font-size: 1.5rem;
+					}
+				}
+			}
+			.header-date {
+				font-size: 1.4rem;
+				font-style: italic;
+				color: ${({ theme }) => theme.secondaryColor};
 			}
 		}
 		.share-icon {

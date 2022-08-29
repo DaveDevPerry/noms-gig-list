@@ -141,9 +141,6 @@ const Gig = ({ band, id }) => {
 				<StyledGigHeaderWidget>
 					<p className='header-time'>
 						<strong>
-							{/* {intlFormatDistance(new Date(gig[0].gig_date), new Date(), {
-								numeric: 'auto',
-							})} */}
 							{intlFormatDistance(
 								new Date(new Date(gig[0].gig_date).toDateString()),
 								new Date(new Date(new Date().toDateString())),

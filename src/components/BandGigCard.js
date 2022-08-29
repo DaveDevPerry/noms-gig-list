@@ -118,6 +118,7 @@ const StyledBandGigCard = styled.div`
 	align-items: center;
 	column-gap: 0.5rem;
 	/* column-gap: 1rem; */
+	cursor: pointer;
 	.full {
 		flex: 1;
 		display: flex;

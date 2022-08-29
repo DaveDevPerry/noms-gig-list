@@ -1,17 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GiLaurelsTrophy } from 'react-icons/gi';
-// import { SiBandsintown } from 'react-icons/si';
 import { log } from '../helper';
-// import { useStateContext } from '../lib/context';
+// import { GiLaurelsTrophy } from 'react-icons/gi';
 // import { useAuthContext } from '../hooks/useAuthContext';
 // import { useGigsContext } from '../hooks/useGigsContext';
 // import { ImArrowUp, ImArrowDown, ImArrowRight } from 'react-icons/im';
 // import { FaCheck } from 'react-icons/fa';
 // import gigBarWidget from './gigBarWidget';
 
-const TopBandWidget = ({ gigCounterData }) => {
-	// const { bandToView } = useStateContext();
+const BandTotalWidget = ({ gigCounterData }) => {
 	// const percentage = 20.345;
 	// const { gigCounterData } = useGigsContext();
 	// const { gigCounterData, dispatch } = useGigsContext();
@@ -49,18 +46,18 @@ const TopBandWidget = ({ gigCounterData }) => {
 	log(gigCounterData, 'gig counter data');
 
 	return (
-		<StyledTopBandWidget className='gig-widget'>
+		<StyledBandTotalWidget className='gig-widget'>
 			<div className='gig-widget-wrapper-container'>
-				<div className='wrapper-icon'>
-					{/* <SiBandsintown className='arrow-icon hand gold' /> */}
+				{/* <div className='wrapper-icon'>
 					<GiLaurelsTrophy className='arrow-icon gold' />
-				</div>
+				</div> */}
 				<div className='wrapper'>
-					<p className='stat-name'>
+					<p className='figure'>
 						<strong>
-							{/* {gigCounterData.upcoming_gig_count} */}
-							{gigCounterData.bandName}
-							{/* {bandToView} */}
+							{gigCounterData.previous_gig_count < 10
+								? `0${gigCounterData.previous_gig_count}`
+								: gigCounterData.previous_gig_count}
+							{/* terrorvision */}
 							{/* {gigs
 								.sort((a, b) => {
 									return new Date(a.createdAt) - new Date(b.createdAt);
@@ -69,10 +66,7 @@ const TopBandWidget = ({ gigCounterData }) => {
 						</strong>
 						{/* <span> Kgs</span> */}
 					</p>
-					<p className='figure'>
-						seen <strong>{gigCounterData.totalGigCount}</strong> times
-					</p>
-					{/* <p className='figure'>seen {gigCounterData.length} times</p> */}
+					<p className='stat-name'>total gigs</p>
 					{/* <p className='figure'>
 						<strong>
 							{(
@@ -84,36 +78,6 @@ const TopBandWidget = ({ gigCounterData }) => {
 						<span> Lbs</span>
 					</p> */}
 				</div>
-
-				<div className='wrapper-icon'>
-					<GiLaurelsTrophy className='arrow-icon gold' />
-				</div>
-
-				{/* <div className='wrapper-icon'>
-					<p className='figure'>
-						
-						{(gigs[gigs.length - 1].load - target.target_weight).toFixed(
-							2
-						)}
-						
-					</p>
-					{(gigs[gigs.length - 1].load - target.target_weight).toFixed(
-						2
-					) > 0 && <ImArrowRight className='arrow-icon red' />}
-					{(gigs[gigs.length - 1].load - target.target_weight).toFixed(
-						2
-					) <= 0 && <FaCheck className='arrow-icon green' />}
-					<p className='figure'>
-						
-						{(
-							(gigs[gigs.length - 1].load - target.target_weight) *
-							2.20462
-						).toFixed(2)}
-
-						
-						
-					</p>
-				</div> */}
 			</div>
 			{/* <gigBarWidget percentage={percentage} /> */}
 			{/* <div className='gig-bar-container'>
@@ -121,22 +85,21 @@ const TopBandWidget = ({ gigCounterData }) => {
 				<gig value={percentage} max='100' className='gig' />
 				<p>{percentage.toFixed(2)}% of goal reached</p>
 			</div> */}
-		</StyledTopBandWidget>
+		</StyledBandTotalWidget>
 	);
 };
-const StyledTopBandWidget = styled.div`
+const StyledBandTotalWidget = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0 auto 10px auto; */
-	padding: 0.5rem 2rem;
-	/* padding: 1rem 2rem; */
+	padding: 0.5rem 1rem;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 
 	/* display: flex; */
 	/* flex-direction: column; */
 	/* align-items: center; */
 	/* justify-content: center; */
-	flex: 1;
+	/* flex: 1; */
 	/* row-gap: 1rem; */
 	.gig-widget-wrapper-container {
 		display: flex;
@@ -158,18 +121,17 @@ const StyledTopBandWidget = styled.div`
 			}
 			p.figure {
 				margin: 0;
-				font-size: 1.4rem;
-				color: ${({ theme }) => theme.txtGrey};
-				strong {
-					font-size: 1.6rem;
-				}
+				font-size: 2rem;
+				/* color: ${({ theme }) => theme.txtGrey}; */
+				color: ${({ theme }) => theme.secondaryColor};
 			}
 			p.stat-name {
 				margin: 0;
-				font-size: 1.6rem;
-				color: ${({ theme }) => theme.secondaryColor};
-				/* color: ${({ theme }) => theme.txtGrey}; */
+				font-size: 1.4rem;
+				/* color: ${({ theme }) => theme.secondaryColor}; */
+				color: ${({ theme }) => theme.txtGrey};
 				text-transform: uppercase;
+				font-weight: bold;
 			}
 		}
 		.wrapper-icon {
@@ -193,9 +155,6 @@ const StyledTopBandWidget = styled.div`
 			} */
 			.arrow-icon {
 				font-size: 3.5rem;
-			}
-			.arrow-icon.hand {
-				font-size: 2.5rem;
 			}
 			.arrow-icon.green {
 				color: ${({ theme }) => theme.primaryColor};
@@ -241,4 +200,4 @@ const StyledTopBandWidget = styled.div`
 	} */
 `;
 
-export default TopBandWidget;
+export default BandTotalWidget;

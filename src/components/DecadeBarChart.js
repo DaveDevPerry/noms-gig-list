@@ -44,7 +44,7 @@ const DecadeBarChart = ({ gigs }) => {
 	// dummy data
 
 	const options = {
-		responsive: true,
+		responsive: false,
 		// aspectRatio: 3,
 		plugins: {
 			legend: {
