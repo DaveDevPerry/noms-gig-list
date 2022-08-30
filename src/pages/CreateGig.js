@@ -19,7 +19,8 @@ import { log } from '../helper';
 
 const CreateGig = () => {
 	// const [workouts, setWorkouts] = useState(null);
-	const { gigData, dispatch } = useGigsContext();
+	const { gigCounterData, dispatch } = useGigsContext();
+	// const { gigData, dispatch } = useGigsContext();
 	const { dispatch: bandDispatch } = useBandsContext();
 	const { dispatch: cityDispatch } = useCitiesContext();
 	const { dispatch: venueDispatch } = useVenuesContext();
@@ -50,31 +51,11 @@ const CreateGig = () => {
 				}
 			);
 			const json = await response.json();
-			// // get future gigs only
-			// log(json, 'json set gigs');
-			// const clonedGigs = [...json];
-			// const upcomingGigs = clonedGigs.sort((a, b) => {
-			// 	return new Date(b.gig_date) - new Date(a.gig_date);
-			// });
-			// log(upcomingGigs, 'upcoming');
-			// const upcomingGigsSort = json.sort((a, b) => {
-			// 	return new Date(a.gig_date) - new Date(b.gig_date);
-			// });
-			// log(upcomingGigsSort, 'upcoming');
-			// const filtered = upcomingGigsSort.filter((gig) => {
-			// 	return (
-			// 		new Date(gig.gig_date) > new Date() ||
-			// 		new Date(gig.gig_date) === new Date()
-			// 	);
-			// });
-			// log(filtered, 'filtered');
 
 			if (response.ok) {
-				// setWorkouts(json);
 				dispatch({
 					type: 'SET_GIGS',
 					payload: json,
-					// payload: json,
 				});
 			}
 		};
@@ -95,31 +76,10 @@ const CreateGig = () => {
 				}
 			);
 			const json = await response.json();
-			// // get future gigs only
-			// log(json, 'json set gigs');
-			// const clonedGigs = [...json];
-			// const upcomingGigs = clonedGigs.sort((a, b) => {
-			// 	return new Date(b.gig_date) - new Date(a.gig_date);
-			// });
-			// log(upcomingGigs, 'upcoming');
-			// const upcomingGigsSort = json.sort((a, b) => {
-			// 	return new Date(a.gig_date) - new Date(b.gig_date);
-			// });
-			// log(upcomingGigsSort, 'upcoming');
-			// const filtered = upcomingGigsSort.filter((gig) => {
-			// 	return (
-			// 		new Date(gig.gig_date) > new Date() ||
-			// 		new Date(gig.gig_date) === new Date()
-			// 	);
-			// });
-			// log(filtered, 'filtered');
-
 			if (response.ok) {
-				// setWorkouts(json);
 				bandDispatch({
 					type: 'SET_BANDS',
 					payload: json,
-					// payload: json,
 				});
 			}
 		};
@@ -128,11 +88,6 @@ const CreateGig = () => {
 			fetchBands();
 		}
 	}, [bandDispatch, user]);
-
-	// log(gigData, 'gig data');
-	// log(gigData.bandStats, 'gig data');
-	// log(bands, 'gig data - bands');
-	// log(all_gigs, 'gig data - gigs');
 
 	useEffect(() => {
 		const fetchVenues = async () => {
@@ -145,31 +100,11 @@ const CreateGig = () => {
 				}
 			);
 			const json = await response.json();
-			// // get future gigs only
-			// log(json, 'json set gigs');
-			// const clonedGigs = [...json];
-			// const upcomingGigs = clonedGigs.sort((a, b) => {
-			// 	return new Date(b.gig_date) - new Date(a.gig_date);
-			// });
-			// log(upcomingGigs, 'upcoming');
-			// const upcomingGigsSort = json.sort((a, b) => {
-			// 	return new Date(a.gig_date) - new Date(b.gig_date);
-			// });
-			// log(upcomingGigsSort, 'upcoming');
-			// const filtered = upcomingGigsSort.filter((gig) => {
-			// 	return (
-			// 		new Date(gig.gig_date) > new Date() ||
-			// 		new Date(gig.gig_date) === new Date()
-			// 	);
-			// });
-			// log(filtered, 'filtered');
 
 			if (response.ok) {
-				// setWorkouts(json);
 				venueDispatch({
 					type: 'SET_VENUES',
 					payload: json,
-					// payload: json,
 				});
 			}
 		};
@@ -190,31 +125,11 @@ const CreateGig = () => {
 				}
 			);
 			const json = await response.json();
-			// // get future gigs only
-			// log(json, 'json set gigs');
-			// const clonedGigs = [...json];
-			// const upcomingGigs = clonedGigs.sort((a, b) => {
-			// 	return new Date(b.gig_date) - new Date(a.gig_date);
-			// });
-			// log(upcomingGigs, 'upcoming');
-			// const upcomingGigsSort = json.sort((a, b) => {
-			// 	return new Date(a.gig_date) - new Date(b.gig_date);
-			// });
-			// log(upcomingGigsSort, 'upcoming');
-			// const filtered = upcomingGigsSort.filter((gig) => {
-			// 	return (
-			// 		new Date(gig.gig_date) > new Date() ||
-			// 		new Date(gig.gig_date) === new Date()
-			// 	);
-			// });
-			// log(filtered, 'filtered');
 
 			if (response.ok) {
-				// setWorkouts(json);
 				cityDispatch({
 					type: 'SET_CITIES',
 					payload: json,
-					// payload: json,
 				});
 			}
 		};
@@ -224,7 +139,8 @@ const CreateGig = () => {
 		}
 	}, [cityDispatch, user]);
 
-	log(gigData, 'gig data');
+	log(gigCounterData, 'gig gigCounterData');
+	// log(gigData, 'gig data');
 
 	return (
 		<StyledGigs

@@ -5,27 +5,13 @@ export const GigsContext = createContext();
 
 export const gigsReducer = (state, action) => {
 	switch (action.type) {
-		// WORKING
 		// case 'SET_GIGS':
 		// 	return {
-		// 		gigData: {
-		// 			all_gigs: action.payload,
-		// 			bands: action.payload.map(({ headline_band }) => headline_band),
-		// 			bandStats: action.payload
-		// 				.map(({ headline_band }) => headline_band)
-		// 				.reduce(function (count, currentValue) {
-		// 					return (
-		// 						count[currentValue]
-		// 							? ++count[currentValue]
-		// 							: (count[currentValue] = 1),
-		// 						count
-		// 					);
-		// 				}, {}),
-		// 		},
+		// 		gigs: action.payload,
 		// 	};
 		case 'SET_GIGS':
 			return {
-				gigs: action.payload,
+				gigCounterData: { ...state.gigCounterData, gigs: action.payload },
 			};
 
 		case 'SET_GIG':
@@ -41,6 +27,25 @@ export const gigsReducer = (state, action) => {
 			return {
 				gigCounterData: { ...state.gigCounterData, gig: action.payload },
 			};
+
+		case 'CREATE_GIG':
+			return {
+				// ...state.workouts is previous state, action.payload is new workout to add
+				gigCounterData: {
+					...state.gigCounterData,
+					gigs: [action.payload, ...state.gigCounterData.gigs],
+				},
+				// gigCounterData: {
+				// 	...state.gigCounterData,
+				// 	gigs: [action.payload, ...state.gigs],
+				// },
+				// gigs: [action.payload, ...state.gigs],
+			};
+		// case 'CREATE_GIG':
+		// 	return {
+		// 		// ...state.workouts is previous state, action.payload is new workout to add
+		// 		gigs: [action.payload, ...state.gigs],
+		// 	};
 		// return {
 		// 	gig: action.payload,
 		// };
@@ -370,10 +375,7 @@ export const gigsReducer = (state, action) => {
 			const clonedPreviousGigs = [...action.payload];
 
 			const clonedUpGigs = [...action.payload];
-			// const upcomingGigs = clonedUpGigs.sort((a, b) => {
-			// 	return new Date(b.gig_date) - new Date(a.gig_date);
-			// });
-			// log(upcomingGigs, 'upcoming');
+
 			const upcomingGigsSort = clonedUpGigs.sort((a, b) => {
 				return new Date(a.gig_date) - new Date(b.gig_date);
 			});
@@ -384,21 +386,7 @@ export const gigsReducer = (state, action) => {
 					new Date(gig.gig_date) === new Date()
 				);
 			});
-			// return {
-			// 	previous_gigs: clonedPreviousGigs
-			// 		.sort((a, b) => {
-			// 			return new Date(a.gig_date) - new Date(b.gig_date);
-			// 		})
-			// 		.filter((gig) => {
-			// 			return (
-			// 				new Date(gig.gig_date) < new Date() ||
-			// 				new Date(gig.gig_date) === new Date()
-			// 			);
-			// 		})
-			// 		.sort((a, b) => {
-			// 			return new Date(b.gig_date) - new Date(a.gig_date);
-			// 		}),
-			// };
+
 			return {
 				gigCounterData: {
 					all_gigs: action.payload,
@@ -615,11 +603,11 @@ export const gigsReducer = (state, action) => {
 						return new Date(b.gig_date) - new Date(a.gig_date);
 					}),
 			};
-		case 'CREATE_GIG':
-			return {
-				// ...state.workouts is previous state, action.payload is new workout to add
-				gigs: [action.payload, ...state.gigs],
-			};
+		// case 'CREATE_GIG':
+		// 	return {
+		// 		// ...state.workouts is previous state, action.payload is new workout to add
+		// 		gigs: [action.payload, ...state.gigs],
+		// 	};
 		case 'DELETE_GIG':
 			return {
 				gigs: state.gigs.filter((gig) => gig._id !== action.payload._id),

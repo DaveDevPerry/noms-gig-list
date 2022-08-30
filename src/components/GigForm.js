@@ -349,13 +349,27 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 		// setIsFormActive(!isFormActive);
 	};
 
+	// , {
+	// 	style: {
+	// 		border: '1px solid black',
+	// 	},
+	// }
+
 	// create a toast
 	const notify = () => {
-		// toast('Hello');
 		toast.success(`${headline_band} gig successfully added.`, {
-			duration: 3000,
+			duration: 5000,
+			style: {
+				border: '2px solid #1da000',
+			},
 		});
 	};
+	// // create a toast
+	// const notify = () => {
+	// 	toast.success(`${headline_band} gig successfully added.`, {
+	// 		duration: 3000,
+	// 	});
+	// };
 
 	return (
 		<StyledForm
