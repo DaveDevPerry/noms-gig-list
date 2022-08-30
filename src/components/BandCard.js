@@ -2,6 +2,7 @@
 // import { useAuthContext } from '../hooks/useAuthContext';
 
 // import { NavLink } from 'react-router-dom';
+// import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { log } from '../helper';
@@ -71,6 +72,7 @@ const BandCard = ({ band, difference }) => {
 				type: 'SET_BAND',
 				payload: bandData,
 			});
+
 			getBandsTopStats(bandData, chosenBand);
 			navigate('/band');
 		}
@@ -99,6 +101,9 @@ const BandCard = ({ band, difference }) => {
 
 	// navigate('/band');
 	// }
+	// useEffect(() => {
+	// 	setSingleBandFestivalCount(currentFestivalCount)
+	// },[currentFestivalCount])
 
 	return (
 		<StyledBandCard

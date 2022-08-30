@@ -18,7 +18,8 @@ import { intlFormatDistance } from 'date-fns';
 
 const Gig = ({ band, id }) => {
 	const { user } = useAuthContext();
-	const { gig, dispatch } = useGigsContext();
+	const { gigCounterData, dispatch } = useGigsContext();
+	// const { gig,gigCounterData, dispatch } = useGigsContext();
 	const {
 		gigToView,
 		dataLoaded,
@@ -122,22 +123,63 @@ const Gig = ({ band, id }) => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{/* <div className='band-gigs-list-header'>
-				<p>
-					All Gigs by
-					<span> {	gigToView,</span>
-				</p>
-				<div>
-					<FaUsers className='nav-icon' />x
-					{bandDetailsData && bandDetailsData.length}
-				</div>
-			</div> */}
-			{/* {bandDetailsData && bandAllGigsData && (
-				<TopBandWidget gigCounterData={bandAllGigsData} />
-			)} */}
+			{gigCounterData.gig && gigCounterData.gig[0] && (
+				<StyledGigHeaderWidget>
+					<p className='header-time'>
+						<strong>
+							{intlFormatDistance(
+								new Date(
+									new Date(gigCounterData.gig[0].gig_date).toDateString()
+								),
+								new Date(new Date(new Date().toDateString())),
+								{
+									numeric: 'auto',
+								}
+							)}
+						</strong>
+					</p>
+					<p className='header-title'>
+						<strong>{gigCounterData.gig[0].headline_band}</strong>
+					</p>
+					{gigCounterData.gig[0].isFestival &&
+						gigCounterData.gig[0].isFestival === true && (
+							<div className='gig-icons-wrapper'>
+								<GiCampingTent className='gig-icon' />
+							</div>
+						)}
+					<p className='header-location'>
+						<span>
+							<strong>{gigCounterData.gig[0].venue}</strong>
+						</span>
+						<span>{gigCounterData.gig[0].city}</span>
+					</p>
 
-			{/* {gig && <p>{gig[0].headline_band}</p>} */}
-			{gig && gig[0] && (
+					<p className='header-date'>
+						{new Date(gigCounterData.gig[0].gig_date).toLocaleDateString(
+							'en-us',
+							{
+								weekday: 'long',
+								year: 'numeric',
+								month: 'short',
+								day: 'numeric',
+							}
+						)}
+					</p>
+				</StyledGigHeaderWidget>
+			)}
+			{gigCounterData.gig && gigCounterData.gig[0].support_band !== '' && (
+				<StyledGigSupportWidget>
+					<p className='support-title'>support</p>
+					<p className='support-band'>{gigCounterData.gig[0].support_band}</p>
+				</StyledGigSupportWidget>
+			)}
+			{gigCounterData.gig && gigCounterData.gig[0].gig_details !== '' && (
+				<StyledGigDetailsWidget>
+					<p className='details-title'>details</p>
+					<p className='details-band'>{gigCounterData.gig[0].gig_details}</p>
+				</StyledGigDetailsWidget>
+			)}
+			{/* {gig && gig[0] && (
 				<StyledGigHeaderWidget>
 					<p className='header-time'>
 						<strong>
@@ -164,9 +206,7 @@ const Gig = ({ band, id }) => {
 						</span>
 						<span>{gig[0].city}</span>
 					</p>
-					{/* <p className='header-location'>
-						<span>{gig[0].venue}</span> | <span>{gig[0].city}</span>
-					</p> */}
+
 					<p className='header-date'>
 						{new Date(gig[0].gig_date).toLocaleDateString('en-us', {
 							weekday: 'long',
@@ -174,7 +214,6 @@ const Gig = ({ band, id }) => {
 							month: 'short',
 							day: 'numeric',
 						})}
-						{/* {format(new Date(gig[0].gig_date), 'dd/MM/yyyy')} */}
 					</p>
 				</StyledGigHeaderWidget>
 			)}
@@ -189,67 +228,7 @@ const Gig = ({ band, id }) => {
 					<p className='details-title'>details</p>
 					<p className='details-band'>{gig[0].gig_details}</p>
 				</StyledGigDetailsWidget>
-			)}
-
-			{/* {bandDetailsData && bandAllGigsData.length > 0 && (
-				<>
-					<div className='band-gigs-list-header'>
-						<p>
-							all
-						</p>
-						<div>
-							<FaUsers className='nav-icon' />x
-							{bandDetailsData && bandAllGigsData.length}
-						</div>
-					</div>
-					{bandDetailsData && <BandGigsList gigs={bandAllGigsData} />}
-				</>
-			)}
-			{bandDetailsData && bandHeadlineGigsData.length > 0 && (
-				<>
-					<div className='band-gigs-list-header'>
-						<p>
-							headline
-						</p>
-						<div>
-							<FaUsers className='nav-icon' />x
-							{bandDetailsData && bandHeadlineGigsData.length}
-						</div>
-					</div>
-					{bandDetailsData && (
-						<BandHeadlineGigsList gigs={bandHeadlineGigsData} />
-					)}
-				</>
-			)}
-
-
-			{bandDetailsData && bandSupportGigsData.length > 0 && (
-				<>
-					<div className='band-gigs-list-header'>
-						<p>
-							support
-						</p>
-						<div>
-							<FaUsers className='nav-icon' />x
-							{bandDetailsData && bandSupportGigsData.length}
-						</div>
-					</div>
-					{bandDetailsData && (
-						<BandSupportGigsList gigs={bandSupportGigsData} />
-					)}
-				</>
 			)} */}
-			{/* </div> */}
-			{/* <div>
-				{bandDetailsData &&
-					bandDetailsData.map((gig, index) => {
-						return (
-							<li key={index}>
-								{gig.gig_date} - {gig.venue} - {gig.city}
-							</li>
-						);
-					})}
-			</div> */}
 		</StyledBand>
 	);
 };

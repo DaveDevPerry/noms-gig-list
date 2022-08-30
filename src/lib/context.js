@@ -17,6 +17,8 @@ export const StateContext = ({ children }) => {
 	const [totalGigCount, setTotalGigCount] = useState(null);
 	const [dataLoaded, setDataLoaded] = useState(false);
 
+	const [singleBandFestivalCount, setSingleBandFestivalCount] = useState(null);
+
 	const [bandToView, setBandToView] = useState(null);
 	const [bandDetailsData, setBandDetailsData] = useState(null);
 
@@ -48,7 +50,7 @@ export const StateContext = ({ children }) => {
 			(gig) => gig.isFestival === true
 		);
 		log(festivalCount, 'festivalCount');
-		setBandFestivalCount(!festivalCount ? 0 : festivalCount.length);
+		setBandFestivalCount(!festivalCount ? 0 : festivalCount);
 		log(festivalCount, 'festivalCount');
 
 		// get headline count
@@ -275,6 +277,9 @@ export const StateContext = ({ children }) => {
 				setTotalBandCount,
 				totalGigCount,
 				setTotalGigCount,
+
+				singleBandFestivalCount,
+				setSingleBandFestivalCount,
 			}}
 		>
 			{children}

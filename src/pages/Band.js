@@ -14,6 +14,7 @@ import BandHeadlineGigsList from '../components/BandHeadlineGigsList';
 // import TopBandWidget from '../components/TopBandWidget';
 import BandCountRankWidget from '../components/BandCountRankWidget';
 import BandAllTopsWidget from '../components/BandAllTopsWidget';
+import BandHeader from '../components/BandHeader';
 // import { useBandsContext } from '../hooks/useBandsContext';
 // import BandAllTopsWidget from '../components/BandAllTopsWidget';
 
@@ -133,6 +134,10 @@ const Band = ({ band, id }) => {
 			{/* {bandDetailsData && bandFestivalCount && (
 				<BandCountRankWidget bandCounterData={currentFestivalCount} />
 			)} */}
+
+			{/* <h1>{bandToView}</h1> */}
+			{bandToView && <BandHeader />}
+
 			{bandDetailsData && bandFestivalCount && (
 				<BandCountRankWidget
 					bandCounterData={bandAllGigsData}
@@ -220,7 +225,7 @@ const StyledBand = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	row-gap: 1rem;
+	row-gap: 0.5rem;
 	flex: 1;
 	max-width: 42rem;
 	padding: 0 1rem;
@@ -236,11 +241,11 @@ const StyledBand = styled(motion.div)`
 		/* height: 12px !important; */
 		width: 5px;
 		background: rgb(75, 74, 74);
-		user-select: none; /* supported by Chrome and Opera */
-		-webkit-user-select: none; /* Safari */
-		-khtml-user-select: none; /* Konqueror HTML */
-		-moz-user-select: none; /* Firefox */
-		-ms-user-select: none; /* Internet Explorer/Edge */
+		user-select: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
 	}
 	::-webkit-scrollbar-thumb {
 		background-color: ${({ theme }) => theme.primaryColor};

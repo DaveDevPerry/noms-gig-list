@@ -14,6 +14,7 @@ import { ImMenu3 } from 'react-icons/im';
 import { HiStar } from 'react-icons/hi';
 // import { useBandsContext } from '../hooks/useBandsContext';
 import { log } from '../helper';
+import { useBandsContext } from '../hooks/useBandsContext';
 
 const BandCountRankWidget = ({
 	bandWinner,
@@ -24,7 +25,7 @@ const BandCountRankWidget = ({
 	bandFestivalCount,
 }) => {
 	const { bandHeadlineGigsData, bandSupportGigsData } = useStateContext();
-	// const { currentFestivalCount } = useBandsContext();
+	const { currentFestivalCount } = useBandsContext();
 	// const percentage = 20.345;
 	// const { gigCounterData } = useGigsContext();
 	// const { gigCounterData, dispatch } = useGigsContext();
@@ -118,67 +119,46 @@ const BandCountRankWidget = ({
 					</p>
 				</div> */}
 
-				{bandHeadlineGigsData.length && bandHeadlineGigsData.length > 0 && (
-					<div className='wrapper'>
-						<div className='figure-wrapper'>
-							{/* <ImArrowUp className='headline-icon' /> */}
-							<HiStar className='star-icon' />
-							<p className='figure'>
-								<strong>
-									{bandHeadlineGigsData && bandHeadlineGigsData.length < 10
-										? `0${bandHeadlineGigsData.length}`
-										: bandHeadlineGigsData.length}
-								</strong>
-							</p>
-						</div>
-						<p className='stat-name'>Headline</p>
-						{/* <p className='figure'>
+				{/* {bandHeadlineGigsData.length && bandHeadlineGigsData.length > 0 && ( */}
+				<div className='wrapper'>
+					<div className='figure-wrapper'>
+						{/* <ImArrowUp className='headline-icon' /> */}
+						<HiStar className='star-icon' />
+						<p className='figure'>
+							<strong>
+								{bandHeadlineGigsData && bandHeadlineGigsData.length < 10
+									? `0${bandHeadlineGigsData.length}`
+									: bandHeadlineGigsData.length}
+							</strong>
+						</p>
+					</div>
+					<p className='stat-name'>Headline</p>
+					{/* <p className='figure'>
 						<strong>{bandFestivalCount}</strong>
 					</p> */}
-					</div>
-				)}
-				{/* <div className='wrapper-icon'>
-					<p className='figure'>
-						{(weights[weights.length - 1].load - target.target_weight).toFixed(
-							2
-						)}
-					</p>
-					{(weights[weights.length - 1].load - target.target_weight).toFixed(
-						2
-					) > 0 && <ImArrowRight className='arrow-icon red' />}
-					{(weights[weights.length - 1].load - target.target_weight).toFixed(
-						2
-					) <= 0 && <FaCheck className='arrow-icon green' />}
-					<p className='figure'>
-						{(
-							(weights[weights.length - 1].load - target.target_weight) *
-							2.20462
-						).toFixed(2)}
-
-		
-					</p>
-				</div> */}
+				</div>
+				{/* )} */}
 
 				{/* {bandSupportGigsData.length && bandSupportGigsData.length > 0 && ( */}
-				{bandSupportGigsData && !bandSupportGigsData.length && (
-					<div className='wrapper'>
-						<div className='figure-wrapper'>
-							<ImMenu3 className='support-icon' />
-							{/* <GiGuitar className='guitar-icon' /> */}
-							<p className='figure'>
-								<strong>
-									{bandSupportGigsData.length && bandSupportGigsData.length < 10
-										? `0${bandSupportGigsData.length}`
-										: bandSupportGigsData.length}
-								</strong>
-							</p>
-						</div>
-						<p className='stat-name'>Support</p>
-						{/* <p className='figure'>
+				{/* {bandSupportGigsData.length && bandSupportGigsData.length > 0 && ( */}
+				<div className='wrapper'>
+					<div className='figure-wrapper'>
+						<ImMenu3 className='support-icon' />
+						{/* <GiGuitar className='guitar-icon' /> */}
+						<p className='figure'>
+							<strong>
+								{bandSupportGigsData && bandSupportGigsData.length < 10
+									? `0${bandSupportGigsData.length}`
+									: bandSupportGigsData.length}
+							</strong>
+						</p>
+					</div>
+					<p className='stat-name'>Support</p>
+					{/* <p className='figure'>
 						<strong>{bandFestivalCount}</strong>
 					</p> */}
-					</div>
-				)}
+				</div>
+				{/* )} */}
 
 				{/* {bandFestivalCount &&
 					currentFestivalCount &&
@@ -197,21 +177,34 @@ const BandCountRankWidget = ({
 							<p className='stat-name'>Festivals</p>
 						</div>
 					)} */}
-				{bandFestivalCount && bandFestivalCount > 0 && (
-					<div className='wrapper'>
-						<div className='figure-wrapper'>
-							<GiCampingTent className='festival-icon' />
-							<p className='figure'>
-								<strong>
-									{bandFestivalCount && bandFestivalCount < 10
-										? `0${bandFestivalCount}`
-										: bandFestivalCount}
-								</strong>
-							</p>
-						</div>
-						<p className='stat-name'>Festivals</p>
+				{/* {bandFestivalCount && bandFestivalCount && ( */}
+				<div className='wrapper'>
+					<div className='figure-wrapper'>
+						<GiCampingTent className='festival-icon' />
+						<p className='figure'>
+							<strong>
+								{currentFestivalCount && currentFestivalCount < 10
+									? `0${currentFestivalCount}`
+									: currentFestivalCount}
+							</strong>
+						</p>
 					</div>
-				)}
+					<p className='stat-name'>Festivals</p>
+				</div>
+				{/* <div className='wrapper'>
+					<div className='figure-wrapper'>
+						<GiCampingTent className='festival-icon' />
+						<p className='figure'>
+							<strong>
+								{bandFestivalCount && bandFestivalCount < 10
+									? `0${bandFestivalCount}`
+									: bandFestivalCount}
+							</strong>
+						</p>
+					</div>
+					<p className='stat-name'>Festivals</p>
+				</div> */}
+				{/* )} */}
 			</div>
 			{/* <ProgressBarWidget percentage={percentage} /> */}
 			{/* <div className='progress-bar-container'>

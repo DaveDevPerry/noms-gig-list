@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useGigsContext } from '../hooks/useGigsContext';
-import { useAuthContext } from '../hooks/useAuthContext';
+// import { useAuthContext } from '../hooks/useAuthContext';
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -17,10 +17,12 @@ import { useNavigate } from 'react-router-dom';
 
 const History = () => {
 	// const [workouts, setWorkouts] = useState(null);
-	const { previous_gigs, dispatch } = useGigsContext();
+	const { gigCounterData } = useGigsContext();
+	// const { previous_gigs, dispatch } = useGigsContext();
+	// const {gigCounterData} = useSt
 	// const { gigs, dispatch } = useGigsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
-	const { user } = useAuthContext();
+	// const { user } = useAuthContext();
 
 	const { dataLoaded } = useStateContext();
 
@@ -32,46 +34,46 @@ const History = () => {
 		}
 	}, [navigate, dataLoaded]);
 
-	useEffect(() => {
-		const fetchGigs = async () => {
-			const response = await fetch(
-				`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
-				{
-					headers: {
-						Authorization: `Bearer ${user.token}`,
-					},
-				}
-			);
-			const json = await response.json();
+	// useEffect(() => {
+	// 	const fetchGigs = async () => {
+	// 		const response = await fetch(
+	// 			`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
+	// 			{
+	// 				headers: {
+	// 					Authorization: `Bearer ${user.token}`,
+	// 				},
+	// 			}
+	// 		);
+	// 		const json = await response.json();
 
-			// get future gigs only
-			// log(json, 'json set gigs');
-			// const upcomingGigs = json.sort((a, b) => {
-			// 	return new Date(a.gig_date) - new Date(b.gig_date);
-			// });
-			// log(upcomingGigs, 'upcoming');
-			// const upcomingGigsSort = json.sort((a, b) => {
-			// 	return new Date(b.gig_date) - new Date(a.gig_date);
-			// });
-			// log(upcomingGigsSort, 'upcoming');
-			// const filtered = upcomingGigsSort.filter((gig) => {
-			// 	return new Date(gig.gig_date) < new Date();
-			// });
-			// log(filtered, 'filtered');
+	// 		// get future gigs only
+	// 		// log(json, 'json set gigs');
+	// 		// const upcomingGigs = json.sort((a, b) => {
+	// 		// 	return new Date(a.gig_date) - new Date(b.gig_date);
+	// 		// });
+	// 		// log(upcomingGigs, 'upcoming');
+	// 		// const upcomingGigsSort = json.sort((a, b) => {
+	// 		// 	return new Date(b.gig_date) - new Date(a.gig_date);
+	// 		// });
+	// 		// log(upcomingGigsSort, 'upcoming');
+	// 		// const filtered = upcomingGigsSort.filter((gig) => {
+	// 		// 	return new Date(gig.gig_date) < new Date();
+	// 		// });
+	// 		// log(filtered, 'filtered');
 
-			if (response.ok) {
-				// setWorkouts(json);
-				dispatch({
-					type: 'SET_PREVIOUS_GIGS',
-					payload: json,
-				});
-			}
-		};
-		// if we have a value for the user then fetch the workouts
-		if (user) {
-			fetchGigs();
-		}
-	}, [dispatch, user]);
+	// 		if (response.ok) {
+	// 			// setWorkouts(json);
+	// 			dispatch({
+	// 				type: 'SET_PREVIOUS_GIGS',
+	// 				payload: json,
+	// 			});
+	// 		}
+	// 	};
+	// 	// if we have a value for the user then fetch the workouts
+	// 	if (user) {
+	// 		fetchGigs();
+	// 	}
+	// }, [dispatch, user]);
 
 	return (
 		<StyledHistory
@@ -80,26 +82,22 @@ const History = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{/* {previous_gigs && <HistoryWidget gigs={previous_gigs} />} */}
-			{/* {gigs && <HistoryWidget gigs={gigs} />} */}
-			{/* <WeightForm /> */}
-			{/* <WeightUnitsWidget gigs={gigs} /> */}
-			{/* <WeightConvertor /> */}
-			{/* <gigsProgressWidget gigs={gigs} /> */}
-			{/* <p className='gig-history-list-header'>History</p> */}
 			<div className='gig-history-list-header'>
 				<p>History</p>
 				<div>
-					{/* <FaUsers className='nav-icon' />x */}
 					<BsMusicNoteList className='nav-icon' />
-					{previous_gigs && previous_gigs.length}
-					{/* {previous_gigs.length && previous_gigs.length < 10
-						? `0${previous_gigs.length}`
-						: previous_gigs.length} */}
+					{gigCounterData && gigCounterData.previous_gigs.length}
 				</div>
 			</div>
-			<GigsList gigs={previous_gigs} />
-			{/* <GigsList gigs={gigs} /> */}
+			<GigsList gigs={gigCounterData && gigCounterData.previous_gigs} />
+			{/* <div className='gig-history-list-header'>
+				<p>History</p>
+				<div>
+					<BsMusicNoteList className='nav-icon' />
+					{previous_gigs && previous_gigs.length}
+				</div>
+			</div>
+			<GigsList gigs={previous_gigs} /> */}
 		</StyledHistory>
 	);
 };

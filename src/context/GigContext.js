@@ -30,9 +30,20 @@ export const gigsReducer = (state, action) => {
 
 		case 'SET_GIG':
 			log(action.payload, 'action payload gig');
+			log(state, 'state before returning gig');
+			log({ ...state }, 'state before returning gig');
+			log(state.gigCounterData, 'state before returning gig');
+			log({ ...state.gigCounterData }, 'state before returning gig');
+			log(
+				{ ...state.gigCounterData, gig: action.payload },
+				'state before returning gig'
+			);
 			return {
-				gig: action.payload,
+				gigCounterData: { ...state.gigCounterData, gig: action.payload },
 			};
+		// return {
+		// 	gig: action.payload,
+		// };
 		// return {
 		// 	gig:
 		// }
@@ -356,6 +367,38 @@ export const gigsReducer = (state, action) => {
 
 		case 'SET_GIG_COUNTER_DATA':
 			const clonedUpcoming = [...action.payload];
+			const clonedPreviousGigs = [...action.payload];
+
+			const clonedUpGigs = [...action.payload];
+			// const upcomingGigs = clonedUpGigs.sort((a, b) => {
+			// 	return new Date(b.gig_date) - new Date(a.gig_date);
+			// });
+			// log(upcomingGigs, 'upcoming');
+			const upcomingGigsSort = clonedUpGigs.sort((a, b) => {
+				return new Date(a.gig_date) - new Date(b.gig_date);
+			});
+			log(upcomingGigsSort, 'upcoming');
+			const filtered = upcomingGigsSort.filter((gig) => {
+				return (
+					new Date(gig.gig_date) > new Date() ||
+					new Date(gig.gig_date) === new Date()
+				);
+			});
+			// return {
+			// 	previous_gigs: clonedPreviousGigs
+			// 		.sort((a, b) => {
+			// 			return new Date(a.gig_date) - new Date(b.gig_date);
+			// 		})
+			// 		.filter((gig) => {
+			// 			return (
+			// 				new Date(gig.gig_date) < new Date() ||
+			// 				new Date(gig.gig_date) === new Date()
+			// 			);
+			// 		})
+			// 		.sort((a, b) => {
+			// 			return new Date(b.gig_date) - new Date(a.gig_date);
+			// 		}),
+			// };
 			return {
 				gigCounterData: {
 					all_gigs: action.payload,
@@ -408,6 +451,20 @@ export const gigsReducer = (state, action) => {
 							return new Date(a.gig_date) - new Date(b.gig_date);
 						})
 						.splice(0, 8),
+					previous_gigs: clonedPreviousGigs
+						.sort((a, b) => {
+							return new Date(a.gig_date) - new Date(b.gig_date);
+						})
+						.filter((gig) => {
+							return (
+								new Date(gig.gig_date) < new Date() ||
+								new Date(gig.gig_date) === new Date()
+							);
+						})
+						.sort((a, b) => {
+							return new Date(b.gig_date) - new Date(a.gig_date);
+						}),
+					upcoming_gigs: filtered,
 					// next_five_gigs: action.payload
 					// 	.sort((a, b) => {
 					// 		return (

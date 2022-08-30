@@ -1,9 +1,11 @@
 import { createContext, useReducer } from 'react';
 import { log } from '../helper';
+// import { useStateContext } from '../lib/context';
 
 export const BandsContext = createContext();
 
 export const bandsReducer = (state, action) => {
+	// const {setSingleBandFestivalCount} = useStateContext()
 	switch (action.type) {
 		case 'SET_BANDS':
 			return {
