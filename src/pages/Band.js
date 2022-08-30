@@ -15,6 +15,7 @@ import BandHeadlineGigsList from '../components/BandHeadlineGigsList';
 import BandCountRankWidget from '../components/BandCountRankWidget';
 import BandAllTopsWidget from '../components/BandAllTopsWidget';
 import BandHeader from '../components/BandHeader';
+import BandRadarWidget from '../components/BandRadarWidget';
 // import { useBandsContext } from '../hooks/useBandsContext';
 // import BandAllTopsWidget from '../components/BandAllTopsWidget';
 
@@ -150,6 +151,8 @@ const Band = ({ band, id }) => {
 			{/* {bandDetailsData && bandAllGigsData && (
 				<TopBandWidget gigCounterData={bandAllGigsData} />
 			)} */}
+
+			<BandRadarWidget />
 
 			{bandDetailsData && bandAllGigsData.length > 0 && (
 				<>

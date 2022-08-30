@@ -130,14 +130,12 @@ export const gigsReducer = (state, action) => {
 		case 'SET_GLOBAL_STATS':
 			// reduce gigs by year
 			const clonedToGroupByYear = [...action.payload];
-
 			const groupedByYear = clonedToGroupByYear
 				.map(({ gig_date }) => {
 					return new Date(gig_date);
 				})
 				.reduce(function (count, currentValue) {
 					const year = currentValue.getFullYear();
-
 					return count[year] ? ++count[year] : (count[year] = 1), count;
 				}, {});
 			// convert object to array of key value pair objects
@@ -147,31 +145,7 @@ export const gigsReducer = (state, action) => {
 					count: value,
 				})
 			);
-			// const result = Object.values(groupedByYear).reduce((acc, e) => {
-			// 	const { year, ...months } = e;
-			// 	acc.push({ year: year, months: months });
-			// 	return acc;
-			// }, []);
-
 			log(gigCountByYearArrOfObj, 'gigCountByYearArrOfObj');
-			// const groupedByYear = clonedToGroupByYear
-			// 	.map((e) => ({ ...e, gig_date: new Date(e.gig_date) }))
-			// 	.reduce((acc, e) => {
-			// 		const year = e.gig_date.getFullYear();
-			// 		const month = e.gig_date.getMonth() + 1;
-			// 		if (!acc[year]) acc[year] = { year };
-			// 		if (!acc[year][month]) acc[year][month] = [];
-			// 		acc[year][month] = e;
-			// 		return acc;
-			// 	}, {});
-
-			// const result = Object.values(groupedByYear).reduce((acc, e) => {
-			// 	const { year, ...months } = e;
-			// 	acc.push({ year: year, months: months });
-			// 	return acc;
-			// }, []);
-
-			// log(result, 'result');
 
 			// working headline count only
 			const clonedGigs = [...action.payload];
@@ -193,7 +167,6 @@ export const gigsReducer = (state, action) => {
 				})
 			);
 			const sortBandsByGigCount = gigCountArrOfObj.sort((a, b) => {
-				// return b.value - a.value;
 				return b.bandName > a.bandName;
 			});
 
@@ -265,6 +238,26 @@ export const gigsReducer = (state, action) => {
 				}, {});
 			// convert object to array of key value pair objects
 			const citiesGigCountArrOfObj = Object.entries(citiesGigCountObj).map(
+				([key, value]) => ({
+					key,
+					value,
+				})
+			);
+			// cities
+			const clonedCityGigsCount = [...action.payload];
+			const citiesGigCount = clonedCityGigsCount
+				// bandsGigCount: action.payload
+				.map(({ city }) => city)
+				.reduce(function (count, currentValue) {
+					return (
+						count[currentValue]
+							? ++count[currentValue]
+							: (count[currentValue] = 1),
+						count
+					);
+				}, {});
+			// convert object to array of key value pair objects
+			const citiesGigCountObjArr = Object.entries(citiesGigCount).map(
 				([key, value]) => ({
 					key,
 					value,
@@ -352,12 +345,24 @@ export const gigsReducer = (state, action) => {
 						return b.totalGigCount - a.totalGigCount;
 					}),
 					// bandsGigCount: sortBandsByGigCount,
-					citiesGigCount: citiesGigCountArrOfObj.sort((a, b) =>
-						a.key > b.key ? 1 : -1
+					citiesGigCount: citiesGigCountArrOfObj.sort(
+						(a, b) => b.value - a.value
 					),
+					citiesGigCountWinner: citiesGigCountObjArr
+						.sort((a, b) => (a.key > b.key ? 1 : -1))
+						.sort((a, b) => b.value - a.value),
+					// citiesGigCountWinner: citiesGigCountObjArr.sort(
+					// 	(a, b) => b.value - a.value
+					// ),
+					// citiesGigCount: citiesGigCountArrOfObj.sort((a, b) =>
+					// 	a.key > b.key ? 1 : -1
+					// ),
 					// citiesGigCount: citiesGigCountArrOfObj,
 					// citiesGigCount: sortCitiesByGigCount,
-					supportBandsGigCount: sortSupportBandsByGigCount,
+					supportBandsGigCount: sortSupportBandsByGigCount.sort(
+						(a, b) => b.supportCount - a.supportCount
+					),
+					// supportBandsGigCount: sortSupportBandsByGigCount,
 					combinedBandGigsCount: mergedBandGigCounts.sort((a, b) =>
 						a.bandName > b.bandName ? 1 : -1
 					),

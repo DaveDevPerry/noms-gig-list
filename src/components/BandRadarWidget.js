@@ -3,7 +3,7 @@
 // import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 // import { formatDistance } from 'date-fns';
 import styled from 'styled-components';
-import CitiesPieChart from './CitiesPieChart';
+import BandRadarChart from './BandRadarChart';
 // import { useStateContext } from '../lib/context';
 // import VenuesPieChart from './VenuesPieChart';
 // import GigLineChart from './GigLineChart';
@@ -11,22 +11,21 @@ import CitiesPieChart from './CitiesPieChart';
 // import { format } from 'date-fns';
 // import { differenceInDays } from 'date-fns';
 
-const CitiesPieWidget = ({ cities, theme }) => {
+const BandRadarWidget = ({ venues, theme }) => {
 	// const { totalGigsPerBand } = useStateContext();
 
 	return (
-		<StyledCitiesPieWidget className='chart-widget'>
+		<StyledBandRadarWidget className='chart-widget'>
 			{/* <p>chart widget</p> */}
-			<CitiesPieChart
-				// themeToggler={themeToggler}
-				theme={theme}
-				cities={cities}
-				// cities={cities.sort((a, b) => b.value - a.value).slice(0, 5)}
+			<BandRadarChart
+			// themeToggler={themeToggler}
+			// theme={theme}
+			// venues={venues.sort((a, b) => b.value - a.value).slice(0, 5)}
 			/>
-		</StyledCitiesPieWidget>
+		</StyledBandRadarWidget>
 	);
 };
-const StyledCitiesPieWidget = styled.div`
+const StyledBandRadarWidget = styled.div`
 	color: ${({ theme }) => theme.txtGrey};
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
@@ -37,6 +36,7 @@ const StyledCitiesPieWidget = styled.div`
 	display: flex;
 	/* flex-direction: column; */
 	justify-content: center;
+	/* justify-content: space-between; */
 	align-items: center;
 	/* height: 12rem; */
 	position: relative;
@@ -48,4 +48,4 @@ const StyledCitiesPieWidget = styled.div`
 	} */
 `;
 
-export default CitiesPieWidget;
+export default BandRadarWidget;

@@ -237,7 +237,7 @@ const StyledBandCountRankWidget = styled.div`
 		.wrapper {
 			background: ${({ theme }) => theme.white};
 			border-radius: 4px;
-			padding: 1rem 0.5rem;
+			padding: 0.5rem;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;

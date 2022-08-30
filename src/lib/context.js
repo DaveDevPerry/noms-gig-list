@@ -10,6 +10,7 @@ export const StateContext = ({ children }) => {
 	const [totalSupportGigsPerBand, setTotalSupportGigsPerBand] = useState(null);
 	const [combinedGigsPerBand, setCombinedGigsPerBand] = useState(null);
 	const [totalGigsPerCity, setTotalGigsPerCity] = useState(null);
+	const [totalCityGigs, setTotalCityGigs] = useState(null);
 	const [totalGigsPerVenue, setTotalGigsPerVenue] = useState(null);
 	const [totalGigsEachYear, setTotalGigsEachYear] = useState(null);
 	const [totalFestivalCount, setTotalFestivalCount] = useState(null);
@@ -280,6 +281,9 @@ export const StateContext = ({ children }) => {
 
 				singleBandFestivalCount,
 				setSingleBandFestivalCount,
+
+				totalCityGigs,
+				setTotalCityGigs,
 			}}
 		>
 			{children}

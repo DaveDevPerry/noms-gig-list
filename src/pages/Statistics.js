@@ -22,6 +22,7 @@ import AllTopsWidget from '../components/AllTopsWidget';
 import ChartDecadeWidget from '../components/ChartDecadeWidget';
 // import FestivalTotalWidget from '../components/FestivalTotalWidget';
 import CountersWidget from '../components/CountersWidget';
+import { log } from '../helper';
 // import ChartYearWidget from '../components/ChartYearWidget';
 // import NextGigCountdownWidget from '../components/NextGigCountdownWidget';
 
@@ -33,6 +34,7 @@ const Statistics = ({ themeToggler, theme }) => {
 		totalGigsPerCity,
 		totalGigsPerVenue,
 		totalSupportGigsPerBand,
+		totalCityGigs,
 		dataLoaded,
 	} = useStateContext();
 
@@ -42,6 +44,9 @@ const Statistics = ({ themeToggler, theme }) => {
 			navigate('/');
 		}
 	}, [navigate, dataLoaded]);
+
+	log(totalGigsPerCity, 'total gigs per city - stats');
+	log(totalCityGigs, 'totalCityGigs - stats');
 
 	// useEffect(() => {
 	// 	const fetchGigCounterData = async () => {
@@ -112,6 +117,22 @@ const Statistics = ({ themeToggler, theme }) => {
 					)} */}
 
 			{gigCounterData &&
+				totalGigsPerBand &&
+				totalGigsPerVenue &&
+				totalGigsPerCity &&
+				totalSupportGigsPerBand &&
+				gigCounterData.next_five_gigs && (
+					<div className='stat-container'>
+						<AllTopsWidget
+							bandWinner={totalGigsPerBand[0]}
+							venueWinner={totalGigsPerVenue[0]}
+							cityWinner={totalCityGigs[0]}
+							// cityWinner={totalGigsPerCity[0]}
+							supportWinner={totalSupportGigsPerBand[0]}
+						/>
+					</div>
+				)}
+			{/* {gigCounterData &&
 				totalGigsPerBand.length > 0 &&
 				totalGigsPerVenue.length > 0 &&
 				totalGigsPerCity.length > 0 &&
@@ -125,7 +146,7 @@ const Statistics = ({ themeToggler, theme }) => {
 							supportWinner={totalSupportGigsPerBand[0]}
 						/>
 					</div>
-				)}
+				)} */}
 			{gigCounterData && gigCounterData.all_gigs.length > 2 && (
 				<PieWidget
 					themeToggler={themeToggler}

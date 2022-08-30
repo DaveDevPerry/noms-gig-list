@@ -33,18 +33,34 @@ const CitiesPieChart = ({ cities, theme }) => {
 	};
 
 	const clonedNames = [...cities];
-	const cityNames = clonedNames
+	const sortNames = clonedNames.sort((a, b) => b.value - a.value).slice(0, 5);
+	const cityNames = sortNames
 		.map(function (obj) {
 			return obj.key;
 		})
 		.slice(0, 5);
 
 	const clonedCities = [...cities];
-	const cityCount = clonedCities
+	const sortCities = clonedCities.sort((a, b) => b.value - a.value).slice(0, 5);
+	const cityCount = sortCities
 		.map(function (obj) {
 			return obj.value;
 		})
 		.slice(0, 5);
+	// const clonedNames = [...cities];
+	// const sortCities = clonedNames.sort((a, b) => b.value - a.value).slice(0, 5)
+	// const cityNames = clonedNames
+	// 	.map(function (obj) {
+	// 		return obj.key;
+	// 	})
+	// 	.slice(0, 5);
+
+	// const clonedCities = [...cities];
+	// const cityCount = clonedCities
+	// 	.map(function (obj) {
+	// 		return obj.value;
+	// 	})
+	// 	.slice(0, 5);
 
 	const data = {
 		labels: cityNames,

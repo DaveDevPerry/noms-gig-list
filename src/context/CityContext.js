@@ -5,12 +5,20 @@ export const CitiesContext = createContext();
 export const citiesReducer = (state, action) => {
 	switch (action.type) {
 		case 'SET_CITIES':
+			const clonedCities = [...action.payload];
+
 			return {
 				cities:
-					action.payload === null
-						? action.payload
-						: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
+					clonedCities === null
+						? clonedCities
+						: clonedCities.sort((a, b) => (a.name > b.name ? 1 : -1)),
 			};
+		// return {
+		// 	cities:
+		// 		action.payload === null
+		// 			? action.payload
+		// 			: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
+		// };
 		// return {
 		// 	cities: action.payload.sort((a, b) => (a.name > b.name ? 1 : -1)),
 		// };

@@ -32,6 +32,7 @@ const Loader = () => {
 		setTotalFestivalCount,
 		setTotalBandCount,
 		setTotalGigCount,
+		setTotalCityGigs,
 		// setBandToView,
 	} = useStateContext();
 
@@ -143,6 +144,9 @@ const Loader = () => {
 		// setTotalGigsPerBand(globalStatData && globalStatData.combinedBandGigsCount);
 		setTotalGigsPerBand(globalStatData && globalStatData.bandsGigCount);
 		setTotalGigsPerCity(globalStatData && globalStatData.citiesGigCount);
+		// const clonedCityCount = [...globalStatData.citiesGigCount];
+		setTotalCityGigs(globalStatData && globalStatData.citiesGigCountWinner);
+		// setTotalCityGigs(clonedCityCount);
 		setTotalSupportGigsPerBand(
 			globalStatData && globalStatData.supportBandsGigCount
 		);
