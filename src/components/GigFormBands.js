@@ -31,8 +31,14 @@ const GigFormBands = ({
 				}
 			);
 			const json = await response.json();
+			const clonedBands = [...json];
+			const sortedBands = clonedBands.sort((a, b) => {
+				return a.name > b.name ? 1 : -1;
+			});
+
 			if (response.ok) {
-				setOptions(json);
+				setOptions(sortedBands);
+				// setOptions(json);
 			}
 		};
 		// if we have a value for the user then fetch the workouts
@@ -77,6 +83,7 @@ const GigFormBands = ({
 					setHeadline_band(event.target.value);
 				}}
 				autoComplete='off'
+				required
 			/>
 			{/* {display && options.length > 0 && ( */}
 			{display && (

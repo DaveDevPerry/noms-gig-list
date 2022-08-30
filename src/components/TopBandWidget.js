@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { GiLaurelsTrophy } from 'react-icons/gi';
 // import { SiBandsintown } from 'react-icons/si';
 import { log } from '../helper';
+import { useStateContext } from '../lib/context';
+import { useNavigate } from 'react-router-dom';
 // import { useStateContext } from '../lib/context';
 // import { useAuthContext } from '../hooks/useAuthContext';
 // import { useGigsContext } from '../hooks/useGigsContext';
@@ -11,6 +13,9 @@ import { log } from '../helper';
 // import gigBarWidget from './gigBarWidget';
 
 const TopBandWidget = ({ gigCounterData }) => {
+	let navigate = useNavigate();
+
+	const { setBandToView } = useStateContext();
 	// const { bandToView } = useStateContext();
 	// const percentage = 20.345;
 	// const { gigCounterData } = useGigsContext();
@@ -48,8 +53,13 @@ const TopBandWidget = ({ gigCounterData }) => {
 
 	log(gigCounterData, 'gig counter data');
 
+	const handleClick = () => {
+		setBandToView(gigCounterData.bandName);
+		navigate('/band');
+	};
+
 	return (
-		<StyledTopBandWidget className='gig-widget'>
+		<StyledTopBandWidget className='gig-widget' onClick={handleClick}>
 			<div className='gig-widget-wrapper-container'>
 				<div className='wrapper-icon'>
 					{/* <SiBandsintown className='arrow-icon hand gold' /> */}

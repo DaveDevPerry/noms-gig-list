@@ -5,6 +5,7 @@ import { useStateContext } from '../lib/context';
 // import { SiBandsintown } from 'react-icons/si';
 import { GiCampingTent, GiGuitar } from 'react-icons/gi';
 import { FaUsers } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 const CountersWidget = ({ gigCounterData }) => {
 	const { totalBandCount, totalFestivalCount } = useStateContext();
@@ -13,7 +14,7 @@ const CountersWidget = ({ gigCounterData }) => {
 		<StyledCountersWidget className='gig-widget'>
 			{/* <SiBandsintown className='arrow-icon hand gold' /> */}
 			<div className='progress-widget-wrapper-container'>
-				<div className='wrapper'>
+				<NavLink to='/history' className='wrapper'>
 					<div className='figure-wrapper'>
 						<GiGuitar className='guitar-icon' />
 						<p className='figure'>
@@ -25,8 +26,9 @@ const CountersWidget = ({ gigCounterData }) => {
 						</p>
 					</div>
 					<p className='stat-name'>Gigs attended</p>
-				</div>
-				<div className='wrapper'>
+				</NavLink>
+
+				<NavLink to='/bands' className='wrapper'>
 					<div className='figure-wrapper'>
 						<FaUsers className='band-icon' />
 						<p className='figure'>
@@ -38,7 +40,8 @@ const CountersWidget = ({ gigCounterData }) => {
 						</p>
 					</div>
 					<p className='stat-name'>Bands seen</p>
-				</div>
+				</NavLink>
+
 				<div className='wrapper'>
 					<div className='figure-wrapper'>
 						<GiCampingTent className='festival-icon' />
@@ -72,6 +75,7 @@ const StyledCountersWidget = styled.div`
 			justify-content: center;
 			flex: 1;
 			box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+
 			p {
 				text-align: center;
 				margin: 0;
@@ -108,6 +112,10 @@ const StyledCountersWidget = styled.div`
 				color: ${({ theme }) => theme.txtGrey};
 				text-transform: uppercase;
 			}
+		}
+		a.wrapper {
+			cursor: pointer;
+			text-decoration: none;
 		}
 		.wrapper-icon {
 			background: ${({ theme }) => theme.white};

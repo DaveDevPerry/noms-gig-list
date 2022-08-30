@@ -488,6 +488,7 @@ const GigsForm = ({ isFormActive, setIsFormActive }) => {
 						onChange={(e) => setGig_date(e.target.value)}
 						value={gig_date}
 						className={emptyFields.includes('gig_date') ? 'error' : ''}
+						required
 					/>
 				</div>
 			</div>

@@ -31,8 +31,14 @@ const GigFormVenues = ({
 				}
 			);
 			const json = await response.json();
+			const clonedVenues = [...json];
+			const sortedVenues = clonedVenues.sort((a, b) => {
+				return a.name > b.name ? 1 : -1;
+			});
+
 			if (response.ok) {
-				setOptions(json);
+				setOptions(sortedVenues);
+				// setOptions(json);
 			}
 		};
 		// if we have a value for the user then fetch the workouts
@@ -77,6 +83,7 @@ const GigFormVenues = ({
 					setVenue(event.target.value);
 				}}
 				autoComplete='off'
+				required
 			/>
 			{venueDisplay && (
 				<div className='autoContainer'>

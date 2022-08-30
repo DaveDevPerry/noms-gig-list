@@ -31,8 +31,14 @@ const GigFormCities = ({
 				}
 			);
 			const json = await response.json();
+			const clonedCities = [...json];
+			const sortedCities = clonedCities.sort((a, b) => {
+				return a.name > b.name ? 1 : -1;
+			});
+
 			if (response.ok) {
-				setOptions(json);
+				setOptions(sortedCities);
+				// setOptions(json);
 			}
 		};
 		// if we have a value for the user then fetch the workouts
@@ -77,6 +83,7 @@ const GigFormCities = ({
 					setCity(event.target.value);
 				}}
 				autoComplete='off'
+				required
 			/>
 			{cityDisplay && (
 				<div className='autoContainer'>
