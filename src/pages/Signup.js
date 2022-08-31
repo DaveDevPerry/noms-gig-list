@@ -5,7 +5,7 @@ import { useSignup } from '../hooks/useSignup';
 import { Link } from 'react-router-dom';
 import AppDetails from '../components/AppDetails';
 
-const Signup = () => {
+const Signup = ({ theme }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const { signup, isLoading, error } = useSignup();
@@ -51,7 +51,7 @@ const Signup = () => {
 			<p>
 				Got an account? Log in<Link to='/login'> here</Link>
 			</p>
-			<AppDetails />
+			<AppDetails theme={theme} />
 		</StyledSignup>
 	);
 };

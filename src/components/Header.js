@@ -8,6 +8,8 @@ import { HiPresentationChartLine } from 'react-icons/hi';
 // import { GrHomeRounded } from 'react-icons/gr';
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { RiHomeLine } from 'react-icons/ri';
+import { MdManageSearch } from 'react-icons/md';
+// import SearchForm from './SearchForm';
 
 // import { RiGroup2Fill } from 'react-icons/ri';
 
@@ -31,6 +33,13 @@ const Header = () => {
 				>
 					<RiGroup2Fill className='settings-icon' />
 				</NavLink> */}
+				{/* <MdManageSearch className='search-icon' /> */}
+				<NavLink
+					to='/search'
+					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+				>
+					<MdManageSearch className='search-icon' />
+				</NavLink>
 				<nav className='top-nav'>
 					<NavLink
 						to='/gigs/new'
@@ -60,12 +69,22 @@ const Header = () => {
 					</NavLink>
 				</nav>
 			</div>
+			{/* <SearchForm className='search-form-active' /> */}
 		</StyledHeader>
 	);
 };
 const StyledHeader = styled.header`
 	background: ${({ theme }) => theme.white};
 	transition: all 200ms linear;
+	/* position: relative; */
+	/* .search-form-active {
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translate(-50%, 100%);
+		z-index: 1000;
+		width: auto;
+	} */
 	.container {
 		max-width: 60rem;
 		/* max-width: 1400px; */
@@ -74,13 +93,29 @@ const StyledHeader = styled.header`
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		/* position: relative; */
+		/* .search-form-active {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translate(-50%, -100%);
+			z-index: 1000;
+		} */
 		h1 {
 			font-size: 2rem;
 			color: ${({ theme }) => theme.secondaryColor};
 		}
+		/* .search-icon {
+			color: ${({ theme }) => theme.txtDarkGrey};
+			font-size: 3rem;
+		} */
 		a {
 			display: grid;
 			place-content: center;
+			.search-icon {
+				color: ${({ theme }) => theme.txtDarkGrey};
+				font-size: 3rem;
+			}
 			.settings-icon {
 				color: ${({ theme }) => theme.txtDarkGrey};
 				font-size: 3rem;
@@ -91,6 +126,10 @@ const StyledHeader = styled.header`
 			}
 		}
 		a.active {
+			.search-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				/* font-size: 3rem; */
+			}
 			.settings-icon {
 				color: ${({ theme }) => theme.secondaryColor};
 				/* color: ${({ theme }) => theme.primaryColor}; */

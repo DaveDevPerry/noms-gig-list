@@ -30,6 +30,9 @@ const BandPieChart = ({ gigs, themeToggler, theme }) => {
 				position: 'top',
 			},
 		},
+		animation: {
+			duration: 3000,
+		},
 	};
 
 	const bandNames = gigs

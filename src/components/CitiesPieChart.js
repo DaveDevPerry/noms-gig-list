@@ -30,6 +30,9 @@ const CitiesPieChart = ({ cities, theme }) => {
 				position: 'top',
 			},
 		},
+		animation: {
+			duration: 3000,
+		},
 	};
 
 	const clonedNames = [...cities];

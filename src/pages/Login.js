@@ -5,7 +5,7 @@ import { useLogin } from '../hooks/useLogin';
 import { Link } from 'react-router-dom';
 import AppDetails from '../components/AppDetails';
 
-const Login = () => {
+const Login = ({ theme }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const { login, error, isLoading } = useLogin();
@@ -52,7 +52,7 @@ const Login = () => {
 			<p>
 				Need an account? Sign up<Link to='/signup'> here</Link>
 			</p>
-			<AppDetails />
+			<AppDetails theme={theme} />
 		</StyledLogin>
 	);
 };

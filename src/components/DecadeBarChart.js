@@ -56,6 +56,9 @@ const DecadeBarChart = ({ gigs }) => {
 				text: 'total gigs per decade',
 			},
 		},
+		animation: {
+			duration: 4000,
+		},
 	};
 	// const options = {
 	// 	responsive: false,

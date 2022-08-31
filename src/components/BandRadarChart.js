@@ -44,6 +44,9 @@ const BandRadarChart = ({ venues, theme }) => {
 				position: 'top',
 			},
 		},
+		animation: {
+			duration: 3000,
+		},
 	};
 
 	// const clonedNames = [...venues];

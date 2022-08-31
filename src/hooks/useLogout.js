@@ -23,6 +23,10 @@ export const useLogout = () => {
 		setTotalGigsPerVenue,
 		setGigToView,
 		setBandToView,
+		setTotalCityGigs,
+		setTotalGigsEachYear,
+		setTotalFestivalCount,
+		setTotalBandCount,
 	} = useStateContext();
 
 	const logout = () => {
@@ -48,6 +52,10 @@ export const useLogout = () => {
 		setTotalGigsPerVenue(null);
 		setGigToView(null);
 		setBandToView(null);
+		setTotalCityGigs(null);
+		setTotalGigsEachYear(null);
+		setTotalFestivalCount(null);
+		setTotalBandCount(null);
 	};
 
 	return { logout };

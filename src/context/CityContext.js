@@ -5,7 +5,8 @@ export const CitiesContext = createContext();
 export const citiesReducer = (state, action) => {
 	switch (action.type) {
 		case 'SET_CITIES':
-			const clonedCities = [...action.payload];
+			const clonedCities =
+				action.payload === null ? action.payload : [...action.payload];
 
 			return {
 				cities:

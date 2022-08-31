@@ -21,6 +21,7 @@ import City from './pages/City';
 import Gig from './pages/Gig';
 import Venue from './pages/Venue';
 import Statistics from './pages/Statistics';
+import Search from './pages/Search';
 // import { log } from './helper';
 // import { log } from './helper';
 // import { useStateContext } from './lib/context';
@@ -78,6 +79,10 @@ const AnimatedRoutes = ({
 						element={user ? <CreateGig /> : <Navigate to='/login' />}
 					/>
 					<Route
+						path='/search'
+						element={user ? <Search theme={theme} /> : <Navigate to='/login' />}
+					/>
+					<Route
 						path='/history'
 						element={user ? <History /> : <Navigate to='/login' />}
 					/>
@@ -129,11 +134,11 @@ const AnimatedRoutes = ({
 					/>
 					<Route
 						path='/login'
-						element={!user ? <Login /> : <Navigate to='/' />}
+						element={!user ? <Login theme={theme} /> : <Navigate to='/' />}
 					/>
 					<Route
 						path='/signup'
-						element={!user ? <Signup /> : <Navigate to='/' />}
+						element={!user ? <Signup theme={theme} /> : <Navigate to='/' />}
 					/>
 					{/* <Route
 						path='/groups'

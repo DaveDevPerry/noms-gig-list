@@ -30,6 +30,9 @@ const VenuesPieChart = ({ venues, theme }) => {
 				position: 'top',
 			},
 		},
+		animation: {
+			duration: 3000,
+		},
 	};
 
 	const clonedNames = [...venues];
