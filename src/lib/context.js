@@ -16,10 +16,12 @@ export const StateContext = ({ children }) => {
 	const [totalFestivalCount, setTotalFestivalCount] = useState(null);
 	const [totalBandCount, setTotalBandCount] = useState(null);
 	const [totalGigCount, setTotalGigCount] = useState(null);
+
 	const [dataLoaded, setDataLoaded] = useState(false);
 
 	const [singleBandFestivalCount, setSingleBandFestivalCount] = useState(null);
 
+	const [gigDateToView, setGigDateToView] = useState(null);
 	const [bandToView, setBandToView] = useState(null);
 	const [bandDetailsData, setBandDetailsData] = useState(null);
 
@@ -284,6 +286,9 @@ export const StateContext = ({ children }) => {
 
 				totalCityGigs,
 				setTotalCityGigs,
+
+				gigDateToView,
+				setGigDateToView,
 			}}
 		>
 			{children}

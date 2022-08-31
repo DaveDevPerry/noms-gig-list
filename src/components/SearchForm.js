@@ -17,6 +17,7 @@ import toast from 'react-hot-toast';
 import SearchFormBands from './SearchFormBands';
 import SearchFormCities from './SearchFormCities';
 import { log } from '../helper';
+import { useStateContext } from '../lib/context';
 
 const SearchForm = ({ isFormActive, setIsFormActive }) => {
 	const navigate = useNavigate();
@@ -28,6 +29,8 @@ const SearchForm = ({ isFormActive, setIsFormActive }) => {
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	const { user } = useAuthContext();
 
+	const { gigDateToView, setGigDateToView, setGigToView } = useStateContext();
+
 	// const [createNewBand, setCreateNewBand] = useState(true);
 	// const [createNewSupportBand, setCreateNewSupportBand] = useState(true);
 	// const [createNewCity, setCreateNewCity] = useState(true);
@@ -38,6 +41,8 @@ const SearchForm = ({ isFormActive, setIsFormActive }) => {
 
 	const [bandNameSearchValue, setBandNameSearchValue] = useState('');
 	const [cityNameSearchValue, setCityNameSearchValue] = useState('');
+
+	const [gigDateSearchValue, setGigDateSearchValue] = useState('');
 	// const [supportDisplay, setSupportDisplay] = useState(false);
 	// const [cityDisplay, setCityDisplay] = useState(false);
 	// const [venueDisplay, setVenueDisplay] = useState(false);
@@ -60,15 +65,82 @@ const SearchForm = ({ isFormActive, setIsFormActive }) => {
 			setError('You must be logged in');
 			return;
 		}
+		if (gigDateSearchValue === '') {
+			log('date is empty');
+		}
+		if (gigDateSearchValue !== '') {
+			log(gigDateSearchValue, gigDateToView, 'gig date states');
+			const fetchGig = async () => {
+				const response = await fetch(
+					`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
+					{
+						headers: {
+							Authorization: `Bearer ${user.token}`,
+						},
+					}
+				);
+				const json = await response.json();
+				const clonedGigs = [...json];
 
-		if (bandNameSearchValue !== '' && cityNameSearchValue !== '') {
-			// navigate('/band');
-			log('error both have values');
-			notify('you can only search for band or city.');
+				// log(clonedGigs, 'cloned gigs - search');
+				// log(
+				// 	new Date(clonedGigs[0].gig_date).toDateString(),
+				// 	new Date(gigDateToView).toDateString(),
+				// 	'cloned gigs date string - search'
+				// );
+				// log(
+				// 	new Date(clonedGigs[0].gig_date),
+				// 	new Date(gigDateToView),
+				// 	'cloned gigs date - search'
+				// );
+				const filterGig = clonedGigs.filter((gig) => {
+					return (
+						new Date(gig.gig_date).toDateString() ===
+						new Date(gigDateToView).toDateString()
+					);
+				});
+				log(filterGig, 'filterGig');
+
+				if (filterGig.length === 0) {
+					notify('no record found of a gig on that date!');
+					setGigDateSearchValue('');
+					return;
+				}
+
+				if (response.ok) {
+					setGigDateSearchValue('');
+					setGigToView(filterGig[0]._id);
+					navigate('/gig');
+					// setOptions(filterGig);
+					// setOptions(json);
+				}
+			};
+			// if we have a value for the user then fetch the workouts
+			if (user) {
+				fetchGig();
+			}
 			return;
 		}
 
-		if (bandNameSearchValue === '' && cityNameSearchValue === '') {
+		if (
+			(bandNameSearchValue !== '' &&
+				cityNameSearchValue !== '' &&
+				gigDateSearchValue !== '') ||
+			(bandNameSearchValue !== '' && cityNameSearchValue !== '') ||
+			(bandNameSearchValue !== '' && gigDateSearchValue !== '') ||
+			(cityNameSearchValue !== '' && gigDateSearchValue !== '')
+		) {
+			// navigate('/band');
+			log('error both have values');
+			notify('you can only search by either band, city, or date.');
+			return;
+		}
+
+		if (
+			bandNameSearchValue === '' &&
+			cityNameSearchValue === '' &&
+			gigDateSearchValue === ''
+		) {
 			// log('error search fields are empty');
 			// setError('search fields are empty');
 			notify('you are not searching for anything yet!');
@@ -331,12 +403,25 @@ const SearchForm = ({ isFormActive, setIsFormActive }) => {
 					setCityNameSearchValue={setCityNameSearchValue}
 					cityNameSearchValue={cityNameSearchValue}
 					setError={setError}
-					// setCity={setCity}
-					// city={city}
-					// emptyFields={emptyFields}
-					// setCreateNewCity={setCreateNewCity}
 				/>
 			</div>
+
+			<div className='input-wrapper-band'>
+				<label>Date:</label>
+				<input
+					type='date'
+					id='search-date'
+					onChange={(e) => {
+						setGigDateToView(e.target.value);
+						setGigDateSearchValue(e.target.value);
+					}}
+					// onChange={(e) => setGigDateSearchValue(e.target.value)}
+					value={gigDateSearchValue}
+					// className={emptyFields.includes('gig_date') ? 'error' : ''}
+					// required
+				/>
+			</div>
+
 			{/* <div className='input-wrapper-band'>
 				<label>Support Band:</label>
 				<GigFormSupportBands
@@ -557,7 +642,7 @@ const StyledSearchForm = styled.form`
 				margin: 0;
 				font-size: 1.8rem;
 				color: ${({ theme }) => theme.black};
-				flex: 1;
+				/* flex: 1; */
 			}
 		}
 	}
@@ -610,6 +695,13 @@ const StyledSearchForm = styled.form`
 			font-size: 1.8rem;
 			color: ${({ theme }) => theme.black};
 			flex: 1;
+		}
+		#search-date {
+			padding: 0.8rem 0.5rem;
+			margin: 0;
+			font-size: 1.8rem;
+			color: ${({ theme }) => theme.black};
+			/* flex: 1; */
 		}
 		textarea {
 			border: 2px solid ${({ theme }) => theme.borderGrey};

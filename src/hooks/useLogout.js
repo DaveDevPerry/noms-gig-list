@@ -27,6 +27,7 @@ export const useLogout = () => {
 		setTotalGigsEachYear,
 		setTotalFestivalCount,
 		setTotalBandCount,
+		setGigDateToView,
 	} = useStateContext();
 
 	const logout = () => {
@@ -56,6 +57,7 @@ export const useLogout = () => {
 		setTotalGigsEachYear(null);
 		setTotalFestivalCount(null);
 		setTotalBandCount(null);
+		setGigDateToView(null);
 	};
 
 	return { logout };
