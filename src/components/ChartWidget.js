@@ -3,7 +3,8 @@
 // import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 // import { formatDistance } from 'date-fns';
 import styled from 'styled-components';
-import GigLineChart from './GigLineChart';
+// import GigLineChart from './GigLineChart';
+import YearLineChart from './YearLineChart';
 // import WeightLineChart from './WeightLineChart';
 // import { format } from 'date-fns';
 // import { differenceInDays } from 'date-fns';
@@ -12,7 +13,8 @@ const ChartWidget = ({ gigs }) => {
 	return (
 		<StyledChartWidget className='chart-widget'>
 			{/* <p>chart widget</p> */}
-			<GigLineChart gigs={gigs} />
+			<YearLineChart gigs={gigs} />
+			{/* <GigLineChart gigs={gigs} /> */}
 		</StyledChartWidget>
 	);
 };
@@ -21,12 +23,14 @@ const StyledChartWidget = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0 auto 10px auto; */
-	padding: 2rem;
+	padding: 0 1rem;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
-	display: flex;
-	/* flex-direction: column; */
+	/* display: flex;
+
 	justify-content: center;
-	align-items: center;
+	align-items: center; */
+	position: relative;
+	flex: 1;
 	/* display: flex;
 	flex-direction: column;
 	justify-content: center; */

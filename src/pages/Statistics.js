@@ -21,8 +21,9 @@ import AllTopsWidget from '../components/AllTopsWidget';
 // import KeyWidget from '../components/KeyWidget';
 import ChartDecadeWidget from '../components/ChartDecadeWidget';
 // import FestivalTotalWidget from '../components/FestivalTotalWidget';
-import CountersWidget from '../components/CountersWidget';
+// import CountersWidget from '../components/CountersWidget';
 import { log } from '../helper';
+import ChartWidget from '../components/ChartWidget';
 // import ChartYearWidget from '../components/ChartYearWidget';
 // import NextGigCountdownWidget from '../components/NextGigCountdownWidget';
 
@@ -98,23 +99,9 @@ const Statistics = ({ themeToggler, theme }) => {
 						<CountdownWidget gig={gigCounterData.next_five_gigs[0]} />
 					)} */}
 
-			{gigCounterData && (
+			{/* {gigCounterData && (
 				<CountersWidget gigCounterData={gigCounterData && gigCounterData} />
-			)}
-			{/* {gigCounterData && (
-						<div className='stat-container'>
-							<TopBandWidget gigCounterData={totalGigsPerBand[0]} />
-							<GigTotalWidget gigCounterData={gigCounterData} />
-							<FestivalTotalWidget />
-							<CountersWidget gigCounterData={gigCounterData} />
-						</div>
-					)} */}
-
-			{/* {gigCounterData && (
-						<div className='stat-container'>
-							<TopBandWidget gigCounterData={totalGigsPerBand[0]} />
-						</div>
-					)} */}
+			)} */}
 
 			{gigCounterData &&
 				totalGigsPerBand &&
@@ -127,26 +114,11 @@ const Statistics = ({ themeToggler, theme }) => {
 							bandWinner={totalGigsPerBand[0]}
 							venueWinner={totalGigsPerVenue[0]}
 							cityWinner={totalCityGigs[0]}
-							// cityWinner={totalGigsPerCity[0]}
 							supportWinner={totalSupportGigsPerBand[0]}
 						/>
 					</div>
 				)}
-			{/* {gigCounterData &&
-				totalGigsPerBand.length > 0 &&
-				totalGigsPerVenue.length > 0 &&
-				totalGigsPerCity.length > 0 &&
-				totalSupportGigsPerBand.length > 0 &&
-				gigCounterData.next_five_gigs.length > 0 && (
-					<div className='stat-container'>
-						<AllTopsWidget
-							bandWinner={totalGigsPerBand[0]}
-							venueWinner={totalGigsPerVenue[0]}
-							cityWinner={totalGigsPerCity[0]}
-							supportWinner={totalSupportGigsPerBand[0]}
-						/>
-					</div>
-				)} */}
+
 			{gigCounterData && gigCounterData.all_gigs.length > 2 && (
 				<PieWidget
 					themeToggler={themeToggler}
@@ -161,6 +133,8 @@ const Statistics = ({ themeToggler, theme }) => {
 					gigs={gigCounterData.all_gigs}
 				/>
 			)}
+
+			<ChartWidget theme={theme} />
 			{/* {gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
 						<>
 							<div className='next-five-list-header'>
@@ -246,12 +220,12 @@ const Statistics = ({ themeToggler, theme }) => {
 const StyledStatistics = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
-	row-gap: 1rem;
+	row-gap: 0.5rem;
 	flex: 1;
 	max-width: 42rem;
 	padding: 0 1rem;
-	overflow: hidden;
-	/* overflow-y: auto; */
+	/* overflow: hidden; */
+	overflow-y: auto;
 	transition: all 200ms linear;
 	margin: 0 auto;
 	scroll-behavior: smooth;
