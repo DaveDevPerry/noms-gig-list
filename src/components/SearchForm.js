@@ -65,62 +65,6 @@ const SearchForm = ({ isFormActive, setIsFormActive }) => {
 			setError('You must be logged in');
 			return;
 		}
-		if (gigDateSearchValue === '') {
-			log('date is empty');
-		}
-		if (gigDateSearchValue !== '') {
-			log(gigDateSearchValue, gigDateToView, 'gig date states');
-			const fetchGig = async () => {
-				const response = await fetch(
-					`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
-					{
-						headers: {
-							Authorization: `Bearer ${user.token}`,
-						},
-					}
-				);
-				const json = await response.json();
-				const clonedGigs = [...json];
-
-				// log(clonedGigs, 'cloned gigs - search');
-				// log(
-				// 	new Date(clonedGigs[0].gig_date).toDateString(),
-				// 	new Date(gigDateToView).toDateString(),
-				// 	'cloned gigs date string - search'
-				// );
-				// log(
-				// 	new Date(clonedGigs[0].gig_date),
-				// 	new Date(gigDateToView),
-				// 	'cloned gigs date - search'
-				// );
-				const filterGig = clonedGigs.filter((gig) => {
-					return (
-						new Date(gig.gig_date).toDateString() ===
-						new Date(gigDateToView).toDateString()
-					);
-				});
-				log(filterGig, 'filterGig');
-
-				if (filterGig.length === 0) {
-					notify('no record found of a gig on that date!');
-					setGigDateSearchValue('');
-					return;
-				}
-
-				if (response.ok) {
-					setGigDateSearchValue('');
-					setGigToView(filterGig[0]._id);
-					navigate('/gig');
-					// setOptions(filterGig);
-					// setOptions(json);
-				}
-			};
-			// if we have a value for the user then fetch the workouts
-			if (user) {
-				fetchGig();
-			}
-			return;
-		}
 
 		if (
 			(bandNameSearchValue !== '' &&
@@ -147,216 +91,64 @@ const SearchForm = ({ isFormActive, setIsFormActive }) => {
 			return;
 		}
 
-		if (bandNameSearchValue === '') {
-			log('band name empty');
+		// search by gig date
+		if (gigDateSearchValue !== '') {
+			log(gigDateSearchValue, gigDateToView, 'gig date states');
+			const fetchGig = async () => {
+				const response = await fetch(
+					`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
+					{
+						headers: {
+							Authorization: `Bearer ${user.token}`,
+						},
+					}
+				);
+				const json = await response.json();
+				const clonedGigs = [...json];
+
+				const filterGig = clonedGigs.filter((gig) => {
+					return (
+						new Date(gig.gig_date).toDateString() ===
+						new Date(gigDateToView).toDateString()
+					);
+				});
+				log(filterGig, 'filterGig');
+				if (filterGig.length === 0) {
+					notify('no record found of a gig on that date!');
+					setGigDateSearchValue('');
+					return;
+				}
+				if (response.ok) {
+					setGigDateSearchValue('');
+					setGigToView(filterGig[0]._id);
+					navigate('/gig');
+				}
+			};
+			// if we have a value for the user then fetch the gig
+			if (user) {
+				fetchGig();
+			}
+			return;
 		}
+
 		if (bandNameSearchValue !== '') {
 			navigate('/band');
+		}
+
+		if (cityNameSearchValue !== '') {
+			navigate('/city');
 		}
 
 		if (cityNameSearchValue === '') {
 			log('city name empty');
 		}
-		if (cityNameSearchValue !== '') {
-			navigate('/city');
+		if (gigDateSearchValue === '') {
+			log('date is empty');
 		}
-		// check if new band and action
-		// if (createNewBand === false) {
-		// 	log('new gig, existing band');
-		// 	// gig = { headline_band, venue, city, gig_date, gig_details };
-		// }
-		// if (createNewBand === true) {
-		// 	log('new gig, create new band');
-		// 	// gig = { headline_band, venue, city, gig_date, gig_details };
-		// 	const band = { name: headline_band };
-		// 	const response = await fetch(
-		// 		`${process.env.REACT_APP_BACKEND_URL}/api/bands`,
-		// 		{
-		// 			// const response = await fetch('/api/weights', {
-		// 			method: 'POST',
-		// 			body: JSON.stringify(band),
-		// 			headers: {
-		// 				'Content-Type': 'application/json',
-		// 				Authorization: `Bearer ${user.token}`,
-		// 			},
-		// 		}
-		// 	);
-		// 	const json = await response.json();
-		// 	log(json, 'json creating band in form post submit');
-		// 	if (!response.ok) {
-		// 		setError(json.error);
-		// 	}
-		// 	if (response.ok) {
-		// 		setError(null);
-		// 		log('new band added', json);
-		// 		bandDispatch({ type: 'CREATE_BAND', payload: json });
-		// 	}
-		// 	log('new band added', json);
-		// }
-		// log('new band added, now adding gig');
-		// const handleClose = () => {
-		// 	navigate('/home');
-		// 	// setIsFormActive(!isFormActive);
-		// };
-		// }
-		// check if new band (support) and action
-		// if (createNewSupportBand === false) {
-		// 	log('new gig, existing band');
-		// 	// gig = { headline_band, venue, city, gig_date, gig_details };
-		// }
-		// if (createNewSupportBand === true) {
-		// 	log('new gig, create new support band');
-		// 	// gig = { headline_band, venue, city, gig_date, gig_details };
-		// 	const band = { name: support_band };
-		// 	const response = await fetch(
-		// 		`${process.env.REACT_APP_BACKEND_URL}/api/bands`,
-		// 		{
-		// 			// const response = await fetch('/api/weights', {
-		// 			method: 'POST',
-		// 			body: JSON.stringify(band),
-		// 			headers: {
-		// 				'Content-Type': 'application/json',
-		// 				Authorization: `Bearer ${user.token}`,
-		// 			},
-		// 		}
-		// 	);
-		// 	const json = await response.json();
-		// 	log(json, 'json creating band in form post submit');
-		// 	if (!response.ok) {
-		// 		setError(json.error);
-		// 	}
-		// 	if (response.ok) {
-		// 		setError(null);
-		// 		log('new band added', json);
-		// 		bandDispatch({ type: 'CREATE_BAND', payload: json });
-		// 	}
-		// 	log('new  support band added', json);
-		// }
-		// log('new band added, now adding gig');
-		// const handleClose = () => {
-		// 	navigate('/home');
-		// 	// setIsFormActive(!isFormActive);
-		// };
-		// }
 
-		// check if new venue and action
-		// if (createNewVenue === false) {
-		// 	log('new gig, existing venue');
-		// 	// gig = { headline_band, venue, venue, gig_date, gig_details };
-		// }
-		// if (createNewVenue === true) {
-		// 	log('new gig, create new venue');
-		// 	// gig = { headline_band, venue, city, gig_date, gig_details };
-		// 	const currentVenue = { name: venue };
-		// 	const response = await fetch(
-		// 		`${process.env.REACT_APP_BACKEND_URL}/api/venues`,
-		// 		{
-		// 			// const response = await fetch('/api/weights', {
-		// 			method: 'POST',
-		// 			body: JSON.stringify(currentVenue),
-		// 			headers: {
-		// 				'Content-Type': 'application/json',
-		// 				Authorization: `Bearer ${user.token}`,
-		// 			},
-		// 		}
-		// 	);
-		// 	const json = await response.json();
-		// 	log(json, 'json creating venue in form post submit');
-		// 	if (!response.ok) {
-		// 		setError(json.error);
-		// 	}
-		// 	if (response.ok) {
-		// 		setError(null);
-		// 		log('new city added', json);
-		// 		venueDispatch({ type: 'CREATE_VENUE', payload: json });
-		// 	}
-		// 	log('new venue added', json);
-		// }
-
-		// check if new city and action
-		// if (createNewCity === false) {
-		// 	log('new gig, existing city');
-		// 	// gig = { headline_band, venue, city, gig_date, gig_details };
-		// }
-		// if (createNewCity === true) {
-		// 	log('new gig, create new city');
-		// 	// gig = { headline_band, venue, city, gig_date, gig_details };
-		// 	const currentCity = { name: city };
-		// 	const response = await fetch(
-		// 		`${process.env.REACT_APP_BACKEND_URL}/api/cities`,
-		// 		{
-		// 			// const response = await fetch('/api/weights', {
-		// 			method: 'POST',
-		// 			body: JSON.stringify(currentCity),
-		// 			headers: {
-		// 				'Content-Type': 'application/json',
-		// 				Authorization: `Bearer ${user.token}`,
-		// 			},
-		// 		}
-		// 	);
-		// 	const json = await response.json();
-		// 	log(json, 'json creating city in form post submit');
-		// 	if (!response.ok) {
-		// 		setError(json.error);
-		// 	}
-		// 	if (response.ok) {
-		// 		setError(null);
-		// 		log('new city added', json);
-		// 		cityDispatch({ type: 'CREATE_CITY', payload: json });
-		// 	}
-		// 	log('new city added', json);
-		// }
-		// log('new city added, now adding gig');
-
-		// const gig = {
-		// 	headline_band,
-		// 	support_band,
-		// 	venue,
-		// 	city,
-		// 	gig_date,
-		// 	gig_details,
-		// 	isFestival,
-		// };
-		// log(gig, 'gig post submit');
-
-		// const response = await fetch(
-		// 	`${process.env.REACT_APP_BACKEND_URL}/api/gigs`,
-		// 	{
-		// 		// const response = await fetch('/api/weights', {
-		// 		method: 'POST',
-		// 		body: JSON.stringify(gig),
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 			Authorization: `Bearer ${user.token}`,
-		// 		},
-		// 	}
-		// );
-		// const json = await response.json();
-
-		// log(json, 'json in form post submit');
-
-		// if (!response.ok) {
-		// 	setError(json.error);
-		// 	// setEmptyFields(json.emptyFields);
-		// }
-		// if (response.ok) {
-		// 	// setNewWeight('');
-		// 	// setVenue('');
-		// 	// setCity('');
-		// 	setHeadline_band('');
-		// 	// setSupport_band('');
-		// 	// setGig_date('');
-		// 	// setGig_details('');
-		// 	// setIsFestival(false);
-		// 	// setGig_details('');
-		// 	// setReps('');
-		// 	setError(null);
-		// 	// setEmptyFields([]);
-		// 	// log('new gig added', json);
-		// 	dispatch({ type: 'CREATE_GIG', payload: json });
-		// }
-		// setIsFormActive(!isFormActive);
-		// notify();
+		if (bandNameSearchValue === '') {
+			log('band name empty');
+		}
 	};
 	const handleClose = () => {
 		navigate('/home');

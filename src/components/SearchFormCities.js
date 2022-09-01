@@ -81,7 +81,7 @@ const SearchFormCities = ({
 			<input
 				id='auto'
 				onClick={() => {
-					setError(null);
+					// setError(null);
 					setSearchCityDisplay(!searchCityDisplay);
 				}}
 				// onClick={() => setSearchCityDisplay(!searchCityDisplay)}

@@ -81,7 +81,7 @@ const SearchFormBands = ({
 			<input
 				id='auto'
 				onClick={() => {
-					setError(null);
+					// setError(null);
 					setDisplay(!display);
 				}}
 				// onClick={() => setDisplay(!display)}
