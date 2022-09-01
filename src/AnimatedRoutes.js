@@ -22,6 +22,8 @@ import Gig from './pages/Gig';
 import Venue from './pages/Venue';
 import Statistics from './pages/Statistics';
 import Search from './pages/Search';
+import { useStateContext } from './lib/context';
+import { useEffect, useState } from 'react';
 // import { log } from './helper';
 // import { log } from './helper';
 // import { useStateContext } from './lib/context';
@@ -46,6 +48,63 @@ const AnimatedRoutes = ({
 
 	// log('only log', user);
 	// log('Hello animated routes', 1, 2, Date.now());
+
+	// const [todos, setTodos] = useState([]);
+	const [bandGigListStatus, setBandGigListStatus] = useState('all');
+	const [filteredBandGigs, setFilteredBandGigs] = useState([]);
+	const { bandAllGigsData, bandHeadlineGigsData, bandSupportGigsData } =
+		useStateContext();
+
+	// use effect
+	useEffect(() => {
+		bandGigListFilterHandler();
+		// saveLocalTodos();
+	}, [bandGigListStatus]);
+
+	// function sand events
+	const bandGigListFilterHandler = () => {
+		switch (bandGigListStatus) {
+			case 'all':
+				setFilteredBandGigs(bandAllGigsData);
+				break;
+			case 'headline':
+				setFilteredBandGigs(bandHeadlineGigsData);
+				break;
+			// case 'deleted':
+			// 	setFilteredBandGigs(todos.filter((todo) => todo.completed === false));
+			// 	break;
+			case 'support':
+				setFilteredBandGigs(bandSupportGigsData);
+				break;
+			default:
+				setFilteredBandGigs(bandAllGigsData);
+				break;
+		}
+	};
+	// save to local
+	// const saveLocalTodos = () => {
+	// 	console.log('saving');
+	// 	localStorage.setItem(todoAppName, JSON.stringify(todos));
+	// };
+	// const getLocalTodos = () => {
+	// 	if (localStorage.getItem(todoAppName) === null) {
+	// 		localStorage.setItem(todoAppName, JSON.stringify([]));
+	// 	} else {
+	// 		console.log('setting');
+	// 		let todoLocal = JSON.parse(localStorage.getItem(todoAppName));
+	// 		todoLocal.sort((a, b) => {
+	// 			return new Date(a.date) - new Date(b.date);
+	// 		});
+	// 		setTodos(todoLocal);
+	// 		console.log(todoLocal);
+	// 	}
+	// };
+
+	const bandGigListStatusHandler = (e) => {
+		console.log(e.target.textContent);
+		setBandGigListStatus(e.target.value);
+		// setStatus(e.target.value);
+	};
 
 	return (
 		<>
@@ -98,7 +157,17 @@ const AnimatedRoutes = ({
 					/>
 					<Route
 						path='/band'
-						element={user ? <Band /> : <Navigate to='/login' />}
+						element={
+							user ? (
+								<Band
+									bandGigListStatusHandler={bandGigListStatusHandler}
+									filteredBandGigs={filteredBandGigs}
+									setFilteredBandGigs={setFilteredBandGigs}
+								/>
+							) : (
+								<Navigate to='/login' />
+							)
+						}
 					/>
 					<Route
 						path='/venues'

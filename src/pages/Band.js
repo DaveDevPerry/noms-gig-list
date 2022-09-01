@@ -4,22 +4,30 @@ import { motion } from 'framer-motion';
 import { useStateContext } from '../lib/context';
 import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
-import BandGigsList from '../components/BandGigsList';
+// import BandGigsList from '../components/BandGigsList';
 // import { FaUsers } from 'react-icons/fa';
 import { BsMusicNoteList } from 'react-icons/bs';
 
 import { log } from '../helper';
-import BandSupportGigsList from '../components/BandSupportGigsList';
-import BandHeadlineGigsList from '../components/BandHeadlineGigsList';
+// import BandSupportGigsList from '../components/BandSupportGigsList';
+// import BandHeadlineGigsList from '../components/BandHeadlineGigsList';
 // import TopBandWidget from '../components/TopBandWidget';
 import BandCountRankWidget from '../components/BandCountRankWidget';
 import BandAllTopsWidget from '../components/BandAllTopsWidget';
 import BandHeader from '../components/BandHeader';
 import BandRadarWidget from '../components/BandRadarWidget';
+import BandFilteredGigsList from '../components/BandFilteredGigsList';
+import BandGigsListFilter from '../components/BandGigsListFilter';
 // import { useBandsContext } from '../hooks/useBandsContext';
 // import BandAllTopsWidget from '../components/BandAllTopsWidget';
 
-const Band = ({ band, id }) => {
+const Band = ({
+	band,
+	id,
+	bandGigListStatusHandler,
+	filteredBandGigs,
+	setFilteredBandGigs,
+}) => {
 	const { user } = useAuthContext();
 	const { dispatch } = useGigsContext();
 	// const {currentFestivalCount} = useBandsContext()
@@ -28,9 +36,9 @@ const Band = ({ band, id }) => {
 		setBandDetailsData,
 		bandDetailsData,
 		setBandSupportGigsData,
-		bandSupportGigsData,
+		// bandSupportGigsData,
 		setBandHeadlineGigsData,
-		bandHeadlineGigsData,
+		// bandHeadlineGigsData,
 		setBandAllGigsData,
 		bandAllGigsData,
 		bandFestivalCount,
@@ -102,6 +110,7 @@ const Band = ({ band, id }) => {
 				setBandSupportGigsData(bandSupportData);
 				setBandHeadlineGigsData(bandHeadlineData);
 				setBandAllGigsData(bandAllData);
+				setFilteredBandGigs(bandAllData);
 				// set band counts
 				// setBandFestivalCount(festivalCount);
 				// set band ranks
@@ -156,13 +165,48 @@ const Band = ({ band, id }) => {
 
 			{bandDetailsData && bandAllGigsData.length > 0 && (
 				<>
+					<div className='filter-container'>
+						<BandGigsListFilter
+							bandGigListStatusHandler={bandGigListStatusHandler}
+						/>
+						<div className='gig-list-icon-wrapper'>
+							<BsMusicNoteList className='nav-icon' />
+							{bandDetailsData && filteredBandGigs && filteredBandGigs.length}
+							{/* {bandDetailsData && bandAllGigsData.length} */}
+						</div>
+					</div>
+					{bandDetailsData && (
+						<BandFilteredGigsList gigs={filteredBandGigs && filteredBandGigs} />
+					)}
+				</>
+			)}
+			{/* {bandDetailsData && bandAllGigsData.length > 0 && (
+				<>
+					<div className='band-gigs-list-header-filter'>
+						<BandGigsListFilter
+							bandGigListStatusHandler={bandGigListStatusHandler}
+						/>
+						<div className='gig-list-icon-wrapper'>
+							<BsMusicNoteList className='nav-icon' />
+							{bandDetailsData && filteredBandGigs && filteredBandGigs.length}
+							{bandDetailsData && bandAllGigsData.length}
+						</div>
+					</div>
+					{bandDetailsData && (
+						<BandFilteredGigsList gigs={filteredBandGigs && filteredBandGigs} />
+					)}
+				</>
+			)} */}
+
+			{/* below are working 3 separate lists  */}
+
+			{/* {bandDetailsData && bandAllGigsData.length > 0 && (
+				<>
 					<div className='band-gigs-list-header'>
 						<p>
 							all
-							{/* <span> {bandToView}</span> */}
 						</p>
 						<div>
-							{/* <FaUsers className='nav-icon' />x */}
 							<BsMusicNoteList className='nav-icon' />
 							{bandDetailsData && bandAllGigsData.length}
 						</div>
@@ -175,10 +219,8 @@ const Band = ({ band, id }) => {
 					<div className='band-gigs-list-header'>
 						<p>
 							headline
-							{/* <span> {bandToView}</span> */}
 						</p>
 						<div>
-							{/* <FaUsers className='nav-icon' />x */}
 							<BsMusicNoteList className='nav-icon' />
 							{bandDetailsData && bandHeadlineGigsData.length}
 						</div>
@@ -189,17 +231,14 @@ const Band = ({ band, id }) => {
 				</>
 			)}
 
-			{/* {bandDetailsData && <BandHeadlineGigsList gigs={bandDetailsData} />} */}
 
 			{bandDetailsData && bandSupportGigsData.length > 0 && (
 				<>
 					<div className='band-gigs-list-header'>
 						<p>
 							support
-							{/* <span> {bandToView}</span> */}
 						</p>
 						<div>
-							{/* <FaUsers className='nav-icon' />x */}
 							<BsMusicNoteList className='nav-icon' />
 
 							{bandDetailsData && bandSupportGigsData.length}
@@ -209,18 +248,7 @@ const Band = ({ band, id }) => {
 						<BandSupportGigsList gigs={bandSupportGigsData} />
 					)}
 				</>
-			)}
-			{/* </div> */}
-			{/* <div>
-				{bandDetailsData &&
-					bandDetailsData.map((gig, index) => {
-						return (
-							<li key={index}>
-								{gig.gig_date} - {gig.venue} - {gig.city}
-							</li>
-						);
-					})}
-			</div> */}
+			)} */}
 		</StyledBand>
 	);
 };
@@ -262,7 +290,6 @@ const StyledBand = styled(motion.div)`
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		/* padding: 0rem 1rem; */
 		padding: 0.2rem 0.5rem;
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
 		p {
@@ -280,7 +307,57 @@ const StyledBand = styled(motion.div)`
 			color: ${({ theme }) => theme.txtGrey};
 			font-size: 1.4rem;
 			font-weight: bolder;
-			/* font-size: 1.4rem; */
+			.nav-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 1.6rem;
+			}
+		}
+	}
+	/* .band-gigs-list-header-filter {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.2rem 0.5rem;
+		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
+		p {
+			color: ${({ theme }) => theme.secondaryColor};
+			font-weight: bold;
+			span {
+				text-transform: capitalize;
+			}
+		}
+		div.select {
+			border: 2px solid blue;
+			position: relative;
+		}
+		div.gig-list-icon-wrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			column-gap: 0.5rem;
+			color: ${({ theme }) => theme.txtGrey};
+			font-size: 1.4rem;
+			font-weight: bolder;
+			.nav-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 1.6rem;
+			}
+		}
+	} */
+	.filter-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		/* margin: 0 0.5rem; */
+		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
+		div.gig-list-icon-wrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			column-gap: 0.5rem;
+			color: ${({ theme }) => theme.txtGrey};
+			font-size: 1.4rem;
+			font-weight: bolder;
 			.nav-icon {
 				color: ${({ theme }) => theme.secondaryColor};
 				font-size: 1.6rem;

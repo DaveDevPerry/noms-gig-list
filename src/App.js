@@ -12,6 +12,7 @@ import AnimatedRoutes from './AnimatedRoutes';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import { Toaster } from 'react-hot-toast';
+// import { useEffect, useState } from 'react';
 // import { useState } from 'react';
 
 function App() {

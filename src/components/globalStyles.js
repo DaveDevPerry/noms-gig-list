@@ -139,6 +139,13 @@ ${
 }
 
 ${
+	'' /* #select-container{
+  border: 2px solid green;
+  width: 300px;
+} */
+}
+
+${
 	'' /* .weight-details {
   background: ${({ theme }) => theme.white};
   border-radius: 4px;
