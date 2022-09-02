@@ -23,11 +23,18 @@ import ChartDecadeWidget from '../components/ChartDecadeWidget';
 // import FestivalTotalWidget from '../components/FestivalTotalWidget';
 // import CountersWidget from '../components/CountersWidget';
 import { log } from '../helper';
-import ChartWidget from '../components/ChartWidget';
+// import ChartWidget from '../components/ChartWidget';
+import DecadeChartsWidget from '../components/DecadeChartsWidget';
 // import ChartYearWidget from '../components/ChartYearWidget';
 // import NextGigCountdownWidget from '../components/NextGigCountdownWidget';
 
-const Statistics = ({ themeToggler, theme }) => {
+const Statistics = ({
+	themeToggler,
+	theme,
+	handleDecadeClick,
+	filteredDecadeChartData,
+	setFilteredDecadeChartData,
+}) => {
 	const { gigCounterData } = useGigsContext();
 	// const { user } = useAuthContext();
 	const {
@@ -119,13 +126,13 @@ const Statistics = ({ themeToggler, theme }) => {
 					</div>
 				)}
 
-			{gigCounterData && gigCounterData.all_gigs.length > 2 && (
+			{/* {gigCounterData && gigCounterData.all_gigs.length > 2 && (
 				<PieWidget
 					themeToggler={themeToggler}
 					theme={theme}
 					gigs={gigCounterData.all_gigs}
 				/>
-			)}
+			)} */}
 			{gigCounterData && gigCounterData.all_gigs.length > 2 && (
 				<ChartDecadeWidget
 					themeToggler={themeToggler}
@@ -134,7 +141,21 @@ const Statistics = ({ themeToggler, theme }) => {
 				/>
 			)}
 
-			<ChartWidget theme={theme} />
+			{/* <ChartWidget theme={theme} /> */}
+
+			<DecadeChartsWidget
+				handleDecadeClick={handleDecadeClick}
+				filteredDecadeChartData={filteredDecadeChartData}
+				setFilteredDecadeChartData={setFilteredDecadeChartData}
+			/>
+
+			{gigCounterData && gigCounterData.all_gigs.length > 2 && (
+				<PieWidget
+					themeToggler={themeToggler}
+					theme={theme}
+					gigs={gigCounterData.all_gigs}
+				/>
+			)}
 			{/* {gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
 						<>
 							<div className='next-five-list-header'>

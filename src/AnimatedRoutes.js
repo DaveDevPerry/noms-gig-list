@@ -24,6 +24,7 @@ import Statistics from './pages/Statistics';
 import Search from './pages/Search';
 import { useStateContext } from './lib/context';
 import { useEffect, useState } from 'react';
+import { log } from './helper';
 // import { log } from './helper';
 // import { log } from './helper';
 // import { useStateContext } from './lib/context';
@@ -52,6 +53,8 @@ const AnimatedRoutes = ({
 	// const [todos, setTodos] = useState([]);
 	const [bandGigListStatus, setBandGigListStatus] = useState('all');
 	const [filteredBandGigs, setFilteredBandGigs] = useState([]);
+	const [decadeChartStatus, setDecadeChartStatus] = useState('20');
+	const [filteredDecadeChartData, setFilteredDecadeChartData] = useState([]);
 	const {
 		bandAllGigsData,
 		bandHeadlineGigsData,
@@ -89,29 +92,80 @@ const AnimatedRoutes = ({
 				break;
 		}
 	};
-	// save to local
-	// const saveLocalTodos = () => {
-	// 	console.log('saving');
-	// 	localStorage.setItem(todoAppName, JSON.stringify(todos));
-	// };
-	// const getLocalTodos = () => {
-	// 	if (localStorage.getItem(todoAppName) === null) {
-	// 		localStorage.setItem(todoAppName, JSON.stringify([]));
-	// 	} else {
-	// 		console.log('setting');
-	// 		let todoLocal = JSON.parse(localStorage.getItem(todoAppName));
-	// 		todoLocal.sort((a, b) => {
-	// 			return new Date(a.date) - new Date(b.date);
-	// 		});
-	// 		setTodos(todoLocal);
-	// 		console.log(todoLocal);
-	// 	}
-	// };
 
 	const bandGigListStatusHandler = (e) => {
-		console.log(e.target.textContent);
+		log(e.target.textContent);
 		setBandGigListStatus(e.target.value);
 		// setStatus(e.target.value);
+	};
+
+	// decade chart data //
+
+	// use effect
+	useEffect(() => {
+		decadeChartFilterHandler();
+		// saveLocalTodos();
+	}, [decadeChartStatus]);
+
+	// function sand events
+	const decadeChartFilterHandler = () => {
+		switch (decadeChartStatus) {
+			case '20':
+				setFilteredDecadeChartData({
+					decade: "20's",
+					fullDecade: "2020's",
+					gigCountPerYear: [317, 172, 361, 172, 115, 136, 135, 13, 342, 153],
+				});
+				break;
+			case '10':
+				setFilteredDecadeChartData({
+					decade: "10's",
+					fullDecade: "2010's",
+					gigCountPerYear: [278, 78, 162, 227, 210, 244, 302, 360, 81, 20],
+				});
+				break;
+			case '00':
+				setFilteredDecadeChartData({
+					decade: "00's",
+					fullDecade: "2000's",
+					gigCountPerYear: [275, 267, 304, 9, 41, 212, 146, 97, 32, 235],
+				});
+				break;
+			case '90':
+				setFilteredDecadeChartData({
+					decade: "90's",
+					fullDecade: "1990's",
+					gigCountPerYear: [327, 80, 6, 104, 329, 27, 185, 276, 250, 91],
+				});
+				break;
+			case '80':
+				setFilteredDecadeChartData({
+					decade: "80's",
+					fullDecade: "1980's",
+					gigCountPerYear: [226, 89, 256, 62, 323, 33, 270, 203, 123, 142],
+				});
+				break;
+			case '70':
+				setFilteredDecadeChartData({
+					decade: "70's",
+					fullDecade: "1970's",
+					gigCountPerYear: [234, 216, 175, 112, 208, 358, 141, 260, 193, 293],
+				});
+				break;
+			default:
+				setFilteredDecadeChartData({
+					decade: "20's",
+					gigCountPerYear: [317, 172, 361, 172, 115, 136, 135, 13, 342, 153],
+				});
+				break;
+		}
+	};
+
+	const handleDecadeClick = (e) => {
+		// e.preventDefault();
+		log(e.target, e.target.innerText, 'handle decade click');
+		log(e.target, e.target.dataset.decade, 'handle decade click');
+		setDecadeChartStatus(e.target.dataset.decade);
 	};
 
 	return (
@@ -206,7 +260,16 @@ const AnimatedRoutes = ({
 					<Route
 						path='/statistics'
 						element={
-							user ? <Statistics theme={theme} /> : <Navigate to='/login' />
+							user ? (
+								<Statistics
+									theme={theme}
+									handleDecadeClick={handleDecadeClick}
+									filteredDecadeChartData={filteredDecadeChartData}
+									setFilteredDecadeChartData={setFilteredDecadeChartData}
+								/>
+							) : (
+								<Navigate to='/login' />
+							)
 						}
 					/>
 					<Route

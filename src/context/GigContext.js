@@ -128,6 +128,36 @@ export const gigsReducer = (state, action) => {
 		// }, [])
 
 		case 'SET_GLOBAL_STATS':
+			// return arr of obj decade
+			// const clonedForDecades = [...action.payload];
+			// const sortByDecade = clonedForDecades.sort((a, b) => {
+			// 	return (
+			// 		new Date(b.gig_date).getFullYear() -
+			// 		new Date(a.gig_date).getFullYear()
+			// 	);
+			// });
+			// log(sortByDecade, 'sort by decade');
+
+			// const clonedForYears = [...action.payload];
+			// const groupedByYears = clonedForYears
+			// 	.map((e) => ({ ...e, gig_date: new Date(e.gig_date) }))
+			// 	.reduce((acc, e) => {
+			// 		const year = e.gig_date.getFullYear();
+			// 		const month = e.gig_date.getMonth() + 1;
+			// 		if (!acc[year]) acc[year] = { year };
+			// 		if (!acc[year][month]) acc[year][month] = [];
+			// 		acc[year][month] = e;
+			// 		return acc;
+			// 	}, {});
+			// log(groupedByYears, 'groupedByYears');
+			// const resultYears = Object.values(groupedByYears).reduce((acc, e) => {
+			// 	const { year, ...months } = e;
+			// 	acc.push({ year: year, months: months });
+			// 	return acc;
+			// }, []);
+
+			// log(resultYears, 'result years');
+
 			// reduce gigs by year
 			const clonedToGroupByYear = [...action.payload];
 			const groupedByYear = clonedToGroupByYear
@@ -138,6 +168,8 @@ export const gigsReducer = (state, action) => {
 					const year = currentValue.getFullYear();
 					return count[year] ? ++count[year] : (count[year] = 1), count;
 				}, {});
+
+			log(groupedByYear, 'grouped by year');
 			// convert object to array of key value pair objects
 			const gigCountByYearArrOfObj = Object.entries(groupedByYear).map(
 				([key, value]) => ({
