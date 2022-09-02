@@ -432,7 +432,7 @@ const StyledMusicNotes = styled.div`
 			transform: translateX(-50%);
 		}
 		100% {
-			transform: translateX(-250%);
+			transform: translateX(-300%);
 		}
 	}
 	@keyframes catalogueOut {
@@ -440,7 +440,7 @@ const StyledMusicNotes = styled.div`
 			transform: translateX(-50%);
 		}
 		100% {
-			transform: translateX(100%);
+			transform: translateX(200%);
 		}
 	}
 	@keyframes crowdOut {
