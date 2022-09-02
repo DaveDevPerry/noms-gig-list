@@ -31,6 +31,7 @@ export const StateContext = ({ children }) => {
 
 	const [bandHeadlineGigsData, setBandHeadlineGigsData] = useState(null);
 	const [bandSupportGigsData, setBandSupportGigsData] = useState(null);
+	const [bandFestivalGigsData, setBandFestivalGigsData] = useState(null);
 
 	const [cityToView, setCityToView] = useState(null);
 	const [cityDetailsData, setCityDetailsData] = useState(null);
@@ -289,6 +290,9 @@ export const StateContext = ({ children }) => {
 
 				gigDateToView,
 				setGigDateToView,
+
+				bandFestivalGigsData,
+				setBandFestivalGigsData,
 			}}
 		>
 			{children}

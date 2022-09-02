@@ -52,14 +52,19 @@ const AnimatedRoutes = ({
 	// const [todos, setTodos] = useState([]);
 	const [bandGigListStatus, setBandGigListStatus] = useState('all');
 	const [filteredBandGigs, setFilteredBandGigs] = useState([]);
-	const { bandAllGigsData, bandHeadlineGigsData, bandSupportGigsData } =
-		useStateContext();
+	const {
+		bandAllGigsData,
+		bandHeadlineGigsData,
+		bandSupportGigsData,
+		bandFestivalGigsData,
+		bandToView,
+	} = useStateContext();
 
 	// use effect
 	useEffect(() => {
 		bandGigListFilterHandler();
 		// saveLocalTodos();
-	}, [bandGigListStatus]);
+	}, [bandGigListStatus, bandToView]);
 
 	// function sand events
 	const bandGigListFilterHandler = () => {
@@ -75,6 +80,9 @@ const AnimatedRoutes = ({
 			// 	break;
 			case 'support':
 				setFilteredBandGigs(bandSupportGigsData);
+				break;
+			case 'festival':
+				setFilteredBandGigs(bandFestivalGigsData);
 				break;
 			default:
 				setFilteredBandGigs(bandAllGigsData);

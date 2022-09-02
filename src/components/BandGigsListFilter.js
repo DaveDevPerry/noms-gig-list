@@ -13,6 +13,7 @@ const BandGigsListFilter = ({ bandGigListStatusHandler }) => {
 				<option value='all'>All Gigs</option>
 				<option value='headline'>Headline</option>
 				<option value='support'>Support</option>
+				<option value='festival'>Festival</option>
 			</select>
 		</StyledBandGigsListFilter>
 		// </div>

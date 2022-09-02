@@ -44,6 +44,7 @@ const Band = ({
 		bandFestivalCount,
 		// setBandFestivalCount,
 		bandWinnersStats,
+		setBandFestivalGigsData,
 	} = useStateContext();
 
 	useEffect(() => {
@@ -88,6 +89,13 @@ const Band = ({
 					return new Date(b.gig_date) - new Date(a.gig_date);
 				});
 
+			// festival data
+			const clonedBandForFestivals = [...bandAllData];
+			const festivalData = clonedBandForFestivals.filter(
+				(obj) => obj.isFestival === true
+			);
+			log(festivalData, 'festival data in band');
+
 			// festival count
 			// const clonedFestivalCount = [...json];
 			// const festivalCount = clonedFestivalCount.filter(
@@ -111,6 +119,7 @@ const Band = ({
 				setBandHeadlineGigsData(bandHeadlineData);
 				setBandAllGigsData(bandAllData);
 				setFilteredBandGigs(bandAllData);
+				setBandFestivalGigsData(festivalData);
 				// set band counts
 				// setBandFestivalCount(festivalCount);
 				// set band ranks
