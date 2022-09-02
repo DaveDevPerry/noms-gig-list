@@ -3,6 +3,7 @@ node_modules
 .env.production
 
 /src/pages/Bands copy.js
+/src/pages/Loader copy.js
 /src/components/GigForm1 copy.js
 /src/components/GigForm copy.js
 
@@ -11,3 +12,4 @@ node_modules
 
 /public/_redirects
 /public/bg_band.webp
+/public/stage.png

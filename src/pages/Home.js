@@ -89,10 +89,15 @@ const Home = ({ themeToggler, theme }) => {
 					</>
 				)} */}
 			{gigCounterData &&
+			totalGigsPerBand &&
 			totalGigsPerBand.length === 0 &&
+			totalGigsPerVenue &&
 			totalGigsPerVenue.length === 0 &&
+			totalGigsPerCity &&
 			totalGigsPerCity.length === 0 &&
 			totalSupportGigsPerBand.length === 0 &&
+			totalSupportGigsPerBand &&
+			gigCounterData &&
 			gigCounterData.next_five_gigs.length === 0 ? (
 				<>
 					<FirstGigWidget />
