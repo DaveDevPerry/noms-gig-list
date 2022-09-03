@@ -3,9 +3,9 @@ import { Link, NavLink } from 'react-router-dom';
 // import { useLogout } from '../hooks/useLogout';
 // import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
+// import { GrHomeRounded } from 'react-icons/gr';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { HiPresentationChartLine } from 'react-icons/hi';
-// import { GrHomeRounded } from 'react-icons/gr';
 import { BsPlusCircleFill } from 'react-icons/bs';
 import { RiHomeLine } from 'react-icons/ri';
 import { MdManageSearch } from 'react-icons/md';
@@ -114,7 +114,7 @@ const StyledHeader = styled.header`
 			place-content: center;
 			.search-icon {
 				color: ${({ theme }) => theme.txtDarkGrey};
-				font-size: 3rem;
+				font-size: 3.2rem;
 			}
 			.settings-icon {
 				color: ${({ theme }) => theme.txtDarkGrey};

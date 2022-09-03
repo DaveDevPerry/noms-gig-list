@@ -3,13 +3,9 @@ import { AnimatePresence } from 'framer-motion';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Signup from './pages/Signup';
-// import Weights from './pages/Gigs';
+// import Signup from './pages/Signup';
 import Settings from './pages/Settings';
 import Loader from './pages/Loader';
-// import Groups from './pages/Groups';
-// import GroupsFullDetails from './pages/[slug]';
-// import { useState } from 'react';
 import Gigs from './pages/Gigs';
 import History from './pages/History';
 import Bands from './pages/Bands';
@@ -25,11 +21,6 @@ import Search from './pages/Search';
 import { useStateContext } from './lib/context';
 import { useEffect, useState } from 'react';
 import { log } from './helper';
-// import { log } from './helper';
-// import { log } from './helper';
-// import { useStateContext } from './lib/context';
-// import { groupsReducer } from './context/GroupContext';
-// import GroupsFullDetails from './pages/groups/[slug]';
 
 const AnimatedRoutes = ({
 	dataLoaded,
@@ -114,13 +105,16 @@ const AnimatedRoutes = ({
 				setFilteredDecadeChartData({
 					decade: "20's",
 					fullDecade: "2020's",
-					gigCountPerYear: [317, 172, 361, 172, 115, 136, 135, 13, 342, 153],
+					prefix: 2,
+					gigCountPerYear: [317, 172, 361],
+					// gigCountPerYear: [317, 172, 361, 0, 0, 0, 0, 0, 0, 0],
 				});
 				break;
 			case '10':
 				setFilteredDecadeChartData({
 					decade: "10's",
 					fullDecade: "2010's",
+					prefix: 1,
 					gigCountPerYear: [278, 78, 162, 227, 210, 244, 302, 360, 81, 20],
 				});
 				break;
@@ -128,6 +122,7 @@ const AnimatedRoutes = ({
 				setFilteredDecadeChartData({
 					decade: "00's",
 					fullDecade: "2000's",
+					prefix: 0,
 					gigCountPerYear: [275, 267, 304, 9, 41, 212, 146, 97, 32, 235],
 				});
 				break;
@@ -135,6 +130,7 @@ const AnimatedRoutes = ({
 				setFilteredDecadeChartData({
 					decade: "90's",
 					fullDecade: "1990's",
+					prefix: 9,
 					gigCountPerYear: [327, 80, 6, 104, 329, 27, 185, 276, 250, 91],
 				});
 				break;
@@ -142,6 +138,7 @@ const AnimatedRoutes = ({
 				setFilteredDecadeChartData({
 					decade: "80's",
 					fullDecade: "1980's",
+					prefix: 8,
 					gigCountPerYear: [226, 89, 256, 62, 323, 33, 270, 203, 123, 142],
 				});
 				break;
@@ -149,13 +146,17 @@ const AnimatedRoutes = ({
 				setFilteredDecadeChartData({
 					decade: "70's",
 					fullDecade: "1970's",
+					prefix: 7,
 					gigCountPerYear: [234, 216, 175, 112, 208, 358, 141, 260, 193, 293],
 				});
 				break;
 			default:
 				setFilteredDecadeChartData({
 					decade: "20's",
-					gigCountPerYear: [317, 172, 361, 172, 115, 136, 135, 13, 342, 153],
+					fullDecade: "2020's",
+					prefix: 2,
+					gigCountPerYear: [317, 172, 361],
+					// gigCountPerYear: [317, 172, 361, 0, 0, 0, 0, 0, 0, 0],
 				});
 				break;
 		}
@@ -276,27 +277,9 @@ const AnimatedRoutes = ({
 						path='/login'
 						element={!user ? <Login theme={theme} /> : <Navigate to='/' />}
 					/>
-					<Route
+					{/* <Routes
 						path='/signup'
 						element={!user ? <Signup theme={theme} /> : <Navigate to='/' />}
-					/>
-					{/* <Route
-						path='/groups'
-						element={
-							user ? (
-								<Groups
-									setCurrentFormOpen={setCurrentFormOpen}
-									currentFormOpen={currentFormOpen}
-									handleFormChoice={handleFormChoice}
-								/>
-							) : (
-								<Navigate to='/login' />
-							)
-						}
-					/>
-					<Route
-						path='/groups/:id'
-						element={<GroupsFullDetails tempGroupID={tempGroupID} />}
 					/> */}
 				</Routes>
 			</AnimatePresence>

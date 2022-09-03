@@ -260,7 +260,7 @@ const StyledLoader = styled(motion.section)`
 	&.go-white {
 		animation: backgroundChange 1s linear forwards;
 	}
-	.loader-title-concert {
+	/* .loader-title-concert {
 		font-size: 4rem;
 		color: ${({ theme }) => theme.secondaryColor};
 		position: absolute;
@@ -283,7 +283,7 @@ const StyledLoader = styled(motion.section)`
 		&.catalogue-out {
 			animation: catalogueOut 1s linear forwards;
 		}
-	}
+	} */
 	h1 {
 		font-size: 2rem;
 		/* color: ${({ theme }) => theme.secondaryColor}; */
@@ -326,9 +326,35 @@ const StyledMusicNotes = styled.div`
 	/* border: 2px solid #000; */
 	/* border: 2px solid #000; */
 	/* opacity: 1; */
+	max-width: 42rem;
+	overflow: hidden;
 	&.fade-out {
 		animation: fadeOut 500ms linear forwards;
 		animation-delay: 3s;
+	}
+	.loader-title-concert {
+		font-size: 4rem;
+		color: ${({ theme }) => theme.secondaryColor};
+		position: absolute;
+		top: 20%;
+		left: 50%;
+		transform: translate(-50%, 0);
+		text-align: center;
+		&.concert-out {
+			animation: concertOut 1s linear forwards;
+		}
+	}
+	.loader-title-catalogue {
+		font-size: 4rem;
+		color: ${({ theme }) => theme.secondaryColor};
+		position: absolute;
+		top: 25%;
+		left: 50%;
+		transform: translate(-50%, 0);
+		text-align: center;
+		&.catalogue-out {
+			animation: catalogueOut 1s linear forwards;
+		}
 	}
 
 	.noot-1,

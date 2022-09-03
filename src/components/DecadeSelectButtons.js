@@ -12,51 +12,17 @@ const DecadeSelectButtons = ({ handleDecadeClick }) => {
 	return (
 		<StyledDecadeSelectButtons>
 			<div
-				className={decadeActive === '20' ? 'decade-btn active' : 'decade-btn'}
+				className={decadeActive === '70' ? 'decade-btn active' : 'decade-btn'}
 				onClick={(e) => {
-					setDecadeActive('20');
+					setDecadeActive('70');
 					handleDecadeClick(e);
 				}}
-				data-decade='20'
+				data-decade='70'
 			>
-				20's
-			</div>
-			<div
-				className={decadeActive === '10' ? 'decade-btn active' : 'decade-btn'}
-				// onClick={handleDecadeClick}
-				onClick={(e) => {
-					setDecadeActive('10');
-					handleDecadeClick(e);
-				}}
-				data-decade='10'
-			>
-				10's
-			</div>
-			<div
-				className={decadeActive === '00' ? 'decade-btn active' : 'decade-btn'}
-				// onClick={handleDecadeClick}
-				onClick={(e) => {
-					setDecadeActive('00');
-					handleDecadeClick(e);
-				}}
-				data-decade='00'
-			>
-				00's
-			</div>
-			<div
-				className={decadeActive === '90' ? 'decade-btn active' : 'decade-btn'}
-				// onClick={handleDecadeClick}
-				onClick={(e) => {
-					setDecadeActive('90');
-					handleDecadeClick(e);
-				}}
-				data-decade='90'
-			>
-				90's
+				70's
 			</div>
 			<div
 				className={decadeActive === '80' ? 'decade-btn active' : 'decade-btn'}
-				// onClick={handleDecadeClick}
 				onClick={(e) => {
 					setDecadeActive('80');
 					handleDecadeClick(e);
@@ -66,15 +32,44 @@ const DecadeSelectButtons = ({ handleDecadeClick }) => {
 				80's
 			</div>
 			<div
-				className={decadeActive === '70' ? 'decade-btn active' : 'decade-btn'}
-				// onClick={handleDecadeClick}
+				className={decadeActive === '90' ? 'decade-btn active' : 'decade-btn'}
 				onClick={(e) => {
-					setDecadeActive('70');
+					setDecadeActive('90');
 					handleDecadeClick(e);
 				}}
-				data-decade='70'
+				data-decade='90'
 			>
-				70's
+				90's
+			</div>
+			<div
+				className={decadeActive === '00' ? 'decade-btn active' : 'decade-btn'}
+				onClick={(e) => {
+					setDecadeActive('00');
+					handleDecadeClick(e);
+				}}
+				data-decade='00'
+			>
+				00's
+			</div>
+			<div
+				className={decadeActive === '10' ? 'decade-btn active' : 'decade-btn'}
+				onClick={(e) => {
+					setDecadeActive('10');
+					handleDecadeClick(e);
+				}}
+				data-decade='10'
+			>
+				10's
+			</div>
+			<div
+				className={decadeActive === '20' ? 'decade-btn active' : 'decade-btn'}
+				onClick={(e) => {
+					setDecadeActive('20');
+					handleDecadeClick(e);
+				}}
+				data-decade='20'
+			>
+				20's
 			</div>
 			{/* <div className='decade-btn' onClick={handleDecadeClick} data-decade='20'>
 				20's

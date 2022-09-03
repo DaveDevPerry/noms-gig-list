@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useLogin } from '../hooks/useLogin';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import AppDetails from '../components/AppDetails';
 
 const Login = ({ theme }) => {
@@ -49,9 +49,9 @@ const Login = ({ theme }) => {
 				{error && <div className='error'>{error}</div>}
 			</form>
 
-			<p>
+			{/* <p>
 				Need an account? Sign up<Link to='/signup'> here</Link>
-			</p>
+			</p> */}
 			<AppDetails theme={theme} />
 		</StyledLogin>
 	);

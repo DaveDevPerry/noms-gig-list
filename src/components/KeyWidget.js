@@ -1,7 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 // import { GiLaurelsTrophy } from 'react-icons/gi';
-import { GiCampingTent } from 'react-icons/gi';
+import { GiCampingTent, GiLaurelsTrophy } from 'react-icons/gi';
+// import { FaUsers } from 'react-icons/fa';
+// import {  BsWhatsapp } from 'react-icons/bs';
+import { BsWhatsapp, BsMusicNoteList } from 'react-icons/bs';
+// import { BsFillShareFill, BsWhatsapp, BsMusicNoteList } from 'react-icons/bs';
+import { IoSettingsOutline } from 'react-icons/io5';
+import { HiPresentationChartLine } from 'react-icons/hi';
+import { BsPlusCircleFill } from 'react-icons/bs';
+import { RiHomeLine } from 'react-icons/ri';
+import { MdManageSearch } from 'react-icons/md';
 // import { SiBandsintown } from 'react-icons/si';
 // import { useAuthContext } from '../hooks/useAuthContext';
 // import { useGigsContext } from '../hooks/useGigsContext';
@@ -53,6 +62,67 @@ const KeyWidget = () => {
 			</div> */}
 			<h3>Key</h3>
 			<ul className='key-widget-list'>
+				{/* <li>
+					<div className='gig-icons-wrapper'>
+						<FaUsers className='band-icon' />
+					</div>
+					<p className='key-name'>band</p>
+				</li> */}
+				<li>
+					<div className='gig-icons-wrapper'>
+						<RiHomeLine className='home-icon' />
+					</div>
+					<p className='key-name'>Home</p>
+				</li>
+				<li>
+					<div className='gig-icons-wrapper'>
+						<MdManageSearch className='search-icon' />
+					</div>
+					<p className='key-name'>Search</p>
+				</li>
+
+				<li>
+					<div className='gig-icons-wrapper'>
+						<HiPresentationChartLine className='stats-icon' />
+					</div>
+					<p className='key-name'>Statistics</p>
+				</li>
+				<li>
+					<div className='gig-icons-wrapper'>
+						<IoSettingsOutline className='settings-icon' />
+					</div>
+					<p className='key-name'>Settings</p>
+				</li>
+				<li>
+					<div className='gig-icons-wrapper'>
+						<BsPlusCircleFill className='add-icon' />
+					</div>
+					<p className='key-name'>Add a Gig</p>
+				</li>
+				<li>
+					<div className='gig-icons-wrapper'>
+						<BsWhatsapp className='share-icon' />
+					</div>
+					<p className='key-name'>share via whatsapp</p>
+				</li>
+				{/* <li>
+					<div className='gig-icons-wrapper'>
+						<BsFillShareFill className='share-icon' />
+					</div>
+					<p className='key-name'>share via whatsapp</p>
+				</li> */}
+				<li>
+					<div className='gig-icons-wrapper'>
+						<GiLaurelsTrophy className='arrow-icon gold' />
+					</div>
+					<p className='key-name'>ranked first</p>
+				</li>
+				<li>
+					<div className='gig-icons-wrapper'>
+						<BsMusicNoteList className='list-total-icon' />
+					</div>
+					<p className='key-name'>list total</p>
+				</li>
 				<li>
 					<div className='gig-icons-wrapper'>
 						<GiCampingTent className='gig-icon' />
@@ -120,17 +190,37 @@ const StyledKeyWidget = styled.div`
 	}
 
 	.key-widget-list {
-		display: flex;
+		/* display: flex;
 		flex-direction: column;
-		flex: 1;
-		/* row-gap: 0.5rem; */
+		flex: 1; */
 		padding: 1rem;
+		-webkit-column-count: 2; /* Chrome/Opera, Safari */
+		-moz-column-count: 2; /* Mozilla Firefox */
+		column-count: 2;
+
+		/* Properties below are optional: */
+		-webkit-column-gap: 2rem; /* Chrome/Opera, Safari */
+		-moz-column-gap: 2rem; /* Mozilla Firefox */
+		column-gap: 2rem;
+
+		-webkit-column-rule: 1px single grey; /* Chrome/Opera, Safari */
+		-moz-column-rule: 1px single grey; /* Mozilla Firefox */
+		column-rule: 1px single grey;
 		li {
 			display: flex;
 			flex-direction: row;
 			align-items: center;
 			justify-content: flex-start;
 			column-gap: 0.5rem;
+			height: 2.2rem;
+			/* margin-top: 0.5rem; */
+			padding: 1.4rem 0;
+			/* &:first-of-type {
+				flex-direction: row-reverse;
+			} */
+			&:nth-child(-n + 6) {
+				flex-direction: row-reverse;
+			}
 			.gig-icons-wrapper {
 				justify-content: center;
 				align-items: center;
@@ -145,6 +235,42 @@ const StyledKeyWidget = styled.div`
 					/* font-size: 2rem; */
 					font-size: 2.2rem;
 				}
+				.band-icon {
+					color: ${({ theme }) => theme.red};
+					font-size: 2rem;
+				}
+				.share-icon {
+					font-size: 1.8rem;
+					color: ${({ theme }) => theme.green};
+				}
+				.arrow-icon.gold {
+					font-size: 2.2rem;
+					color: ${({ theme }) => theme.gold};
+				}
+				.list-total-icon {
+					color: ${({ theme }) => theme.secondaryColor};
+					font-size: 1.6rem;
+				}
+				.search-icon {
+					color: ${({ theme }) => theme.txtDarkGrey};
+					font-size: 2.6rem;
+				}
+				.settings-icon {
+					color: ${({ theme }) => theme.txtDarkGrey};
+					font-size: 2.2rem;
+				}
+				.home-icon {
+					color: ${({ theme }) => theme.txtDarkGrey};
+					font-size: 2.2rem;
+				}
+				.stats-icon {
+					color: ${({ theme }) => theme.txtDarkGrey};
+					font-size: 2.2rem;
+				}
+				.add-icon {
+					color: ${({ theme }) => theme.primaryColor};
+					font-size: 2.2rem;
+				}
 			}
 			p {
 				/* text-align: right; */
@@ -157,7 +283,7 @@ const StyledKeyWidget = styled.div`
 			}
 			p.key-name {
 				margin: 0;
-				font-size: 1.6rem;
+				font-size: 1.4rem;
 				/* color: ${({ theme }) => theme.secondaryColor}; */
 				color: ${({ theme }) => theme.txtGrey};
 				text-transform: capitalize;

@@ -34,8 +34,8 @@ const YearLineChart = ({ gigs }) => {
 			},
 			title: {
 				display: true,
-				text: `total gigs each year in the ${gigs && gigs.fullDecade}.`,
-				// text: 'total gigs each year per decade',
+				// text: `total gigs each year in the ${gigs && gigs.fullDecade}.`,
+				text: 'total gigs each year by decade',
 			},
 		},
 		animation: {
@@ -59,9 +59,23 @@ const YearLineChart = ({ gigs }) => {
 		},
 	};
 
+	const prefix = gigs && gigs.prefix;
+
 	// ADD TOTAL BANDS SEEN EACH YEAR ALSO
 	const data = {
-		labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+		labels: [
+			`${prefix}0`,
+			`${prefix}1`,
+			`${prefix}2`,
+			`${prefix}3`,
+			`${prefix}4`,
+			`${prefix}5`,
+			`${prefix}6`,
+			`${prefix}7`,
+			`${prefix}8`,
+			`${prefix}9`,
+		],
+		// labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
 		// labels: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09'],
 		datasets: [
 			{
