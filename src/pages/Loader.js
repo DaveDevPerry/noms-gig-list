@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,8 @@ import { useBandsContext } from '../hooks/useBandsContext';
 
 import { useStateContext } from '../lib/context';
 import { useState } from 'react';
+
+import { AnimatePresence, motion } from 'framer-motion';
 // import { log } from '../helper';
 // import { log } from '../helper';
 // import { motion } from 'framer-motion';
@@ -174,64 +176,79 @@ const Loader = () => {
 	// log('Hello loader', 1, 2, 3, Date.now());
 
 	return (
-		<StyledLoader
-			className={
-				crowdOutLoader === true ? 'site-loader go-white' : 'site-loader'
-			}
-			// className={
-			// 	fadeOutLoader === true ? 'site-loader fade-out' : 'site-loader'
-			// }
-			// initial={{ opacity: 0 }}
-			// animate={{ opacity: 1 }}
-			// exit={{ opacity: 0 }}
-			// key={'my_unique_key'}
-			// initial={{ height: '100%' }}
-			// animate={{ height: '100%' }}
-			// exit={{ y: 0 }}
-			// exit={{ y: window.innerHeight }}
-			// initial={{ width: 0 }}
-			// animate={{ width: '100%' }}
-			// exit={{ x: window.innerWidth }}
-		>
-			{/* <h1 className='loader-title'>Music Livrary</h1> */}
-			<StyledMusicNotes
-				className={
-					crowdOutLoader === true ? 'muzieknootjes fade-out' : 'muzieknootjes'
-				}
+		<AnimatePresence exitBeforeEnter>
+			{/* {isFormActive && (
+			<StyledGigModel
+				initial={{ y: 0, translateX: '-50%' }}
+				animate={{ translateY: '-100%' }}
+				exit={{ translateY: '100%' }}
 			>
-				<div className='noot-1'>&#9835; &#9833;</div>
-				<div className='noot-2'>&#9833;</div>
-				<div className='noot-3'>&#9839; &#9834;</div>
-				<div className='noot-4'>&#9834;</div>
-				<div
-					className={crowdOutLoader === true ? 'crowd crowd-out' : 'crowd'}
-				></div>
-				{/* <div className='crowd'></div> */}
-				<h1
+				<GigForm
+					isFormActive={isFormActive}
+					setIsFormActive={setIsFormActive}
+				/>
+			</StyledGigModel>
+		)} */}
+
+			<StyledLoader
+				className={
+					crowdOutLoader === true ? 'site-loader go-white' : 'site-loader'
+				}
+				// className={
+				// 	fadeOutLoader === true ? 'site-loader fade-out' : 'site-loader'
+				// }
+				// initial={{ opacity: 0 }}
+				// animate={{ opacity: 1 }}
+				// exit={{ opacity: 0 }}
+				// key={'my_unique_key'}
+				// initial={{ height: '100%' }}
+				// animate={{ height: '100%' }}
+				// exit={{ y: window.innerHeight }}
+				// exit={{ y: window.innerHeight }}
+				// initial={{ width: 0 }}
+				// animate={{ width: '100%' }}
+				// exit={{ x: window.innerWidth }}
+			>
+				{/* <h1 className='loader-title'>Music Livrary</h1> */}
+				<StyledMusicNotes
 					className={
-						crowdOutLoader === true
-							? 'loader-title-concert concert-out'
-							: 'loader-title-concert'
+						crowdOutLoader === true ? 'muzieknootjes fade-out' : 'muzieknootjes'
 					}
 				>
-					Concert
-				</h1>
-				<h1
-					className={
-						crowdOutLoader === true
-							? 'loader-title-catalogue catalogue-out'
-							: 'loader-title-catalogue'
-					}
-				>
-					Catalogue
-				</h1>
-				{/* <h1 className='loader-title'>Concert</h1>
+					<div className='noot-1'>&#9835; &#9833;</div>
+					<div className='noot-2'>&#9833;</div>
+					<div className='noot-3'>&#9839; &#9834;</div>
+					<div className='noot-4'>&#9834;</div>
+					<div
+						className={crowdOutLoader === true ? 'crowd crowd-out' : 'crowd'}
+					></div>
+					{/* <div className='crowd'></div> */}
+					<h1
+						className={
+							crowdOutLoader === true
+								? 'loader-title-concert concert-out'
+								: 'loader-title-concert'
+						}
+					>
+						Concert
+					</h1>
+					<h1
+						className={
+							crowdOutLoader === true
+								? 'loader-title-catalogue catalogue-out'
+								: 'loader-title-catalogue'
+						}
+					>
+						Catalogue
+					</h1>
+					{/* <h1 className='loader-title'>Concert</h1>
 				<h1 className='loader-title'>Catalogue</h1> */}
-			</StyledMusicNotes>
-			{/* <h1>Gig List</h1>
+				</StyledMusicNotes>
+				{/* <h1>Gig List</h1>
 			<BsMusicNoteList className='nav-icon' />
 			<p>© daveperry.tech 2022</p> */}
-		</StyledLoader>
+			</StyledLoader>
+		</AnimatePresence>
 	);
 };
 const StyledLoader = styled(motion.section)`
@@ -330,7 +347,8 @@ const StyledMusicNotes = styled.div`
 	overflow: hidden;
 	&.fade-out {
 		animation: fadeOut 500ms linear forwards;
-		animation-delay: 3s;
+		animation-delay: 1.4s;
+		/* animation-delay: 1s; */
 	}
 	.loader-title-concert {
 		font-size: 4rem;
