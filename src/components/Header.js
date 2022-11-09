@@ -86,7 +86,7 @@ const StyledHeader = styled.header`
 		width: auto;
 	} */
 	.container {
-		max-width: 60rem;
+		max-width: 100rem;
 		/* max-width: 1400px; */
 		margin: 0 auto;
 		padding: 1rem;

@@ -6,7 +6,7 @@ import { useLogin } from '../hooks/useLogin';
 import AppDetails from '../components/AppDetails';
 
 const Login = ({ theme }) => {
-	const [email, setEmail] = useState('');
+	const [email, setEmail] = useState('demo@dpgl.com');
 	const [password, setPassword] = useState('');
 	const { login, error, isLoading } = useLogin();
 
@@ -63,7 +63,7 @@ const StyledLogin = styled(motion.div)`
 
 	row-gap: 2rem;
 	margin: 0 auto;
-	max-width: 42rem;
+	max-width: 80rem;
 	padding: 0 1rem;
 	/* overflow-y: auto; */
 	/* overflow: hidden; */

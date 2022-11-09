@@ -105,9 +105,11 @@ const Home = ({ themeToggler, theme }) => {
 				</>
 			) : (
 				<>
-					{gigCounterData && gigCounterData.next_five_gigs.length > 0 && (
-						<CountdownWidget gig={gigCounterData.next_five_gigs[0]} />
-					)}
+					{gigCounterData &&
+						gigCounterData.next_five_gigs.length &&
+						gigCounterData.next_five_gigs.length > 0 && (
+							<CountdownWidget gig={gigCounterData.next_five_gigs[0]} />
+						)}
 
 					{gigCounterData && (
 						<CountersWidget gigCounterData={gigCounterData && gigCounterData} />
@@ -245,7 +247,7 @@ const StyledHome = styled(motion.div)`
 	flex-direction: column;
 	row-gap: 0.5rem;
 	flex: 1;
-	max-width: 42rem;
+	max-width: 80rem;
 	padding: 0 1rem;
 	overflow: hidden;
 	/* overflow-y: auto; */

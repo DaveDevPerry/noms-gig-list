@@ -255,7 +255,7 @@ const StyledBands = styled(motion.div)`
 	flex-direction: column;
 	row-gap: 1rem;
 	flex: 1;
-	max-width: 42rem;
+	max-width: 80rem;
 	padding: 0 1rem;
 	overflow: hidden;
 	transition: all 200ms linear;

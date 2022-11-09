@@ -343,7 +343,7 @@ const StyledMusicNotes = styled.div`
 	/* border: 2px solid #000; */
 	/* border: 2px solid #000; */
 	/* opacity: 1; */
-	max-width: 42rem;
+	max-width: 80rem;
 	overflow: hidden;
 	&.fade-out {
 		animation: fadeOut 500ms linear forwards;

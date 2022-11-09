@@ -124,10 +124,10 @@ const StyledFooter = styled.footer`
 	position: relative;
 	transition: all 200ms linear;
 	nav {
-		max-width: 60rem;
+		max-width: 100rem;
 		margin: 0 auto;
 		div {
-			max-width: 1400px;
+			max-width: 100rem;
 			display: flex;
 			align-items: center;
 			justify-content: space-evenly;

@@ -243,7 +243,7 @@ const StyledStatistics = styled(motion.div)`
 	flex-direction: column;
 	row-gap: 0.5rem;
 	flex: 1;
-	max-width: 42rem;
+	max-width: 80rem;
 	padding: 0 1rem;
 	/* overflow: hidden; */
 	overflow-y: auto;

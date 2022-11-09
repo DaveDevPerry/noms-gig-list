@@ -60,7 +60,7 @@ const StyledSignup = styled(motion.div)`
 	flex-direction: column;
 	row-gap: 2rem;
 	margin: 0 auto;
-	max-width: 42rem;
+	max-width: 80rem;
 	padding: 0 1rem;
 	/* overflow-y: auto; */
 	/* overflow: hidden; */

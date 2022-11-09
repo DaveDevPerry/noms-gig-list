@@ -181,7 +181,7 @@ const StyledSearch = styled(motion.div)`
 		font-weight: bold;
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
 	} */
-	max-width: 42rem;
+	max-width: 80rem;
 	padding: 0 1rem;
 	/* overflow-y: auto; */
 	/* overflow: hidden; */

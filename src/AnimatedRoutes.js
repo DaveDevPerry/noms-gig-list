@@ -277,10 +277,8 @@ const AnimatedRoutes = ({
 						path='/login'
 						element={!user ? <Login theme={theme} /> : <Navigate to='/' />}
 					/>
-					{/* <Routes
-						path='/signup'
-						element={!user ? <Signup theme={theme} /> : <Navigate to='/' />}
-					/> */}
+
+					<Route path='/signup' element={<Navigate to='/' />} />
 				</Routes>
 			</AnimatePresence>
 		</>
@@ -288,3 +286,8 @@ const AnimatedRoutes = ({
 };
 
 export default AnimatedRoutes;
+
+// {/* <Routes
+// 					path='/signup'
+// 					element={!user ? <Signup theme={theme} /> : <Navigate to='/' />}
+// 				/> */}
