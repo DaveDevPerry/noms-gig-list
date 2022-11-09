@@ -123,7 +123,7 @@ const Home = ({ themeToggler, theme }) => {
 						</div>
 					)} */}
 
-					{gigCounterData && (
+					{gigCounterData && totalGigsPerBand && (
 						<div className='stat-container'>
 							<TopBandWidget gigCounterData={totalGigsPerBand[0]} />
 						</div>
